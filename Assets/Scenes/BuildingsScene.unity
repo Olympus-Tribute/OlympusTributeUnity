@@ -445,10 +445,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33338aaab0ff3384292786e50b2c69b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingPrefab1: {fileID: 919132149155446097, guid: ede8a0debf1e6674e83660364f8d60fb, type: 3}
-  buildingPrefab2: {fileID: 919132149155446097, guid: c8fce3fa68eb92f43b9c19ffaf540955, type: 3}
-  buildingPrefab3: {fileID: 919132149155446097, guid: 937297d7c25d27e4aafbe1e80d932a2d, type: 3}
-  buildingPrefab4: {fileID: 919132149155446097, guid: 292ce367ec6260a4eb003275851d2587, type: 3}
+  buildingPrefab1: {fileID: 919132149155446097, guid: 52a7ae0d167096e4fa27cfd8506abba9, type: 3}
+  buildingPrefab2: {fileID: 919132149155446097, guid: 82a159f4fa2e1f544b3c37acc7828c52, type: 3}
+  buildingPrefab3: {fileID: 919132149155446097, guid: c5f288fb2801d74469d935f12f5a85cc, type: 3}
+  buildingPrefab4: {fileID: 919132149155446097, guid: d8ae05dfc72eb4f4eb76602d65fff430, type: 3}
 --- !u!1 &872876030
 GameObject:
   m_ObjectHideFlags: 0

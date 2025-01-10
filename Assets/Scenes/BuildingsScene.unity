@@ -446,9 +446,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefab1: {fileID: 919132149155446097, guid: ede8a0debf1e6674e83660364f8d60fb, type: 3}
-  buildingPrefab2: {fileID: 919132149155446097, guid: 6266ab7aff9ae73478872303d358cc80, type: 3}
-  buildingPrefab3: {fileID: 2936208797765288945, guid: ae8baa7c9f83ade4a8fc2c475b77178e, type: 3}
-  buildingPrefab4: {fileID: 2868186462442186698, guid: f91ce4560f8219847963880626191a5b, type: 3}
+  buildingPrefab2: {fileID: 919132149155446097, guid: c8fce3fa68eb92f43b9c19ffaf540955, type: 3}
+  buildingPrefab3: {fileID: 919132149155446097, guid: 937297d7c25d27e4aafbe1e80d932a2d, type: 3}
+  buildingPrefab4: {fileID: 919132149155446097, guid: 292ce367ec6260a4eb003275851d2587, type: 3}
 --- !u!1 &872876030
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0.7490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

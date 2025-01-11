@@ -385,7 +385,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuUI: {fileID: 41541999}
   buildingsManager: {fileID: 751343860}
-  gridSize: 10
+  gridWidth: 20
+  gridHeight: 20
 --- !u!4 &488860881
 Transform:
   m_ObjectHideFlags: 0

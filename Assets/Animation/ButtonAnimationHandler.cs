@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ButtonAnimationHandler : MonoBehaviour
+public class ButtonAnimationHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Animator animator;
 
@@ -10,15 +11,13 @@ public class ButtonAnimationHandler : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void OnMouseEnter()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        // Déclencher l'animation de survol
         animator.SetTrigger("Hover");
+        
     }
-
-    public void OnMouseExit()
+    public void OnPointerExit(PointerEventData eventData)
     {
-        // Revenir à l'état normal
         animator.SetTrigger("Idle");
     }
 }

@@ -40,16 +40,7 @@ public class BuildingsMenu : MonoBehaviour
         // Clic gauche pour placer définitivement le bâtiment
         if (Input.GetMouseButtonDown(0) && _ghostBuilding != null)
         {
-            //PlaceBuilding();
-            if (_ghostBuilding != null)
-            {
-                Vector3 position = _ghostBuilding.transform.position;
-                
-                var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
-                buildingsManager.MainBuilding.Connection.Send(action);
-                Destroy(_ghostBuilding); // Détruit le bâtiment "fantôme"
-                _selectedBuildingPrefab = null;  // Réinitialise la sélection
-            }
+            PlaceBuilding();
         }
     }
     
@@ -98,8 +89,20 @@ public class BuildingsMenu : MonoBehaviour
         {
             Vector3 position = _ghostBuilding.transform.position;
 
-            var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
-            buildingsManager.MainBuilding.Connection.Send(action);
+            //
+            //
+            //
+            //Pour le Multi : (Partie qui crache)
+            //
+            //var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
+            //buildingsManager.MainBuilding.Connection.Send(action);
+            //
+            //
+            //
+            //
+            //
+            buildingsManager.PlaceBuilding(position.x, position.z, _selectedBuildingType);
+            
             Destroy(_ghostBuilding); // Détruit le bâtiment "fantôme"
             _selectedBuildingPrefab = null;  // Réinitialise la sélection
         }

@@ -16,7 +16,11 @@ public class BuildingsManager : MonoBehaviour
     public GameObject buildingPrefab4;
 
     public MainBuilding MainBuilding = new MainBuilding();
-
+    
+    //___________________________________________________________//
+    //_________________________For Multi_________________________//
+    //___________________________________________________________//
+    
     void OnEnable(){
         Debug.Log("Starting by BuildingsManager");
         MainBuilding.Start(ConnectionAdded);
@@ -32,18 +36,19 @@ public class BuildingsManager : MonoBehaviour
         Debug.Log("OnDisable");
         MainBuilding.Stop();
     }
-
+    
     public void ConnectionAdded(IConnection connection) {
         connection.AddListener<ServerPlaceBuildingGameAction>(action => {
             PlaceBuilding(action.X*5, action.Y*5, action.NumBuildings);
         });
     }
 
+    //___________________________________________________________//
+    //___________________________________________________________//
+    //___________________________________________________________//
 
     public bool PlaceBuilding(float x, float z, int buildingType)
     {
-        Debug.Log($"{x}, {z}");
-            
         Vector3 positionKey = new Vector3(x, 0, z);
 
         // Vérifie si un bâtiment existe déjà à cette position
@@ -62,7 +67,7 @@ public class BuildingsManager : MonoBehaviour
         }
 
         // Instancie le bâtiment
-        GameObject newBuilding = Instantiate(buildingToInstantiate, new Vector3(x, 0, z), Quaternion.identity);
+        GameObject newBuilding = Instantiate(buildingToInstantiate, positionKey, Quaternion.identity);
 
         // Ajoute le bâtiment au dictionnaire
         buildings[positionKey] = newBuilding;

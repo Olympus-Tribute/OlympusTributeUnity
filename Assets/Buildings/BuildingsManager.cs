@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using Networking.API;
+using Networking.Common.Server;
 using UnityEngine;
 
 public class BuildingsManager : MonoBehaviour
@@ -11,9 +14,36 @@ public class BuildingsManager : MonoBehaviour
     public GameObject buildingPrefab2;
     public GameObject buildingPrefab3;
     public GameObject buildingPrefab4;
-    
+
+    public MainBuilding MainBuilding = new MainBuilding();
+
+    void OnEnable(){
+        Debug.Log("Starting by BuildingsManager");
+        MainBuilding.Start(ConnectionAdded);
+    }
+
+    void Update(){
+        
+        MainBuilding.Update();
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log("OnDisable");
+        MainBuilding.Stop();
+    }
+
+    public void ConnectionAdded(IConnection connection) {
+        connection.AddListener<ServerPlaceBuildingGameAction>(action => {
+            PlaceBuilding(action.X*5, action.Y*5, action.NumBuildings);
+        });
+    }
+
+
     public bool PlaceBuilding(float x, float z, int buildingType)
     {
+        Debug.Log($"{x}, {z}");
+            
         Vector3 positionKey = new Vector3(x, 0, z);
 
         // Vérifie si un bâtiment existe déjà à cette position

@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine;
 
 public class BuildingsMenu2 : MonoBehaviour
 {

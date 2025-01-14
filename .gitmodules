@@ -1,0 +1,3 @@
+[submodule "OlympusNetworking"]
+	path = OlympusNetworking
+	url = https://github.com/Olympus-Tribute/OlympusNetworking.git

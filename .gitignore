@@ -1,5 +1,6 @@
 #_______________gitignore for Intellij______________
 
+.idea/
 # User-specific stuff:
 .idea/workspace.xml
 .idea/tasks.xml

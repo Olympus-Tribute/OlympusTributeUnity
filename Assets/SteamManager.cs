@@ -164,11 +164,11 @@ public class SteamManager : MonoBehaviour {
 		if (!m_bInitialized) {
 			return;
 		}
-
 		// Run Steam client callbacks
 		SteamAPI.RunCallbacks();
 	}
 #else
+.33
 	public static bool Initialized {
 		get {
 			return false;

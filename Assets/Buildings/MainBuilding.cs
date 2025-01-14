@@ -12,6 +12,11 @@ public class MainBuilding
     private CSteamID? _lockObject;
     public IConnection Connection; 
     private Action<IConnection> _setup;
+    
+    private Callback<GameRichPresenceJoinRequested_t> callbackGameRichPresenceJoinRequested_t;
+    private Callback<GameLobbyJoinRequested_t> callbackGameLobbyJoinRequested_t;
+    private Callback<LobbyChatUpdate_t> callbackLobbyChatUpdate_t;
+    private Callback<LobbyEnter_t> callbackLobbyEnter_t;
 
     public MainBuilding()
     {
@@ -31,7 +36,9 @@ public class MainBuilding
     public void Update()
     {
         if (Connection == null){
+            
             if (!_lockObject.HasValue) return;
+            
             var registry = new GameActionRegistry();
             registry.Register<ClientPlaceBuildingGameAction>();
             registry.Register<ServerPlaceBuildingGameAction>();
@@ -48,19 +55,12 @@ public class MainBuilding
         }
         Connection.Update();
     }
-
-    public void Stop()
-    {
-        SteamAPI.Shutdown();
-    }
-
     
     private void SetupCallbacks()
     {
-        Callback<GameRichPresenceJoinRequested_t>.Create(JoinRequestRichPresence);
-        Callback<GameLobbyJoinRequested_t>.Create(JoinRequestLobby);
-
-        Callback<LobbyChatUpdate_t>.Create(param =>
+        callbackGameRichPresenceJoinRequested_t = Callback<GameRichPresenceJoinRequested_t>.Create(JoinRequestRichPresence);
+        callbackGameLobbyJoinRequested_t = Callback<GameLobbyJoinRequested_t>.Create(JoinRequestLobby);
+        callbackLobbyChatUpdate_t = Callback<LobbyChatUpdate_t>.Create(param =>
         {
             Debug.Log("Lobby join requested " + param.m_ulSteamIDLobby);
 
@@ -68,7 +68,7 @@ public class MainBuilding
             SteamFriends.SetRichPresence("steam_player_group_size",
                 SteamMatchmaking.GetNumLobbyMembers(new CSteamID(param.m_ulSteamIDLobby)).ToString());
         });
-        Callback<LobbyEnter_t>.Create(LobbyJoined);
+        callbackLobbyEnter_t = Callback<LobbyEnter_t>.Create(LobbyJoined);
     }
 
     private void LobbyJoined(LobbyEnter_t param)

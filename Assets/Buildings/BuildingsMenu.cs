@@ -11,12 +11,19 @@ public class BuildingsMenu : MonoBehaviour
     
     public GameObject menuUI;
     public BuildingsManager buildingsManager;
+    public bool networkActive;
     
     //public float gridSize = 20f;  // Taille de la cellule de la grille (modifiable dans l'inspecteur)
     public float gridWidth = 20f;  // Largeur d'un hexagone
     public float gridHeight = 20f; // Hauteur d'un hexagone
 
 
+    public BuildingsMenu()
+    {
+        networkActive = true;
+    }
+    
+    
     void Start()
     {
         _mainCamera = Camera.main;
@@ -89,20 +96,18 @@ public class BuildingsMenu : MonoBehaviour
         {
             Vector3 position = _ghostBuilding.transform.position;
 
-            //
-            //
-            //
-            //Pour le Multi : (Partie qui crache)
-            //
-            //var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
-            //buildingsManager.MainBuilding.Connection.Send(action);
-            //
-            //
-            //
-            //
-            //
-            buildingsManager.PlaceBuilding(position.x, position.z, _selectedBuildingType);
-            
+            if (networkActive)
+            {
+                //
+                //Pour le Multi
+                //
+                var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
+                buildingsManager.MainBuilding.Connection.Send(action);
+            }
+            else
+            {
+                buildingsManager.PlaceBuilding(position.x, position.z, _selectedBuildingType);
+            }
             Destroy(_ghostBuilding); // Détruit le bâtiment "fantôme"
             _selectedBuildingPrefab = null;  // Réinitialise la sélection
         }

@@ -30,12 +30,6 @@ public class BuildingsManager : MonoBehaviour
         
         MainBuilding.Update();
     }
-
-    private void OnDisable()
-    {
-        Debug.Log("OnDisable");
-        MainBuilding.Stop();
-    }
     
     public void ConnectionAdded(IConnection connection) {
         connection.AddListener<ServerPlaceBuildingGameAction>(action => {

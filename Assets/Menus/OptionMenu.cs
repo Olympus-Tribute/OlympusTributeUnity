@@ -7,6 +7,7 @@ public class OptionMenu : MonoBehaviour
     {
         Debug.Log("Option1");
     }
+    
     public void Option2()
     {
         Debug.Log("Option2");
@@ -16,8 +17,9 @@ public class OptionMenu : MonoBehaviour
     {
         Debug.Log("Option3");
     }
+    
     public void BackToMainMenu()
     {
-        SceneManager.LoadSceneAsync("Scenes/MainMenu");
+        SceneManager.LoadSceneAsync("Scenes/Menus/MainMenu");
     }
 }

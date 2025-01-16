@@ -17,7 +17,11 @@ public class HostOrJoinMenu : MonoBehaviour
     {
         if (SteamManager.Initialized)
         {
+            CSteamID id = SteamUser.GetSteamID();
+            SteamFriends.ActivateGameOverlayInviteDialog(id);
+            
             //SteamFriends.ActivateGameOverlay("Friends");
+            
             SceneManager.LoadScene("Scenes/BuildingsScene");
         }
         else

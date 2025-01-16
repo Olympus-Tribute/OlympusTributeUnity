@@ -559,8 +559,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPrefab1: {fileID: 919132149155446097, guid: c32fba484d9ff1a46817671ae22290cd, type: 3}
   buildingPrefab2: {fileID: 919132149155446097, guid: 11bae5a2eae1202449ff59f94ebb796e, type: 3}
-  buildingPrefab3: {fileID: 919132149155446097, guid: 1ddd37771d1b4c945b841d5823df2e9e, type: 3}
-  buildingPrefab4: {fileID: 919132149155446097, guid: d8ae05dfc72eb4f4eb76602d65fff430, type: 3}
+  buildingPrefab3: {fileID: 919132149155446097, guid: acf9ac0938b5eb84cba85f0976632fae, type: 3}
+  buildingPrefab4: {fileID: 919132149155446097, guid: 41e33415351beb3438e22d82b5d98158, type: 3}
 --- !u!1 &872876030
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,32 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ddeb296-32fa-493d-9d4d-3ce143ad7a49" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Menus/HostOrJoinMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Menus/HostOrJoinMenu.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Menus/MultiplayerOrAIMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Menus/MultiplayerOrAIMenu.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/ButtonHover.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/ButtonHover.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Image/Fond.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Image/Fond.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Image/backgroung.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Image/backgroung.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menu.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menu/MainMenu.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menu/MainMenu.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menu/OptionMenu.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Menu/OptionMenu.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PrefabButton.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PrefabButton/ButtonAnimator.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PrefabButton/ButtonAnimator.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BuildingsScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BuildingsScene.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MenuOption.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MenuOption.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-    </list>
+    <list default="true" id="9ddeb296-32fa-493d-9d4d-3ce143ad7a49" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -122,7 +97,7 @@
       <workItem from="1736789748024" duration="9026000" />
       <workItem from="1736854850620" duration="3662000" />
       <workItem from="1736969378872" duration="2293000" />
-      <workItem from="1736973047655" duration="1004000" />
+      <workItem from="1736973047655" duration="1517000" />
     </task>
     <servers />
   </component>

@@ -5,11 +5,11 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync("Scenes/Menus/Play/MultiplayerOrAIMenu");
+        SceneManager.LoadScene("Scenes/Menus/Play/MultiplayerOrAIMenu");
     }
     public void OpenOptions()
     {
-        SceneManager.LoadSceneAsync("Scenes/Menus/OptionMenu");
+        SceneManager.LoadScene("Scenes/Menus/OptionMenu");
     }
     public void QuitGame()
     {

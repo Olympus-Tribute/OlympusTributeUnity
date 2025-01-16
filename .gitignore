@@ -44,6 +44,8 @@ crashlytics-build.properties
 fabric.properties
 
 #_______________gitignore for VSCode______________
+
+.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

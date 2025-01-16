@@ -20,6 +20,6 @@ public class OptionMenu : MonoBehaviour
     
     public void BackToMainMenu()
     {
-        SceneManager.LoadSceneAsync("Scenes/Menus/MainMenu");
+        SceneManager.LoadScene("Scenes/Menus/MainMenu");
     }
 }

@@ -22,7 +22,7 @@ public class HostOrJoinMenu : MonoBehaviour
             
             //SteamFriends.ActivateGameOverlay("Friends");
             
-            SceneManager.LoadScene("Scenes/BuildingsScene");
+            SceneManager.LoadScene("WaitingScene");
         }
         else
         {

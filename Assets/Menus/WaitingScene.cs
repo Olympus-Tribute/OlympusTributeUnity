@@ -16,17 +16,12 @@ public class WaitingScene : MonoBehaviour
     
     void OnEnable(){
         Debug.Log("Starting by WaitingScene");
-        MenuNetwork.Start(ConnectionAdded);
-    }
-
-    void Update(){
-        
-        MenuNetwork.Update();
+        MenuNetwork.Setup = ConnectionAdded;
     }
     
     public void ConnectionAdded(Proxy proxy) {
-        proxy.GameActionListenerManager.AddListener<ServerPlaceBuildingGameAction>((connection, action) => {
-            StartGame();
+        proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>((connection, action) => {
+            InitGame();
         });
     }
 
@@ -34,14 +29,15 @@ public class WaitingScene : MonoBehaviour
     //___________________________________________________________//
     //___________________________________________________________//
 
-    public void StartGame()
+    public void StartGame() // For Button
+    {
+        
+        Network.Instance.Connection.Connection.Send(new ClientWantsStartGameAction());
+        Debug.Log("envoi du gameAction");
+    }
+    
+    public void InitGame()
     {
         SceneManager.LoadScene("Scenes/BuildingsScene");
-    }
-
-    public void PlayGame()
-    {
-        // ajouter bouton dans unity
-        Network.Instance.Connection.Connection.Send(new ClientPlaceBuildingGameAction());
     }
 }

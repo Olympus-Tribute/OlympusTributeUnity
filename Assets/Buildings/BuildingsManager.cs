@@ -22,22 +22,15 @@ public class BuildingsManager : MonoBehaviour
     //_________________________For Multi_________________________//
     //___________________________________________________________//
     
-    void OnEnable(){
+    void OnEnable()
+    {
         Debug.Log("Starting by BuildingsManager");
-        Network.Start(ConnectionAdded);
+        if (Network.Instance.Connection != null)
+        {
+            Network.Instance.Connection.GameActionListenerManager.AddListener<ServerPlaceBuildingGameAction>(
+                (connection, action) => { PlaceBuilding(action.X * 5, action.Y * 5, action.NumBuildings); });
+        }
     }
-
-    void Update(){
-        
-        Network.Update();
-    }
-    
-    public void ConnectionAdded(Proxy proxy) {
-        proxy.GameActionListenerManager.AddListener<ServerPlaceBuildingGameAction>((connection, action) => {
-            PlaceBuilding(action.X*5, action.Y*5, action.NumBuildings);
-        });
-    }
-
     //___________________________________________________________//
     //___________________________________________________________//
     //___________________________________________________________//

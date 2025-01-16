@@ -10,41 +10,33 @@ using UnityEngine;
 
 namespace ForNetwork
 {
-    public class Network
+    public class Network : MonoBehaviour
     {
         private CSteamID? _lockObject;
-        public Proxy Connection; 
-        private Action<Proxy> _setup;
+        [CanBeNull] public Proxy Connection; 
+        [CanBeNull] public Action<Proxy> Setup;
         
         private Callback<GameRichPresenceJoinRequested_t> callbackGameRichPresenceJoinRequested_t;
         private Callback<GameLobbyJoinRequested_t> callbackGameLobbyJoinRequested_t;
         private Callback<LobbyChatUpdate_t> callbackLobbyChatUpdate_t;
         private Callback<LobbyEnter_t> callbackLobbyEnter_t;
-
-        [CanBeNull] private static Network _instance;
-
-        public static Network Instance
-        {
-            get
-            {
-                if (_instance is null)
-                {
-                    _instance = new Network();
-                }
-                return _instance;
-            }
-        }
+        
+        public static Network Instance {get; private set;}
 
         private Network()
         {
             Connection = null;
         }
 
-        public void Start(Action<Proxy> setup)
+        public void Awake()
         {
-            Debug.Log("Start Methode MainBuilding");
-            _setup = setup;
-            
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Garder l'objet sur toutes les scènes
+        }
+
+        public void Start()
+        {
+            Debug.Log("Start Network");
             SetupCallbacks();
             Debug.Log("Setup callbacks");
         
@@ -54,7 +46,10 @@ namespace ForNetwork
         {
             if (Connection == null){
                 
-                if (!_lockObject.HasValue) return;
+                if (!_lockObject.HasValue)
+                {
+                    return;
+                }
                 
                 var registry = new GameActionRegistry();
                 registry.Register<ClientWantsStartGameAction>();
@@ -70,11 +65,13 @@ namespace ForNetwork
                 Connection.Connection.Connect();
                 Debug.Log("Connected");
 
-                _setup(Connection);
+                Setup(Connection);
                 return;
             }
             Connection.Process();
         }
+        
+        
         
         private void SetupCallbacks()
         {

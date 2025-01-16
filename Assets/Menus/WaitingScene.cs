@@ -1,3 +1,6 @@
+using ForNetwork;
+using Networking.Common.Client;
+using Networking.Common.Server;
 using Steamworks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,38 +8,28 @@ using UnityEngine.SceneManagement;
 public class WaitingScene : MonoBehaviour
 {
 
-    public MenuNetwork MenuNetwork = new MenuNetwork();
+    public Network MenuNetwork = Network.Instance;
     
     //___________________________________________________________//
     //_________________________For Multi_________________________//
     //___________________________________________________________//
     
-    private void Start()
-    {
-        if (!SteamManager.Initialized)
-        {
-            Debug.LogError("Steam is not initialized.");
-            return;
-        }
-    }
-    
     void OnEnable(){
-        Debug.Log("Starting by BuildingsManager");
-        //MenuNetwork.Start(ConnectionAdded);
+        Debug.Log("Starting by WaitingScene");
+        MenuNetwork.Start(ConnectionAdded);
     }
-    
 
     void Update(){
         
         MenuNetwork.Update();
     }
-    /*
-    public void ConnectionAdded(IConnection connection) {
-        connection.AddListener<ServerStartLobbyGameAction>(action => {
-            StartGame()
+    
+    public void ConnectionAdded(Proxy proxy) {
+        proxy.GameActionListenerManager.AddListener<ServerPlaceBuildingGameAction>((connection, action) => {
+            StartGame();
         });
     }
-*/
+
     //___________________________________________________________//
     //___________________________________________________________//
     //___________________________________________________________//
@@ -44,5 +37,11 @@ public class WaitingScene : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Scenes/BuildingsScene");
+    }
+
+    public void PlayGame()
+    {
+        // ajouter bouton dans unity
+        Network.Instance.Connection.Connection.Send(new ClientPlaceBuildingGameAction());
     }
 }

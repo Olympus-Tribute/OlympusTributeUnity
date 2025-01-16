@@ -102,7 +102,7 @@ public class BuildingsMenu : MonoBehaviour
                 //Pour le Multi
                 //
                 var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
-                buildingsManager.MainBuilding.Connection.Send(action);
+                buildingsManager.Network.Connection.Connection.Send(action);
             }
             else
             {

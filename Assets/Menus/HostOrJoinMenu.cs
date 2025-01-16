@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class HostOrJoinMenu : MonoBehaviour
 {
+    
     private void Start()
     {
         if (!SteamManager.Initialized)
@@ -21,6 +22,8 @@ public class HostOrJoinMenu : MonoBehaviour
             SteamFriends.ActivateGameOverlayInviteDialog(id);
             
             //SteamFriends.ActivateGameOverlay("Friends");
+            
+            
             
             SceneManager.LoadScene("WaitingScene");
         }

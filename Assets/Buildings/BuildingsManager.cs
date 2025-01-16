@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ForNetwork;
 using Networking.API;
 using Networking.Common.Server;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class BuildingsManager : MonoBehaviour
     public GameObject buildingPrefab3;
     public GameObject buildingPrefab4;
 
-    public MainBuilding MainBuilding = new MainBuilding();
+    public Network Network = Network.Instance;
     
     //___________________________________________________________//
     //_________________________For Multi_________________________//
@@ -23,16 +24,16 @@ public class BuildingsManager : MonoBehaviour
     
     void OnEnable(){
         Debug.Log("Starting by BuildingsManager");
-        MainBuilding.Start(ConnectionAdded);
+        Network.Start(ConnectionAdded);
     }
 
     void Update(){
         
-        MainBuilding.Update();
+        Network.Update();
     }
     
-    public void ConnectionAdded(IConnection connection) {
-        connection.AddListener<ServerPlaceBuildingGameAction>(action => {
+    public void ConnectionAdded(Proxy proxy) {
+        proxy.GameActionListenerManager.AddListener<ServerPlaceBuildingGameAction>((connection, action) => {
             PlaceBuilding(action.X*5, action.Y*5, action.NumBuildings);
         });
     }

@@ -13,7 +13,7 @@ namespace ForNetwork
     public class Network : MonoBehaviour
     {
         private CSteamID? _lockObject;
-        [CanBeNull] public Proxy Connection; 
+        [CanBeNull] public Proxy Proxy; 
         [CanBeNull] public Action<Proxy> Setup;
         
         private Callback<GameRichPresenceJoinRequested_t> callbackGameRichPresenceJoinRequested_t;
@@ -22,16 +22,25 @@ namespace ForNetwork
         private Callback<LobbyEnter_t> callbackLobbyEnter_t;
         
         public static Network Instance {get; private set;}
+        public bool networkActive;
 
         private Network()
         {
-            Connection = null;
+            Proxy = null;
         }
 
         public void Awake()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Garder l'objet sur toutes les scènes
+            networkActive = false;
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject); // Optionnel, pour garder l'instance entre les scènes
+            }
+            else
+            {
+                Destroy(gameObject); // Évite les doublons
+            }
         }
 
         public void Start()
@@ -44,7 +53,7 @@ namespace ForNetwork
 
         public void Update()
         {
-            if (Connection == null){
+            if (Proxy == null){
                 
                 if (!_lockObject.HasValue)
                 {
@@ -59,16 +68,16 @@ namespace ForNetwork
 
                 SteamConnection steamConnection = SteamConnection.Connect(_lockObject.Value, registry);
                 GameActionListenerManager gameActionListener = new GameActionListenerManager();
-                Connection = new Proxy(steamConnection, gameActionListener);
+                Proxy = new Proxy(steamConnection, gameActionListener);
                     
                 Debug.Log("Created connection");
-                Connection.Connection.Connect();
+                Proxy.Connection.Connect();
                 Debug.Log("Connected");
 
-                Setup(Connection);
+                Setup(Proxy);
                 return;
             }
-            Connection.Process();
+            Proxy.Process();
         }
         
         

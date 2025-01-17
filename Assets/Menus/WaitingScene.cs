@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class WaitingScene : MonoBehaviour
 {
 
-    public Network MenuNetwork = Network.Instance;
+    public Network Network = Network.Instance;
     
     //___________________________________________________________//
     //_________________________For Multi_________________________//
@@ -16,7 +16,7 @@ public class WaitingScene : MonoBehaviour
     
     void OnEnable(){
         Debug.Log("Starting by WaitingScene");
-        MenuNetwork.Setup = ConnectionAdded;
+        Network.Setup = ConnectionAdded;
     }
     
     public void ConnectionAdded(Proxy proxy) {
@@ -31,8 +31,10 @@ public class WaitingScene : MonoBehaviour
 
     public void StartGame() // For Button
     {
-        
-        Network.Instance.Connection.Connection.Send(new ClientWantsStartGameAction());
+        if (Network.Instance.Proxy != null)
+        {
+            Network.Instance.Proxy.Connection.Send(new ClientWantsStartGameAction());
+        }
         Debug.Log("envoi du gameAction");
     }
     

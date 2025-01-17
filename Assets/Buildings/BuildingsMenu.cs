@@ -1,3 +1,4 @@
+using System;
 using Networking.Common.Client;
 using UnityEngine;
 using UnityEngine;
@@ -11,19 +12,16 @@ public class BuildingsMenu : MonoBehaviour
     
     public GameObject menuUI;
     public BuildingsManager buildingsManager;
-    public bool networkActive;
+    private bool _networkActive;
     
-    //public float gridSize = 20f;  // Taille de la cellule de la grille (modifiable dans l'inspecteur)
     public float gridWidth = 20f;  // Largeur d'un hexagone
     public float gridHeight = 20f; // Hauteur d'un hexagone
-
-
-    public BuildingsMenu()
+    
+    public void Awake()
     {
-        networkActive = true;
+        _networkActive = buildingsManager.networkActive;
     }
-    
-    
+
     void Start()
     {
         _mainCamera = Camera.main;
@@ -68,7 +66,7 @@ public class BuildingsMenu : MonoBehaviour
         {
             // Crée un bâtiment "fantôme" pour le placement
             _ghostBuilding = Instantiate(_selectedBuildingPrefab, Vector3.zero, Quaternion.identity);
-            MakePreviewTransparent();  // Rendre le bâtiment "fantôme" transparent
+            //MakePreviewTransparent();  // Rendre le bâtiment "fantôme" transparent
         }
     }
 
@@ -85,6 +83,9 @@ public class BuildingsMenu : MonoBehaviour
 
             // Déplace le bâtiment "fantôme" à la position calculée
             _ghostBuilding.transform.position = snappedPosition;
+            
+            //__________WithoutGrid_________
+            //_ghostBuilding.transform.position = hit.point
         }
     }
 
@@ -96,13 +97,19 @@ public class BuildingsMenu : MonoBehaviour
         {
             Vector3 position = _ghostBuilding.transform.position;
 
-            if (networkActive)
+            if (_networkActive)
             {
-                //
-                //Pour le Multi
-                //
+                //___________________________________________//
+                //____________Pour le Multi__________________//
+                //___________________________________________//
                 var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
-                buildingsManager.Network.Connection.Connection.Send(action);
+                if (buildingsManager.Network.Proxy != null)
+                {
+                    buildingsManager.Network.Proxy.Connection.Send(action);
+                }
+                //___________________________________________//
+                //___________________________________________//
+                //___________________________________________//
             }
             else
             {

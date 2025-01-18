@@ -1,23 +1,35 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 namespace Buildings
 {
     public class BuildingsInteraction : MonoBehaviour
     {
         public GameObject menuUI;
-        public Text buildingInfoText;
+        public TMP_Text buildingInfoText;
 
         private Camera _mainCamera;
         private GameObject _selectedBuilding;
+        
+        private BuildingsManager _buildingsManager;
+        private bool _networkActive;
 
-        void Start()
+        private void Start()
         {
             _mainCamera = Camera.main;
+            _buildingsManager = FindObjectOfType<BuildingsManager>();
+            if (_buildingsManager == null)
+            {
+                Debug.LogError("BuildingsManager n'a pas été trouvé dans la scène !");
+                return;
+            }
+
+            // Récupérer l'état du réseau depuis BuildingsManager si nécessaire
+            _networkActive = _buildingsManager.networkActive;
             menuUI.SetActive(false);
         }
 
-        void Update()
+        private void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -30,12 +42,11 @@ namespace Buildings
             }
         }
 
-        void CheckForBuildingClick()
+        private void CheckForBuildingClick()
         {
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 // Vérifie si l'objet cliqué est un bâtiment
                 if (hit.collider.CompareTag("Building"))
@@ -46,13 +57,16 @@ namespace Buildings
             }
         }
 
-        void ShowMenu(Vector3 position, GameObject building)
+        private void ShowMenu(Vector3 position, GameObject building)
         {
-            
+            if (menuUI.activeSelf) 
+            {
+                menuUI.SetActive(false); // Close any existing menu
+            }
+    
             menuUI.transform.position = position + new Vector3(0, 2, 0);
-            
             buildingInfoText.text = $"Bâtiment : {building.name}";
-            
+
             menuUI.SetActive(true);
         }
 
@@ -60,9 +74,31 @@ namespace Buildings
         {
             if (_selectedBuilding != null)
             {
-                Destroy(_selectedBuilding); // Supprime le bâtiment
+                // Obtenir la position du bâtiment sélectionné
+                Vector3 positionKey = _selectedBuilding.transform.position;
+
+                // Arrondir les coordonnées pour éviter les imprécisions
+                int roundedX = (int)Mathf.Round(positionKey.x);
+                int roundedZ = (int)Mathf.Round(positionKey.z);
+                //Vector3 roundedPositionKey = new Vector3(roundedX, 0, roundedZ);
+
+                if (_networkActive)
+                {
+                    _buildingsManager.DeleteBuilding(roundedX, roundedZ);
+                }
+                else
+                {
+                    _buildingsManager.DeleteBuilding(roundedX, roundedZ);
+                }
+                
+                // Supprimer le bâtiment de la scène
+                Destroy(_selectedBuilding);
                 _selectedBuilding = null;
-                menuUI.SetActive(false); // Ferme le menu
+                menuUI.SetActive(false);
+            }
+            else
+            {
+                Debug.LogWarning("Aucun bâtiment sélectionné pour suppression.");
             }
         }
 
@@ -70,8 +106,15 @@ namespace Buildings
         {
             if (_selectedBuilding != null)
             {
-                // Exemple d'action : mise à niveau
-                Debug.Log($"Mise à niveau du bâtiment : {_selectedBuilding.name}");
+                if (_networkActive)
+                {
+                    Debug.Log($"Mise à niveau du bâtiment : {_selectedBuilding.name}");
+                }
+                else
+                {
+                    Debug.Log($"Mise à niveau du bâtiment : {_selectedBuilding.name}");
+                }
+               
                 menuUI.SetActive(false);
             }
         }

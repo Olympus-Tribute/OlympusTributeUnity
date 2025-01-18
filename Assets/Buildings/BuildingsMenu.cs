@@ -1,155 +1,163 @@
-using System;
 using Networking.Common.Client;
 using UnityEngine;
-using UnityEngine;
 
-public class BuildingsMenu : MonoBehaviour
+namespace Buildings
 {
-    private Camera _mainCamera;
-    private GameObject _ghostBuilding;
-    private GameObject _selectedBuildingPrefab;
-    private int _selectedBuildingType;
-    
-    public GameObject menuUI;
-    public BuildingsManager buildingsManager;
-    private bool _networkActive;
-    
-    public float gridWidth = 20f;  // Largeur d'un hexagone
-    public float gridHeight = 20f; // Hauteur d'un hexagone
-    
-    public void Awake()
+    public class BuildingsMenu : MonoBehaviour
     {
-        _networkActive = buildingsManager.networkActive;
-    }
-
-    void Start()
-    {
-        _mainCamera = Camera.main;
-        menuUI.SetActive(false);
-    }
-
-    void Update()
-    {
-        // Ouvrir/fermer le menu avec la touche "B"
-        if (Input.GetKeyDown(KeyCode.B))
+        private Camera _mainCamera;
+        private GameObject _ghostBuilding;
+        private GameObject _selectedBuildingPrefab;
+        private int _selectedBuildingType;
+    
+        public GameObject menuUI;
+        private BuildingsManager _buildingsManager;
+        private bool _networkActive;
+    
+        public float gridWidth = 20f;  // Largeur d'un hexagone
+        public float gridHeight = 20f; // Hauteur d'un hexagone
+    
+        private void Awake()
         {
-            menuUI.SetActive(!menuUI.activeSelf);
+            _buildingsManager = FindObjectOfType<BuildingsManager>();
+            if (_buildingsManager == null)
+            {
+                Debug.LogError("BuildingsManager n'a pas été trouvé dans la scène !");
+                return;
+            }
+
+            // Récupérer l'état du réseau depuis BuildingsManager si nécessaire
+            _networkActive = _buildingsManager.networkActive;
         }
+
+        private void Start()
+        {
+            _mainCamera = Camera.main;
+            menuUI.SetActive(false);
+        }
+
+        private void Update()
+        {
+            // Ouvrir/fermer le menu avec la touche "B"
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                menuUI.SetActive(!menuUI.activeSelf);
+            }
         
-        // Si un bâtiment est sélectionné et que le menu est ouvert, suivre la souris
-        if (_selectedBuildingPrefab != null)
-        {
-            FollowMouse();
-        }
+            // Si un bâtiment est sélectionné et que le menu est ouvert, suivre la souris
+            if (_selectedBuildingPrefab != null)
+            {
+                FollowMouse();
+            }
 
-        // Clic gauche pour placer définitivement le bâtiment
-        if (Input.GetMouseButtonDown(0) && _ghostBuilding != null)
-        {
-            PlaceBuilding();
+            // Clic gauche pour placer définitivement le bâtiment
+            if (Input.GetMouseButtonDown(0) && _ghostBuilding != null)
+            {
+                PlaceBuilding();
+            }
         }
-    }
     
-    public void SelectBuilding(int buildingType)
-    {
-        menuUI.SetActive(false);
-
-        // Réinitialise le bâtiment "fantôme" si un bâtiment est déjà en cours
-        if (_ghostBuilding != null)
+        private void SelectBuilding(int buildingType)
         {
-            Destroy(_ghostBuilding);
-        }
+            menuUI.SetActive(false);
+
+            // Réinitialise le bâtiment "fantôme" si un bâtiment est déjà en cours
+            if (_ghostBuilding != null)
+            {
+                Destroy(_ghostBuilding);
+            }
         
-        _selectedBuildingType = buildingType;
-        _selectedBuildingPrefab = buildingsManager.GetBuildingPrefab(buildingType);
+            _selectedBuildingType = buildingType;
+            _selectedBuildingPrefab = _buildingsManager.GetBuildingPrefab(buildingType);
         
-        if (_selectedBuildingPrefab != null)
-        {
-            // Crée un bâtiment "fantôme" pour le placement
-            _ghostBuilding = Instantiate(_selectedBuildingPrefab, Vector3.zero, Quaternion.identity);
-            //MakePreviewTransparent();  // Rendre le bâtiment "fantôme" transparent
+            if (_selectedBuildingPrefab != null)
+            {
+                // Crée un bâtiment "fantôme" pour le placement
+                _ghostBuilding = Instantiate(_selectedBuildingPrefab, Vector3.zero, Quaternion.identity);
+                MakePreviewTransparent();  // Rendre le bâtiment "fantôme" transparent
+            }
         }
-    }
 
-    // Fonction pour déplacer le bâtiment "fantôme" avec la souris
-    void FollowMouse()
-    {
-        Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
+        // Fonction pour déplacer le bâtiment "fantôme" avec la souris
+        private void FollowMouse()
         {
-            // Calculer la position arrondie sur la grille hexagonale
-            Vector3 snappedPosition = CalculateHexagonalSnappedPosition(hit.point);
+            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-            // Déplace le bâtiment "fantôme" à la position calculée
-            _ghostBuilding.transform.position = snappedPosition;
+            if (Physics.Raycast(ray, out hit))
+            {
+                // Calculer la position arrondie sur la grille hexagonale
+                Vector3 snappedPosition = CalculateHexagonalSnappedPosition(hit.point);
+
+                // Déplace le bâtiment "fantôme" à la position calculée
+                _ghostBuilding.transform.position = snappedPosition;
             
-            //__________WithoutGrid_________
-            //_ghostBuilding.transform.position = hit.point
+                //__________WithoutGrid_________
+                //_ghostBuilding.transform.position = hit.point
+            }
         }
-    }
 
 
-    // Fonction pour placer définitivement le bâtiment à la position de la souris
-    void PlaceBuilding()
-    {
-        if (_ghostBuilding != null)
+        // Fonction pour placer définitivement le bâtiment à la position de la souris
+        private void PlaceBuilding()
         {
-            Vector3 position = _ghostBuilding.transform.position;
-
-            if (_networkActive)
+            if (_ghostBuilding != null)
             {
-                //___________________________________________//
-                //____________Pour le Multi__________________//
-                //___________________________________________//
-                var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
-                if (buildingsManager.Network.Proxy != null)
+                Vector3 position = _ghostBuilding.transform.position;
+
+                if (_networkActive)
                 {
-                    buildingsManager.Network.Proxy.Connection.Send(action);
+                    //___________________________________________//
+                    //____________Pour le Multi__________________//
+                    //___________________________________________//
+                    var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
+                    if (_buildingsManager.Network.Proxy != null)
+                    {
+                        _buildingsManager.Network.Proxy.Connection.Send(action);
+                    }
+                    //___________________________________________//
+                    //___________________________________________//
+                    //___________________________________________//
                 }
-                //___________________________________________//
-                //___________________________________________//
-                //___________________________________________//
+                else
+                {
+                    _buildingsManager.PlaceBuilding((int)position.x, (int)position.z, _selectedBuildingType);
+                }
+                Destroy(_ghostBuilding); // Détruit le bâtiment "fantôme"
+                _selectedBuildingPrefab = null;  // Réinitialise la sélection
             }
-            else
+        }
+
+        // Applique une transparence au bâtiment "fantôme"
+        private void MakePreviewTransparent()
+        {
+            foreach (var renderer in _ghostBuilding.GetComponentsInChildren<Renderer>())
             {
-                buildingsManager.PlaceBuilding(position.x, position.z, _selectedBuildingType);
+                renderer.material.color = new Color(1, 1, 1, 0.5f); // Rend le bâtiment semi-transparent
             }
-            Destroy(_ghostBuilding); // Détruit le bâtiment "fantôme"
-            _selectedBuildingPrefab = null;  // Réinitialise la sélection
         }
-    }
-
-    // Applique une transparence au bâtiment "fantôme"
-    private void MakePreviewTransparent()
-    {
-        foreach (var renderer in _ghostBuilding.GetComponentsInChildren<Renderer>())
-        {
-            renderer.material.color = new Color(1, 1, 1, 0.5f); // Rend le bâtiment semi-transparent
-        }
-    }
     
-    // Fonction pour calculer une position sur une grille hexagonale
-    private Vector3 CalculateHexagonalSnappedPosition(Vector3 hitPoint)
-    {
-        float q = hitPoint.x / gridWidth;  // Coordonnée "q" (colonne)
-        float r = hitPoint.z / (gridHeight * 0.75f); // Coordonnée "r" (ligne), ajustée par l'espacement vertical (75% de la hauteur)
-
-        // Arrondir les coordonnées pour trouver l'hexagone le plus proche
-        float roundedQ = Mathf.Round(q);
-        float roundedR = Mathf.Round(r);
-
-        // Convertir les coordonnées hexagonales arrondies en coordonnées mondiales
-        float snappedX = roundedQ * gridWidth;
-        float snappedZ = roundedR * gridHeight * 0.75f;
-
-        // Décaler les lignes impaires horizontalement
-        if (Mathf.Abs(roundedR % 2) > 0.1f) // Ligne impaire
+        // Fonction pour calculer une position sur une grille hexagonale
+        private Vector3 CalculateHexagonalSnappedPosition(Vector3 hitPoint)
         {
-            snappedX += gridWidth / 2f;
+            float q = hitPoint.x / gridWidth;  // Coordonnée "q" (colonne)
+            float r = hitPoint.z / (gridHeight * 0.75f); // Coordonnée "r" (ligne), ajustée par l'espacement vertical (75% de la hauteur)
+
+            // Arrondir les coordonnées pour trouver l'hexagone le plus proche
+            float roundedQ = Mathf.Round(q);
+            float roundedR = Mathf.Round(r);
+
+            // Convertir les coordonnées hexagonales arrondies en coordonnées mondiales
+            float snappedX = roundedQ * gridWidth;
+            float snappedZ = roundedR * gridHeight * 0.75f;
+
+            // Décaler les lignes impaires horizontalement
+            if (Mathf.Abs(roundedR % 2) > 0.1f) // Ligne impaire
+            {
+                snappedX += gridWidth / 2f;
+            }
+
+            return new Vector3(snappedX, 0, snappedZ); // Garder `y` à 0 ou ajuster en fonction de ton terrain
         }
-
-        return new Vector3(snappedX, 0, snappedZ); // Garder `y` à 0 ou ajuster en fonction de ton terrain
     }
-
 }

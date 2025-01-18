@@ -562,7 +562,7 @@ PrefabInstance:
       objectReference: {fileID: 382213472}
     - target: {fileID: 5464456573589568330, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DeleteSelectedBuilding
+      value: UpgradeSelectedBuilding
       objectReference: {fileID: 0}
     - target: {fileID: 5464456573589568330, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -570,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5973860768072446638, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
       propertyPath: m_Name
-      value: ButtonAnimator (1)
+      value: ButtonUpgrade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuUI: {fileID: 538738834}
-  buildingInfoText: {fileID: 0}
+  buildingInfoText: {fileID: 1021913952}
 --- !u!4 &382213473
 Transform:
   m_ObjectHideFlags: 0
@@ -658,8 +658,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuUI: {fileID: 41541999}
-  buildingsManager: {fileID: 751343860}
-  networkActive: 0
   gridWidth: 20
   gridHeight: 20
 --- !u!4 &488860881
@@ -828,6 +826,7 @@ MonoBehaviour:
   buildingPrefab3: {fileID: 919132149155446097, guid: acf9ac0938b5eb84cba85f0976632fae, type: 3}
   buildingPrefab4: {fileID: 919132149155446097, guid: 41e33415351beb3438e22d82b5d98158, type: 3}
   Network: {fileID: 0}
+  networkActive: 0
 --- !u!1 &872876030
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,7 +976,7 @@ GameObject:
   - component: {fileID: 1021913952}
   m_Layer: 5
   m_Name: BuildingInfoText
-  m_TagString: Untagged
+  m_TagString: BuildingInfoText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -998,8 +997,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 100}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1021913952
 MonoBehaviour:
@@ -1656,6 +1655,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1544658469}
     m_Modifications:
+    - target: {fileID: 2677198324941203231, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
+      propertyPath: m_text
+      value: Delete
+      objectReference: {fileID: 0}
     - target: {fileID: 2959966117447589024, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1742,7 +1745,7 @@ PrefabInstance:
       objectReference: {fileID: 382213472}
     - target: {fileID: 5464456573589568330, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpgradeSelectedBuilding
+      value: DeleteSelectedBuilding
       objectReference: {fileID: 0}
     - target: {fileID: 5464456573589568330, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1750,7 +1753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5973860768072446638, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
       propertyPath: m_Name
-      value: ButtonAnimator
+      value: ButtonDelete
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2707,79 +2710,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcfbc238999d98f42b864ad0fbd7a627, type: 3}
---- !u!1001 &6708729026951105101
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 399.92123
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 525.1661
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1079.6393
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3252315284042329039, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8807595035378327579, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_Name
-      value: Cube
-      objectReference: {fileID: 0}
-    - target: {fileID: 8807595035378327579, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-      propertyPath: m_TagString
-      value: Building
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2793,4 +2723,3 @@ SceneRoots:
   - {fileID: 382213473}
   - {fileID: 41542003}
   - {fileID: 538738838}
-  - {fileID: 6708729026951105101}

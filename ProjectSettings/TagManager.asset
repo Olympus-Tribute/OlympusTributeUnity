@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Building
+  - BuildingInfoText
   layers:
   - Default
   - TransparentFX

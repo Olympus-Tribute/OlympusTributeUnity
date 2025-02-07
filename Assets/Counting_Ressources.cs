@@ -11,7 +11,7 @@ public class Counting_Ressources : MonoBehaviour
     public TMP_Text eau;
     public TMP_Text vin;
     public TMP_Text obsidienne;
-    public TMP_Text diamand;
+    public TMP_Text diamant;
 
     private int score_habitant = 0;
     private int score_pierre = 0;
@@ -20,7 +20,7 @@ public class Counting_Ressources : MonoBehaviour
     private int score_eau = 0;
     private int score_vin = 0;
     private int score_obsidienne = 0;
-    private int score_diamand = 0;
+    private int score_diamant = 0;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
@@ -33,7 +33,7 @@ public class Counting_Ressources : MonoBehaviour
         eau.text = "Eau: " + score_eau.ToString();
         vin.text = "Vin: " + score_vin.ToString();
         obsidienne.text = "Obsidienne: " + score_obsidienne.ToString();
-        diamand.text = "Diamand: " + score_diamand.ToString();
+        diamant.text = "Diamant: " + score_diamant.ToString();
         
     }
 

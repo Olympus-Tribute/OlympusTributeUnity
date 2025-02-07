@@ -13,18 +13,28 @@ public class Counting_Ressources : MonoBehaviour
     public TMP_Text obsidienne;
     public TMP_Text diamand;
 
-    private int score = 0;
+    private int score_habitant = 0;
+    private int score_pierre = 0;
+    private int score_bois = 0;
+    private int score_or = 0;
+    private int score_eau = 0;
+    private int score_vin = 0;
+    private int score_obsidienne = 0;
+    private int score_diamand = 0;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
-        habitants.text = "Habitants: " + score.ToString();
-        pierre.text = "Pierre: " + score.ToString();
-        bois.text = "Bois: " + score.ToString();
-        or.text = "Or: " + score.ToString();
-        eau.text = "Eau: " + score.ToString();
-        vin.text = "Vin: " + score.ToString();
-        obsidienne.text = "Obsidienne: " + score.ToString();
-        diamand.text = "Diamand: " + score.ToString();
+        habitants.text = "Habitants: " + score_habitant.ToString();
+        pierre.text = "Pierre: " + score_pierre.ToString();
+        bois.text = "Bois: " + score_bois.ToString();
+        or.text = "Or: " + score_or.ToString();
+        eau.text = "Eau: " + score_eau.ToString();
+        vin.text = "Vin: " + score_vin.ToString();
+        obsidienne.text = "Obsidienne: " + score_obsidienne.ToString();
+        diamand.text = "Diamand: " + score_diamand.ToString();
+        
     }
 
     // Update is called once per frame

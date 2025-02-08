@@ -4,9 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class HostOrJoinMenu : MonoBehaviour
 {
-    
+    private Camera _mainCamera;
+
     private void Start()
     {
+		_mainCamera = Camera.main;
         if (!SteamManager.Initialized)
         {
             Debug.LogError("Steam is not initialized.");
@@ -31,7 +33,8 @@ public class HostOrJoinMenu : MonoBehaviour
     {
         //CSteamID id = SteamUser.GetSteamID();
         //SteamFriends.ActivateGameOverlayInviteDialog(id);
-        Debug.Log("Pas encore implementé");
+        //Debug.Log("Pas encore implementé");
+		SceneManager.LoadScene("Scenes/BuildingsScene");
     }
     
     public void Join()

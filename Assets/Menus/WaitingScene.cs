@@ -31,11 +31,14 @@ public class WaitingScene : MonoBehaviour
 
     public void StartGame() // For Button
     {
+        SceneManager.LoadScene("Scenes/BuildingsScene");
+        /*
         if (Network.Instance.Proxy != null)
         {
             Network.Instance.Proxy.Connection.Send(new ClientWantsStartGameAction());
         }
         Debug.Log("envoi du gameAction");
+        */
     }
     
     public void InitGame()

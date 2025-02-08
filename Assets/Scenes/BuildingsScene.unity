@@ -822,9 +822,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefab1: {fileID: 8807595035378327579, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
-  buildingPrefab2: {fileID: 919132149155446097, guid: 11bae5a2eae1202449ff59f94ebb796e, type: 3}
-  buildingPrefab3: {fileID: 919132149155446097, guid: acf9ac0938b5eb84cba85f0976632fae, type: 3}
-  buildingPrefab4: {fileID: 919132149155446097, guid: 41e33415351beb3438e22d82b5d98158, type: 3}
+  buildingPrefab2: {fileID: 919132149155446097, guid: 0a18b1ed58bf2864f929b7df628293c0, type: 3}
+  buildingPrefab3: {fileID: 919132149155446097, guid: 0a18b1ed58bf2864f929b7df628293c0, type: 3}
+  buildingPrefab4: {fileID: 919132149155446097, guid: 0a18b1ed58bf2864f929b7df628293c0, type: 3}
   Network: {fileID: 0}
   networkActive: 0
 --- !u!1 &872876030

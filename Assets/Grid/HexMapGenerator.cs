@@ -1,4 +1,8 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using Random = UnityEngine.Random;
 
 public class HexMapGenerator : MonoBehaviour
 {
@@ -11,15 +15,44 @@ public class HexMapGenerator : MonoBehaviour
     
     void Start()
     {
+        
+    }
+
+    private void OnEnable()
+    {
         Tiles = MapInitializator(mapWidth, mapHeight);
         GenerateHexMap();
+        
+        
+        MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
+        CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+
+        int i = 0;
+        while (i < meshFilters.Length)
+        {
+            combine[i].mesh = meshFilters[i].mesh;
+            combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
+            meshFilters[i].gameObject.SetActive(false);
+
+            i++;
+        }
+
+        transform.gameObject.AddComponent<MeshRenderer>();
+
+        MeshFilter meshFilter = transform.gameObject.AddComponent<MeshFilter>();
+        Mesh mesh = new Mesh();
+        mesh.indexFormat = IndexFormat.UInt32;
+        meshFilter.mesh = mesh;
+        mesh.CombineMeshes(combine);
+
+        transform.position = new Vector3();
     }
 
     void GenerateHexMap()
     {
         float xOffset = hexWidth * 2f; // Décalage horizontal 
         float zOffset = hexHeight + hexHeight / 2f; // Décalage vertical 
-
+        
         for (int z = 0; z < mapWidth; z++)
         {
             for (int x = 0; x < mapHeight; x++)
@@ -48,13 +81,13 @@ public class HexMapGenerator : MonoBehaviour
         GameObject hex = GameObject.Instantiate(hexPrefab, this.transform);
         Debug.Log($"un hexagon a spawn avec le prefab numéro {prefabindex} {hexPrefab}");
         hex.transform.position = position;
+        
 
         // Facultatif : ajuster l'échelle ou la rotation si nécessaire
         hex.transform.localScale = new Vector3(1f, 1f, 1f);
         hex.transform.rotation = Quaternion.identity;
-        
-        
     }
+    
 
     static int EnumToIndex(ETile tile)
     {

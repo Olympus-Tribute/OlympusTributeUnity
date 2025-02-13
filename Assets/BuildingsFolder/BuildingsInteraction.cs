@@ -1,7 +1,7 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-namespace Buildings
+namespace BuildingsFolder
 {
     public class BuildingsInteraction : MonoBehaviour
     {
@@ -12,7 +12,6 @@ namespace Buildings
         private GameObject _selectedBuilding;
         
         private BuildingsManager _buildingsManager;
-        private bool _networkActive;
 
         private void Start()
         {
@@ -23,9 +22,6 @@ namespace Buildings
                 Debug.LogError("BuildingsManager n'a pas été trouvé dans la scène !");
                 return;
             }
-
-            // Récupérer l'état du réseau depuis BuildingsManager si nécessaire
-            _networkActive = _buildingsManager.networkActive;
             menuUI.SetActive(false);
         }
 
@@ -82,14 +78,7 @@ namespace Buildings
                 int roundedZ = (int)Mathf.Round(positionKey.z);
                 //Vector3 roundedPositionKey = new Vector3(roundedX, 0, roundedZ);
 
-                if (_networkActive)
-                {
-                    _buildingsManager.DeleteBuilding(roundedX, roundedZ);
-                }
-                else
-                {
-                    _buildingsManager.DeleteBuilding(roundedX, roundedZ);
-                }
+                _buildingsManager.DeleteBuilding(roundedX, roundedZ);
                 
                 // Supprimer le bâtiment de la scène
                 Destroy(_selectedBuilding);
@@ -106,15 +95,7 @@ namespace Buildings
         {
             if (_selectedBuilding != null)
             {
-                if (_networkActive)
-                {
-                    Debug.Log($"Mise à niveau du bâtiment : {_selectedBuilding.name}");
-                }
-                else
-                {
-                    Debug.Log($"Mise à niveau du bâtiment : {_selectedBuilding.name}");
-                }
-               
+                Debug.Log($"Mise à niveau du bâtiment : {_selectedBuilding.name}");
                 menuUI.SetActive(false);
             }
         }

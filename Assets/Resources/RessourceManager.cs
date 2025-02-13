@@ -30,13 +30,9 @@ public class RessourceManager : MonoBehaviour
 
     private Dictionary<string, TMP_Text> ressourceTexts;
     
-    public Network Network = Network.Instance;
-    public bool networkActive;
-
     private void Awake()
     {
-        networkActive = Network.Instance != null && Network.Instance.networkActive;
-        Debug.Log($"Network active: {networkActive}");
+
     }
 
     void Start()
@@ -58,31 +54,26 @@ public class RessourceManager : MonoBehaviour
 
     void OnEnable()
     {
-        /*
-        if (networkActive)
+        Debug.Log("Starting RessourceManager...");
+        if (Network.Instance.Proxy != null)
         {
-            Debug.Log("Starting RessourceManager...");
-            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerGetRessourcesGameAction>(
+            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerSetResourcesGameAction>(
                 (connection, action) =>
                 {
-                    for (int i = 0; i < action.NameRessources.Length; i++)
+                    string[] name = new []{"Bois", "Pierre", "Or", "Diamant"};
+                    for (int i = 0; i < action.Resources.Length; i++)
                     {
-                        SetRessource(action.NameRessources[i], action.NbrRessources[i]);
+                        SetRessource(name[i], action.Resources[i]);
                     }
                 });
         }
-        else
-        {
-            Debug.LogWarning("Network is not active or Proxy is null.");
-        }
-        */
     }
     
-    public void SetRessource(string nom, int valeur)
+    public void SetRessource(string nom, uint valeur)
     {
         if (ressources.ContainsKey(nom))
         {
-            ressources[nom].SetQuantite(valeur);
+            ressources[nom].SetQuantite((int)valeur);
             MettreAJourAffichage();
         }
     }

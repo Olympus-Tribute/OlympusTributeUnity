@@ -23,8 +23,7 @@ namespace ForNetwork
         private Callback<LobbyEnter_t> callbackLobbyEnter_t;
         
         public static Network Instance {get; private set;}
-        public bool networkActive = true;
-
+        
         private Network()
         {
             Proxy = null;

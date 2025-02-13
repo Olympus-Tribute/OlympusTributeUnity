@@ -1,7 +1,8 @@
+using ForNetwork;
 using Networking.Common.Client;
 using UnityEngine;
 
-namespace Buildings
+namespace BuildingsFolder
 {
     public class BuildingsMenu : MonoBehaviour
     {
@@ -12,7 +13,6 @@ namespace Buildings
     
         public GameObject menuUI;
         private BuildingsManager _buildingsManager;
-        private bool _networkActive;
     
         public float gridWidth = 20f;  // Largeur d'un hexagone
         public float gridHeight = 20f; // Hauteur d'un hexagone
@@ -25,9 +25,6 @@ namespace Buildings
                 Debug.LogError("BuildingsManager n'a pas été trouvé dans la scène !");
                 return;
             }
-
-            // Récupérer l'état du réseau depuis BuildingsManager si nécessaire
-            _networkActive = _buildingsManager.networkActive;
         }
 
         private void Start()
@@ -36,7 +33,7 @@ namespace Buildings
             menuUI.SetActive(false);
         }
 
-        private void Update()
+        public void Update()
         {
             // Ouvrir/fermer le menu avec la touche "B"
             if (Input.GetKeyDown(KeyCode.B))
@@ -57,7 +54,7 @@ namespace Buildings
             }
         }
     
-        private void SelectBuilding(int buildingType)
+        public void SelectBuilding(int buildingType)
         {
             menuUI.SetActive(false);
 
@@ -105,24 +102,18 @@ namespace Buildings
             {
                 Vector3 position = _ghostBuilding.transform.position;
 
-                if (_networkActive)
+                //___________________________________________//
+                //____________Pour le Multi__________________//
+                //___________________________________________//
+                var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
+                if (Network.Instance.Proxy != null)
                 {
-                    //___________________________________________//
-                    //____________Pour le Multi__________________//
-                    //___________________________________________//
-                    var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
-                    if (_buildingsManager.Network.Proxy != null)
-                    {
-                        _buildingsManager.Network.Proxy.Connection.Send(action);
-                    }
-                    //___________________________________________//
-                    //___________________________________________//
-                    //___________________________________________//
+                    Network.Instance.Proxy.Connection.Send(action);
                 }
-                else
-                {
-                    _buildingsManager.PlaceBuilding((int)position.x, (int)position.z, _selectedBuildingType);
-                }
+                //___________________________________________//
+                //___________________________________________//
+                //___________________________________________//
+                
                 Destroy(_ghostBuilding); // Détruit le bâtiment "fantôme"
                 _selectedBuildingPrefab = null;  // Réinitialise la sélection
             }

@@ -5,6 +5,7 @@ using Networking.API.Listeners;
 using Networking.Common.Client;
 using Networking.Common.Server;
 using Networking.Steam;
+using OlympusDedicatedServer;
 using Steamworks;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ namespace ForNetwork
         private Callback<LobbyEnter_t> callbackLobbyEnter_t;
         
         public static Network Instance {get; private set;}
-        public bool networkActive;
+        public bool networkActive = true;
 
         private Network()
         {
@@ -31,7 +32,6 @@ namespace ForNetwork
 
         public void Awake()
         {
-            networkActive = false;
             if (Instance == null)
             {
                 Instance = this;
@@ -57,14 +57,11 @@ namespace ForNetwork
                 
                 if (!_lockObject.HasValue)
                 {
-                    return;
+                    return; 
                 }
-                
-                var registry = new GameActionRegistry();
-                registry.Register<ClientWantsStartGameAction>();
-                registry.Register<ServerStartLobbyGameAction>();
-                registry.Register<ClientPlaceBuildingGameAction>();
-                registry.Register<ServerPlaceBuildingGameAction>();
+
+                // Register des GameAction
+                var registry = GameActions.RegisterAll();
 
                 SteamConnection steamConnection = SteamConnection.Connect(_lockObject.Value, registry);
                 GameActionListenerManager gameActionListener = new GameActionListenerManager();

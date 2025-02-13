@@ -31,9 +31,9 @@ public class HostOrJoinMenu : MonoBehaviour
     
     public void Host()
     {
-        //CSteamID id = SteamUser.GetSteamID();
-        //SteamFriends.ActivateGameOverlayInviteDialog(id);
-        //Debug.Log("Pas encore implementé");
+        CSteamID id = SteamUser.GetSteamID();
+        SteamFriends.ActivateGameOverlayInviteDialog(id);
+        Debug.Log("Pas encore implementé");
 		SceneManager.LoadScene("Scenes/BuildingsScene");
     }
     

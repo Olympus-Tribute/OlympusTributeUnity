@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class WaitingScene : MonoBehaviour
 {
-
-    public Network Network = Network.Instance;
     
     //___________________________________________________________//
     //_________________________For Multi_________________________//
@@ -16,7 +14,7 @@ public class WaitingScene : MonoBehaviour
     
     void OnEnable(){
         Debug.Log("Starting by WaitingScene");
-        Network.Setup = ConnectionAdded;
+        Network.Instance.Setup = ConnectionAdded;
     }
     
     public void ConnectionAdded(Proxy proxy) {

@@ -1,6 +1,7 @@
 using System;
 using ForNetwork;
 using JetBrains.Annotations;
+using Networking.API;
 using Networking.API.Actions;
 using Networking.API.Listeners;
 using Networking.Common.Client;
@@ -16,9 +17,22 @@ namespace ForServer
 {
     public class ServerManager : MonoBehaviour
     {
+        //______________________________________________________//
+        //______________________________________________________//
+        //______________________________________________________//
         public static ServerManager Instance {get; private set;}
-        
         public static Server Server { get; private set; }
+        
+        //______________________________________________________//
+        //______________________________________________________//
+        //______________________________________________________//
+
+        public static long Seed { get; set; }
+        
+        public static uint PlayerCount { get; set; }
+        
+        public static uint PlayerId { get; set; }
+        
         
         public void Awake()
         {
@@ -32,6 +46,8 @@ namespace ForServer
                 Destroy(gameObject); // Évite les doublons
             }
         }
+        
+        
 
         public void Update()
         {
@@ -39,14 +55,23 @@ namespace ForServer
             {
                 return;
             }
-            Server.Update();
+            Server.Update(Time.deltaTime);
         }
 
         public void Host()
         {
             LocalConnectionAcceptor acceptor = new LocalConnectionAcceptor();
+
             
-            Server server = new Server(acceptor);
+            SteamConnectionAcceptor steamConnectionAcceptor =
+                new SteamConnectionAcceptor(Network.Instance.registry, (_) => true);
+            
+            
+            IConnectionAcceptor[] allAcceptors = new IConnectionAcceptor[]{acceptor, steamConnectionAcceptor};
+            CompositionConnectionAcceptor compositionConnectionAcceptor = new CompositionConnectionAcceptor(allAcceptors);
+            
+            
+            Server server = new Server(compositionConnectionAcceptor);
             
             server.Start();
             
@@ -56,6 +81,7 @@ namespace ForServer
             Server = server;
         
             Network.Instance.Proxy = new ForNetwork.Proxy(serverConnection, new GameActionListenerManager());
+            Debug.Log("Host Server");
         }
     }
 }

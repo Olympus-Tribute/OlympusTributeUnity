@@ -12,6 +12,7 @@ using Proxy = ForNetwork.Proxy;
 public class HostOrJoinMenu : MonoBehaviour
 {
     private Camera _mainCamera;
+    
 
     private void Start()
     {

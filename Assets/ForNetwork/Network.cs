@@ -1,5 +1,6 @@
 using System;
 using JetBrains.Annotations;
+using Microsoft.Win32;
 using Networking.API.Actions;
 using Networking.API.Listeners;
 using Networking.Common.Client;
@@ -14,8 +15,8 @@ namespace ForNetwork
     public class Network : MonoBehaviour
     {
         private CSteamID? _lockObject;
-        [CanBeNull] public Proxy Proxy; 
-        [CanBeNull] public Action<Proxy> Setup;
+        public Proxy Proxy; 
+        public Action<Proxy> Setup;
         
         private Callback<GameRichPresenceJoinRequested_t> callbackGameRichPresenceJoinRequested_t;
         private Callback<GameLobbyJoinRequested_t> callbackGameLobbyJoinRequested_t;
@@ -23,10 +24,14 @@ namespace ForNetwork
         private Callback<LobbyEnter_t> callbackLobbyEnter_t;
         
         public static Network Instance {get; private set;}
+        public GameActionRegistry registry;
         
         private Network()
         {
             Proxy = null;
+            
+            // Register des GameAction
+            registry = GameActions.RegisterAll();
         }
 
         public void Awake()
@@ -58,9 +63,7 @@ namespace ForNetwork
                 {
                     return; 
                 }
-
-                // Register des GameAction
-                var registry = GameActions.RegisterAll();
+                
 
                 SteamConnection steamConnection = SteamConnection.Connect(_lockObject.Value, registry);
                 GameActionListenerManager gameActionListener = new GameActionListenerManager();

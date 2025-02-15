@@ -1,28 +1,20 @@
 using System;
+using Resources;
 
 public class Ressource
 {
     public string Nom { get; private set; }
-    public int Quantite { get; private set; }
+    public SmoothFloat Quantite { get; private set; }
 
     public Ressource(string nom, int quantiteInitiale = 0)
     {
         Nom = nom;
-        Quantite = Math.Max(0, quantiteInitiale);
-    }
-
-    public void Ajouter(int valeur)
-    {
-        Quantite += valeur;
-    }
-
-    public void Retirer(int valeur)
-    {
-        Quantite = Math.Max(0, Quantite - valeur);
+        Quantite = new SmoothFloat(1, quantiteInitiale);
     }
 
     public void SetQuantite(int valeur)
     {
-        Quantite = Math.Max(0, valeur);
+        //Quantite = Math.Max(0, valeur);
+        Quantite.targetValue = valeur;
     }
 }

@@ -1,3 +1,5 @@
+using ForNetwork;
+using Networking.Common.Client;
 using TMPro;
 using UnityEngine;
 
@@ -74,29 +76,28 @@ namespace BuildingsFolder
                 Vector3 positionKey = _selectedBuilding.transform.position;
 
                 // Arrondir les coordonnées pour éviter les imprécisions
-                int roundedX = (int)Mathf.Round(positionKey.x);
-                int roundedZ = (int)Mathf.Round(positionKey.z);
+                int roundedX = (int)Mathf.Round(positionKey.x) / 5;
+                int roundedZ = (int)Mathf.Round(positionKey.z) / 5;
                 //Vector3 roundedPositionKey = new Vector3(roundedX, 0, roundedZ);
-
-                _buildingsManager.DeleteBuilding(roundedX, roundedZ);
                 
-                // Supprimer le bâtiment de la scène
-                Destroy(_selectedBuilding);
+                //___________________________________________//
+                //____________Pour le Multi__________________//
+                //___________________________________________//
+                
+                var action = new ClientRemoveBuildingGameAction(roundedX, roundedZ);
+                Network.Instance.Proxy.Connection.Send(action);
+                
+                Debug.Log("Delete selected building");
+                //___________________________________________//
+                //___________________________________________//
+                //___________________________________________//
+                
                 _selectedBuilding = null;
                 menuUI.SetActive(false);
             }
             else
             {
                 Debug.LogWarning("Aucun bâtiment sélectionné pour suppression.");
-            }
-        }
-
-        public void UpgradeSelectedBuilding()
-        {
-            if (_selectedBuilding != null)
-            {
-                Debug.Log($"Mise à niveau du bâtiment : {_selectedBuilding.name}");
-                menuUI.SetActive(false);
             }
         }
     }

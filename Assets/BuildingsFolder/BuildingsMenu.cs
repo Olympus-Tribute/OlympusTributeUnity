@@ -105,11 +105,10 @@ namespace BuildingsFolder
                 //___________________________________________//
                 //____________Pour le Multi__________________//
                 //___________________________________________//
+                
                 var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
-                if (Network.Instance.Proxy != null)
-                {
-                    Network.Instance.Proxy.Connection.Send(action);
-                }
+                Network.Instance.Proxy.Connection.Send(action);
+                
                 //___________________________________________//
                 //___________________________________________//
                 //___________________________________________//

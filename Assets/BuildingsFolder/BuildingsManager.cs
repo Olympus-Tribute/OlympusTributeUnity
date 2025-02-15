@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
+using ForServer;
 using Networking.Common.Server;
 using UnityEngine;
 
@@ -8,8 +9,8 @@ namespace BuildingsFolder
 {
     public class BuildingsManager : MonoBehaviour
     {
-        // Dictionnaire pour stocker les bâtiments (clé = position sous forme de Vector3, valeur = GameObject)
-        private Dictionary<(int, int), Building> buildings = new Dictionary<(int, int), Building>();
+        // Dictionnaire pour stocker les bâtiments (clé = (int, int), valeur = Building)
+        public Dictionary<(int, int), Building> buildings = new Dictionary<(int, int), Building>();
 
         // Références aux GameObjects des bâtiments
         public GameObject prefabAgora;
@@ -34,16 +35,12 @@ namespace BuildingsFolder
         void OnEnable()
         {
             Debug.Log("Starting BuildingsManager...");
-            if (Network.Instance.Proxy != null)
-            {
-                Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerPlaceBuildingGameAction>(
-                    (connection, action) => { PlaceBuilding(action.X * 5, action.Y * 5, action.BuildingId); });
-            }
-            else
-            {
-                Debug.LogWarning("Network.Proxy is null!");
-            }
-           
+            
+            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerPlaceBuildingGameAction>(
+                    (connection, action) => { PlaceBuilding(action.X * 5, action.Y * 5, action.BuildingId, action.OwnerId); });
+            
+            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerRemoveBuildingGameAction>(
+                (connection, action) => { DeleteBuilding(action.X * 5, action.Y * 5); });
         }
     
         //___________________________________________________________//
@@ -51,7 +48,7 @@ namespace BuildingsFolder
         //___________________________________________________________//
     
 
-        public void PlaceBuilding(int x, int z, int buildingType, ushort ownerId = 1)
+        public void PlaceBuilding(int x, int z, int buildingType, uint ownerId)
         {
             Vector3 positionKey = new Vector3(x, 0, z);
             
@@ -69,13 +66,11 @@ namespace BuildingsFolder
     
         public void DeleteBuilding(int x, int z)
         {
-            Vector3 positionKey = new Vector3(x, 0, z);
-
-            // Vérifie si un bâtiment existe à cette position
             if (buildings.TryGetValue((x, z), out Building building))
             {
-                // Supprime le bâtiment de la scène et du dictionnaire
-                Destroy(building);
+                GameObject buildingGameObject = building.GameObject;
+                Destroy(buildingGameObject);
+                
                 buildings.Remove((x, z));
                 Debug.Log($"Bâtiment supprimé à la position ({x}, {z}).");
             }
@@ -85,7 +80,7 @@ namespace BuildingsFolder
             }
         }
     
-        public Building CreateBuilding(int x, int z, int buildingType, Vector3 positionKey, ushort ownerId)
+        public Building CreateBuilding(int x, int z, int buildingType, Vector3 positionKey, uint ownerId)
         {
             GameObject prefab = GetBuildingPrefab(buildingType);
             GameObject instantiate = Instantiate(prefab, positionKey, Quaternion.identity);
@@ -110,10 +105,12 @@ namespace BuildingsFolder
         {
             switch (buildingType)
             {
-                case 1:
+                case 0:
                     return prefabExtractorWood;
-                case 2:
+                case 1:
                     return prefabExtractorStone;
+                case 2:
+                    return prefabExtractorGold;
                 case 3:
                     return prefabExtractorDiamond;
                 case 4: // Agora

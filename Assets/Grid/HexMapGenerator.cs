@@ -1,18 +1,47 @@
 using System;
+using OlympusWorldGenerator;
+using OlympusWorldGenerator.Generators;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
-using Random = UnityEngine.Random;
+using Random = System.Random;
 
-public class HexMapGenerator : MonoBehaviour
+
+public class HexMapGenerator : MonoBehaviour, IFloorGrid
 {
     public int mapWidth = 10; // Nombre d'hexagones en largeur
     public int mapHeight = 10; // Nombre d'hexagones en hauteur
-    public float hexWidth = 10f; // Largeur d'un hexagone
-    public float hexHeight = 10f; // Hauteur d'un hexagone
+    public float hexSize = 10f; // longueur d'un coté hexagone
     public GameObject[] hexPrefabs;
-    public ETile[] Tiles;
+    public FloorTile[] Tiles;
+    public IFloorGenerator Generator = new RandomFloorGenerator(10, 10, 0, 10, 10, 10, 0, 0);
     
+    public int Width
+    {
+        get => mapWidth;
+    }
+
+    public int Height
+    {
+        get => mapHeight;
+    }
+
+    public FloorTile this[int x, int y]
+    {
+        get => Tiles[y * Width + x];
+        set
+        {
+            Debug.Log($"accède à l'array {y * Width + x} de co {(x,y)}");
+            Tiles[y * Width + x] = value;
+        }
+    }
+
+    public FloorTile this[int i]
+    {
+        get => Tiles[i];
+        set => Tiles[i] = value;
+    }
     void Start()
     {
         
@@ -20,38 +49,17 @@ public class HexMapGenerator : MonoBehaviour
 
     private void OnEnable()
     {
-        Tiles = MapInitializator(mapWidth, mapHeight);
-        GenerateHexMap();
-        
-        
-        MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
-        CombineInstance[] combine = new CombineInstance[meshFilters.Length];
-
-        int i = 0;
-        while (i < meshFilters.Length)
-        {
-            combine[i].mesh = meshFilters[i].mesh;
-            combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
-            meshFilters[i].gameObject.SetActive(false);
-
-            i++;
-        }
-
-        transform.gameObject.AddComponent<MeshRenderer>();
-
-        MeshFilter meshFilter = transform.gameObject.AddComponent<MeshFilter>();
-        Mesh mesh = new Mesh();
-        mesh.indexFormat = IndexFormat.UInt32;
-        meshFilter.mesh = mesh;
-        mesh.CombineMeshes(combine);
-
-        transform.position = new Vector3();
+        Tiles =  new FloorTile[mapWidth * mapHeight];
+        int seed = 0;
+        Generator.Generate(this,seed);
+        GenerateHexMap(seed);
     }
 
-    void GenerateHexMap()
+    void GenerateHexMap(int seed)
     {
-        float xOffset = hexWidth * 2f; // Décalage horizontal 
-        float zOffset = hexHeight + hexHeight / 2f; // Décalage vertical 
+        float sqrt3 = (float)1.73205;
+        float xOffset = sqrt3*hexSize; // Décalage horizontal 
+        float zOffset = hexSize*3/2; // Décalage vertical 
         
         for (int z = 0; z < mapWidth; z++)
         {
@@ -63,126 +71,56 @@ public class HexMapGenerator : MonoBehaviour
                 // Décalage pour aligner les lignes impaires
                 if (z % 2 == 1)
                 {
-                    xPos += xOffset / 2;
+                    xPos += xOffset/2;
                 }
-                //Debug.Log($"l'hexagone apparait aux coordonnés {(x,z)} est en aux positions {(xPos,0,zPos)}");
-                CreateHexTile(new Vector3(xPos, 0, zPos),EnumToIndex(Tiles[z*mapWidth + x]));
+                Debug.Log($"l'hexagone apparait aux coordonnés {(x,z)} est en aux positions {(xPos,zPos)}");
+                CreateHexTile(new Vector3(xPos, 0, zPos),(int)(this[z,x]), seed);
             }
         }
     }
 
-    void CreateHexTile(Vector3 position, int prefabindex)
+    void CreateHexTile(Vector3 position, int prefabindex, int seed)
     {
+        //Debug.Log($"prefab index : {prefabindex}");
         
-
         GameObject hexPrefab = hexPrefabs[prefabindex];
 
         // Instancier le modèle sélectionné
         GameObject hex = GameObject.Instantiate(hexPrefab, this.transform);
-        Debug.Log($"un hexagon a spawn avec le prefab numéro {prefabindex} {hexPrefab}");
+        //Debug.Log($"un hexagon a spawn avec le prefab numéro {prefabindex} {hexPrefab}");
         hex.transform.position = position;
         
 
         // Facultatif : ajuster l'échelle ou la rotation si nécessaire
         hex.transform.localScale = new Vector3(1f, 1f, 1f);
-        hex.transform.rotation = Quaternion.identity;
-    }
-    
-
-    static int EnumToIndex(ETile tile)
-    {
-        if (tile is ETile.Grass)
-            return 0;
-        if (tile is ETile.Wood)
-            return 1;
-        if (tile is ETile.Diamond)
-            return 2;
-        if (tile is ETile.Water)
-            return 3;
-        if (tile is ETile.Obsidian)
-            return 4;
-        if (tile is ETile.Gold)
-            return 5;
-        if (tile is ETile.Stone)
-            return 6;
-        else
-            return 7;
-
-    }
-
-    static ETile[] MapInitializator(int mapWidth,int mapHeight)
-    {
-        ETile[] res = new ETile[mapWidth * mapHeight];
-        for (int z = 0; z < mapWidth; z++)
+        Random random = new Random((int)(seed + position.x + position.z));
+        int randomvalue = random.Next(0, 6);
+        switch (randomvalue)
         {
-            for (int x = 0; x < mapHeight; x++)
-            {
-                int randomNumber = Random.Range(0, 101);
-                if (randomNumber < 40)
-                    res[z * mapWidth + x] = ETile.Grass;
-                else if (randomNumber < 45)
-                    res[z * mapWidth + x] = ETile.Water;
-                else if (randomNumber < 70)
-                    res[z * mapWidth + x] = ETile.Wood;
-                else if (randomNumber < 72)
-                    res[z * mapWidth + x] = ETile.Diamond;
-                else if (randomNumber < 75)
-                    res[z * mapWidth + x] = ETile.Obsidian;
-                else if (randomNumber < 80)
-                    res[z * mapWidth + x] = ETile.Gold;
-                else if (randomNumber < 85)
-                    res[z * mapWidth + x] = ETile.Stone;
-                else
-                    res[z * mapWidth + x] = ETile.Vine;
-            }
+            case 0:
+                hex.transform.rotation = Quaternion.Euler(0, 0, 0);
+                Debug.Log($"tourné à 0°");
+                break;
+            case 1:
+                hex.transform.rotation = Quaternion.Euler(0, 60, 0);
+                Debug.Log($"tourné à 60°");
+                break;
+            case 2:
+                hex.transform.rotation = Quaternion.Euler(0, 120, 0);
+                Debug.Log($"tourné à 120°");
+                break;
+            case 3:
+                hex.transform.rotation = Quaternion.Euler(0, 180, 0);
+                Debug.Log($"tourné à 180°");
+                break;
+            case 4:
+                hex.transform.rotation = Quaternion.Euler(0, 240, 0);
+                Debug.Log($"tourné à 240°");
+                break;
+            case 5:
+                hex.transform.rotation = Quaternion.Euler(0, 300, 0);
+                Debug.Log($"tourné à 300°");
+                break;
         }
-
-        return res;
     }
-    
-
-    Mesh CreateHexMesh()
-    {
-        Mesh mesh = new Mesh();
-        float halfWidth = hexWidth / 2f;
-        float halfHeight = hexHeight / 2f;
-        
-        Vector3[] vertices = new Vector3[7]
-        {
-            new Vector3(0, 0, 0), // Centre 0
-            new Vector3(0, 0, hexHeight), // A
-            new Vector3(hexWidth, 0, halfHeight), // B
-            new Vector3(hexWidth, 0, -halfHeight), // C
-            new Vector3(0, 0, -hexHeight), // D
-            new Vector3(-hexWidth, 0, -halfHeight), // E
-            new Vector3(-hexWidth, 0, halfHeight) // F
-        };
-
-        int[] triangles = new int[18]
-        {
-            0, 1, 2,
-            0, 2, 3,
-            0, 3, 4,
-            0, 4, 5,
-            0, 5, 6,
-            0, 6, 1
-        };
-
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
-        mesh.RecalculateNormals();
-
-        return mesh;
-    }
-}
-public enum ETile
-{
-    Grass,
-    Wood,
-    Diamond,
-    Water,
-    Obsidian,
-    Gold,
-    Stone,
-    Vine
 }

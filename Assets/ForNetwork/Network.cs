@@ -29,6 +29,7 @@ namespace ForNetwork
         private Network()
         {
             Proxy = null;
+            Setup = (proxy => {});
             
             // Register des GameAction
             registry = GameActions.RegisterAll();

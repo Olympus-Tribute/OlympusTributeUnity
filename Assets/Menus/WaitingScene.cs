@@ -14,19 +14,35 @@ public class WaitingScene : MonoBehaviour
     
     void OnEnable()
     {
-        // cas spéciel car ,n'existe pas si join
-        Network.Instance.Setup = (proxy =>
+
+        if (Network.Instance.Proxy is not null)
         {
-            // = Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
-            proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
+            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
                 (connection, action) =>
                 {
+                    Debug.Log("Received ServerStartLobbyGameAction");
                     ServerManager.Seed = action.Seed;
                     ServerManager.PlayerCount = action.PlayerCount;
                     ServerManager.PlayerId = action.PlayerId;
                     InitGame();
                 });
-        });
+        }
+        else
+        {
+            Network.Instance.Setup = (proxy =>
+            {
+                proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
+                    (connection, action) =>
+                    {
+                        Debug.Log("Received ServerStartLobbyGameAction");
+                        ServerManager.Seed = action.Seed;
+                        ServerManager.PlayerCount = action.PlayerCount;
+                        ServerManager.PlayerId = action.PlayerId;
+                        InitGame();
+                    });
+            });
+        }
+        
     }
     
     //___________________________________________________________//

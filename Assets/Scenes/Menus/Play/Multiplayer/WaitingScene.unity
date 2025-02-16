@@ -169,7 +169,7 @@ VideoPlayer:
   m_VideoClip: {fileID: 32900000, guid: 7ba6d5508bb359e41adef34c0a721c80, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
+  m_TargetCamera: {fileID: 674649698}
   m_TargetTexture: {fileID: 0}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
@@ -582,6 +582,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b29c2e8eefe1e4499140ae67d6ca920, type: 3}
+--- !u!20 &674649698 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2336349795320579728, guid: 6b29c2e8eefe1e4499140ae67d6ca920, type: 3}
+  m_PrefabInstance: {fileID: 674649697}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &770120818
 PrefabInstance:
   m_ObjectHideFlags: 0

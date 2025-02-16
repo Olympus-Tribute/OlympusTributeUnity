@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Text;
 using ForNetwork;
 using JetBrains.Annotations;
 using Networking.API;
@@ -60,6 +62,8 @@ namespace ForServer
 
         public void Host()
         {
+            Debug.Log("Hosting Server....");
+            Console.SetOut(new MyDebug());
             LocalConnectionAcceptor acceptor = new LocalConnectionAcceptor();
 
             
@@ -81,7 +85,20 @@ namespace ForServer
             Server = server;
         
             Network.Instance.Proxy = new ForNetwork.Proxy(serverConnection, new GameActionListenerManager());
+
+            Network.Instance.Setup(Network.Instance.Proxy);
+            
             Debug.Log("Host Server");
         }
+    }
+}
+
+public class MyDebug : TextWriter
+{
+    public override Encoding Encoding { get; }
+
+    public override void WriteLine(string value)
+    {
+        Debug.Log("[SERVER] :   " + value);
     }
 }

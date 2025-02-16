@@ -4,7 +4,7 @@ namespace BuildingsFolder.BuildingsClasses
 {
     public class Extractor : Building
     {
-        public enum ResourceType { Wood, Stone, Gold, Diamond }
+        public enum ResourceType { Wood, Stone, Gold, Diamond, Obsidian, Water, Vine }
 
         public ResourceType ExtractedResource { get; private set; }
 

@@ -8,67 +8,63 @@ using System.Collections.Generic;
 
 public class RessourceManager : MonoBehaviour
 {
-    public TMP_Text habitantsText;
-    public TMP_Text pierreText;
-    public TMP_Text boisText;
-    public TMP_Text orText;
-    public TMP_Text eauText;
-    public TMP_Text vinText;
-    public TMP_Text obsidienneText;
-    public TMP_Text diamantText;
+    public TMP_Text populationText;
+    public TMP_Text stoneText;
+    public TMP_Text woodText;
+    public TMP_Text goldText;
+    public TMP_Text waterText;
+    public TMP_Text wineText;
+    public TMP_Text obsidianText;
+    public TMP_Text diamondText;
 
-    private Dictionary<string, Ressource> ressources = new Dictionary<string, Ressource>()
+    private Dictionary<string, Ressource> resources = new Dictionary<string, Ressource>()
     {
-        { "Habitants", new Ressource("Habitants") },
-        { "Pierre", new Ressource("Pierre") },
-        { "Bois", new Ressource("Bois") },
-        { "Or", new Ressource("Or") },
-        { "Eau", new Ressource("Eau") },
-        { "Vin", new Ressource("Vin") },
-        { "Obsidienne", new Ressource("Obsidienne") },
-        { "Diamant", new Ressource("Diamant") }
+        { "Population", new Ressource("Population") },
+        { "Stone", new Ressource("Stone") },
+        { "Wood", new Ressource("Wood") },
+        { "Gold", new Ressource("Gold") },
+        { "Water", new Ressource("Water") },
+        { "Wine", new Ressource("Wine") },
+        { "Obsidian", new Ressource("Obsidian") },
+        { "Diamond", new Ressource("Diamond") }
     };
 
-    private Dictionary<string, TMP_Text> ressourceTexts;
-    
-    private void Awake()
-    {
-
-    }
+    private Dictionary<string, TMP_Text> resourceTexts;
 
     void Start()
     {
-        ressourceTexts = new Dictionary<string, TMP_Text>
+        resourceTexts = new Dictionary<string, TMP_Text>
         {
-            { "Habitants", habitantsText },
-            { "Pierre", pierreText },
-            { "Bois", boisText },
-            { "Or", orText },
-            { "Eau", eauText },
-            { "Vin", vinText },
-            { "Obsidienne", obsidienneText },
-            { "Diamant", diamantText }
+            { "Population", populationText },
+            { "Stone", stoneText },
+            { "Wood", woodText },
+            { "Gold", goldText },
+            { "Water", waterText },
+            { "Wine", wineText },
+            { "Obsidian", obsidianText },
+            { "Diamond", diamondText }
         };
 
-        MettreAJourAffichage();
+        UpdateDisplay();
     }
 
     void OnEnable()
     {
-        Debug.Log("Starting RessourceManager...");
+        Debug.Log("Starting ResourceManager...");
         if (Network.Instance.Proxy != null)
         {
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerSetResourcesGameAction>(
                 (connection, action) =>
                 {
-                    string[] name = new []{"Bois", "Pierre", "Or", "Diamant"};
+                    string[] names = new []{"Population", "Wood", "Stone", "Gold", "Diamond", "Obsidian", "Water", "Wine"};
                     for (int i = 0; i < action.Resources.Length; i++)
                     {
-                        SetRessource(name[i], action.Resources[i]);
+                        SetResource(names[i], action.Resources[i]);
                     }
                 });
         }
     }
+
     
     //_________________________________//
     //_________________________________//
@@ -78,33 +74,34 @@ public class RessourceManager : MonoBehaviour
     // pour Smooth
     public void Update()
     {
-        foreach (var ressource in ressources)
+        foreach (var ressource in resources)
         {
             ressource.Value.Quantite.Update(Time.deltaTime);
         }
-        MettreAJourAffichage();
+
+        UpdateDisplay();
     }
     
     //_________________________________//
     //_________________________________//
     //_________________________________//
     
-    public void SetRessource(string nom, uint valeur)
+    public void SetResource(string nom, uint valeur)
     {
-        if (ressources.ContainsKey(nom))
+        if (resources.ContainsKey(nom))
         {
-            ressources[nom].SetQuantite((int)valeur);
-            MettreAJourAffichage();
+            resources[nom].SetQuantite((int)valeur);
+            UpdateDisplay();
         }
     }
 
-    private void MettreAJourAffichage()
+    private void UpdateDisplay()
     {
-        foreach (var ressource in ressources)
+        foreach (var ressource in resources)
         {
-            if (ressourceTexts.ContainsKey(ressource.Key))
+            if (resourceTexts.ContainsKey(ressource.Key))
             {
-                ressourceTexts[ressource.Key].text = $"{ressource.Key}: {(int)(Math.Round(ressource.Value.Quantite.currentValue))}";
+                resourceTexts[ressource.Key].text = $"{ressource.Key}: {(int)(Math.Round(ressource.Value.Quantite.currentValue))}";
             }
         }
     }

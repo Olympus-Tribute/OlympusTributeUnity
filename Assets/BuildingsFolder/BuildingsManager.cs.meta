@@ -1,2 +1,25 @@
 fileFormatVersion: 2
 guid: 33338aaab0ff3384292786e50b2c69b9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - prefabAgora: {fileID: 919132149155446097, guid: 0a18b1ed58bf2864f929b7df628293c0, type: 3}
+  - prefabHouse: {fileID: 919132149155446097, guid: f1efdf11442c67d488e54c00f9abb548, type: 3}
+  - prefabExtractorWood: {fileID: 919132149155446097, guid: 88afccbe6d20e8d4c87e8ba12e3735c9, type: 3}
+  - prefabExtractorStone: {fileID: 8807595035378327579, guid: 6d973ee2023c61046956dc2a76414636, type: 3}
+  - prefabExtractorGold: {instanceID: 0}
+  - prefabExtractorDiamond: {instanceID: 0}
+  - prefabExtractorObsidian: {instanceID: 0}
+  - prefabExtractorWater: {instanceID: 0}
+  - prefabExtractorVine: {instanceID: 0}
+  - prefabTempleGold: {instanceID: 0}
+  - prefabTempleDiamond: {instanceID: 0}
+  - prefabTempleObsidian: {instanceID: 0}
+  - prefabTempleWater: {instanceID: 0}
+  - prefabTempleVine: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5914792320943594778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 439.9378, y: -13}
-  m_SizeDelta: {x: 878.8856, y: 26.546997}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -15}
+  m_SizeDelta: {x: 1100, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8526389384542071197
 CanvasRenderer:
@@ -711,8 +711,6 @@ MonoBehaviour:
   vinText: {fileID: 4721633427230603290}
   obsidienneText: {fileID: 4937494165115995125}
   diamantText: {fileID: 5017456493046458383}
-  Network: {fileID: 0}
-  networkActive: 0
 --- !u!1 &3303652342410530021
 GameObject:
   m_ObjectHideFlags: 0

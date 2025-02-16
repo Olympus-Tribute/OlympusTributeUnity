@@ -11,7 +11,9 @@ namespace BuildingsFolder
         private GameObject _selectedBuildingPrefab;
         private int _selectedBuildingType;
     
-        public GameObject menuUI;
+        public GameObject menuUISelectTypeOfBuilding;
+        public GameObject menuUISelectExtractor;
+        public GameObject menuUISelectTemple;
         private BuildingsManager _buildingsManager;
     
         public float gridWidth = 20f;  // Largeur d'un hexagone
@@ -30,7 +32,9 @@ namespace BuildingsFolder
         private void Start()
         {
             _mainCamera = Camera.main;
-            menuUI.SetActive(false);
+            menuUISelectTypeOfBuilding.SetActive(false);
+            menuUISelectExtractor.SetActive(false);
+            menuUISelectTemple.SetActive(false);
         }
 
         public void Update()
@@ -38,7 +42,7 @@ namespace BuildingsFolder
             // Ouvrir/fermer le menu avec la touche "B"
             if (Input.GetKeyDown(KeyCode.B))
             {
-                menuUI.SetActive(!menuUI.activeSelf);
+                menuUISelectTypeOfBuilding.SetActive(!menuUISelectTypeOfBuilding.activeSelf);
             }
         
             // Si un bâtiment est sélectionné et que le menu est ouvert, suivre la souris
@@ -56,8 +60,10 @@ namespace BuildingsFolder
     
         public void SelectBuilding(int buildingType)
         {
-            menuUI.SetActive(false);
-
+            menuUISelectTypeOfBuilding.SetActive(false);
+            menuUISelectExtractor.SetActive(false);
+            menuUISelectTemple.SetActive(false);
+            
             // Réinitialise le bâtiment "fantôme" si un bâtiment est déjà en cours
             if (_ghostBuilding != null)
             {
@@ -72,6 +78,26 @@ namespace BuildingsFolder
                 // Crée un bâtiment "fantôme" pour le placement
                 _ghostBuilding = Instantiate(_selectedBuildingPrefab, Vector3.zero, Quaternion.identity);
                 MakePreviewTransparent();  // Rendre le bâtiment "fantôme" transparent
+            }
+        }
+        
+        public void SelectTypeOfBuilding(string typeOfBuilding)
+        {
+            switch (typeOfBuilding)
+            {
+                case "House":
+                    SelectBuilding(1);
+                    return;
+                case "Extractor":
+                    menuUISelectTypeOfBuilding.SetActive(false);
+                    menuUISelectExtractor.SetActive(true);
+                    return;
+                case "Temple":
+                    menuUISelectTypeOfBuilding.SetActive(false);
+                    menuUISelectTemple.SetActive(true);
+                    return;
+                default:
+                    return;
             }
         }
 

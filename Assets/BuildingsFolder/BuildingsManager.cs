@@ -11,13 +11,36 @@ namespace BuildingsFolder
     {
         // Dictionnaire pour stocker les bâtiments (clé = (int, int), valeur = Building)
         public Dictionary<(int, int), Building> buildings = new Dictionary<(int, int), Building>();
-
-        // Références aux GameObjects des bâtiments
+        
+        
+        // ____________________________________________________________________//
+        // _______Références aux GameObjects des bâtiments_____________________//
+        // ____________________________________________________________________//
+        
         public GameObject prefabAgora;
+        public GameObject prefabHouse;
+        
+        // Extractor
         public GameObject prefabExtractorWood;
         public GameObject prefabExtractorStone;
         public GameObject prefabExtractorGold;
         public GameObject prefabExtractorDiamond;
+        public GameObject prefabExtractorObsidian;
+        public GameObject prefabExtractorWater;
+        public GameObject prefabExtractorVine;
+        
+        // Temple
+        public GameObject prefabTempleGold;
+        public GameObject prefabTempleDiamond;
+        public GameObject prefabTempleObsidian;
+        public GameObject prefabTempleWater;
+        public GameObject prefabTempleVine;
+        
+        // ____________________________________________________________________//
+        // ____________________________________________________________________//
+        // ____________________________________________________________________//
+        
+        
 
         private void Awake()
         {
@@ -86,16 +109,34 @@ namespace BuildingsFolder
             GameObject instantiate = Instantiate(prefab, positionKey, Quaternion.identity);
             switch (buildingType)
             {
-                case 0: // Extracteur Wood
-                    return new Extractor("extracteur wood", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Wood);
-                case 1: // Extracteur Stone
-                    return new Extractor("Agora", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Stone);
-                case 2: // Extracteur Gold
-                    return new Extractor("Agora", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Gold);
-                case 3: // Extracteur Diamond
-                    return new Extractor("Agora", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Diamond);
-                case 4: // Agora
+                case 0: // Agora
                     return new Agora("Agora", "", instantiate, (x, z), ownerId);
+                case 1: // House
+                    return new House("House", "", instantiate, (x, z), ownerId);
+                case 2: // Extractor Wood
+                    return new Extractor("Extractor Wood", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Wood);
+                case 3: // Extractor Stone
+                    return new Extractor("Extractor Stone", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Stone);
+                case 4: // Extractor Gold
+                    return new Extractor("Extractor Gold", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Gold);
+                case 5: // Extractor Diamond
+                    return new Extractor("Extractor Diamond", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Diamond);
+                case 6: // Extractor Obsidian
+                    return new Extractor("Extractor Diamond", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Obsidian);
+                case 7: // Extractor Water
+                    return new Extractor("Extractor Water", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Water);
+                case 8: // Extractor Vine
+                    return new Extractor("Extractor Vine", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Vine);
+                case 9: // Temple Gold
+                    return new Temple("Temple Gold", "", instantiate, (x, z), ownerId);
+                case 10: // Temple Diamond
+                    return new Temple("Temple Diamond", "", instantiate, (x, z), ownerId);
+                case 11: // Temple Obsidian
+                    return new Temple("Temple Obsidian", "", instantiate, (x, z), ownerId);
+                case 12: // Temple Water
+                    return new Temple("Temple Water", "", instantiate, (x, z), ownerId);
+                case 13: // Temple Vine
+                    return new Temple("Temple Vine", "", instantiate, (x, z), ownerId);
                 default:
                     return null;
             }
@@ -105,16 +146,34 @@ namespace BuildingsFolder
         {
             switch (buildingType)
             {
-                case 0:
-                    return prefabExtractorWood;
-                case 1:
-                    return prefabExtractorStone;
-                case 2:
-                    return prefabExtractorGold;
-                case 3:
-                    return prefabExtractorDiamond;
-                case 4: // Agora
+                case 0: // Agora
                     return prefabAgora;
+                case 1: // House
+                    return prefabHouse;
+                case 2: // Extractor Wood
+                    return prefabExtractorWood;
+                case 3: // Extractor Stone
+                    return prefabExtractorStone;
+                case 4: // Extractor Gold
+                    return prefabExtractorGold;
+                case 5: // Extractor Diamond
+                    return prefabExtractorDiamond;
+                case 6: // Extractor Obsidian
+                    return prefabExtractorObsidian;
+                case 7: // Extractor Water
+                    return prefabExtractorWater;
+                case 8: // Extractor Vine
+                    return prefabExtractorVine;
+                case 9: // Temple Gold
+                    return prefabTempleGold;
+                case 10: // Temple Diamond
+                    return prefabTempleDiamond;
+                case 11: // Temple Obsidian
+                    return prefabTempleObsidian;
+                case 12: // Temple Water
+                    return prefabTempleWater;
+                case 13: // Temple Vine
+                    return prefabTempleVine;
                 default:
                     return null;
             }

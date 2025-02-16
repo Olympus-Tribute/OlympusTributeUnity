@@ -10,7 +10,7 @@ namespace BuildingsFolder.BuildingsClasses
 
         private bool isExtracting = false;
         
-        public Extractor(string name, string description, GameObject gameObject, (int, int) position, ushort ownerId, ResourceType extractedResource) : base(name, description, gameObject, position, ownerId)
+        public Extractor(string name, string description, GameObject gameObject, (int, int) position, uint ownerId, ResourceType extractedResource) : base(name, description, gameObject, position, ownerId)
         {
             isExtracting = true;
             ExtractedResource = extractedResource;

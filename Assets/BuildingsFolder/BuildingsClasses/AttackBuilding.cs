@@ -10,7 +10,7 @@ namespace BuildingsFolder.BuildingsClasses
         
         private bool _isAttacking;
         
-        public AttackBuilding(string name, string description, GameObject gameObject, (int, int) position, ushort ownerId, bool isAttacking, float attackRange, int damage, float attackSpeed) : base(name, description, gameObject, position, ownerId)
+        public AttackBuilding(string name, string description, GameObject gameObject, (int, int) position, uint ownerId, bool isAttacking, float attackRange, int damage, float attackSpeed) : base(name, description, gameObject, position, ownerId)
         {
             _isAttacking = isAttacking;
             AttackRange = attackRange;

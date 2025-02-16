@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -69,6 +70,25 @@ public class RessourceManager : MonoBehaviour
         }
     }
     
+    //_________________________________//
+    //_________________________________//
+    //_________________________________//
+
+    
+    // pour Smooth
+    public void Update()
+    {
+        foreach (var ressource in ressources)
+        {
+            ressource.Value.Quantite.Update(Time.deltaTime);
+        }
+        MettreAJourAffichage();
+    }
+    
+    //_________________________________//
+    //_________________________________//
+    //_________________________________//
+    
     public void SetRessource(string nom, uint valeur)
     {
         if (ressources.ContainsKey(nom))
@@ -84,7 +104,7 @@ public class RessourceManager : MonoBehaviour
         {
             if (ressourceTexts.ContainsKey(ressource.Key))
             {
-                ressourceTexts[ressource.Key].text = $"{ressource.Key}: {ressource.Value.Quantite}";
+                ressourceTexts[ressource.Key].text = $"{ressource.Key}: {(int)(Math.Round(ressource.Value.Quantite.currentValue))}";
             }
         }
     }

@@ -1,155 +1,171 @@
+using System;
+using OlympusWorldGenerator;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = System.Random;
 
-public class HexMapGenerator : MonoBehaviour
+
+namespace Grid
 {
-    public int mapWidth = 10; // Nombre d'hexagones en largeur
-    public int mapHeight = 10; // Nombre d'hexagones en hauteur
-    public float hexWidth = 10f; // Largeur d'un hexagone
-    public float hexHeight = 10f; // Hauteur d'un hexagone
-    public GameObject[] hexPrefabs;
-    public ETile[] Tiles;
+    public class HexMapGenerator : IFloorGrid
+    {
+        private const float hexSize = 10f; // longueur d'un coté hexagone
+        private const double sqrt3 = 1.7320508076d;
+        private readonly int mapWidth = 10; // Nombre d'hexagones en largeur
+        private readonly int mapHeight = 10; // Nombre d'hexagones en hauteur
     
-    void Start()
-    {
-        Tiles = MapInitializator(mapWidth, mapHeight);
-        GenerateHexMap();
-    }
-
-    void GenerateHexMap()
-    {
-        float xOffset = hexWidth * 2f; // Décalage horizontal 
-        float zOffset = hexHeight + hexHeight / 2f; // Décalage vertical 
-
-        for (int z = 0; z < mapWidth; z++)
+        private readonly GameObject grassPrefabs;
+        private readonly GameObject oceanPrefabs;
+        private readonly GameObject woodresourcePrefabs;
+        private readonly GameObject diamondresourcePrefabs;
+        private readonly GameObject obsidianresourcePrefabs;
+        private readonly GameObject goldresourcePrefabs;
+        private readonly GameObject stoneresourcePrefabs;
+        private readonly GameObject vineresourcePrefabs;
+        private readonly GameObject lakePrefabs;
+        
+    
+        private readonly FloorTile[] Tiles;
+        private readonly IFloorGenerator Generator;
+        
+        public int Width
         {
-            for (int x = 0; x < mapHeight; x++)
-            {
-                float xPos = x * xOffset;
-                float zPos = z * zOffset;
+            get => mapWidth;
+        }
 
-                // Décalage pour aligner les lignes impaires
-                if (z % 2 == 1)
+        public int Height
+        {
+            get => mapHeight;
+        }
+
+        public FloorTile this[int x, int y]
+        {
+            get => Tiles[y * Width + x];
+            set
+            {
+                Tiles[y * Width + x] = value;
+            }
+        }
+
+        public FloorTile this[int i]
+        {
+            get => Tiles[i];
+            set => Tiles[i] = value;
+        }
+        public HexMapGenerator(int mapWidth, int mapHeight, GameObject grassPrefabs, GameObject waterPrefabs,
+            GameObject woodresourcePrefabs, GameObject diamondresourcePrefabs, GameObject obsidianresourcePrefabs,
+            GameObject goldresourcePrefabs, GameObject stoneresourcePrefabs, GameObject vineresourcePrefabs,
+            GameObject waterresourcePrefabs, IFloorGenerator Generator)
+        {
+            this.mapWidth = mapWidth;
+            this.mapHeight = mapHeight;
+            this.grassPrefabs = grassPrefabs;
+            this.oceanPrefabs = waterPrefabs;
+            this.woodresourcePrefabs = woodresourcePrefabs;
+            this.diamondresourcePrefabs = diamondresourcePrefabs;
+            this.obsidianresourcePrefabs = obsidianresourcePrefabs;
+            this.goldresourcePrefabs = goldresourcePrefabs;
+            this.stoneresourcePrefabs = stoneresourcePrefabs;
+            this.vineresourcePrefabs = vineresourcePrefabs;
+            this.lakePrefabs = waterresourcePrefabs;
+            this.Generator = Generator;
+            Tiles =  new FloorTile[mapWidth * mapHeight];
+        }
+
+        
+
+        public void GridGeneration(GameObject parent, int seed)
+        {
+            Generator.Generate(this,seed);
+            GenerateHexMap(parent,seed);
+        }
+
+        private void GenerateHexMap(GameObject parent, int seed)
+        {
+            
+            double xOffset = sqrt3*hexSize; // Décalage horizontal 
+            double zOffset = hexSize*3/2; // Décalage vertical 
+        
+            for (int z = 0; z < mapWidth; z++)
+            {
+                for (int x = 0; x < mapHeight; x++)
                 {
-                    xPos += xOffset / 2;
+                    double xPos = x * xOffset;
+                    double zPos = z * zOffset;
+
+                    // Décalage pour aligner les lignes impaires
+                    if (z % 2 == 1)
+                    {
+                        xPos += xOffset/2;
+                    }
+
+                    CreateHexTile(parent,new Vector3((float)xPos, 0, (float)zPos),(this[z,x]), seed);
                 }
-                //Debug.Log($"l'hexagone apparait aux coordonnés {(x,z)} est en aux positions {(xPos,0,zPos)}");
-                CreateHexTile(new Vector3(xPos, 0, zPos),EnumToIndex(Tiles[z*mapWidth + x]));
             }
         }
-    }
 
-    void CreateHexTile(Vector3 position, int prefabindex)
-    {
-        
-
-        GameObject hexPrefab = hexPrefabs[prefabindex];
-
-        // Instancier le modèle sélectionné
-        GameObject hex = GameObject.Instantiate(hexPrefab, this.transform);
-        Debug.Log($"un hexagon a spawn avec le prefab numéro {prefabindex} {hexPrefab}");
-        hex.transform.position = position;
-
-        // Facultatif : ajuster l'échelle ou la rotation si nécessaire
-        hex.transform.localScale = new Vector3(1f, 1f, 1f);
-        hex.transform.rotation = Quaternion.identity;
-        
-        
-    }
-
-    static int EnumToIndex(ETile tile)
-    {
-        if (tile is ETile.Grass)
-            return 0;
-        if (tile is ETile.Wood)
-            return 1;
-        if (tile is ETile.Diamond)
-            return 2;
-        if (tile is ETile.Water)
-            return 3;
-        if (tile is ETile.Obsidian)
-            return 4;
-        if (tile is ETile.Gold)
-            return 5;
-        if (tile is ETile.Stone)
-            return 6;
-        else
-            return 7;
-
-    }
-
-    static ETile[] MapInitializator(int mapWidth,int mapHeight)
-    {
-        ETile[] res = new ETile[mapWidth * mapHeight];
-        for (int z = 0; z < mapWidth; z++)
+        private GameObject EnumToPrefab(FloorTile tile)
         {
-            for (int x = 0; x < mapHeight; x++)
+            switch (tile)
             {
-                int randomNumber = Random.Range(0, 101);
-                if (randomNumber < 40)
-                    res[z * mapWidth + x] = ETile.Grass;
-                else if (randomNumber < 45)
-                    res[z * mapWidth + x] = ETile.Water;
-                else if (randomNumber < 70)
-                    res[z * mapWidth + x] = ETile.Wood;
-                else if (randomNumber < 72)
-                    res[z * mapWidth + x] = ETile.Diamond;
-                else if (randomNumber < 75)
-                    res[z * mapWidth + x] = ETile.Obsidian;
-                else if (randomNumber < 80)
-                    res[z * mapWidth + x] = ETile.Gold;
-                else if (randomNumber < 85)
-                    res[z * mapWidth + x] = ETile.Stone;
-                else
-                    res[z * mapWidth + x] = ETile.Vine;
+                case(FloorTile.Grass):
+                    return grassPrefabs;
+                case (FloorTile.Wood):
+                    return woodresourcePrefabs;
+                case (FloorTile.Lake):
+                    return lakePrefabs;
+                case (FloorTile.DiamondMountain):
+                    return diamondresourcePrefabs;
+                case (FloorTile.ObsidianMountain):
+                    return obsidianresourcePrefabs;
+                case (FloorTile.GoldMountain):
+                    return goldresourcePrefabs;
+                case (FloorTile.StoneMountain):
+                    return stoneresourcePrefabs;
+                case (FloorTile.Vine):
+                    return vineresourcePrefabs;
+                case (FloorTile.Ocean):
+                    return oceanPrefabs;
+                default:
+                    throw new ArgumentException("une tile qui n'existe pas essaie d'être instancié");
             }
         }
 
-        return res;
-    }
-    
-
-    Mesh CreateHexMesh()
-    {
-        Mesh mesh = new Mesh();
-        float halfWidth = hexWidth / 2f;
-        float halfHeight = hexHeight / 2f;
+        public void CreateHexTile(GameObject parent, Vector3 position, FloorTile tile, int seed)
+        {
         
-        Vector3[] vertices = new Vector3[7]
-        {
-            new Vector3(0, 0, 0), // Centre 0
-            new Vector3(0, 0, hexHeight), // A
-            new Vector3(hexWidth, 0, halfHeight), // B
-            new Vector3(hexWidth, 0, -halfHeight), // C
-            new Vector3(0, 0, -hexHeight), // D
-            new Vector3(-hexWidth, 0, -halfHeight), // E
-            new Vector3(-hexWidth, 0, halfHeight) // F
-        };
+            GameObject hexPrefab = EnumToPrefab(tile);
 
-        int[] triangles = new int[18]
-        {
-            0, 1, 2,
-            0, 2, 3,
-            0, 3, 4,
-            0, 4, 5,
-            0, 5, 6,
-            0, 6, 1
-        };
+            // Instancier le modèle sélectionné
+            GameObject hex = Object.Instantiate(hexPrefab, parent.transform);
+            hex.transform.position = position;
+        
 
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
-        mesh.RecalculateNormals();
-
-        return mesh;
+            // Facultatif : ajuster l'échelle ou la rotation si nécessaire
+            hex.transform.localScale = new Vector3(1f, 1f, 1f);
+            Random random = new Random((int)(seed + position.x + position.z*Width));
+            int randomvalue = random.Next(0, 6);
+            switch (randomvalue)
+            {
+                case 0:
+                    hex.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    break;
+                case 1:
+                    hex.transform.rotation = Quaternion.Euler(0, 60, 0);
+                    break;
+                case 2:
+                    hex.transform.rotation = Quaternion.Euler(0, 120, 0);
+                    break;
+                case 3:
+                    hex.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    break;
+                case 4:
+                    hex.transform.rotation = Quaternion.Euler(0, 240, 0);
+                    break;
+                case 5:
+                    hex.transform.rotation = Quaternion.Euler(0, 300, 0);
+                    break;
+            }
+        }
     }
-}
-public enum ETile
-{
-    Grass,
-    Wood,
-    Diamond,
-    Water,
-    Obsidian,
-    Gold,
-    Stone,
-    Vine
 }

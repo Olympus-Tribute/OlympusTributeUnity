@@ -22,6 +22,7 @@ namespace Grid
         public GameObject stoneresourcePrefabs;
         public GameObject vineresourcePrefabs;
         public GameObject waterresourcePrefabs;
+        private const double sqrt3 = 1.7320508076d;
     
         public FloorTile[] Tiles;
         public IFloorGenerator Generator = new RandomFloorGenerator(40, 10, 8, 8, 8, 8, 10, 8);
@@ -61,7 +62,7 @@ namespace Grid
 
         void GenerateHexMap(int seed)
         {
-            double sqrt3 = 1.7320508076d;
+            
             double xOffset = sqrt3*hexSize; // Décalage horizontal 
             double zOffset = hexSize*3/2; // Décalage vertical 
         

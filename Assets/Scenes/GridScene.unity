@@ -330,14 +330,7 @@ MonoBehaviour:
   mapHeight: 10
   hexSize: 10
   hexPrefabs:
-  - {fileID: 919132149155446097, guid: d6ab1c22a35ece844a0eaddc6d2daf38, type: 3}
-  - {fileID: 919132149155446097, guid: 1b9d6ee7f1a8a0d41808478d96de1d23, type: 3}
-  - {fileID: 919132149155446097, guid: f41de0492bf34204b9ec445244f6fc30, type: 3}
-  - {fileID: 919132149155446097, guid: aa4a81dccb38f7e4f972183dd9fd5f80, type: 3}
-  - {fileID: 919132149155446097, guid: bd92a43167684ef48b07002dbe7d523b, type: 3}
-  - {fileID: 919132149155446097, guid: 5de83cbb87dc09e4e843c100b3b10e72, type: 3}
-  - {fileID: 919132149155446097, guid: 781f3854a22e5294cbbf7dee1f718a1f, type: 3}
-  - {fileID: 919132149155446097, guid: d69d8581c8c43644caf61abf71cf0418, type: 3}
+  - {fileID: 919132149155446097, guid: 7c01c334e0483914894806cd7223b4e2, type: 3}
   Tiles: 
 --- !u!4 &2067642206
 Transform:

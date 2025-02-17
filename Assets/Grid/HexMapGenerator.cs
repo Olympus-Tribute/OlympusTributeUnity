@@ -1,126 +1,153 @@
 using System;
 using OlympusWorldGenerator;
 using OlympusWorldGenerator.Generators;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 using Random = System.Random;
 
 
-public class HexMapGenerator : MonoBehaviour, IFloorGrid
+namespace Grid
 {
-    public int mapWidth = 10; // Nombre d'hexagones en largeur
-    public int mapHeight = 10; // Nombre d'hexagones en hauteur
-    public float hexSize = 10f; // longueur d'un coté hexagone
-    public GameObject[] hexPrefabs;
-    public FloorTile[] Tiles;
-    public IFloorGenerator Generator = new RandomFloorGenerator(10, 10, 0, 10, 10, 10, 0, 0);
+    public class HexMapGenerator : MonoBehaviour, IFloorGrid
+    {
+        public int mapWidth = 10; // Nombre d'hexagones en largeur
+        public int mapHeight = 10; // Nombre d'hexagones en hauteur
+        public float hexSize = 10f; // longueur d'un coté hexagone
     
-    public int Width
-    {
-        get => mapWidth;
-    }
-
-    public int Height
-    {
-        get => mapHeight;
-    }
-
-    public FloorTile this[int x, int y]
-    {
-        get => Tiles[y * Width + x];
-        set
+        public GameObject grassPrefabs;
+        public GameObject waterPrefabs;
+        public GameObject woodresourcePrefabs;
+        public GameObject diamondresourcePrefabs;
+        public GameObject obsidianresourcePrefabs;
+        public GameObject goldresourcePrefabs;
+        public GameObject stoneresourcePrefabs;
+        public GameObject vineresourcePrefabs;
+        public GameObject waterresourcePrefabs;
+    
+        public FloorTile[] Tiles;
+        public IFloorGenerator Generator = new RandomFloorGenerator(40, 10, 8, 8, 8, 8, 10, 8);
+    
+        public int Width
         {
-            Debug.Log($"accède à l'array {y * Width + x} de co {(x,y)}");
-            Tiles[y * Width + x] = value;
+            get => mapWidth;
         }
-    }
 
-    public FloorTile this[int i]
-    {
-        get => Tiles[i];
-        set => Tiles[i] = value;
-    }
-    void Start()
-    {
-        
-    }
-
-    private void OnEnable()
-    {
-        Tiles =  new FloorTile[mapWidth * mapHeight];
-        int seed = 0;
-        Generator.Generate(this,seed);
-        GenerateHexMap(seed);
-    }
-
-    void GenerateHexMap(int seed)
-    {
-        float sqrt3 = (float)1.73205;
-        float xOffset = sqrt3*hexSize; // Décalage horizontal 
-        float zOffset = hexSize*3/2; // Décalage vertical 
-        
-        for (int z = 0; z < mapWidth; z++)
+        public int Height
         {
-            for (int x = 0; x < mapHeight; x++)
-            {
-                float xPos = x * xOffset;
-                float zPos = z * zOffset;
+            get => mapHeight;
+        }
 
-                // Décalage pour aligner les lignes impaires
-                if (z % 2 == 1)
-                {
-                    xPos += xOffset/2;
-                }
-                Debug.Log($"l'hexagone apparait aux coordonnés {(x,z)} est en aux positions {(xPos,zPos)}");
-                CreateHexTile(new Vector3(xPos, 0, zPos),(int)(this[z,x]), seed);
+        public FloorTile this[int x, int y]
+        {
+            get => Tiles[y * Width + x];
+            set
+            {
+                Tiles[y * Width + x] = value;
             }
         }
-    }
 
-    void CreateHexTile(Vector3 position, int prefabindex, int seed)
-    {
-        //Debug.Log($"prefab index : {prefabindex}");
-        
-        GameObject hexPrefab = hexPrefabs[prefabindex];
-
-        // Instancier le modèle sélectionné
-        GameObject hex = GameObject.Instantiate(hexPrefab, this.transform);
-        //Debug.Log($"un hexagon a spawn avec le prefab numéro {prefabindex} {hexPrefab}");
-        hex.transform.position = position;
-        
-
-        // Facultatif : ajuster l'échelle ou la rotation si nécessaire
-        hex.transform.localScale = new Vector3(1f, 1f, 1f);
-        Random random = new Random((int)(seed + position.x + position.z));
-        int randomvalue = random.Next(0, 6);
-        switch (randomvalue)
+        public FloorTile this[int i]
         {
-            case 0:
-                hex.transform.rotation = Quaternion.Euler(0, 0, 0);
-                Debug.Log($"tourné à 0°");
-                break;
-            case 1:
-                hex.transform.rotation = Quaternion.Euler(0, 60, 0);
-                Debug.Log($"tourné à 60°");
-                break;
-            case 2:
-                hex.transform.rotation = Quaternion.Euler(0, 120, 0);
-                Debug.Log($"tourné à 120°");
-                break;
-            case 3:
-                hex.transform.rotation = Quaternion.Euler(0, 180, 0);
-                Debug.Log($"tourné à 180°");
-                break;
-            case 4:
-                hex.transform.rotation = Quaternion.Euler(0, 240, 0);
-                Debug.Log($"tourné à 240°");
-                break;
-            case 5:
-                hex.transform.rotation = Quaternion.Euler(0, 300, 0);
-                Debug.Log($"tourné à 300°");
-                break;
+            get => Tiles[i];
+            set => Tiles[i] = value;
+        }
+
+        private void OnEnable()
+        {
+            Tiles =  new FloorTile[mapWidth * mapHeight];
+            int seed = 0;
+            Generator.Generate(this,seed);
+            GenerateHexMap(seed);
+        }
+
+        void GenerateHexMap(int seed)
+        {
+            double sqrt3 = 1.7320508076d;
+            double xOffset = sqrt3*hexSize; // Décalage horizontal 
+            double zOffset = hexSize*3/2; // Décalage vertical 
+        
+            for (int z = 0; z < mapWidth; z++)
+            {
+                for (int x = 0; x < mapHeight; x++)
+                {
+                    double xPos = x * xOffset;
+                    double zPos = z * zOffset;
+
+                    // Décalage pour aligner les lignes impaires
+                    if (z % 2 == 1)
+                    {
+                        xPos += xOffset/2;
+                    }
+                    CreateHexTile(new Vector3((float)xPos, 0, (float)zPos),(this[z,x]), seed);
+                }
+            }
+        }
+
+        GameObject EnumToPrefab(FloorTile tile)
+        {
+            switch (tile)
+            {
+                case(FloorTile.Grass):
+                    return grassPrefabs;
+                case (FloorTile.Wood):
+                    return woodresourcePrefabs;
+                case (FloorTile.Water):
+                    return waterresourcePrefabs;
+                case (FloorTile.DiamondMountain):
+                    return diamondresourcePrefabs;
+                case (FloorTile.ObsidianMountain):
+                    return obsidianresourcePrefabs;
+                case (FloorTile.GoldMountain):
+                    return goldresourcePrefabs;
+                case (FloorTile.StoneMountain):
+                    return stoneresourcePrefabs;
+                case (FloorTile.Vine):
+                    return vineresourcePrefabs;
+                default:
+                    throw new ArgumentException("une tile qui n'existe pas essaie d'être instancié");
+            }
+        }
+
+        void CreateHexTile(Vector3 position, FloorTile tile, int seed)
+        {
+        
+            GameObject hexPrefab = EnumToPrefab(tile);
+
+            // Instancier le modèle sélectionné
+            GameObject hex = Instantiate(hexPrefab, this.transform);
+            hex.transform.position = position;
+        
+
+            // Facultatif : ajuster l'échelle ou la rotation si nécessaire
+            hex.transform.localScale = new Vector3(1f, 1f, 1f);
+            Random random = new Random((int)(seed + position.x + position.z));
+            int randomvalue = random.Next(0, 6);
+            switch (randomvalue)
+            {
+                case 0:
+                    hex.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    Debug.Log($"tourné à 0°");
+                    break;
+                case 1:
+                    hex.transform.rotation = Quaternion.Euler(0, 60, 0);
+                    Debug.Log($"tourné à 60°");
+                    break;
+                case 2:
+                    hex.transform.rotation = Quaternion.Euler(0, 120, 0);
+                    Debug.Log($"tourné à 120°");
+                    break;
+                case 3:
+                    hex.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    Debug.Log($"tourné à 180°");
+                    break;
+                case 4:
+                    hex.transform.rotation = Quaternion.Euler(0, 240, 0);
+                    Debug.Log($"tourné à 240°");
+                    break;
+                case 5:
+                    hex.transform.rotation = Quaternion.Euler(0, 300, 0);
+                    Debug.Log($"tourné à 300°");
+                    break;
+            }
         }
     }
 }

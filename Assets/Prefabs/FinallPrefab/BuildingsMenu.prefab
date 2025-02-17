@@ -6017,7 +6017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabAgora: {fileID: 919132149155446097, guid: 0a18b1ed58bf2864f929b7df628293c0, type: 3}
-  prefabHouse: {fileID: 919132149155446097, guid: f1efdf11442c67d488e54c00f9abb548, type: 3}
+  prefabHouse: {fileID: 919132149155446097, guid: 0a18b1ed58bf2864f929b7df628293c0, type: 3}
   prefabExtractorWood: {fileID: 919132149155446097, guid: 88afccbe6d20e8d4c87e8ba12e3735c9, type: 3}
   prefabExtractorStone: {fileID: 919132149155446097, guid: a9d9dcbd3c568eb4f9074c5020795740, type: 3}
   prefabExtractorGold: {fileID: 919132149155446097, guid: c7e7b5031259a454692499190fae3279, type: 3}

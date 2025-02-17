@@ -9,24 +9,25 @@ namespace Grid
 {
     public class HexMapGenerator : MonoBehaviour, IFloorGrid
     {
-        public int mapWidth = 10; // Nombre d'hexagones en largeur
-        public int mapHeight = 10; // Nombre d'hexagones en hauteur
-        public float hexSize = 10f; // longueur d'un coté hexagone
-    
-        public GameObject grassPrefabs;
-        public GameObject waterPrefabs;
-        public GameObject woodresourcePrefabs;
-        public GameObject diamondresourcePrefabs;
-        public GameObject obsidianresourcePrefabs;
-        public GameObject goldresourcePrefabs;
-        public GameObject stoneresourcePrefabs;
-        public GameObject vineresourcePrefabs;
-        public GameObject waterresourcePrefabs;
+        private const float hexSize = 10f; // longueur d'un coté hexagone
         private const double sqrt3 = 1.7320508076d;
+        private readonly int mapWidth = 10; // Nombre d'hexagones en largeur
+        private readonly int mapHeight = 10; // Nombre d'hexagones en hauteur
     
-        public FloorTile[] Tiles;
-        public IFloorGenerator Generator = new RandomFloorGenerator(40, 10, 8, 8, 8, 8, 10, 8);
+        private readonly GameObject grassPrefabs;
+        private readonly GameObject waterPrefabs;
+        private readonly GameObject woodresourcePrefabs;
+        private readonly GameObject diamondresourcePrefabs;
+        private readonly GameObject obsidianresourcePrefabs;
+        private readonly GameObject goldresourcePrefabs;
+        private readonly GameObject stoneresourcePrefabs;
+        private readonly GameObject vineresourcePrefabs;
+        private readonly GameObject waterresourcePrefabs;
+        
     
+        private readonly FloorTile[] Tiles;
+        private readonly IFloorGenerator Generator;
+        
         public int Width
         {
             get => mapWidth;
@@ -51,16 +52,36 @@ namespace Grid
             get => Tiles[i];
             set => Tiles[i] = value;
         }
-
-        private void OnEnable()
+        public HexMapGenerator(int mapWidth, int mapHeight, GameObject grassPrefabs, GameObject waterPrefabs,
+            GameObject woodresourcePrefabs, GameObject diamondresourcePrefabs, GameObject obsidianresourcePrefabs,
+            GameObject goldresourcePrefabs, GameObject stoneresourcePrefabs, GameObject vineresourcePrefabs,
+            GameObject waterresourcePrefabs, IFloorGenerator Generator)
         {
+            this.mapWidth = mapWidth;
+            this.mapHeight = mapHeight;
+            this.grassPrefabs = grassPrefabs;
+            this.waterPrefabs = waterPrefabs;
+            this.woodresourcePrefabs = woodresourcePrefabs;
+            this.diamondresourcePrefabs = diamondresourcePrefabs;
+            this.obsidianresourcePrefabs = obsidianresourcePrefabs;
+            this.goldresourcePrefabs = goldresourcePrefabs;
+            this.stoneresourcePrefabs = stoneresourcePrefabs;
+            this.vineresourcePrefabs = vineresourcePrefabs;
+            this.waterresourcePrefabs = waterresourcePrefabs;
+            this.Generator = Generator;
             Tiles =  new FloorTile[mapWidth * mapHeight];
-            int seed = 0;
+        }
+
+        
+
+        public void GridGeneration(int seed)
+        {
+            
             Generator.Generate(this,seed);
             GenerateHexMap(seed);
         }
 
-        void GenerateHexMap(int seed)
+        private void GenerateHexMap(int seed)
         {
             
             double xOffset = sqrt3*hexSize; // Décalage horizontal 
@@ -83,7 +104,7 @@ namespace Grid
             }
         }
 
-        GameObject EnumToPrefab(FloorTile tile)
+        private GameObject EnumToPrefab(FloorTile tile)
         {
             switch (tile)
             {
@@ -108,7 +129,7 @@ namespace Grid
             }
         }
 
-        void CreateHexTile(Vector3 position, FloorTile tile, int seed)
+        private void CreateHexTile(Vector3 position, FloorTile tile, int seed)
         {
         
             GameObject hexPrefab = EnumToPrefab(tile);

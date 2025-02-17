@@ -125,27 +125,21 @@ namespace Grid
             {
                 case 0:
                     hex.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    Debug.Log($"tourné à 0°");
                     break;
                 case 1:
                     hex.transform.rotation = Quaternion.Euler(0, 60, 0);
-                    Debug.Log($"tourné à 60°");
                     break;
                 case 2:
                     hex.transform.rotation = Quaternion.Euler(0, 120, 0);
-                    Debug.Log($"tourné à 120°");
                     break;
                 case 3:
                     hex.transform.rotation = Quaternion.Euler(0, 180, 0);
-                    Debug.Log($"tourné à 180°");
                     break;
                 case 4:
                     hex.transform.rotation = Quaternion.Euler(0, 240, 0);
-                    Debug.Log($"tourné à 240°");
                     break;
                 case 5:
                     hex.transform.rotation = Quaternion.Euler(0, 300, 0);
-                    Debug.Log($"tourné à 300°");
                     break;
             }
         }

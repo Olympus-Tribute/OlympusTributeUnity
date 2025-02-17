@@ -703,14 +703,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae4d222ca939a3489e7b662191776f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  habitantsText: {fileID: 9025644646366344963}
-  pierreText: {fileID: 6909906707656517361}
-  boisText: {fileID: 6884787896036554889}
-  orText: {fileID: 8366738933822281248}
-  eauText: {fileID: 1554853595273221284}
-  vinText: {fileID: 4721633427230603290}
-  obsidienneText: {fileID: 4937494165115995125}
-  diamantText: {fileID: 5017456493046458383}
+  populationText: {fileID: 9025644646366344963}
+  stoneText: {fileID: 6909906707656517361}
+  woodText: {fileID: 6884787896036554889}
+  goldText: {fileID: 8366738933822281248}
+  waterText: {fileID: 1554853595273221284}
+  wineText: {fileID: 4721633427230603290}
+  obsidianText: {fileID: 4937494165115995125}
+  diamondText: {fileID: 5017456493046458383}
 --- !u!1 &3303652342410530021
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,10 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/Play/MultiplayerOrAIMenu.unity
     guid: 9decf795393575e409e708fa3c356f14
   - enabled: 1
-    path: Assets/Scenes/Menus/Play/Multiplayer/HostOrJoinMenu.unity
+    path: Assets/Scenes/Menus/HostOrJoinMenu.unity
     guid: 59c6d618ad921c34fa385a2bf0932ad6
   - enabled: 1
-    path: Assets/Scenes/Menus/Play/Multiplayer/WaitingScene.unity
+    path: Assets/Scenes/Menus/WaitingScene.unity
     guid: 7172187a332f8214ea6b74de121dff52
   - enabled: 1
     path: Assets/Scenes/Menus/Option/OptionMenu.unity

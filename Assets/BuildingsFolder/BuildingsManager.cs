@@ -44,6 +44,7 @@ namespace BuildingsFolder
 
         private void Awake()
         {
+           
             if (Network.Instance == null)
             {
                 Debug.LogWarning("Network.Instance is not initialized!");

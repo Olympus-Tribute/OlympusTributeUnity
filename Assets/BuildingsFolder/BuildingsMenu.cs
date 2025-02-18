@@ -57,6 +57,13 @@ namespace BuildingsFolder
                 PlaceBuilding();
             }
         }
+
+        public void QuitMenu()
+        {
+            menuUISelectTypeOfBuilding.SetActive(false);
+            menuUISelectExtractor.SetActive(false);
+            menuUISelectTemple.SetActive(false);
+        }
     
         public void SelectBuilding(int buildingType)
         {

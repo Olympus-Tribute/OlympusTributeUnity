@@ -110,13 +110,22 @@ namespace Menus
     
         public void Host()
         {
-            SetAllMenusInactive();
-            CSteamID id = SteamUser.GetSteamID();
-            //SteamFriends.ActivateGameOverlayInviteDialog(id);
+            if (SteamManager.Initialized)
+            {
+                SetAllMenusInactive();
+                
+                CSteamID id = SteamUser.GetSteamID();
+                //SteamFriends.ActivateGameOverlayInviteDialog(id);
         
-            ServerManager.Instance.Host();
+                ServerManager.Instance.Host();
         
-            SceneManager.LoadScene("WaitingScene");
+                SceneManager.LoadScene("WaitingScene");
+            }
+            else
+            {
+                Debug.LogError("Steam is not initialized or not running.");
+            }
+            
         }
     
         public void Join()

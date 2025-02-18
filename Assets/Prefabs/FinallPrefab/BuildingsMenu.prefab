@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8139873248519031224}
   - component: {fileID: 2573970750884608801}
   - component: {fileID: 7572555633140345065}
-  - component: {fileID: 5534703806304337026}
   m_Layer: 5
   m_Name: EWood (3)
   m_TagString: Untagged
@@ -137,35 +136,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5534703806304337026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756635474355312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 7572555633140345065}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &86768442683873611
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +291,6 @@ GameObject:
   - component: {fileID: 1305215348524644433}
   - component: {fileID: 429000792125934478}
   - component: {fileID: 8472382064405019658}
-  - component: {fileID: 7304662969112083193}
   m_Layer: 5
   m_Name: TStone
   m_TagString: Untagged
@@ -447,35 +416,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7304662969112083193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 114292176589952829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 8472382064405019658}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &130963386940404805
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +563,6 @@ GameObject:
   - component: {fileID: 829939507338589531}
   - component: {fileID: 2336805655113034218}
   - component: {fileID: 7585496197405550724}
-  - component: {fileID: 4851404110075755116}
   m_Layer: 5
   m_Name: EStone (4)
   m_TagString: Untagged
@@ -749,35 +688,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4851404110075755116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144576172478801916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 7585496197405550724}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &144883622357440448
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +699,6 @@ GameObject:
   - component: {fileID: 2192395739605070894}
   - component: {fileID: 2701883973783968592}
   - component: {fileID: 5224614984004411039}
-  - component: {fileID: 5534677422922019160}
   m_Layer: 5
   m_Name: EWood
   m_TagString: Untagged
@@ -915,35 +824,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5534677422922019160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144883622357440448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 5224614984004411039}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &239884298222398757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,7 +1051,6 @@ GameObject:
   - component: {fileID: 7288514948947136419}
   - component: {fileID: 7081988719965909042}
   - component: {fileID: 5880235213020460034}
-  - component: {fileID: 2124554384088962048}
   m_Layer: 5
   m_Name: TOther
   m_TagString: Untagged
@@ -1297,35 +1176,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2124554384088962048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348966742678381042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 5880235213020460034}
-  temple_people: {fileID: 0}
 --- !u!1 &544234020550877767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,7 +1323,6 @@ GameObject:
   - component: {fileID: 1733767997425424851}
   - component: {fileID: 8312802327459734165}
   - component: {fileID: 2056562519097137140}
-  - component: {fileID: 1360622673443630175}
   m_Layer: 5
   m_Name: HStone (8)
   m_TagString: Untagged
@@ -1599,35 +1448,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1360622673443630175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 663846971231063150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 2056562519097137140}
 --- !u!1 &749638370195751800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,7 +1459,6 @@ GameObject:
   - component: {fileID: 4800921773618873775}
   - component: {fileID: 2210130593036040254}
   - component: {fileID: 5270674928263583450}
-  - component: {fileID: 9030743939376235787}
   m_Layer: 5
   m_Name: EGold
   m_TagString: Untagged
@@ -1765,35 +1584,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &9030743939376235787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749638370195751800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 5270674928263583450}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &752700938016769698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,11 +1750,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5313377081168967870}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -139.94989, y: 0.28900146}
+  m_AnchoredPosition: {x: -141.9029, y: -7.5314026}
   m_SizeDelta: {x: 20.929, y: 21.589}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5840689160063977902
@@ -2697,7 +2487,6 @@ GameObject:
   - component: {fileID: 753705757762237955}
   - component: {fileID: 1851508217251588095}
   - component: {fileID: 6104071255395829068}
-  - component: {fileID: 6605253143190230697}
   m_Layer: 5
   m_Name: EGold (5)
   m_TagString: Untagged
@@ -2823,35 +2612,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6605253143190230697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118090839376273408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 6104071255395829068}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &1152990935091131602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,11 +2642,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5313377081168967870}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.4, y: -0.3}
+  m_AnchoredPosition: {x: -0.55300295, y: -8.120374}
   m_SizeDelta: {x: 20.929, y: 21.589}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6758553813338912557
@@ -2935,7 +2695,6 @@ GameObject:
   - component: {fileID: 2656919838952836457}
   - component: {fileID: 7001628714256049861}
   - component: {fileID: 8421078650945091101}
-  - component: {fileID: 4064855780893655821}
   m_Layer: 5
   m_Name: EGold (3)
   m_TagString: Untagged
@@ -3061,35 +2820,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4064855780893655821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218677740741358387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 8421078650945091101}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &1224103912459009016
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,7 +2831,6 @@ GameObject:
   - component: {fileID: 8965789046954173152}
   - component: {fileID: 6728843419028230175}
   - component: {fileID: 6313353711053696113}
-  - component: {fileID: 8661992398851048640}
   m_Layer: 5
   m_Name: HStone (6)
   m_TagString: Untagged
@@ -3227,35 +2956,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8661992398851048640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224103912459009016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 6313353711053696113}
 --- !u!1 &1278988978687996652
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,7 +3648,6 @@ GameObject:
   - component: {fileID: 2215971756350154915}
   - component: {fileID: 4228424592083140528}
   - component: {fileID: 8199753444567684986}
-  - component: {fileID: 8976671203907398225}
   m_Layer: 5
   m_Name: TWood
   m_TagString: Untagged
@@ -4074,35 +3773,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8976671203907398225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2008345752719534885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 8199753444567684986}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &2032074847797481547
 GameObject:
   m_ObjectHideFlags: 0
@@ -4395,7 +4065,6 @@ GameObject:
   - component: {fileID: 7093102881525935566}
   - component: {fileID: 2299980096531307499}
   - component: {fileID: 6404061751222420403}
-  - component: {fileID: 5708171475448978808}
   m_Layer: 5
   m_Name: EWood (1)
   m_TagString: Untagged
@@ -4521,35 +4190,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5708171475448978808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106929110380413956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 6404061751222420403}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &2272665091776211066
 GameObject:
   m_ObjectHideFlags: 0
@@ -4582,14 +4222,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9078519820648369579}
-  - {fileID: 4479949741208014170}
-  - {fileID: 485876018763592968}
-  - {fileID: 7947955179795527164}
-  - {fileID: 5262116236157222889}
-  - {fileID: 8781038954807018324}
-  - {fileID: 5629233012689260792}
-  - {fileID: 5998628269378059414}
-  - {fileID: 4749398630108895558}
   - {fileID: 1405875129226433698}
   m_Father: {fileID: 2356566411608129711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4672,7 +4304,6 @@ GameObject:
   - component: {fileID: 5219700498308228611}
   - component: {fileID: 3336942064870478730}
   - component: {fileID: 350995327617148290}
-  - component: {fileID: 6625007394395487336}
   m_Layer: 5
   m_Name: EGold (2)
   m_TagString: Untagged
@@ -4798,35 +4429,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6625007394395487336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2357562213600391554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 350995327617148290}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &2397242877187162582
 GameObject:
   m_ObjectHideFlags: 0
@@ -4838,7 +4440,6 @@ GameObject:
   - component: {fileID: 5657732891124124682}
   - component: {fileID: 3243303874438934263}
   - component: {fileID: 5371862850493004426}
-  - component: {fileID: 2361716913666945276}
   m_Layer: 5
   m_Name: EGold
   m_TagString: Untagged
@@ -4964,35 +4565,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2361716913666945276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2397242877187162582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 5371862850493004426}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &2431003698508753379
 GameObject:
   m_ObjectHideFlags: 0
@@ -5171,7 +4743,6 @@ GameObject:
   - component: {fileID: 5425736273968581782}
   - component: {fileID: 4560996240810446590}
   - component: {fileID: 6355363854481068972}
-  - component: {fileID: 1853486664488075947}
   m_Layer: 5
   m_Name: TGold
   m_TagString: Untagged
@@ -5297,35 +4868,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1853486664488075947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2530276180585509356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 6355363854481068972}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &2600511127018466864
 GameObject:
   m_ObjectHideFlags: 0
@@ -5603,7 +5145,6 @@ GameObject:
   - component: {fileID: 5629233012689260792}
   - component: {fileID: 2844246165500182464}
   - component: {fileID: 6494758080259204796}
-  - component: {fileID: 5962146130030878841}
   m_Layer: 5
   m_Name: HStone (4)
   m_TagString: Untagged
@@ -5623,11 +5164,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5313377081168967870}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: -8.6}
+  m_AnchoredPosition: {x: 158.047, y: -16.420404}
   m_SizeDelta: {x: 32.2497, y: 38.5675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2844246165500182464
@@ -5729,35 +5270,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5962146130030878841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2703215003661430091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 6494758080259204796}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &2773281040383652041
 GameObject:
   m_ObjectHideFlags: 0
@@ -6046,7 +5558,6 @@ GameObject:
   - component: {fileID: 9034950401233964412}
   - component: {fileID: 5250271312371094642}
   - component: {fileID: 7924916706669587503}
-  - component: {fileID: 1929568212740066622}
   m_Layer: 5
   m_Name: EStone (4)
   m_TagString: Untagged
@@ -6172,35 +5683,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1929568212740066622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2906400573931818493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 7924916706669587503}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &2911919516969905208
 GameObject:
   m_ObjectHideFlags: 0
@@ -6212,7 +5694,6 @@ GameObject:
   - component: {fileID: 1673897253783587068}
   - component: {fileID: 7167430585782124830}
   - component: {fileID: 7039110909469508850}
-  - component: {fileID: 1156017259923211324}
   m_Layer: 5
   m_Name: EWood (5)
   m_TagString: Untagged
@@ -6338,35 +5819,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1156017259923211324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2911919516969905208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 7039110909469508850}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &2957807523124696081
 GameObject:
   m_ObjectHideFlags: 0
@@ -6547,7 +5999,6 @@ GameObject:
   - component: {fileID: 2655689871105635452}
   - component: {fileID: 4599116504314835445}
   - component: {fileID: 235766314988319094}
-  - component: {fileID: 8887670646023737883}
   m_Layer: 5
   m_Name: EGold (4)
   m_TagString: Untagged
@@ -6673,35 +6124,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8887670646023737883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2982451281912504440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 235766314988319094}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &3065129424053725982
 GameObject:
   m_ObjectHideFlags: 0
@@ -6713,7 +6135,6 @@ GameObject:
   - component: {fileID: 8247286991217142216}
   - component: {fileID: 8568735392944312232}
   - component: {fileID: 403758317754901919}
-  - component: {fileID: 2645538434042851841}
   m_Layer: 5
   m_Name: HStone (6)
   m_TagString: Untagged
@@ -6839,35 +6260,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2645538434042851841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065129424053725982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 403758317754901919}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &3235010634300615119
 GameObject:
   m_ObjectHideFlags: 0
@@ -6951,7 +6343,6 @@ GameObject:
   - component: {fileID: 2955685219478996340}
   - component: {fileID: 4407178564971682455}
   - component: {fileID: 8534942606939672075}
-  - component: {fileID: 5670002795521572896}
   m_Layer: 5
   m_Name: HStone (11)
   m_TagString: Untagged
@@ -7077,35 +6468,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5670002795521572896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3265328790057070647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 8534942606939672075}
 --- !u!1 &3356130661275262093
 GameObject:
   m_ObjectHideFlags: 0
@@ -7117,7 +6479,6 @@ GameObject:
   - component: {fileID: 8150333931647297112}
   - component: {fileID: 8681018054367608795}
   - component: {fileID: 292163069329984188}
-  - component: {fileID: 8133120499807841622}
   m_Layer: 5
   m_Name: EWood
   m_TagString: Untagged
@@ -7243,35 +6604,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8133120499807841622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3356130661275262093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 292163069329984188}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &3422229383134445070
 GameObject:
   m_ObjectHideFlags: 0
@@ -7940,7 +7272,6 @@ GameObject:
   - component: {fileID: 8007546311784314068}
   - component: {fileID: 1211417021953910240}
   - component: {fileID: 2233979549412718000}
-  - component: {fileID: 580978759830792797}
   m_Layer: 5
   m_Name: HStone (2)
   m_TagString: Untagged
@@ -8066,35 +7397,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &580978759830792797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3742474925324865940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 2233979549412718000}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &3755651344275483117
 GameObject:
   m_ObjectHideFlags: 0
@@ -8314,7 +7616,6 @@ GameObject:
   - component: {fileID: 8207086702129116411}
   - component: {fileID: 2238061767908840847}
   - component: {fileID: 3406926350900688712}
-  - component: {fileID: 5708680363929288782}
   m_Layer: 5
   m_Name: EStone (1)
   m_TagString: Untagged
@@ -8440,35 +7741,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5708680363929288782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3794648316559678523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 3406926350900688712}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &3815804484687617193
 GameObject:
   m_ObjectHideFlags: 0
@@ -8480,7 +7752,6 @@ GameObject:
   - component: {fileID: 4252412197409829474}
   - component: {fileID: 1651181096592632469}
   - component: {fileID: 2722665657832954500}
-  - component: {fileID: 6199140411682613195}
   m_Layer: 5
   m_Name: EGold (2)
   m_TagString: Untagged
@@ -8606,35 +7877,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6199140411682613195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3815804484687617193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 2722665657832954500}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &3884665917200013656
 GameObject:
   m_ObjectHideFlags: 0
@@ -8848,7 +8090,6 @@ GameObject:
   - component: {fileID: 5262116236157222889}
   - component: {fileID: 1126020863337048744}
   - component: {fileID: 2291501085208096831}
-  - component: {fileID: 1593303448308830730}
   m_Layer: 5
   m_Name: HStone (3)
   m_TagString: Untagged
@@ -8868,11 +8109,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5313377081168967870}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31.049927, y: -8.789001}
+  m_AnchoredPosition: {x: 29.096924, y: -16.609406}
   m_SizeDelta: {x: 32.2497, y: 38.5675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1126020863337048744
@@ -8974,35 +8215,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1593303448308830730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3972413214811539622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 2291501085208096831}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &3985350445345628641
 GameObject:
   m_ObjectHideFlags: 0
@@ -9571,7 +8783,6 @@ GameObject:
   - component: {fileID: 1297792852243447194}
   - component: {fileID: 8404871549841056305}
   - component: {fileID: 4677025653479958951}
-  - component: {fileID: 2138839944106940342}
   m_Layer: 5
   m_Name: EWood
   m_TagString: Untagged
@@ -9697,35 +8908,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2138839944106940342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4218211309571711264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 4677025653479958951}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &4250949360766921012
 GameObject:
   m_ObjectHideFlags: 0
@@ -9737,7 +8919,6 @@ GameObject:
   - component: {fileID: 4124771675779103581}
   - component: {fileID: 8894331934935282581}
   - component: {fileID: 18870570409239785}
-  - component: {fileID: 1009368961830622135}
   m_Layer: 5
   m_Name: EWood (2)
   m_TagString: Untagged
@@ -9863,35 +9044,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1009368961830622135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4250949360766921012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 18870570409239785}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &4367736012256224942
 GameObject:
   m_ObjectHideFlags: 0
@@ -9903,7 +9055,6 @@ GameObject:
   - component: {fileID: 4479949741208014170}
   - component: {fileID: 2162791977144156512}
   - component: {fileID: 4692865611862645067}
-  - component: {fileID: 9008672753554851810}
   m_Layer: 5
   m_Name: HStone (5)
   m_TagString: Untagged
@@ -9923,11 +9074,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5313377081168967870}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -159.75305, y: -127.705414}
+  m_AnchoredPosition: {x: -161.70605, y: -135.52582}
   m_SizeDelta: {x: 32.2497, y: 38.5675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2162791977144156512
@@ -10029,35 +9180,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &9008672753554851810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4367736012256224942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 4692865611862645067}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &4374520886821044288
 GameObject:
   m_ObjectHideFlags: 0
@@ -10285,7 +9407,6 @@ GameObject:
   - component: {fileID: 3917424607395438232}
   - component: {fileID: 6955412572289737096}
   - component: {fileID: 5258521886098447186}
-  - component: {fileID: 4388301706053490387}
   m_Layer: 5
   m_Name: EWood (1)
   m_TagString: Untagged
@@ -10411,35 +9532,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4388301706053490387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4495169582801562927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 5258521886098447186}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &4529507326753154709
 GameObject:
   m_ObjectHideFlags: 0
@@ -10867,7 +9959,6 @@ GameObject:
   - component: {fileID: 1447105562950027065}
   - component: {fileID: 9012412226410629589}
   - component: {fileID: 3533466496132871449}
-  - component: {fileID: 8533336235677529697}
   m_Layer: 5
   m_Name: HStone (7)
   m_TagString: Untagged
@@ -10993,35 +10084,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8533336235677529697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4747498409971117931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 3533466496132871449}
 --- !u!1 &4760760461272696574
 GameObject:
   m_ObjectHideFlags: 0
@@ -11333,7 +10395,6 @@ GameObject:
   - component: {fileID: 8486683964880837196}
   - component: {fileID: 4043171352562173934}
   - component: {fileID: 2888160408478554722}
-  - component: {fileID: 1121691267773933326}
   m_Layer: 5
   m_Name: HWood
   m_TagString: Untagged
@@ -11459,35 +10520,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1121691267773933326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4868270997044546661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 2888160408478554722}
-  house_stone: {fileID: 2809895831572713524}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 292163069329984188}
-  extractor_stone: {fileID: 2366217430073336277}
-  extractor_gold: {fileID: 5270674928263583450}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 8199753444567684986}
-  temple_stone: {fileID: 8472382064405019658}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 6355363854481068972}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &4871595069311459496
 GameObject:
   m_ObjectHideFlags: 0
@@ -11571,7 +10603,6 @@ GameObject:
   - component: {fileID: 6749088246515247444}
   - component: {fileID: 5851262078857604873}
   - component: {fileID: 1413552890700328307}
-  - component: {fileID: 3335399006508283998}
   m_Layer: 5
   m_Name: EGold (3)
   m_TagString: Untagged
@@ -11697,35 +10728,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &3335399006508283998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4882515165863254824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 1413552890700328307}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &4888136217622873500
 GameObject:
   m_ObjectHideFlags: 0
@@ -12341,7 +11343,6 @@ GameObject:
   - component: {fileID: 1691377470515565987}
   - component: {fileID: 5288066568594461115}
   - component: {fileID: 706949033368672817}
-  - component: {fileID: 2767074380135235266}
   m_Layer: 5
   m_Name: EStone
   m_TagString: Untagged
@@ -12467,35 +11468,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2767074380135235266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5170743098333595430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 706949033368672817}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &5199508227111719396
 GameObject:
   m_ObjectHideFlags: 0
@@ -12884,7 +11856,6 @@ GameObject:
   - component: {fileID: 1724678844318436795}
   - component: {fileID: 6374026944652866409}
   - component: {fileID: 6745735109329711818}
-  - component: {fileID: 2036260413742464724}
   m_Layer: 5
   m_Name: EWood (4)
   m_TagString: Untagged
@@ -13010,35 +11981,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2036260413742464724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5237539350776618852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 6745735109329711818}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &5277487055190683230
 GameObject:
   m_ObjectHideFlags: 0
@@ -13069,11 +12011,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5313377081168967870}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 130.3501, y: -0.11099243}
+  m_AnchoredPosition: {x: 128.3971, y: -7.9313965}
   m_SizeDelta: {x: 20.929, y: 21.589}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6723404302660431742
@@ -13266,7 +12208,6 @@ GameObject:
   - component: {fileID: 2194736477366286746}
   - component: {fileID: 4410872389689765424}
   - component: {fileID: 2693704489509160553}
-  - component: {fileID: 1343798938452670089}
   m_Layer: 5
   m_Name: HStone (7)
   m_TagString: Untagged
@@ -13392,35 +12333,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1343798938452670089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5362461086870674300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 2693704489509160553}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &5411444949544217690
 GameObject:
   m_ObjectHideFlags: 0
@@ -13432,7 +12344,6 @@ GameObject:
   - component: {fileID: 5690073448034537848}
   - component: {fileID: 6226163012551407663}
   - component: {fileID: 4850393406455654105}
-  - component: {fileID: 2635174124216982618}
   m_Layer: 5
   m_Name: EWood
   m_TagString: Untagged
@@ -13558,35 +12469,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2635174124216982618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5411444949544217690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 4850393406455654105}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &5432496374717396555
 GameObject:
   m_ObjectHideFlags: 0
@@ -13598,7 +12480,6 @@ GameObject:
   - component: {fileID: 787858743123867526}
   - component: {fileID: 3373069461128639921}
   - component: {fileID: 5448544226136222121}
-  - component: {fileID: 8584318542645343379}
   m_Layer: 5
   m_Name: EStone (1)
   m_TagString: Untagged
@@ -13724,35 +12605,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8584318542645343379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5432496374717396555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 5448544226136222121}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &5488606709835350251
 GameObject:
   m_ObjectHideFlags: 0
@@ -13900,7 +12752,6 @@ GameObject:
   - component: {fileID: 4993408568785493857}
   - component: {fileID: 2353117198827607024}
   - component: {fileID: 6495892374023238976}
-  - component: {fileID: 1402541766371336451}
   m_Layer: 5
   m_Name: EWood (3)
   m_TagString: Untagged
@@ -14026,35 +12877,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1402541766371336451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5516497282384846541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 6495892374023238976}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &5651370405851929821
 GameObject:
   m_ObjectHideFlags: 0
@@ -14066,7 +12888,6 @@ GameObject:
   - component: {fileID: 6629854528337180336}
   - component: {fileID: 709526654824339497}
   - component: {fileID: 7559137659203756284}
-  - component: {fileID: 7349731664218708484}
   m_Layer: 5
   m_Name: HStone (5)
   m_TagString: Untagged
@@ -14192,35 +13013,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7349731664218708484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5651370405851929821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 7559137659203756284}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &5686835862748267318
 GameObject:
   m_ObjectHideFlags: 0
@@ -14362,7 +13154,6 @@ GameObject:
   - component: {fileID: 6151734630306663081}
   - component: {fileID: 3520698469340482687}
   - component: {fileID: 1544072807870928527}
-  - component: {fileID: 7256636290211776095}
   m_Layer: 5
   m_Name: EGold (1)
   m_TagString: Untagged
@@ -14488,35 +13279,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7256636290211776095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5705503389485379959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 1544072807870928527}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &5765230013436072227
 GameObject:
   m_ObjectHideFlags: 0
@@ -14528,7 +13290,6 @@ GameObject:
   - component: {fileID: 4577556583694737044}
   - component: {fileID: 9156588218399028400}
   - component: {fileID: 1892651848686253494}
-  - component: {fileID: 5653631889322854325}
   m_Layer: 5
   m_Name: EGold
   m_TagString: Untagged
@@ -14654,35 +13415,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5653631889322854325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5765230013436072227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 1892651848686253494}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &5809112861003647198
 GameObject:
   m_ObjectHideFlags: 0
@@ -14838,7 +13570,6 @@ GameObject:
   - component: {fileID: 7480867093869775472}
   - component: {fileID: 2632994906979279033}
   - component: {fileID: 131707717657589496}
-  - component: {fileID: 6621356473055139596}
   m_Layer: 5
   m_Name: EWood (4)
   m_TagString: Untagged
@@ -14964,35 +13695,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6621356473055139596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5994046341249898634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 131707717657589496}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &6071378734592674623
 GameObject:
   m_ObjectHideFlags: 0
@@ -15134,7 +13836,6 @@ GameObject:
   - component: {fileID: 3668537219500095006}
   - component: {fileID: 3702132674627535062}
   - component: {fileID: 9079946509846085670}
-  - component: {fileID: 994136084241009887}
   m_Layer: 5
   m_Name: EGold (1)
   m_TagString: Untagged
@@ -15260,35 +13961,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &994136084241009887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6083877482130626400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 9079946509846085670}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &6183125678958171439
 GameObject:
   m_ObjectHideFlags: 0
@@ -15580,7 +14252,6 @@ GameObject:
   - component: {fileID: 2135422036197561893}
   - component: {fileID: 4956200102982422784}
   - component: {fileID: 573885098679635537}
-  - component: {fileID: 1378643468729905691}
   m_Layer: 5
   m_Name: EStone (3)
   m_TagString: Untagged
@@ -15706,35 +14377,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1378643468729905691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6203537712858461264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 573885098679635537}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &6238084799613610412
 GameObject:
   m_ObjectHideFlags: 0
@@ -15746,7 +14388,6 @@ GameObject:
   - component: {fileID: 4766348917735392659}
   - component: {fileID: 2518262732685742503}
   - component: {fileID: 1824709238585861830}
-  - component: {fileID: 3988318010367979260}
   m_Layer: 5
   m_Name: EStone (2)
   m_TagString: Untagged
@@ -15872,35 +14513,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &3988318010367979260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6238084799613610412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 1824709238585861830}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &6264759144101389355
 GameObject:
   m_ObjectHideFlags: 0
@@ -16317,7 +14929,6 @@ GameObject:
   - component: {fileID: 4639807996808692814}
   - component: {fileID: 8316449306793556569}
   - component: {fileID: 6666355854458664574}
-  - component: {fileID: 6321709030718499714}
   m_Layer: 5
   m_Name: EStone (6)
   m_TagString: Untagged
@@ -16443,35 +15054,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6321709030718499714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6390332305351916163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 6666355854458664574}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &6396363731394130275
 GameObject:
   m_ObjectHideFlags: 0
@@ -16691,7 +15273,6 @@ GameObject:
   - component: {fileID: 2937640363329829441}
   - component: {fileID: 8612751280414695458}
   - component: {fileID: 3738825378191147088}
-  - component: {fileID: 1303213830218103234}
   m_Layer: 5
   m_Name: EStone (3)
   m_TagString: Untagged
@@ -16817,35 +15398,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1303213830218103234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6496014546522125249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 3738825378191147088}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &6519552821127815526
 GameObject:
   m_ObjectHideFlags: 0
@@ -16857,7 +15409,6 @@ GameObject:
   - component: {fileID: 2389604203196071635}
   - component: {fileID: 4606449215591338157}
   - component: {fileID: 4527302775739923020}
-  - component: {fileID: 2201884622281553569}
   m_Layer: 5
   m_Name: EGold (7)
   m_TagString: Untagged
@@ -16983,35 +15534,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2201884622281553569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6519552821127815526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 4527302775739923020}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &6660773284810677568
 GameObject:
   m_ObjectHideFlags: 0
@@ -17023,7 +15545,6 @@ GameObject:
   - component: {fileID: 1994032411153752764}
   - component: {fileID: 7147862798689466659}
   - component: {fileID: 5837912894926527686}
-  - component: {fileID: 1908759237524844644}
   m_Layer: 5
   m_Name: EStone (5)
   m_TagString: Untagged
@@ -17149,35 +15670,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1908759237524844644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6660773284810677568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 5837912894926527686}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &6674975089176736470
 GameObject:
   m_ObjectHideFlags: 0
@@ -17189,7 +15681,6 @@ GameObject:
   - component: {fileID: 7783992150723308391}
   - component: {fileID: 7500103350843315412}
   - component: {fileID: 8880923945769757909}
-  - component: {fileID: 5606843153113653885}
   m_Layer: 5
   m_Name: EWood (6)
   m_TagString: Untagged
@@ -17315,35 +15806,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5606843153113653885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6674975089176736470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 8880923945769757909}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &6712483081040953821
 GameObject:
   m_ObjectHideFlags: 0
@@ -17355,7 +15817,6 @@ GameObject:
   - component: {fileID: 7148754121381585635}
   - component: {fileID: 502098828331807699}
   - component: {fileID: 2911863814723969890}
-  - component: {fileID: 1018318871131550818}
   m_Layer: 5
   m_Name: HStone (9)
   m_TagString: Untagged
@@ -17481,35 +15942,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1018318871131550818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6712483081040953821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 2911863814723969890}
 --- !u!1 &6772767831651179324
 GameObject:
   m_ObjectHideFlags: 0
@@ -17665,7 +16097,6 @@ GameObject:
   - component: {fileID: 5473930115981266320}
   - component: {fileID: 5857109274399609688}
   - component: {fileID: 4488206471099549333}
-  - component: {fileID: 1165765661199484479}
   m_Layer: 5
   m_Name: EStone
   m_TagString: Untagged
@@ -17791,35 +16222,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1165765661199484479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6851887001654336121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 4488206471099549333}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &6853495022463230259
 GameObject:
   m_ObjectHideFlags: 0
@@ -17967,7 +16369,6 @@ GameObject:
   - component: {fileID: 6101159850357406801}
   - component: {fileID: 7951276054950564632}
   - component: {fileID: 3973256269552118279}
-  - component: {fileID: 1015261423107506475}
   m_Layer: 5
   m_Name: EStone
   m_TagString: Untagged
@@ -18093,35 +16494,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1015261423107506475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6939516445905516554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 3973256269552118279}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &6943262044109265284
 GameObject:
   m_ObjectHideFlags: 0
@@ -18557,7 +16929,6 @@ GameObject:
   - component: {fileID: 6270583860626334527}
   - component: {fileID: 5443726092715394941}
   - component: {fileID: 8150322481501561306}
-  - component: {fileID: 8205618824148332534}
   m_Layer: 5
   m_Name: EGold (8)
   m_TagString: Untagged
@@ -18683,35 +17054,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8205618824148332534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7200767291097493510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 8150322481501561306}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &7245086087510642533
 GameObject:
   m_ObjectHideFlags: 0
@@ -19004,7 +17346,6 @@ GameObject:
   - component: {fileID: 5668811248804663333}
   - component: {fileID: 7347414244146853480}
   - component: {fileID: 4283687758807774369}
-  - component: {fileID: 5176615255097033025}
   m_Layer: 5
   m_Name: HStone (10)
   m_TagString: Untagged
@@ -19130,35 +17471,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5176615255097033025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7330166026527100627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 4283687758807774369}
 --- !u!1 &7471388829125210419
 GameObject:
   m_ObjectHideFlags: 0
@@ -19521,7 +17833,6 @@ GameObject:
   - component: {fileID: 786982084707668770}
   - component: {fileID: 4897438422400559899}
   - component: {fileID: 8166926251857153260}
-  - component: {fileID: 2223977131462809497}
   m_Layer: 5
   m_Name: EStone (2)
   m_TagString: Untagged
@@ -19647,35 +17958,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2223977131462809497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7646931888058390896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 8166926251857153260}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &7647580314242972802
 GameObject:
   m_ObjectHideFlags: 0
@@ -19944,7 +18226,6 @@ GameObject:
   - component: {fileID: 1862610943044237866}
   - component: {fileID: 5304299642882170154}
   - component: {fileID: 3433255259141769667}
-  - component: {fileID: 8975740392187412129}
   m_Layer: 5
   m_Name: HStone (1)
   m_TagString: Untagged
@@ -20070,35 +18351,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8975740392187412129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7904756443452165198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 3433255259141769667}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &8016927469373159404
 GameObject:
   m_ObjectHideFlags: 0
@@ -20129,11 +18381,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5313377081168967870}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -189.40295, y: -119.2164}
+  m_AnchoredPosition: {x: -191.35596, y: -127.036804}
   m_SizeDelta: {x: 20.929, y: 21.589}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5629728535078039545
@@ -20182,7 +18434,6 @@ GameObject:
   - component: {fileID: 2415159783421774727}
   - component: {fileID: 854111050528835206}
   - component: {fileID: 2809895831572713524}
-  - component: {fileID: 5721644093682033861}
   m_Layer: 5
   m_Name: HStone
   m_TagString: Untagged
@@ -20308,35 +18559,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5721644093682033861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8107503837678117855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 2809895831572713524}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &8195747061655908413
 GameObject:
   m_ObjectHideFlags: 0
@@ -21071,7 +19293,6 @@ GameObject:
   - component: {fileID: 4981289109043654258}
   - component: {fileID: 2797005811906590775}
   - component: {fileID: 3479495694997974179}
-  - component: {fileID: 6918890372101107349}
   m_Layer: 5
   m_Name: EGold (6)
   m_TagString: Untagged
@@ -21197,35 +19418,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6918890372101107349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8567411959150399293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 3479495694997974179}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &8568108142381001408
 GameObject:
   m_ObjectHideFlags: 0
@@ -21340,7 +19532,6 @@ GameObject:
   - component: {fileID: 3192038326114562714}
   - component: {fileID: 2531915948374029775}
   - component: {fileID: 2366217430073336277}
-  - component: {fileID: 5845168139859164630}
   m_Layer: 5
   m_Name: EStone
   m_TagString: Untagged
@@ -21466,35 +19657,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5845168139859164630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8569087842181175504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 2366217430073336277}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &8624669780451994470
 GameObject:
   m_ObjectHideFlags: 0
@@ -21636,7 +19798,6 @@ GameObject:
   - component: {fileID: 8160238341383739257}
   - component: {fileID: 8474444589628504890}
   - component: {fileID: 8024800147641420602}
-  - component: {fileID: 4516010489873443609}
   m_Layer: 5
   m_Name: HStone (3)
   m_TagString: Untagged
@@ -21762,35 +19923,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4516010489873443609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8637020899023191296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 8024800147641420602}
 --- !u!1 &8696778260563698942
 GameObject:
   m_ObjectHideFlags: 0
@@ -22143,6 +20275,14 @@ RectTransform:
   - {fileID: 6629854528337180336}
   - {fileID: 381630313491286632}
   - {fileID: 5657732891124124682}
+  - {fileID: 7947955179795527164}
+  - {fileID: 4479949741208014170}
+  - {fileID: 485876018763592968}
+  - {fileID: 5262116236157222889}
+  - {fileID: 8781038954807018324}
+  - {fileID: 5629233012689260792}
+  - {fileID: 5998628269378059414}
+  - {fileID: 4749398630108895558}
   m_Father: {fileID: 5313377081168967870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -22199,7 +20339,6 @@ GameObject:
   - component: {fileID: 7947955179795527164}
   - component: {fileID: 4009887002462912887}
   - component: {fileID: 5476346295941587110}
-  - component: {fileID: 7815345060227011500}
   m_Layer: 5
   m_Name: HStone (2)
   m_TagString: Untagged
@@ -22219,11 +20358,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5313377081168967870}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -110.3, y: -8.2}
+  m_AnchoredPosition: {x: -112.253006, y: -16.020435}
   m_SizeDelta: {x: 32.2497, y: 38.5675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4009887002462912887
@@ -22325,35 +20464,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7815345060227011500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8844643458936425990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 0}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 5476346295941587110}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}
 --- !u!1 &9021779658382090986
 GameObject:
   m_ObjectHideFlags: 0
@@ -22581,7 +20691,6 @@ GameObject:
   - component: {fileID: 5155769593594875490}
   - component: {fileID: 7371589302731875083}
   - component: {fileID: 4252124515755590955}
-  - component: {fileID: 7583651649477120937}
   m_Layer: 5
   m_Name: EWood (2)
   m_TagString: Untagged
@@ -22707,32 +20816,3 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7583651649477120937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9170193391315121653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  house_wood: {fileID: 0}
-  house_stone: {fileID: 0}
-  house_people: {fileID: 0}
-  extractor_wood: {fileID: 4252124515755590955}
-  extractor_stone: {fileID: 0}
-  extractor_gold: {fileID: 0}
-  extracteur_people: {fileID: 0}
-  temple_wood: {fileID: 0}
-  temple_stone: {fileID: 0}
-  temple_water: {fileID: 0}
-  temple_obsidian: {fileID: 0}
-  temple_wine: {fileID: 0}
-  temple_gold: {fileID: 0}
-  templegold_gold: {fileID: 0}
-  temple_diamond: {fileID: 0}
-  temple_other: {fileID: 0}
-  temple_people: {fileID: 0}

@@ -17,75 +17,68 @@ namespace BuildingsFolder
         
         public bool Ressource(Dictionary<string, Ressource> ressources)
         {
-            var h = ressources["Population"];
-            int hint = (int)h.Quantite.targetValue;
-            var b = ressources["Wood"];
-            int bint = (int)b.Quantite.targetValue;
-            var p = ressources["Stone"];
-            int pint = (int)p.Quantite.targetValue;
-            var or = ressources["Gold"];
-            int orint = (int)or.Quantite.targetValue;
-            var e = ressources["Water"];
-            int eint = (int)e.Quantite.targetValue;
-            var v = ressources["Wine"];
-            int vint = (int)v.Quantite.targetValue;
-            var o= ressources["Obsidian"];
-            int oint = (int)o.Quantite.targetValue;
-            var d = ressources["Diamond"];
-            int dint = (int)d.Quantite.targetValue;
+            int population = (int)ressources["Population"].Quantite.targetValue;
+            int wood = (int)ressources["Wood"].Quantite.targetValue;
+            int stone = (int)ressources["Stone"].Quantite.targetValue;
+            int gold = (int)ressources["Gold"].Quantite.targetValue;
+            int water = (int)ressources["Water"].Quantite.targetValue;
+            int wine = (int)ressources["Wine"].Quantite.targetValue;
+            int obsidian = (int)ressources["Obsidian"].Quantite.targetValue;
+            int diamond = (int)ressources["Diamond"].Quantite.targetValue;
+            
             switch (Nom)
             {
                 case "Maison":
-                    if (hint - 2 > 0 && bint - 10 > 0 && pint - 2 > 10)
+                    if (population - 2 > 0 && wood - 10 > 0 && stone - 2 > 10)
                     {
                         return true;
                     }
                     return false;
                 case "Extracteur":
-                    if (hint - 5 > 0 && bint - 15 > 0 && pint - 15 > 0)
+                    if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0)
                     {
                         return true;
                     }
                     return false;
                 case "ExtracteurPlusOr":
-                    if (hint - 5 > 0 && bint - 15 > 0 && pint - 15 > 0 && orint - 20 > 0)
+                    if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0 && gold - 20 > 0)
                     {
                         return true;
                     }
                     return false;
                 case "Temple" :
-                    if (hint - 20 > 0 && bint - 50 > 0 && pint - 50 > 0 && orint - 50 > 0)
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0)
                     {
                         return true;
                     }
                     return false;
                 
                 case "TempleOr" :
-                    if (hint - 20 > 0 && bint - 50 > 0 && pint - 50 > 0 && orint - 75 > 0)
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 125 > 0)
                     {
                         return true;
                     }
                     return false;
                 case "TempleEau" :
-                    if (hint - 20 > 0 && bint - 50 > 0 && pint - 50 > 0 && orint - 50 > 0 && eint - 75 > 0)
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && water - 75 > 0)
                     {
                         return true;
                     }
                     return false;
                 case "TempleVigne" :
-                    if (hint - 20 > 0 && bint - 50 > 0 && pint - 50 > 0 && orint - 50 > 0 && vint - 75 > 0)
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && wine - 75 > 0)
                     {
                         return true;
                     }
                     return false;
                 case "TempleDiamand" :
-                    if (hint - 20 > 0 && bint - 50 > 0 && pint - 50 > 0 && orint - 50 > 0 && dint - 75 > 0)
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && diamond - 75 > 0)
                     {
                         return true;
                     }
                     return false;
                 case "TempleObsidienne" :
-                    if (hint - 20 > 0 && bint - 50 > 0 && pint - 50 > 0 && orint - 50 > 0 && oint - 75 > 0)
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && obsidian - 75 > 0)
                     {
                         return true;
                     }

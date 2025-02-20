@@ -17,7 +17,7 @@ public class RessourceManager : MonoBehaviour
     public TMP_Text obsidianText;
     public TMP_Text diamondText;
 
-    private Dictionary<string, Ressource> resources = new Dictionary<string, Ressource>()
+    public Dictionary<string, Ressource> resources = new Dictionary<string, Ressource>()
     {
         { "Population", new Ressource("Population") },
         { "Stone", new Ressource("Stone") },

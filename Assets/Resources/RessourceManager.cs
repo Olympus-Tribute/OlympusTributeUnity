@@ -5,6 +5,7 @@ using TMPro;
 using ForNetwork;
 using Networking.Common.Server;
 using System.Collections.Generic;
+using OlympusDedicatedServer.Components.Resources;
 
 public class RessourceManager : MonoBehaviour
 {
@@ -17,32 +18,32 @@ public class RessourceManager : MonoBehaviour
     public TMP_Text obsidianText;
     public TMP_Text diamondText;
 
-    public Dictionary<string, Ressource> resources = new Dictionary<string, Ressource>()
+    public Dictionary<ResourceType, Ressource> resources = new Dictionary<ResourceType, Ressource>()
     {
-        { "Population", new Ressource("Population") },
-        { "Stone", new Ressource("Stone") },
-        { "Wood", new Ressource("Wood") },
-        { "Gold", new Ressource("Gold") },
-        { "Water", new Ressource("Water") },
-        { "Wine", new Ressource("Wine") },
-        { "Obsidian", new Ressource("Obsidian") },
-        { "Diamond", new Ressource("Diamond") }
+        { ResourceType.Population, new Ressource("Population") },
+        { ResourceType.Stone, new Ressource("Stone") },
+        { ResourceType.Wood, new Ressource("Wood") },
+        { ResourceType.Gold, new Ressource("Gold") },
+        { ResourceType.Water, new Ressource("Water") },
+        { ResourceType.Vine, new Ressource("Wine") },
+        { ResourceType.Obsidian, new Ressource("Obsidian") },
+        { ResourceType.Diamond, new Ressource("Diamond") }
     };
 
-    private Dictionary<string, TMP_Text> resourceTexts;
+    private Dictionary<ResourceType, TMP_Text> resourceTexts;
 
     void Start()
     {
-        resourceTexts = new Dictionary<string, TMP_Text>
+        resourceTexts = new Dictionary<ResourceType, TMP_Text>
         {
-            { "Population", populationText },
-            { "Stone", stoneText },
-            { "Wood", woodText },
-            { "Gold", goldText },
-            { "Water", waterText },
-            { "Wine", wineText },
-            { "Obsidian", obsidianText },
-            { "Diamond", diamondText }
+            { ResourceType.Population, populationText },
+            { ResourceType.Stone, stoneText },
+            { ResourceType.Wood, woodText },
+            { ResourceType.Gold, goldText },
+            { ResourceType.Water, waterText },
+            { ResourceType.Vine, wineText },
+            { ResourceType.Obsidian, obsidianText },
+            { ResourceType.Diamond, diamondText }
         };
 
         UpdateDisplay();
@@ -56,10 +57,10 @@ public class RessourceManager : MonoBehaviour
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerSetResourcesGameAction>(
                 (connection, action) =>
                 {
-                    string[] names = new []{"Population", "Wood", "Stone", "Gold", "Diamond", "Obsidian", "Water", "Wine"};
+                    
                     for (int i = 0; i < action.Resources.Length; i++)
                     {
-                        SetResource(names[i], action.Resources[i]);
+                        SetResource((ResourceType)i, action.Resources[i]);
                     }
                 });
         }
@@ -86,7 +87,7 @@ public class RessourceManager : MonoBehaviour
     //_________________________________//
     //_________________________________//
     
-    public void SetResource(string nom, uint valeur)
+    public void SetResource(ResourceType nom, uint valeur)
     {
         if (resources.ContainsKey(nom))
         {
@@ -99,10 +100,7 @@ public class RessourceManager : MonoBehaviour
     {
         foreach (var ressource in resources)
         {
-            if (resourceTexts.ContainsKey(ressource.Key))
-            {
-                resourceTexts[ressource.Key].text = $"{ressource.Key}: {(int)(Math.Round(ressource.Value.Quantite.currentValue))}";
-            }
+            resourceTexts[ressource.Key].text = $"{ressource.Value.Nom}: {(int)(Math.Round(ressource.Value.Quantite.currentValue))}";
         }
     }
 }

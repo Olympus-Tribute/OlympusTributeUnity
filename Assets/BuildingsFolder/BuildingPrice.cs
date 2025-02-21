@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using OlympusDedicatedServer.Components.Resources;
 using UnityEngine.Rendering;
 
 namespace BuildingsFolder
@@ -15,16 +16,16 @@ namespace BuildingsFolder
         public string Nom = "";
 
         
-        public bool Ressource(Dictionary<string, Ressource> ressources)
+        public bool Ressource(Dictionary<ResourceType, Ressource> ressources)
         {
-            int population = (int)ressources["Population"].Quantite.targetValue;
-            int wood = (int)ressources["Wood"].Quantite.targetValue;
-            int stone = (int)ressources["Stone"].Quantite.targetValue;
-            int gold = (int)ressources["Gold"].Quantite.targetValue;
-            int water = (int)ressources["Water"].Quantite.targetValue;
-            int wine = (int)ressources["Wine"].Quantite.targetValue;
-            int obsidian = (int)ressources["Obsidian"].Quantite.targetValue;
-            int diamond = (int)ressources["Diamond"].Quantite.targetValue;
+            int population = (int)ressources[ResourceType.Population].Quantite.targetValue;
+            int wood = (int)ressources[ResourceType.Wood].Quantite.targetValue;
+            int stone = (int)ressources[ResourceType.Stone].Quantite.targetValue;
+            int gold = (int)ressources[ResourceType.Gold].Quantite.targetValue;
+            int water = (int)ressources[ResourceType.Water].Quantite.targetValue;
+            int wine = (int)ressources[ResourceType.Vine].Quantite.targetValue;
+            int obsidian = (int)ressources[ResourceType.Obsidian].Quantite.targetValue;
+            int diamond = (int)ressources[ResourceType.Diamond].Quantite.targetValue;
             
             switch (Nom)
             {
@@ -95,7 +96,7 @@ namespace BuildingsFolder
 
         void Update()
         {
-            Dictionary<string, Ressource> ressources= manager.resources;
+            Dictionary<ResourceType, Ressource> ressources= manager.resources;
             
             if (Ressource(ressources))
             {

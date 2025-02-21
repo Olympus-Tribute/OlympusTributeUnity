@@ -5,7 +5,7 @@ public class Ressource
 {
     public string Nom { get; private set; }
     public SmoothFloat Quantite { get; private set; }
-
+    public int RealQuantite {get; private set;}
     public Ressource(string nom, int quantiteInitiale = 0)
     {
         Nom = nom;
@@ -16,5 +16,6 @@ public class Ressource
     {
         //Quantite = Math.Max(0, valeur);
         Quantite.targetValue = valeur;
+        RealQuantite = valeur;
     }
 }

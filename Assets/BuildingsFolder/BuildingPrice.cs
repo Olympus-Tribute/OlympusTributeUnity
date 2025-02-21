@@ -3,56 +3,110 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using OlympusDedicatedServer.Components.Resources;
+using UnityEngine.Rendering;
+
 namespace BuildingsFolder
 {
     public class BuildingPrice  : MonoBehaviour
     {
+        public GameObject Panel;
+        private RessourceManager manager;
 
-        public TMP_Text house_wood;
-        public TMP_Text house_stone;
-        public TMP_Text house_people;
-        
-        public TMP_Text extractor_wood;
-        public TMP_Text extractor_stone;
-        public TMP_Text extractor_gold;
-        public TMP_Text extracteur_people;
-        
-        public TMP_Text temple_wood;
-        public TMP_Text temple_stone;
-        public TMP_Text temple_water;
-        public TMP_Text temple_obsidian;
-        public TMP_Text temple_wine;
-        public TMP_Text temple_gold;
-        public TMP_Text templegold_gold;
-        public TMP_Text temple_diamond;
-        public TMP_Text temple_other;
-        public TMP_Text temple_people;
+        public string Nom = "";
 
-        void OnEnable()
+        
+        public bool Ressource(Dictionary<ResourceType, Ressource> ressources)
         {
-            house_wood.text = "x10";
-            house_stone.text = "x10";
-            house_people.text = "x2";
+            int population = (int)ressources[ResourceType.Population].RealQuantite;
+            int wood = (int)ressources[ResourceType.Wood].RealQuantite;
+            int stone = (int)ressources[ResourceType.Stone].RealQuantite;
+            int gold = (int)ressources[ResourceType.Gold].RealQuantite;
+            int water = (int)ressources[ResourceType.Water].RealQuantite;
+            int wine = (int)ressources[ResourceType.Vine].RealQuantite;
+            int obsidian = (int)ressources[ResourceType.Obsidian].RealQuantite;
+            int diamond = (int)ressources[ResourceType.Diamond].RealQuantite;
+            
+            switch (Nom)
+            {
+                case "Maison":
+                    if (population - 2 > 0 && wood - 10 > 0 && stone - 2 > 10)
+                    {
+                        return true;
+                    }
+                    return false;
+                case "Extracteur":
+                    if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                case "ExtracteurPlusOr":
+                    if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0 && gold - 20 > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                case "Temple" :
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                
+                case "TempleOr" :
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 125 > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                case "TempleEau" :
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && water - 75 > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                case "TempleVigne" :
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && wine - 75 > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                case "TempleDiamand" :
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && diamond - 75 > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                case "TempleObsidienne" :
+                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && obsidian - 75 > 0)
+                    {
+                        return true;
+                    }
+                    return false;
+            }
             
             
-            extractor_wood.text = "x15";
-            extractor_stone.text = "x15";
-            extractor_gold.text = "x20";
-            house_people.text = "x5";
-            
-            temple_wood.text = "x50";
-            temple_stone.text = "x50";
-            temple_gold.text = "x50";
-            temple_people.text = "x20";
-            
-            templegold_gold.text = "x75";
-            temple_water.text = "x75";
-            temple_wine.text = "x75";
-            temple_diamond.text = "x75";
-            temple_obsidian.text = "x75";
-            temple_other.text = "...x75";
+            return false;
+        }
+        
+        private void Start()
+        {
         }
 
+        void Update()
+        {
+            Dictionary<ResourceType, Ressource> ressources= manager.resources;
+            
+            if (Ressource(ressources))
+            {
+                Panel.SetActive(false);
+            }
+            else
+            {
+                Panel.SetActive(true);
+            }
+        }
     }
 
 }

@@ -18,14 +18,14 @@ namespace BuildingsFolder
         
         public bool Ressource(Dictionary<ResourceType, Ressource> ressources)
         {
-            int population = (int)ressources[ResourceType.Population].Quantite.targetValue;
-            int wood = (int)ressources[ResourceType.Wood].Quantite.targetValue;
-            int stone = (int)ressources[ResourceType.Stone].Quantite.targetValue;
-            int gold = (int)ressources[ResourceType.Gold].Quantite.targetValue;
-            int water = (int)ressources[ResourceType.Water].Quantite.targetValue;
-            int wine = (int)ressources[ResourceType.Vine].Quantite.targetValue;
-            int obsidian = (int)ressources[ResourceType.Obsidian].Quantite.targetValue;
-            int diamond = (int)ressources[ResourceType.Diamond].Quantite.targetValue;
+            int population = (int)ressources[ResourceType.Population].RealQuantite;
+            int wood = (int)ressources[ResourceType.Wood].RealQuantite;
+            int stone = (int)ressources[ResourceType.Stone].RealQuantite;
+            int gold = (int)ressources[ResourceType.Gold].RealQuantite;
+            int water = (int)ressources[ResourceType.Water].RealQuantite;
+            int wine = (int)ressources[ResourceType.Vine].RealQuantite;
+            int obsidian = (int)ressources[ResourceType.Obsidian].RealQuantite;
+            int diamond = (int)ressources[ResourceType.Diamond].RealQuantite;
             
             switch (Nom)
             {

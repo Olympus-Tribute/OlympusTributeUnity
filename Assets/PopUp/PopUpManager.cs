@@ -11,12 +11,12 @@ namespace PopUp
 
         private void Start()
         {
-            PopUpText = new TextMeshPro();
+            PopUpText = gameObject.AddComponent<TextMeshPro>();
+            PopUpUi = new GameObject();
             SetPopUpInactive();
-            PopUpUi.SetActive(true);
         }
 
-        private void SetPopUpInactive()
+        public void SetPopUpInactive()
         {
             PopUpUi.SetActive(false);
         }

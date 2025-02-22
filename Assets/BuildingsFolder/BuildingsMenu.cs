@@ -1,5 +1,6 @@
 using ForNetwork;
 using Networking.Common.Client;
+using PopUp;
 using UnityEngine;
 
 namespace BuildingsFolder
@@ -18,6 +19,7 @@ namespace BuildingsFolder
     
         public float gridWidth = 20f;  // Largeur d'un hexagone
         public float gridHeight = 20f; // Hauteur d'un hexagone
+        
     
         private void Awake()
         {
@@ -84,7 +86,7 @@ namespace BuildingsFolder
             {
                 // Crée un bâtiment "fantôme" pour le placement
                 _ghostBuilding = Instantiate(_selectedBuildingPrefab, Vector3.zero, Quaternion.identity);
-                MakePreviewTransparent();  // Rendre le bâtiment "fantôme" transparent
+                //MakePreviewTransparent();  // Rendre le bâtiment "fantôme" transparent
             }
         }
         

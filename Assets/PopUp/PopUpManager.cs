@@ -16,7 +16,7 @@ namespace PopUp
             PopUpUi.SetActive(true);
         }
 
-        private void SetPopUpInactive()
+        public void SetPopUpInactive()
         {
             PopUpUi.SetActive(false);
         }

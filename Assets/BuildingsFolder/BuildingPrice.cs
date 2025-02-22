@@ -15,6 +15,10 @@ namespace BuildingsFolder
 
         public string Nom = "";
 
+        public void Start()
+        {
+            manager = new RessourceManager();
+        }
         
         public bool Ressource(Dictionary<ResourceType, Ressource> ressources)
         {
@@ -36,17 +40,23 @@ namespace BuildingsFolder
                     }
                     return false;
                 case "Extracteur":
+                    /*
                     if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0)
                     {
                         return true;
                     }
                     return false;
+                    */
+                    return true;
                 case "ExtracteurPlusOr":
+                    /*
                     if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0 && gold - 20 > 0)
                     {
                         return true;
                     }
                     return false;
+                    */
+                return true;
                 case "Temple" :
                     if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0)
                     {
@@ -90,10 +100,6 @@ namespace BuildingsFolder
             return false;
         }
         
-        private void Start()
-        {
-        }
-
         void Update()
         {
             Dictionary<ResourceType, Ressource> ressources= manager.resources;

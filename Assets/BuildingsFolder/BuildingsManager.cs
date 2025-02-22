@@ -3,6 +3,7 @@ using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
 using ForServer;
 using Networking.Common.Server;
+using PopUp;
 using UnityEngine;
 
 namespace BuildingsFolder
@@ -40,16 +41,17 @@ namespace BuildingsFolder
         // ____________________________________________________________________//
         // ____________________________________________________________________//
         
-        
+        public PopUpManager popUpManager;
 
         private void Awake()
         {
-           
             if (Network.Instance == null)
             {
                 Debug.LogWarning("Network.Instance is not initialized!");
                 return;
             }
+            popUpManager = new PopUpManager();
+            popUpManager.SetPopUpInactive();
         }
 
         //___________________________________________________________//
@@ -85,6 +87,7 @@ namespace BuildingsFolder
             
             // Ajoute le bâtiment au dictionnaire
             buildings[(x, z)] = newBuilding;
+            popUpManager.ShowPopUp($"Bâtiment ajouté à la position ({x}, {z}).");
             Debug.Log($"Bâtiment ajouté à la position ({x}, {z}).");
         }
     

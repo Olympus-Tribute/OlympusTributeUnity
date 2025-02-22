@@ -63,10 +63,18 @@ namespace BuildingsFolder
             Debug.Log("Starting BuildingsManager...");
             
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerPlaceBuildingGameAction>(
-                    (connection, action) => { PlaceBuilding(action.X * 5, action.Y * 5, action.BuildingId, action.OwnerId); });
+                (connection, action) =>
+                {
+                    Debug.Log("[CLIENT]     : Receive 'ServerPlaceBuildingGameAction'");
+                    PlaceBuilding(action.X * 5, action.Y * 5, action.BuildingId, action.OwnerId);
+                });
             
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerRemoveBuildingGameAction>(
-                (connection, action) => { DeleteBuilding(action.X * 5, action.Y * 5); });
+                (connection, action) =>
+                {
+                    Debug.Log("[CLIENT]     : Receive 'ServerRemoveBuildingGameAction'");
+                    DeleteBuilding(action.X * 5, action.Y * 5);
+                });
         }
     
         //___________________________________________________________//

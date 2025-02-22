@@ -8,12 +8,25 @@ namespace PopUp
         public GameObject PopUpUi;
         public TMP_Text PopUpText;
 
+        public static PopUpManager Instance;
 
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+                return;
+            }
+        }
+        
         private void Start()
         {
-            PopUpText = new TextMeshPro();
+            //PopUpText = PopUpUi.AddComponent<TextMeshPro>();
             SetPopUpInactive();
-            PopUpUi.SetActive(true);
         }
 
         public void SetPopUpInactive()
@@ -23,8 +36,8 @@ namespace PopUp
 
         public void ShowPopUp(string message)
         {
-            PopUpText.SetText(message);
             PopUpUi.SetActive(true);
+            PopUpText.SetText(message);
         }
     }
 }

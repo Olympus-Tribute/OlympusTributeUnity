@@ -40,8 +40,6 @@ namespace BuildingsFolder
         // ____________________________________________________________________//
         // ____________________________________________________________________//
         // ____________________________________________________________________//
-        
-        public PopUpManager popUpManager;
 
         private void Awake()
         {
@@ -50,8 +48,6 @@ namespace BuildingsFolder
                 Debug.LogWarning("Network.Instance is not initialized!");
                 return;
             }
-            popUpManager = new PopUpManager();
-            popUpManager.SetPopUpInactive();
         }
 
         //___________________________________________________________//
@@ -95,7 +91,9 @@ namespace BuildingsFolder
             
             // Ajoute le bâtiment au dictionnaire
             buildings[(x, z)] = newBuilding;
-            popUpManager.ShowPopUp($"Bâtiment ajouté à la position ({x}, {z}).");
+            
+            PopUpManager.Instance.ShowPopUp($"Bâtiment ajouté à la position ({x}, {z}).");
+            
             Debug.Log($"Bâtiment ajouté à la position ({x}, {z}).");
         }
     

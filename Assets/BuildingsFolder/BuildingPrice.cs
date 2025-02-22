@@ -11,17 +11,13 @@ namespace BuildingsFolder
     public class BuildingPrice  : MonoBehaviour
     {
         public GameObject Panel;
-        private RessourceManager manager;
 
         public string Nom = "";
-
-        public void Start()
-        {
-            manager = new RessourceManager();
-        }
         
-        public bool Ressource(Dictionary<ResourceType, Ressource> ressources)
+        
+        public bool Ressource()
         {
+            var ressources = RessourceManager.Instance.resources;
             int population = (int)ressources[ResourceType.Population].RealQuantite;
             int wood = (int)ressources[ResourceType.Wood].RealQuantite;
             int stone = (int)ressources[ResourceType.Stone].RealQuantite;
@@ -102,9 +98,7 @@ namespace BuildingsFolder
         
         void Update()
         {
-            Dictionary<ResourceType, Ressource> ressources= manager.resources;
-            
-            if (Ressource(ressources))
+            if (Ressource())
             {
                 Panel.SetActive(false);
             }
@@ -114,5 +108,4 @@ namespace BuildingsFolder
             }
         }
     }
-
 }

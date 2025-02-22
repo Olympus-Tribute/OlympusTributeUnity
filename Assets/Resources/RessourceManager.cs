@@ -17,6 +17,8 @@ public class RessourceManager : MonoBehaviour
     public TMP_Text wineText;
     public TMP_Text obsidianText;
     public TMP_Text diamondText;
+    
+    public static RessourceManager Instance;
 
     public Dictionary<ResourceType, Ressource> resources = new Dictionary<ResourceType, Ressource>()
     {
@@ -34,6 +36,8 @@ public class RessourceManager : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
+        
         resourceTexts = new Dictionary<ResourceType, TMP_Text>
         {
             { ResourceType.Population, populationText },

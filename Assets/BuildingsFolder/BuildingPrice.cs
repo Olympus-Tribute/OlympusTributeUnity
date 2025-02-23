@@ -18,6 +18,8 @@ namespace BuildingsFolder
         public bool Ressource()
         {
             var ressources = RessourceManager.Instance.resources;
+            
+            
             int population = (int)ressources[ResourceType.Population].RealQuantite;
             int wood = (int)ressources[ResourceType.Wood].RealQuantite;
             int stone = (int)ressources[ResourceType.Stone].RealQuantite;
@@ -35,6 +37,7 @@ namespace BuildingsFolder
                         return true;
                     }
                     return false;
+                
                 case "Extractor":
                     /*
                     if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0)
@@ -45,23 +48,21 @@ namespace BuildingsFolder
                     */
                     return true;
                 case "ExtractorPlusOr":
-                    /*
+                    
                     if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0 && gold - 20 > 0)
                     {
                         return true;
                     }
                     return false;
-                    */
-                    return true;
+                    
                 case "Temple" :
-                    return true;
-                    /*
+                    
                     if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0)
                     {
                         return true;
                     }
                     return false;
-                    */
+                    
                 
                 case "TempleOr" :
                     if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 125 > 0)

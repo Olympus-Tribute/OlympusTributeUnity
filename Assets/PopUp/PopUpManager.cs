@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using TMPro;
 using UnityEngine;
@@ -11,11 +12,26 @@ namespace PopUp
 
         public static PopUpManager Instance;
 
+        private float _timing;
+
+        private void Update()
+        {
+            if (_timing > 0)
+            {
+                _timing -= Time.deltaTime;
+                if (_timing <= 0)
+                {
+                    SetPopUpInactive();
+                }
+            }
+        }
+
         private void Awake()
         {
             if (Instance == null)
             {
                 Instance = this;
+                DontDestroyOnLoad(gameObject);
             }
             else
             {
@@ -26,8 +42,8 @@ namespace PopUp
         
         private void Start()
         {
-            //PopUpText = PopUpUi.AddComponent<TextMeshPro>();
             SetPopUpInactive();
+            _timing = 0;
         }
 
         public void SetPopUpInactive()
@@ -35,12 +51,11 @@ namespace PopUp
             PopUpUi.SetActive(false);
         }
 
-        public void ShowPopUp(string message, int timeToShowInSeconds = 1)
+        public void ShowPopUp(string message, float timeToShowInSeconds = 1)
         {
             PopUpText.SetText(message);
             PopUpUi.SetActive(true);
-            Thread.Sleep(timeToShowInSeconds*1000);
-            PopUpUi.SetActive(false);
+            _timing = timeToShowInSeconds;
         }
     }
 }

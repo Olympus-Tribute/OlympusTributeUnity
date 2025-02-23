@@ -111,7 +111,7 @@ namespace Menus
             }
             else
             {
-                PopUpManager.Instance.ShowPopUp("Steam is not initialized or not running.", 1);
+                PopUpManager.Instance.ShowPopUp("Steam is not initialized or not running.", 5);
                 Debug.LogError("Steam is not initialized or not running.");
             }
             

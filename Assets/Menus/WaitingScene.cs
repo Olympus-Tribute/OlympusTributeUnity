@@ -2,6 +2,7 @@ using ForNetwork;
 using ForServer;
 using Networking.Common.Client;
 using Networking.Common.Server;
+using PopUp;
 using Steamworks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,14 +52,29 @@ public class WaitingScene : MonoBehaviour
 
     public void Ready() // For Button
     {
-        Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(true));
-        Debug.Log("Envoi du gameAction pour Ready");
+        if (Network.Instance.Proxy is not null)
+        {
+            Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(true));
+            Debug.Log("Envoi du gameAction pour Ready");
+        }
+        else
+        {
+            PopUpManager.Instance.ShowPopUp("Not connected to Server");
+        }
+        
     }
     
     public void NotReady() // For Button
     {
-        Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(false));
-        Debug.Log("Envoi du gameAction pour Not Ready");
+        if (Network.Instance.Proxy is not null)
+        {
+            Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(false));
+            Debug.Log("Envoi du gameAction pour Ready");
+        }
+        else
+        {
+            PopUpManager.Instance.ShowPopUp("Not connected to Server");
+        }
     }
     
     public void InitGame()

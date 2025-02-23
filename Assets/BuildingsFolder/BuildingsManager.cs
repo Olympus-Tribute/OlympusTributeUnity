@@ -92,7 +92,7 @@ namespace BuildingsFolder
             // Ajoute le bâtiment au dictionnaire
             buildings[(x, z)] = newBuilding;
             
-            PopUpManager.Instance.ShowPopUp($"Bâtiment ajouté à la position ({x}, {z}).");
+            PopUpManager.Instance.ShowPopUp($"Bâtiment ajouté à la position ({x}, {z}).", 1);
             
             Debug.Log($"Bâtiment ajouté à la position ({x}, {z}).");
         }

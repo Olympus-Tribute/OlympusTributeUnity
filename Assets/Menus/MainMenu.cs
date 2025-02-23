@@ -12,10 +12,8 @@ namespace Menus
         public GameObject menuUIMainMenu;
         public GameObject menuUIOptionsMenu;
         public GameObject menuUIMultiplayerOrAi;
-        //public GameObject menuUIMultiplayerSteamOrTcpIp;
+        public GameObject menuUITypeOfMultiplayer;
         public GameObject menuUIMultiplayerHostOrJoinMenu;
-        
-        public PopUpManager popUpManager;
 
         private void Start()
         {
@@ -28,7 +26,7 @@ namespace Menus
             menuUIMainMenu.SetActive(false);
             menuUIOptionsMenu.SetActive(false);
             menuUIMultiplayerOrAi.SetActive(false);
-            //menuUIMultiplayerSteamOrTcpIp.SetActive(false);
+            menuUITypeOfMultiplayer.SetActive(false);
             menuUIMultiplayerHostOrJoinMenu.SetActive(false);
         }
         
@@ -97,19 +95,6 @@ namespace Menus
         //__________________________________________________________//
         //________________________HostOrJoin________________________//
         //__________________________________________________________//
-        
-        private void OpenFriendsOverlay()
-        {
-            if (SteamManager.Initialized)
-            {
-                SteamFriends.ActivateGameOverlay("Friends");
-                SceneManager.LoadScene("WaitingScene");
-            }
-            else
-            {
-                Debug.LogError("Steam is not initialized or not running.");
-            }
-        }
     
         public void Host()
         {
@@ -126,6 +111,7 @@ namespace Menus
             }
             else
             {
+                PopUpManager.Instance.ShowPopUp("Steam is not initialized or not running.", 5);
                 Debug.LogError("Steam is not initialized or not running.");
             }
             
@@ -133,7 +119,37 @@ namespace Menus
     
         public void Join()
         {
+            SetAllMenusInactive();
+            menuUITypeOfMultiplayer.SetActive(true);
+        }
+        
+        //__________________________________________________________//
+        //_____________MenuSelectTypeOfMultiJoin____________________//
+        //__________________________________________________________//
+
+
+        public void JoinWithSteam()
+        {
             OpenFriendsOverlay();
+        }
+        
+        public void JoinWithTcp()
+        {
+            OpenFriendsOverlay();
+        }
+        
+        private void OpenFriendsOverlay()
+        {
+            if (SteamManager.Initialized)
+            {
+                SteamFriends.ActivateGameOverlay("Friends");
+                SceneManager.LoadScene("WaitingScene");
+            }
+            else
+            {
+                PopUpManager.Instance.ShowPopUp("Steam is not initialized or not running.", 1);
+                Debug.LogError("Steam is not initialized or not running.");
+            }
         }
     }
 }

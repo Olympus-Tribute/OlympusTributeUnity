@@ -1,3 +1,4 @@
+using System.Threading;
 using TMPro;
 using UnityEngine;
 
@@ -34,10 +35,12 @@ namespace PopUp
             PopUpUi.SetActive(false);
         }
 
-        public void ShowPopUp(string message)
+        public void ShowPopUp(string message, int timeToShowInSeconds = 1)
         {
-            PopUpUi.SetActive(true);
             PopUpText.SetText(message);
+            PopUpUi.SetActive(true);
+            Thread.Sleep(timeToShowInSeconds*1000);
+            PopUpUi.SetActive(false);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace BuildingsFolder
                         return true;
                     }
                     return false;
-                case "Extracteur":
+                case "Extractor":
                     /*
                     if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0)
                     {
@@ -44,7 +44,7 @@ namespace BuildingsFolder
                     return false;
                     */
                     return true;
-                case "ExtracteurPlusOr":
+                case "ExtractorPlusOr":
                     /*
                     if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0 && gold - 20 > 0)
                     {

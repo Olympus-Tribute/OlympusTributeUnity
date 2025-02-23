@@ -11,7 +11,7 @@ public static class StaticGridTools
     /// <summary>
     /// Prend un x et un y de la map (array) et renvoie les coordonnées du centre de l'hexagone (un triplet x, y et z)  ; serveur vers client
     /// </summary>
-    public static (float,float, float) MapIndexToWordCenterCo(int x, int y)
+    public static (float, float) MapIndexToWorldCenterCo(int x, int y)
     {
         double xOffset = sqrt3*hexSize; // Décalage horizontal 
         double zOffset = hexSize*3/2; // Décalage vertical 
@@ -24,7 +24,7 @@ public static class StaticGridTools
             xPos += xOffset/2;
         }
 
-        return ((float)xPos, 0, (float)zPos);
+        return ((float)xPos, (float)zPos);
     }
     
     /// <summary>

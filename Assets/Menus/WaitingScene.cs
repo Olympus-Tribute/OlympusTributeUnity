@@ -1,8 +1,10 @@
 using ForNetwork;
 using ForServer;
+using Grid;
 using Networking.Common.Client;
 using Networking.Common.Server;
-using PopUp;
+using OlympusWorldGenerator;
+using OlympusWorldGenerator.Generators;
 using Steamworks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,8 +23,10 @@ public class WaitingScene : MonoBehaviour
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
                 (connection, action) =>
                 {
-                    Debug.Log("Received ServerStartLobbyGameAction");
-                    ServerManager.Seed = action.Seed;
+                    Debug.Log("[CLIENT]     : Received ServerStartLobbyGameAction");
+                    ServerManager.Seed = (int)action.Seed;
+                    ServerManager.MapWidth = 10;
+                    ServerManager.MapHeight = 10;
                     ServerManager.PlayerCount = action.PlayerCount;
                     ServerManager.PlayerId = action.PlayerId;
                     InitGame();
@@ -35,8 +39,10 @@ public class WaitingScene : MonoBehaviour
                 proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
                     (connection, action) =>
                     {
-                        Debug.Log("Received ServerStartLobbyGameAction");
-                        ServerManager.Seed = action.Seed;
+                        Debug.Log("[CLIENT]     : Received ServerStartLobbyGameAction");
+                        ServerManager.Seed = (int)action.Seed;
+                        ServerManager.MapWidth = 10;
+                        ServerManager.MapHeight = 10;
                         ServerManager.PlayerCount = action.PlayerCount;
                         ServerManager.PlayerId = action.PlayerId;
                         InitGame();
@@ -52,39 +58,18 @@ public class WaitingScene : MonoBehaviour
 
     public void Ready() // For Button
     {
-        if (Network.Instance.Proxy is not null)
-        {
-            Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(true));
-            Debug.Log("Envoi du gameAction pour Ready");
-        }
-        else
-        {
-            PopUpManager.Instance.ShowPopUp("Not connected to Server");
-        }
-        
+        Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(true));
+        Debug.Log("Envoi du gameAction pour Ready");
     }
     
     public void NotReady() // For Button
     {
-        if (Network.Instance.Proxy is not null)
-        {
-            Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(false));
-            Debug.Log("Envoi du gameAction pour Ready");
-        }
-        else
-        {
-            PopUpManager.Instance.ShowPopUp("Not connected to Server");
-        }
+        Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(false));
+        Debug.Log("Envoi du gameAction pour Not Ready");
     }
     
     public void InitGame()
     {
-        Debug.Log(ServerManager.Seed);
-        Debug.Log(ServerManager.PlayerCount);
-        Debug.Log(ServerManager.PlayerId);
-        
-        // génere ici
-
-        SceneManager.LoadScene("Scenes/BuildingsScene");
+        SceneManager.LoadScene("PlayGame");
     }
 }

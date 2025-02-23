@@ -118,10 +118,10 @@ namespace BuildingsFolder
 
             if (Physics.Raycast(ray, out hit))
             {
-                // Calculer la position arrondie sur la grille hexagonale
-                Vector3 snappedPosition = CalculateHexagonalSnappedPosition(hit.point);
-
-                // Déplace le bâtiment "fantôme" à la position calculée
+                (float x, float y, float z) = StaticGridTools.WorldCoToWorldCenterCo(hit.point.x, hit.point.y, hit.point.z);
+        
+                Vector3 snappedPosition = new Vector3(x, y, z);
+                
                 _ghostBuilding.transform.position = snappedPosition;
             
                 //__________WithoutGrid_________
@@ -141,7 +141,9 @@ namespace BuildingsFolder
                 //____________Pour le Multi__________________//
                 //___________________________________________//
                 
-                var action = new ClientPlaceBuildingGameAction((int)position.x/5, (int)position.z/5, (ushort) _selectedBuildingType);
+                
+                (int posX, int posZ) = StaticGridTools.WorldCenterCoToMapIndex(position.x, position.z);
+                var action = new ClientPlaceBuildingGameAction(posX, posZ, (ushort) _selectedBuildingType);
                 Network.Instance.Proxy.Connection.Send(action);
                 
                 //___________________________________________//
@@ -160,29 +162,6 @@ namespace BuildingsFolder
             {
                 renderer.material.color = new Color(1, 1, 1, 0.5f); // Rend le bâtiment semi-transparent
             }
-        }
-    
-        // Fonction pour calculer une position sur une grille hexagonale
-        private Vector3 CalculateHexagonalSnappedPosition(Vector3 hitPoint)
-        {
-            float q = hitPoint.x / gridWidth;  // Coordonnée "q" (colonne)
-            float r = hitPoint.z / (gridHeight * 0.75f); // Coordonnée "r" (ligne), ajustée par l'espacement vertical (75% de la hauteur)
-
-            // Arrondir les coordonnées pour trouver l'hexagone le plus proche
-            float roundedQ = Mathf.Round(q);
-            float roundedR = Mathf.Round(r);
-
-            // Convertir les coordonnées hexagonales arrondies en coordonnées mondiales
-            float snappedX = roundedQ * gridWidth;
-            float snappedZ = roundedR * gridHeight * 0.75f;
-
-            // Décaler les lignes impaires horizontalement
-            if (Mathf.Abs(roundedR % 2) > 0.1f) // Ligne impaire
-            {
-                snappedX += gridWidth / 2f;
-            }
-
-            return new Vector3(snappedX, 0, snappedZ); // Garder `y` à 0 ou ajuster en fonction de ton terrain
         }
     }
 }

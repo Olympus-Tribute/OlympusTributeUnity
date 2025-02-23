@@ -11,8 +11,8 @@ namespace Grid
     {
         private const float hexSize = 10f; // longueur d'un coté hexagone
         private const double sqrt3 = 1.7320508076d;
-        private readonly int mapWidth = 10; // Nombre d'hexagones en largeur
-        private readonly int mapHeight = 10; // Nombre d'hexagones en hauteur
+        private readonly uint mapWidth = 10; // Nombre d'hexagones en largeur
+        private readonly uint mapHeight = 10; // Nombre d'hexagones en hauteur
     
         private readonly GameObject grassPrefabs;
         private readonly GameObject oceanPrefabs;
@@ -28,12 +28,12 @@ namespace Grid
         private readonly FloorTile[] Tiles;
         private readonly IFloorGenerator Generator;
         
-        public int Width
+        public uint Width
         {
             get => mapWidth;
         }
 
-        public int Height
+        public uint Height
         {
             get => mapHeight;
         }
@@ -52,7 +52,7 @@ namespace Grid
             get => Tiles[i];
             set => Tiles[i] = value;
         }
-        public HexMapGenerator(int mapWidth, int mapHeight, GameObject grassPrefabs, GameObject waterPrefabs,
+        public HexMapGenerator(uint mapWidth, uint mapHeight, GameObject grassPrefabs, GameObject waterPrefabs,
             GameObject woodresourcePrefabs, GameObject diamondresourcePrefabs, GameObject obsidianresourcePrefabs,
             GameObject goldresourcePrefabs, GameObject stoneresourcePrefabs, GameObject vineresourcePrefabs,
             GameObject waterresourcePrefabs, IFloorGenerator Generator)

@@ -52,13 +52,16 @@ namespace BuildingsFolder
                     }
                     return false;
                     */
-                return true;
+                    return true;
                 case "Temple" :
+                    return true;
+                    /*
                     if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0)
                     {
                         return true;
                     }
                     return false;
+                    */
                 
                 case "TempleOr" :
                     if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 125 > 0)

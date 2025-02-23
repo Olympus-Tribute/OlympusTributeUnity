@@ -2377,7 +2377,7 @@ GameObject:
   - component: {fileID: 7079569659864996703}
   - component: {fileID: 1997506105439126158}
   m_Layer: 5
-  m_Name: PanelExtractorWood
+  m_Name: Panelbuilding (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2394,19 +2394,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5782206845653130137}
-  - {fileID: 7602099053324675624}
-  - {fileID: 6101159850357406801}
-  - {fileID: 1297792852243447194}
-  - {fileID: 1558554806602996286}
-  - {fileID: 7947955179795527164}
+  m_Children: []
   m_Father: {fileID: 5313377081168967870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 40}
-  m_SizeDelta: {x: 150, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -125.6, y: 38.9}
+  m_SizeDelta: {x: -1175.4213, y: -609.6287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1543355604634654045
 CanvasRenderer:
@@ -2459,7 +2453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 1049248764573647717}
-  Nom: Extractor
+  Nom: 
 --- !u!1 &1056737947485039968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2473,7 +2467,7 @@ GameObject:
   - component: {fileID: 4029130767471991174}
   - component: {fileID: 4195081979356905345}
   m_Layer: 5
-  m_Name: ButtonExtractorWine
+  m_Name: ButtonExtractorObsidian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2486,17 +2480,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056737947485039968}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7332932359564226031}
-  m_Father: {fileID: 7165926178028625674}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: -71.6, y: -66.3}
   m_SizeDelta: {x: 2048, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5525988600187575233
@@ -3227,7 +3221,7 @@ GameObject:
   - component: {fileID: 4926749722994174603}
   - component: {fileID: 1158369967091536083}
   m_Layer: 5
-  m_Name: PanelExtractorWine
+  m_Name: Panelbuilding (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3244,14 +3238,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5223197464379161602}
+  m_Children: []
   m_Father: {fileID: 5313377081168967870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -75, y: -80}
-  m_SizeDelta: {x: 150, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -69.9, y: -79}
+  m_SizeDelta: {x: -1175.4213, y: -609.6287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7807696292355941626
 CanvasRenderer:
@@ -3304,7 +3297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 1563364514640798627}
-  Nom: ExtractorPlusOr
+  Nom: 
 --- !u!1 &1604967519941393212
 GameObject:
   m_ObjectHideFlags: 0
@@ -3372,7 +3365,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3541,7 +3534,7 @@ GameObject:
   - component: {fileID: 8876835588526200690}
   - component: {fileID: 907584466643283621}
   m_Layer: 5
-  m_Name: ButtonExtractorObsidian
+  m_Name: ButtonExtractorVine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3554,17 +3547,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693886268567021749}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2753963167247815372}
-  m_Father: {fileID: 1495653913814597393}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 207.10004, y: -66.300026}
   m_SizeDelta: {x: 2048, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8411304604633052699
@@ -4589,13 +4582,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9078519820648369579}
+  - {fileID: 1495653913814597393}
+  - {fileID: 6350702213214174046}
   - {fileID: 2118370198878084469}
   - {fileID: 8887700065534598303}
-  - {fileID: 6519124729884868127}
-  - {fileID: 6350702213214174046}
   - {fileID: 7165926178028625674}
   - {fileID: 1891395806778475143}
-  - {fileID: 1495653913814597393}
+  - {fileID: 6519124729884868127}
   - {fileID: 1405875129226433698}
   m_Father: {fileID: 2356566411608129711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6601,7 +6594,7 @@ GameObject:
   - component: {fileID: 8720272427224696875}
   - component: {fileID: 7386009207574356133}
   m_Layer: 5
-  m_Name: PanelExtractorOr
+  m_Name: Panelbuilding (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6618,14 +6611,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7387861079289290372}
+  m_Children: []
   m_Father: {fileID: 5313377081168967870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 40}
-  m_SizeDelta: {x: 150, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 149.2, y: 38.899994}
+  m_SizeDelta: {x: -1175.4213, y: -609.6287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &880039801410673592
 CanvasRenderer:
@@ -6678,7 +6670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 3060667684914964846}
-  Nom: Extractor
+  Nom: 
 --- !u!1 &3065129424053725982
 GameObject:
   m_ObjectHideFlags: 0
@@ -7380,7 +7372,7 @@ GameObject:
   - component: {fileID: 7876089774105917463}
   - component: {fileID: 9040710965943860278}
   m_Layer: 5
-  m_Name: ButtonExtractorDiamond
+  m_Name: ButtonExtractorWater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7393,17 +7385,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3443274542083201572}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5064303166658690646}
-  m_Father: {fileID: 1891395806778475143}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 68.10002, y: -66.30002}
   m_SizeDelta: {x: 2048, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1818892858277178003
@@ -7515,7 +7507,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &110098590336680341
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9632,11 +9624,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2118370198878084469}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.800064, y: -36.599987}
+  m_AnchoredPosition: {x: -142.1999, y: 3.400013}
   m_SizeDelta: {x: 32.2497, y: 38.5675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8404871549841056305
@@ -10095,7 +10087,7 @@ GameObject:
   - component: {fileID: 7119116810396887994}
   - component: {fileID: 8751679577188537490}
   m_Layer: 5
-  m_Name: PanelExtractorObsidian
+  m_Name: Panelbuilding (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10112,14 +10104,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5072653637378312363}
+  m_Children: []
   m_Father: {fileID: 5313377081168967870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 225, y: -80}
-  m_SizeDelta: {x: 150, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 209.2, y: -79}
+  m_SizeDelta: {x: -1175.4213, y: -609.6287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1781348174244225776
 CanvasRenderer:
@@ -10172,7 +10163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 4447661040319384116}
-  Nom: ExtractorPlusOr
+  Nom: 
 --- !u!1 &4458148859537400843
 GameObject:
   m_ObjectHideFlags: 0
@@ -11921,11 +11912,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2118370198878084469}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 42.61006, y: -28.899956}
+  m_AnchoredPosition: {x: -109.38991, y: 11.100044}
   m_SizeDelta: {x: 33.3635, y: 27.144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5868378490691302470
@@ -12389,7 +12380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7647911050173735676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12572,17 +12563,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5214664726341757316}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8620396631102414704}
-  m_Father: {fileID: 2118370198878084469}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: -127.4469, y: 51.620422}
   m_SizeDelta: {x: 2048, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2680992270226407784
@@ -14032,17 +14023,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5686835862748267318}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7552424124058660018}
-  m_Father: {fileID: 8887700065534598303}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 12.352905, y: 51.520355}
   m_SizeDelta: {x: 2048, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2889877717028984830
@@ -14714,17 +14705,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6071378734592674623}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6567969727606266996}
-  m_Father: {fileID: 6519124729884868127}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 147.1, y: 51.4}
   m_SizeDelta: {x: 2048, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &726748459619043217
@@ -17381,11 +17372,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2118370198878084469}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 64.6001, y: -36.599964}
+  m_AnchoredPosition: {x: -87.3999, y: 3.4000359}
   m_SizeDelta: {x: 32.2497, y: 38.5675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7951276054950564632
@@ -17517,11 +17508,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2118370198878084469}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -16.046906, y: -26.979462}
+  m_AnchoredPosition: {x: -168.0469, y: 13.020538}
   m_SizeDelta: {x: 28.176, y: 25.2235}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1134972556718017027
@@ -17644,7 +17635,7 @@ GameObject:
   - component: {fileID: 3806882301578051207}
   - component: {fileID: 1399235402547565078}
   m_Layer: 5
-  m_Name: PanelExtractorWater
+  m_Name: Panelbuilding (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17661,14 +17652,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2502736177645204347}
+  m_Children: []
   m_Father: {fileID: 5313377081168967870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225, y: -80}
-  m_SizeDelta: {x: 150, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -198.4, y: -81.3}
+  m_SizeDelta: {x: -1175.4213, y: -609.6287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2617187898590432468
 CanvasRenderer:
@@ -17721,7 +17711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 7022840072310432426}
-  Nom: ExtractorPlusOr
+  Nom: 
 --- !u!1 &7035369026541186861
 GameObject:
   m_ObjectHideFlags: 0
@@ -18468,8 +18458,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.199, y: 5.4995}
-  m_SizeDelta: {x: 691.4368, y: 393.4914}
+  m_AnchoredPosition: {x: 7.199005, y: 5.4994965}
+  m_SizeDelta: {x: 691.4368, y: 435.4914}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6431018246104989607
 CanvasRenderer:
@@ -18883,8 +18873,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.0273, y: 6.678}
-  m_SizeDelta: {x: 690.4095, y: 393.4915}
+  m_AnchoredPosition: {x: 1.0273132, y: 6.677994}
+  m_SizeDelta: {x: 690.4095, y: 435.4915}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5747394821170405929
 CanvasRenderer:
@@ -19746,7 +19736,7 @@ GameObject:
   - component: {fileID: 5672408085284689886}
   - component: {fileID: 6494794755491299981}
   m_Layer: 5
-  m_Name: ButtonExtractorWater
+  m_Name: ButtonExtractorDiamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19759,17 +19749,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8195747061655908413}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1195246514486182826}
-  m_Father: {fileID: 6350702213214174046}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: -200.3, y: -68.4}
   m_SizeDelta: {x: 2048, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4255394230504460165
@@ -20156,7 +20146,7 @@ GameObject:
   - component: {fileID: 9160674469830785210}
   - component: {fileID: 2597900461828245086}
   m_Layer: 5
-  m_Name: PanelExtractorStone
+  m_Name: Panelbuilding (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20173,14 +20163,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1811576011280256786}
+  m_Children: []
   m_Father: {fileID: 5313377081168967870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 40}
-  m_SizeDelta: {x: 150, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 14.700012, y: 38.899994}
+  m_SizeDelta: {x: -1175.4213, y: -609.6287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4761878841844442253
 CanvasRenderer:
@@ -20233,7 +20222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 8362441497694571929}
-  Nom: Extractor
+  Nom: 
 --- !u!1 &8391678168954961646
 GameObject:
   m_ObjectHideFlags: 0
@@ -20507,7 +20496,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 400}
+  m_SizeDelta: {x: 466.661, y: 396.81042}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7168970553041151390
 CanvasRenderer:
@@ -20701,7 +20690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5628187603677915232
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21204,7 +21193,7 @@ GameObject:
   - component: {fileID: 7484912411425407912}
   - component: {fileID: 1840573169388507433}
   m_Layer: 5
-  m_Name: PanelExtractorDiamond
+  m_Name: Panelbuilding (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21221,14 +21210,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4803158978095814610}
+  m_Children: []
   m_Father: {fileID: 5313377081168967870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 75, y: -80}
-  m_SizeDelta: {x: 150, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 70, y: -79}
+  m_SizeDelta: {x: -1175.4213, y: -609.6287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5724703357717017169
 CanvasRenderer:
@@ -21281,7 +21269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Panel: {fileID: 8675602080192565689}
-  Nom: ExtractorPlusOr
+  Nom: 
 --- !u!1 &8696778260563698942
 GameObject:
   m_ObjectHideFlags: 0
@@ -21565,6 +21553,7 @@ GameObject:
   - component: {fileID: 9078519820648369579}
   - component: {fileID: 5946137589189917586}
   - component: {fileID: 3685570253081558724}
+  - component: {fileID: 9999264771045204}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -21585,10 +21574,21 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1519753401681668562}
+  - {fileID: 5782206845653130137}
+  - {fileID: 1811576011280256786}
+  - {fileID: 7387861079289290372}
+  - {fileID: 2502736177645204347}
+  - {fileID: 5223197464379161602}
+  - {fileID: 4803158978095814610}
+  - {fileID: 5072653637378312363}
   - {fileID: 715567039004935411}
+  - {fileID: 7602099053324675624}
   - {fileID: 1691377470515565987}
   - {fileID: 2192395739605070894}
   - {fileID: 727557711991669512}
+  - {fileID: 6101159850357406801}
+  - {fileID: 1297792852243447194}
+  - {fileID: 1558554806602996286}
   - {fileID: 3551132133764064355}
   - {fileID: 131674908515061329}
   - {fileID: 4766348917735392659}
@@ -21623,6 +21623,7 @@ RectTransform:
   - {fileID: 6629854528337180336}
   - {fileID: 381630313491286632}
   - {fileID: 5657732891124124682}
+  - {fileID: 7947955179795527164}
   - {fileID: 4479949741208014170}
   - {fileID: 485876018763592968}
   - {fileID: 5262116236157222889}
@@ -21634,8 +21635,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 400}
+  m_AnchoredPosition: {x: 1.9530029, y: 7.820404}
+  m_SizeDelta: {x: 691.6918, y: 435.9678}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5946137589189917586
 CanvasRenderer:
@@ -21675,6 +21676,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9999264771045204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8821880034703181069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8c99555e354d9a9e5d17dd32ec7bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Panel: {fileID: 8821880034703181069}
+  Nom: 
 --- !u!1 &8844643458936425990
 GameObject:
   m_ObjectHideFlags: 0
@@ -21705,11 +21720,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2118370198878084469}
+  m_Father: {fileID: 9078519820648369579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 39.746964, y: -56.020435}
+  m_AnchoredPosition: {x: -112.253006, y: -16.020435}
   m_SizeDelta: {x: 32.2497, y: 38.5675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4009887002462912887

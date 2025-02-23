@@ -62,14 +62,16 @@ namespace BuildingsFolder
                 (connection, action) =>
                 {
                     Debug.Log("[CLIENT]     : Receive 'ServerPlaceBuildingGameAction'");
-                    PlaceBuilding(action.X * 5, action.Y * 5, action.BuildingId, action.OwnerId);
+                    
+                    PlaceBuilding(action.X, action.Y, action.BuildingId, action.OwnerId);
                 });
             
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerRemoveBuildingGameAction>(
                 (connection, action) =>
                 {
                     Debug.Log("[CLIENT]     : Receive 'ServerRemoveBuildingGameAction'");
-                    DeleteBuilding(action.X * 5, action.Y * 5);
+                    (float xPlaceBuilding, float zPlaceBuilding)  = StaticGridTools.MapIndexToWorldCenterCo(action.X, action.Y);
+                    DeleteBuilding((int)xPlaceBuilding, (int)zPlaceBuilding);
                 });
         }
     
@@ -80,21 +82,20 @@ namespace BuildingsFolder
 
         public void PlaceBuilding(int x, int z, int buildingType, uint ownerId)
         {
-            Vector3 positionKey = new Vector3(x, 0, z);
-            
             if (buildings.ContainsKey((x, z)))
             {
                 DeleteBuilding(x, z);
             }
             
-            Building newBuilding = CreateBuilding(x, z, buildingType, positionKey, ownerId);
+            (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(x, z);
+            Vector3 positionKey = new Vector3(xWorldCenterCo, 0, zWorldCenterCo);
             
-            // Ajoute le bâtiment au dictionnaire
+            
+            Building newBuilding = CreateBuilding(x, z, buildingType, positionKey, ownerId);
             buildings[(x, z)] = newBuilding;
             
-            PopUpManager.Instance.ShowPopUp($"Bâtiment ajouté à la position ({x}, {z}).", 1);
             
-            Debug.Log($"Bâtiment ajouté à la position ({x}, {z}).");
+            PopUpManager.Instance.ShowPopUp($"Bâtiment ajouté à la position ({x}, {z}).", 1);
         }
     
         public void DeleteBuilding(int x, int z)
@@ -106,10 +107,6 @@ namespace BuildingsFolder
                 
                 buildings.Remove((x, z));
                 Debug.Log($"Bâtiment supprimé à la position ({x}, {z}).");
-            }
-            else
-            {
-                Debug.LogWarning($"Aucun bâtiment trouvé à la position ({x}, {z}).");
             }
         }
     

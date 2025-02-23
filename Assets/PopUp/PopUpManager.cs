@@ -16,7 +16,7 @@ namespace PopUp
 
         private void Update()
         {
-            if (_timing > 0)
+            if (PopUpUi.activeSelf)
             {
                 _timing -= Time.deltaTime;
                 if (_timing <= 0)

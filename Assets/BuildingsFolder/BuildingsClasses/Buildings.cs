@@ -19,27 +19,5 @@ namespace BuildingsFolder.BuildingsClasses
             Position = position;
             OwnerId = ownerId;
         }
-
-        /*
-        private void InstantiategameObjec()
-        {
-            if (gameObjec != null)
-            {
-                GameObject buildingInstance = Instantiate(gameObjec, Position, Quaternion.identity);
-                buildingInstance.name = Name;
-                Debug.Log($"{Name} a été placé en {Position}");
-            }
-            else
-            {
-                Debug.LogError($"gameObjec manquant pour {Name} !");
-            }
-        }
-        
-        private void DestroyBuilding()
-        {
-            Debug.Log($"{Name} a été détruit !");
-            Destroy(gameObject);
-        }
-        */
     }
 }

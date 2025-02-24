@@ -25,8 +25,8 @@ public class WaitingScene : MonoBehaviour
                 {
                     Debug.Log("[CLIENT]     : Received ServerStartLobbyGameAction");
                     ServerManager.Seed = (int)action.Seed;
-                    ServerManager.MapWidth = 10;
-                    ServerManager.MapHeight = 10;
+                    ServerManager.MapWidth = action.Width;
+                    ServerManager.MapHeight = action.Height;
                     ServerManager.PlayerCount = action.PlayerCount;
                     ServerManager.PlayerId = action.PlayerId;
                     InitGame();
@@ -41,8 +41,8 @@ public class WaitingScene : MonoBehaviour
                     {
                         Debug.Log("[CLIENT]     : Received ServerStartLobbyGameAction");
                         ServerManager.Seed = (int)action.Seed;
-                        ServerManager.MapWidth = 10;
-                        ServerManager.MapHeight = 10;
+                        ServerManager.MapWidth = action.Width;
+                        ServerManager.MapHeight = action.Height;
                         ServerManager.PlayerCount = action.PlayerCount;
                         ServerManager.PlayerId = action.PlayerId;
                         InitGame();

@@ -121,7 +121,7 @@ public class SteamManager : MonoBehaviour {
 
 			return;
 		}
-
+		SteamNetworkingUtils.InitRelayNetworkAccess();
 		s_EverInitialized = true;
 	}
 

@@ -68,6 +68,9 @@ namespace ForServer
         {
             Debug.Log("Hosting Server....");
             Console.SetOut(new MyDebug());
+
+            SetupCallbacks();
+            
             LocalConnectionAcceptor acceptor = new LocalConnectionAcceptor();
 
             
@@ -93,6 +96,30 @@ namespace ForServer
             Network.Instance.Setup(Network.Instance.Proxy);
             
             Debug.Log("Host Server");
+        }
+        
+        private static void SetupCallbacks()
+        {
+            SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 10);
+            Callback<LobbyCreated_t>.Create(param =>
+            {
+                Console.WriteLine("Lobby created requested " + param.m_ulSteamIDLobby);
+                SteamMatchmaking.SetLobbyData(new CSteamID(param.m_ulSteamIDLobby), "host_id",
+                    SteamUser.GetSteamID().ToString());
+                SteamFriends.SetRichPresence("connect", param.m_ulSteamIDLobby.ToString());
+            });
+            Callback<LobbyEnter_t>.Create(param =>
+            {
+                Console.WriteLine("Lobby entered requested " + param.m_ulSteamIDLobby);
+                SteamFriends.SetRichPresence("steam_player_group", param.m_ulSteamIDLobby.ToString());
+            });
+
+            Callback<LobbyChatUpdate_t>.Create(param =>
+            {
+                Console.WriteLine("Lobby join requested " + param.m_ulSteamIDLobby);
+                SteamFriends.SetRichPresence("steam_player_group_size",
+                    SteamMatchmaking.GetNumLobbyMembers(new CSteamID(param.m_ulSteamIDLobby)).ToString());
+            });
         }
     }
 }

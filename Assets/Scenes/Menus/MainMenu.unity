@@ -393,6 +393,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TitleScene
       objectReference: {fileID: 0}
+    - target: {fileID: 5028157558386746777, guid: 09ec616d344561a43afbf080dd99d748, type: 3}
+      propertyPath: m_text
+      value: Select a method
+      objectReference: {fileID: 0}
     - target: {fileID: 5195163151917550569, guid: 09ec616d344561a43afbf080dd99d748, type: 3}
       propertyPath: m_Name
       value: MenuHostOrJoin

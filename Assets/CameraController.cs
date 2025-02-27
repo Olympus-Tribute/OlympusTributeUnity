@@ -4,8 +4,8 @@ public class TopDownCameraController : MonoBehaviour
 {
     public float moveSpeed = 10f;        // Vitesse de déplacement
     public float zoomSpeed = 10f;       // Vitesse du zoom
-    public float minZoom = 10f;         // Zoom minimal (distance maximale)
-    public float maxZoom = 50f;         // Zoom maximal (distance minimale)
+    public float minZoom = 5f;         // Zoom minimal (distance maximale)
+    public float maxZoom = 1000f;         // Zoom maximal (distance minimale)
     public float rotationSpeed = 1000f;  // Vitesse de rotation avec la souris (augmentez cette valeur)
     public float rotationMultiplier = 50f; // Facteur d'amplification de la rotation
     

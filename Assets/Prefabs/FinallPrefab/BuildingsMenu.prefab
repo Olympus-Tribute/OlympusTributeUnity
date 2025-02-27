@@ -5022,8 +5022,6 @@ MonoBehaviour:
   menuUISelectTypeOfBuilding: {fileID: 8568108142381001408}
   menuUISelectExtractor: {fileID: 2272665091776211066}
   menuUISelectTemple: {fileID: 3491290586210727299}
-  gridWidth: 20
-  gridHeight: 20
 --- !u!1 &2600511127018466864
 GameObject:
   m_ObjectHideFlags: 0
@@ -20602,7 +20600,7 @@ MonoBehaviour:
   prefabAgora: {fileID: 919132149155446097, guid: 0a18b1ed58bf2864f929b7df628293c0, type: 3}
   prefabHouse: {fileID: 919132149155446097, guid: f1efdf11442c67d488e54c00f9abb548, type: 3}
   prefabExtractorWood: {fileID: 919132149155446097, guid: 88afccbe6d20e8d4c87e8ba12e3735c9, type: 3}
-  prefabExtractorStone: {fileID: 919132149155446097, guid: a9d9dcbd3c568eb4f9074c5020795740, type: 3}
+  prefabExtractorStone: {fileID: 919132149155446097, guid: 08534d27d47044e4a81a7699d3658935, type: 3}
   prefabExtractorGold: {fileID: 919132149155446097, guid: c7e7b5031259a454692499190fae3279, type: 3}
   prefabExtractorDiamond: {fileID: 919132149155446097, guid: 8e6b22f42fb53774b83572ff972ea406, type: 3}
   prefabExtractorObsidian: {fileID: 919132149155446097, guid: 5f41c59a11432124aa0947d7e6278737, type: 3}

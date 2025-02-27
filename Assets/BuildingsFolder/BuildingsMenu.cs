@@ -17,10 +17,6 @@ namespace BuildingsFolder
         public GameObject menuUISelectTemple;
         private BuildingsManager _buildingsManager;
     
-        public float gridWidth = 20f;  // Largeur d'un hexagone
-        public float gridHeight = 20f; // Hauteur d'un hexagone
-        
-    
         private void Awake()
         {
             _buildingsManager = FindObjectOfType<BuildingsManager>();

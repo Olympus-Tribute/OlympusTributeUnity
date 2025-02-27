@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using ForServer;
 using PopUp;
 using Steamworks;
@@ -17,6 +18,7 @@ namespace Menus
 
         private void Start()
         {
+            CreateSteamAppIdFile();
             SetAllMenusInactive();
             menuUIMainMenu.SetActive(true);
         }
@@ -34,6 +36,17 @@ namespace Menus
         {
             SetAllMenusInactive();
             menuUIMainMenu.SetActive(true);
+        }
+        
+        private static void CreateSteamAppIdFile()
+        {
+            string filePath = "steam_appid.txt";
+        
+            if (!File.Exists(filePath))
+            {
+                File.WriteAllText(filePath, "480");
+            
+            }
         }
 
         //__________________________________________________________//

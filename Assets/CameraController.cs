@@ -1,3 +1,4 @@
+using ForServer;
 using UnityEngine;
 
 public class TopDownCameraController : MonoBehaviour
@@ -9,12 +10,10 @@ public class TopDownCameraController : MonoBehaviour
     public float rotationSpeed = 1000f;  // Vitesse de rotation avec la souris (augmentez cette valeur)
     public float rotationMultiplier = 50f; // Facteur d'amplification de la rotation
     
-    
     private Camera cam;
 
     void Start()
     {
-        // Obtenez la caméra attachée à cet objet
         cam = Camera.main;
 
         // Configurez la caméra pour une vue plongeante
@@ -26,13 +25,8 @@ public class TopDownCameraController : MonoBehaviour
 
     void Update()
     {
-        // Déplacement
         MoveCamera();
-
-        // Rotation
         RotateCameraWithMouse();
-
-        // Zoom
         ZoomCamera();
     }
 

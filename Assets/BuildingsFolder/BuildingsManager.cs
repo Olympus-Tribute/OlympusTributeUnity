@@ -93,9 +93,16 @@ namespace BuildingsFolder
             
             Building newBuilding = CreateBuilding(x, z, buildingType, positionKey, ownerId);
             buildings[(x, z)] = newBuilding;
+
+            if (newBuilding is Agora || newBuilding is Extractor)
+            {
+                PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 1);
+            }
+            else
+            {
+                PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 1);
+            }
             
-            
-            PopUpManager.Instance.ShowPopUp($"Bâtiment ajouté à la position ({x}, {z}).", 1);
         }
     
         public void DeleteBuilding(int x, int z)

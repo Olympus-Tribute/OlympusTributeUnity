@@ -1,4 +1,5 @@
 using ForNetwork;
+using Networking.Common.Client;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -7,8 +8,8 @@ namespace DefaultNamespace
     {
         public void OnEnable()
         {
-            //var action = new ClientGameStartGameAction();
-            //Network.Instance.Proxy.Connection.Send(action);
+            var action = new ClientDoneLoadingGameAction();
+            Network.Instance.Proxy.Connection.Send(action);
         }
     }
 }

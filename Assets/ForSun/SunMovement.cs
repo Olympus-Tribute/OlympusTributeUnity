@@ -4,8 +4,8 @@ namespace DefaultNamespace.ForSun
 {
     public class SunMovement : MonoBehaviour
     {
-        public float rotationSpeed = 1f; // Vitesse de rotation du soleil
-        public float intensityDecreaseSpeed = 0.005f; // Vitesse de diminution de l'intensité
+        public float rotationSpeed = 0.01f; // Vitesse de rotation du soleil
+        public float intensityDecreaseSpeed = 0.05f; // Vitesse de diminution de l'intensité
         public float minIntensity = 0.1f; // Intensité minimale
         public float maxIntensity = 1.0f; // Intensité maximale
 

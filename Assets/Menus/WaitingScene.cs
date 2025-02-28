@@ -1,16 +1,27 @@
 using ForNetwork;
 using ForServer;
-using Grid;
 using Networking.Common.Client;
 using Networking.Common.Server;
-using OlympusWorldGenerator;
-using OlympusWorldGenerator.Generators;
-using Steamworks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class WaitingScene : MonoBehaviour
 {
+    private bool[] _readyStates;
+    
+    public GameObject imageReadyPlayer1;
+    public GameObject imageNotReadyPlayer1;
+    
+    public GameObject imageReadyPlayer2;
+    public GameObject imageNotReadyPlayer2;
+    
+    public GameObject imageReadyPlayer3;
+    public GameObject imageNotReadyPlayer3;
+    
+    public GameObject imageReadyPlayer4;
+    public GameObject imageNotReadyPlayer4;
+    
+    
     //___________________________________________________________//
     //_________________________For Multi_________________________//
     //___________________________________________________________//
@@ -31,6 +42,13 @@ public class WaitingScene : MonoBehaviour
                     ServerManager.PlayerId = action.PlayerId;
                     InitGame();
                 });
+            
+            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
+                (connection, action) =>
+                {
+                    _readyStates = action.ReadyStates;
+                    UpdatePlayersReady();
+                });
         }
         else
         {
@@ -47,6 +65,17 @@ public class WaitingScene : MonoBehaviour
                         ServerManager.PlayerId = action.PlayerId;
                         InitGame();
                     });
+                
+            });
+            Network.Instance.Setup = (proxy =>
+            {
+                proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
+                    (connection, action) =>
+                    {
+                        _readyStates = action.ReadyStates;
+                        UpdatePlayersReady();
+                    });
+                
             });
         }
         
@@ -55,6 +84,18 @@ public class WaitingScene : MonoBehaviour
     //___________________________________________________________//
     //___________________________________________________________//
     //___________________________________________________________//
+
+    public void Start()
+    {
+        imageReadyPlayer1.SetActive(false);
+        imageNotReadyPlayer1.SetActive(false);
+        imageReadyPlayer2.SetActive(false);
+        imageNotReadyPlayer2.SetActive(false);
+        imageReadyPlayer3.SetActive(false);
+        imageNotReadyPlayer3.SetActive(false);
+        imageReadyPlayer4.SetActive(false);
+        imageNotReadyPlayer4.SetActive(false);
+    }
 
     public void Ready() // For Button
     {
@@ -71,5 +112,52 @@ public class WaitingScene : MonoBehaviour
     public void InitGame()
     {
         SceneManager.LoadScene("PlayGame");
+    }
+    
+    //___________________________________________________________//
+    //___________________________________________________________//
+    //___________________________________________________________//
+    
+    public void UpdatePlayersReady()
+    {
+        for (int i = 0; i < _readyStates.Length; i++)
+        {
+            bool ready = _readyStates[i];
+            switch (i)
+            {
+                case 0 when ready:
+                    imageReadyPlayer1.SetActive(true);
+                    imageNotReadyPlayer1.SetActive(false);
+                    break;
+                case 0:
+                    imageReadyPlayer1.SetActive(false);
+                    imageNotReadyPlayer1.SetActive(true);
+                    break;
+                case 1 when ready:
+                    imageReadyPlayer2.SetActive(true);
+                    imageNotReadyPlayer2.SetActive(false);
+                    break;
+                case 1:
+                    imageReadyPlayer2.SetActive(false);
+                    imageNotReadyPlayer2.SetActive(true);
+                    break;
+                case 2 when ready:
+                    imageReadyPlayer3.SetActive(true);
+                    imageNotReadyPlayer3.SetActive(false);
+                    break;
+                case 2:
+                    imageReadyPlayer3.SetActive(false);
+                    imageNotReadyPlayer3.SetActive(true);
+                    break;
+                case 3 when ready:
+                    imageReadyPlayer4.SetActive(true);
+                    imageNotReadyPlayer4.SetActive(false);
+                    break;
+                case 3:
+                    imageReadyPlayer4.SetActive(false);
+                    imageNotReadyPlayer4.SetActive(true);
+                    break;
+            }
+        }
     }
 }

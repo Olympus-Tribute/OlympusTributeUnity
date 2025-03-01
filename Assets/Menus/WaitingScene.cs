@@ -26,7 +26,10 @@ public class WaitingScene : MonoBehaviour
     public GameObject imageNotReadyPlayer4;
     public GameObject imageFlagPlayer4;
     
-    
+    public bool playerReady;
+
+    public GameObject hideButtonReady;
+    public GameObject hideButtonNotReady;
     //___________________________________________________________//
     //_________________________For Multi_________________________//
     //___________________________________________________________//
@@ -98,7 +101,10 @@ public class WaitingScene : MonoBehaviour
 
     public void Start()
     {
+        hideButtonReady.SetActive(false);
+        hideButtonNotReady.SetActive(true);
         SetAllActiveFalse();
+        playerReady = false;
         _readyStates = new[] { false };
         UpdatePlayersReady();
     }
@@ -130,12 +136,18 @@ public class WaitingScene : MonoBehaviour
 
     public void Ready() // For Button
     {
+        playerReady = true;
+        hideButtonReady.SetActive(true);
+        hideButtonNotReady.SetActive(false);
         Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(true));
         Debug.Log("Envoi du gameAction pour Ready");
     }
     
     public void NotReady() // For Button
     {
+        playerReady = false;
+        hideButtonReady.SetActive(false);
+        hideButtonNotReady.SetActive(true);
         Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(false));
         Debug.Log("Envoi du gameAction pour Not Ready");
     }

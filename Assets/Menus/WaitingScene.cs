@@ -1,3 +1,4 @@
+using System;
 using ForNetwork;
 using ForServer;
 using Networking.Common.Client;
@@ -32,7 +33,6 @@ public class WaitingScene : MonoBehaviour
     
     void OnEnable()
     {
-
         if (Network.Instance.Proxy is not null)
         {
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
@@ -47,12 +47,14 @@ public class WaitingScene : MonoBehaviour
                     InitGame();
                 });
             
+            /*
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
                 (connection, action) =>
                 {
                     _readyStates = action.ReadyStates;
                     UpdatePlayersReady();
                 });
+            */
         }
         else
         {
@@ -69,16 +71,27 @@ public class WaitingScene : MonoBehaviour
                         ServerManager.PlayerId = action.PlayerId;
                         InitGame();
                     });
-                
+                /*
                 proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
                     (connection, action) =>
                     {
                         _readyStates = action.ReadyStates;
                         UpdatePlayersReady();
                     });
-                
+                */
             });
         }
+
+        if (Network.Instance.Proxy != null)
+        {
+            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
+                (connection, action) =>
+                {
+                    _readyStates = action.ReadyStates;
+                    UpdatePlayersReady();
+                });
+        }
+            
     }
     
     //___________________________________________________________//
@@ -87,21 +100,14 @@ public class WaitingScene : MonoBehaviour
 
     public void Start()
     {
-        imageReadyPlayer1.SetActive(false);
-        imageNotReadyPlayer1.SetActive(true);
-        imageFlagPlayer1.SetActive(false);
-        
-        imageReadyPlayer2.SetActive(false);
-        imageNotReadyPlayer2.SetActive(false);
-        imageFlagPlayer2.SetActive(false);
-        
-        imageReadyPlayer3.SetActive(false);
-        imageNotReadyPlayer3.SetActive(false);
-        imageFlagPlayer3.SetActive(false);
-        
-        imageReadyPlayer4.SetActive(false);
-        imageNotReadyPlayer4.SetActive(false);
-        imageFlagPlayer4.SetActive(false);
+        SetAllActiveFalse();
+        _readyStates = new[] { true };
+        UpdatePlayersReady();
+    }
+
+    public void Update()
+    {
+        UpdatePlayersReady();
     }
 
     public void SetAllActiveFalse()
@@ -166,6 +172,7 @@ public class WaitingScene : MonoBehaviour
                 case 0:
                     imageReadyPlayer1.SetActive(false);
                     imageNotReadyPlayer1.SetActive(true);
+                    imageFlagPlayer1.SetActive(true);
                     break;
                 case 1 when ready:
                     imageReadyPlayer2.SetActive(true);
@@ -175,6 +182,7 @@ public class WaitingScene : MonoBehaviour
                 case 1:
                     imageReadyPlayer2.SetActive(false);
                     imageNotReadyPlayer2.SetActive(true);
+                    imageFlagPlayer2.SetActive(true);
                     break;
                 case 2 when ready:
                     imageReadyPlayer3.SetActive(true);
@@ -184,6 +192,7 @@ public class WaitingScene : MonoBehaviour
                 case 2:
                     imageReadyPlayer3.SetActive(false);
                     imageNotReadyPlayer3.SetActive(true);
+                    imageFlagPlayer3.SetActive(true);
                     break;
                 case 3 when ready:
                     imageReadyPlayer4.SetActive(true);
@@ -193,6 +202,7 @@ public class WaitingScene : MonoBehaviour
                 case 3:
                     imageReadyPlayer4.SetActive(false);
                     imageNotReadyPlayer4.SetActive(true);
+                    imageFlagPlayer3.SetActive(true);
                     break;
             }
         }

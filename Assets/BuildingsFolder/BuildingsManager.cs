@@ -97,10 +97,12 @@ namespace BuildingsFolder
             if (newBuilding is Agora || newBuilding is Extractor)
             {
                 PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                PopUpManagerBarRessources.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
             }
             else
             {
                 PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                PopUpManagerBarRessources.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
             }
             
         }

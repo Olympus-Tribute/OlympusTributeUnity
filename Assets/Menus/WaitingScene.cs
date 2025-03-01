@@ -35,6 +35,13 @@ public class WaitingScene : MonoBehaviour
     {
         if (Network.Instance.Proxy is not null)
         {
+            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
+                (connection, action) =>
+                {
+                    _readyStates = action.ReadyStates;
+                    UpdatePlayersReady();
+                });
+            
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
                 (connection, action) =>
                 {
@@ -46,20 +53,19 @@ public class WaitingScene : MonoBehaviour
                     ServerManager.PlayerId = action.PlayerId;
                     InitGame();
                 });
-            
-            /*
-            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
-                (connection, action) =>
-                {
-                    _readyStates = action.ReadyStates;
-                    UpdatePlayersReady();
-                });
-            */
         }
         else
         {
             Network.Instance.Setup = (proxy =>
             {
+                proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
+                    (connection, action) =>
+                    {
+                        _readyStates = action.ReadyStates;
+                        UpdatePlayersReady();
+                    });
+                
+                
                 proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
                     (connection, action) =>
                     {
@@ -71,14 +77,6 @@ public class WaitingScene : MonoBehaviour
                         ServerManager.PlayerId = action.PlayerId;
                         InitGame();
                     });
-                /*
-                proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
-                    (connection, action) =>
-                    {
-                        _readyStates = action.ReadyStates;
-                        UpdatePlayersReady();
-                    });
-                */
             });
         }
 
@@ -101,7 +99,7 @@ public class WaitingScene : MonoBehaviour
     public void Start()
     {
         SetAllActiveFalse();
-        _readyStates = new[] { true };
+        _readyStates = new[] { false };
         UpdatePlayersReady();
     }
 
@@ -202,7 +200,7 @@ public class WaitingScene : MonoBehaviour
                 case 3:
                     imageReadyPlayer4.SetActive(false);
                     imageNotReadyPlayer4.SetActive(true);
-                    imageFlagPlayer3.SetActive(true);
+                    imageFlagPlayer4.SetActive(true);
                     break;
             }
         }

@@ -36,15 +36,7 @@ public class RessourceManager : MonoBehaviour
 
     void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Optionnel, pour garder l'instance entre les scènes
-        }
-        else
-        {
-            Destroy(gameObject); // Évite les doublons
-        }
+        Instance = this;
         
         resourceTexts = new Dictionary<ResourceType, TMP_Text>
         {

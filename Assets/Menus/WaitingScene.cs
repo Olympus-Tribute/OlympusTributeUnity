@@ -38,63 +38,37 @@ public class WaitingScene : MonoBehaviour
     {
         if (Network.Instance.Proxy is not null)
         {
-            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
-                (connection, action) =>
-                {
-                    _readyStates = action.ReadyStates;
-                    UpdatePlayersReady();
-                });
-            
-            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
-                (connection, action) =>
-                {
-                    Debug.Log("[CLIENT]     : Received ServerStartLobbyGameAction");
-                    ServerManager.Seed = (int)action.Seed;
-                    ServerManager.MapWidth = action.Width;
-                    ServerManager.MapHeight = action.Height;
-                    ServerManager.PlayerCount = action.PlayerCount;
-                    ServerManager.PlayerId = action.PlayerId;
-                    InitGame();
-                });
+            RegisterGameAction(Network.Instance.Proxy);
         }
         else
         {
-            Network.Instance.Setup = (proxy =>
-            {
-                proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
-                    (connection, action) =>
-                    {
-                        _readyStates = action.ReadyStates;
-                        UpdatePlayersReady();
-                    });
-                
-                
-                proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
-                    (connection, action) =>
-                    {
-                        Debug.Log("[CLIENT]     : Received ServerStartLobbyGameAction");
-                        ServerManager.Seed = (int)action.Seed;
-                        ServerManager.MapWidth = action.Width;
-                        ServerManager.MapHeight = action.Height;
-                        ServerManager.PlayerCount = action.PlayerCount;
-                        ServerManager.PlayerId = action.PlayerId;
-                        InitGame();
-                    });
-            });
+            Network.Instance.Setup = (proxy => { RegisterGameAction(proxy); });
         }
-
-        if (Network.Instance.Proxy != null)
-        {
-            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
-                (connection, action) =>
-                {
-                    _readyStates = action.ReadyStates;
-                    UpdatePlayersReady();
-                });
-        }
-            
     }
-    
+
+    private void RegisterGameAction(Proxy proxy)
+    {
+        proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
+            (connection, action) =>
+            {
+                _readyStates = action.ReadyStates;
+                UpdatePlayersReady();
+            });
+
+
+        proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
+            (connection, action) =>
+            {
+                Debug.Log("[CLIENT]     : Received ServerStartLobbyGameAction");
+                ServerManager.Seed = (int)action.Seed;
+                ServerManager.MapWidth = action.Width;
+                ServerManager.MapHeight = action.Height;
+                ServerManager.PlayerCount = action.PlayerCount;
+                ServerManager.PlayerId = action.PlayerId;
+                InitGame();
+            });
+    }
+
     //___________________________________________________________//
     //___________________________________________________________//
     //___________________________________________________________//
@@ -156,6 +130,7 @@ public class WaitingScene : MonoBehaviour
     {
         SetAllActiveFalse();
         SceneManager.LoadScene("MainMenu");
+        Network.Instance.Proxy.Connection.Disconnect();
     }
     
     public void InitGame()

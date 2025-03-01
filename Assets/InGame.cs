@@ -1,3 +1,4 @@
+using ForNetwork;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,6 +30,7 @@ namespace DefaultNamespace
         {
             menuInGame.SetActive(false);
             SceneManager.LoadScene("MainMenu");
+            Network.Instance.Proxy.Connection.Disconnect();
         }
     }
 }

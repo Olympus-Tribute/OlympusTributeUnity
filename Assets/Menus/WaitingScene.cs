@@ -70,9 +70,6 @@ public class WaitingScene : MonoBehaviour
                         InitGame();
                     });
                 
-            });
-            Network.Instance.Setup = (proxy =>
-            {
                 proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
                     (connection, action) =>
                     {
@@ -82,7 +79,6 @@ public class WaitingScene : MonoBehaviour
                 
             });
         }
-        
     }
     
     //___________________________________________________________//
@@ -91,9 +87,28 @@ public class WaitingScene : MonoBehaviour
 
     public void Start()
     {
-        imageReadyPlayer1.SetActive(true);
+        imageReadyPlayer1.SetActive(false);
+        imageNotReadyPlayer1.SetActive(true);
+        imageFlagPlayer1.SetActive(false);
+        
+        imageReadyPlayer2.SetActive(false);
+        imageNotReadyPlayer2.SetActive(false);
+        imageFlagPlayer2.SetActive(false);
+        
+        imageReadyPlayer3.SetActive(false);
+        imageNotReadyPlayer3.SetActive(false);
+        imageFlagPlayer3.SetActive(false);
+        
+        imageReadyPlayer4.SetActive(false);
+        imageNotReadyPlayer4.SetActive(false);
+        imageFlagPlayer4.SetActive(false);
+    }
+
+    public void SetAllActiveFalse()
+    {
+        imageReadyPlayer1.SetActive(false);
         imageNotReadyPlayer1.SetActive(false);
-        imageFlagPlayer1.SetActive(true);
+        imageFlagPlayer1.SetActive(false);
         
         imageReadyPlayer2.SetActive(false);
         imageNotReadyPlayer2.SetActive(false);
@@ -119,6 +134,12 @@ public class WaitingScene : MonoBehaviour
     {
         Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(false));
         Debug.Log("Envoi du gameAction pour Not Ready");
+    }
+    
+    public void BackToMainMenu()
+    {
+        SetAllActiveFalse();
+        SceneManager.LoadScene("MainMenu");
     }
     
     public void InitGame()

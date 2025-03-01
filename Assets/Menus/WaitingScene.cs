@@ -79,6 +79,17 @@ public class WaitingScene : MonoBehaviour
                     });
             });
         }
+
+        if (Network.Instance.Proxy != null)
+        {
+            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
+                (connection, action) =>
+                {
+                    _readyStates = action.ReadyStates;
+                    UpdatePlayersReady();
+                });
+        }
+            
     }
     
     //___________________________________________________________//

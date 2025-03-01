@@ -144,6 +144,7 @@ namespace Grid
             // Facultatif : ajuster l'échelle ou la rotation si nécessaire
             hex.transform.localScale = new Vector3(1f, 1f, 1f);
             Random random = new Random((int)(seed + position.x + position.z*Width));
+            
             int randomvalue = random.Next(0, 6);
             switch (randomvalue)
             {

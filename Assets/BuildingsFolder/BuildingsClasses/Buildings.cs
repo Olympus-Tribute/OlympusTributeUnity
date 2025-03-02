@@ -10,14 +10,16 @@ namespace BuildingsFolder.BuildingsClasses
         public (int, int) Position { get; private set; }
         public uint OwnerId { get; private set; }
         
+        public GameObject Flag { get; private set; }
 
-        public Building(string name, string description, GameObject gameObject, (int, int) position, uint ownerId)
+        public Building(string name, string description, GameObject gameObject, (int, int) position, uint ownerId, GameObject flag)
         {
             Name = name;
             Description = description;
             GameObject = gameObject;
             Position = position;
             OwnerId = ownerId;
+            Flag = flag;
         }
     }
 }

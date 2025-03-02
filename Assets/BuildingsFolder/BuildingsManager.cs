@@ -78,7 +78,7 @@ namespace BuildingsFolder
         //___________________________________________________________//
         //___________________________________________________________//
         //___________________________________________________________//
-    
+        
 
         public void PlaceBuilding(int x, int z, int buildingType, uint ownerId)
         {
@@ -94,16 +94,77 @@ namespace BuildingsFolder
             Building newBuilding = CreateBuilding(x, z, buildingType, positionKey, ownerId);
             buildings[(x, z)] = newBuilding;
 
-            if (newBuilding is Agora || newBuilding is Extractor)
+            switch (ServerManager.PlayerId)
             {
-                PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                PopUpManagerBarRessources.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                case 0:
+                    if (newBuilding is Agora || newBuilding is Extractor)
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                        PopUpManagerBarRessources.Instance.ShowPopUp($"Athènes a placé un {newBuilding.Name}.", 3);
+                    }
+                    else
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                        PopUpManagerBarRessources.Instance.ShowPopUp($"Athènes a placé une {newBuilding.Name}.", 3);
+                    }
+
+                    break;
+                case 1:
+                    if (newBuilding is Agora || newBuilding is Extractor)
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                        PopUpManagerBarRessources.Instance.ShowPopUp($"Sparte a placé un {newBuilding.Name}.", 3);
+                    }
+                    else
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                        PopUpManagerBarRessources.Instance.ShowPopUp($"Sparte a placé une {newBuilding.Name}.", 3);
+                    }
+
+                    break;
+                case 2:
+                    if (newBuilding is Agora || newBuilding is Extractor)
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                        PopUpManagerBarRessources.Instance.ShowPopUp($"Thèbes a placé un {newBuilding.Name}.", 3);
+                    }
+                    else
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                        PopUpManagerBarRessources.Instance.ShowPopUp($"Thèbes a placé une {newBuilding.Name}.", 3);
+                    }
+
+                    break;
+                case 3:
+                    if (newBuilding is Agora || newBuilding is Extractor)
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                        PopUpManagerBarRessources.Instance.ShowPopUp($"Corinthe a placé un {newBuilding.Name}.", 3);
+                    }
+                    else
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                        PopUpManagerBarRessources.Instance.ShowPopUp($"Corinthe a placé une {newBuilding.Name}.", 3);
+                    }
+
+                    break;
+                default:
+                    if (newBuilding is Agora || newBuilding is Extractor)
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                        PopUpManagerBarRessources.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} a placé un {newBuilding.Name}.", 3);
+                    }
+                    else
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
+                        PopUpManagerBarRessources.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} a placé une {newBuilding.Name}.", 3);
+                    }
+
+                    break;
+                    
             }
-            else
-            {
-                PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                PopUpManagerBarRessources.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-            }
+
+            
             
         }
     
@@ -116,6 +177,7 @@ namespace BuildingsFolder
                 
                 buildings.Remove((x, z));
                 Debug.Log($"Bâtiment supprimé à la position ({x}, {z}).");
+                
             }
         }
     

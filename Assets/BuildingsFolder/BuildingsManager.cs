@@ -38,7 +38,11 @@ namespace BuildingsFolder
         public GameObject prefabTempleVine;
         
         
-        
+        // Flag
+        public GameObject prefabFlag1;
+        public GameObject prefabFlag2;
+        public GameObject prefabFlag3;
+        public GameObject prefabFlag4;
         // ____________________________________________________________________//
         // ____________________________________________________________________//
         // ____________________________________________________________________//
@@ -89,12 +93,35 @@ namespace BuildingsFolder
                 DeleteBuilding(x, z);
             }
             
+            
             (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(x, z);
             Vector3 positionKey = new Vector3(xWorldCenterCo, 0, zWorldCenterCo);
+
+            GameObject flag = null;
+            if (ownerId == 0)
+            {
+                flag= Instantiate(prefabFlag1, new Vector3(xWorldCenterCo, 0, zWorldCenterCo), Quaternion.identity);
+                
+            }
+            if (ownerId == 1)
+            {
+                flag= Instantiate(prefabFlag2, new Vector3(xWorldCenterCo, 0, zWorldCenterCo), Quaternion.identity);
+                
+            }
+            if (ownerId == 2)
+            {
+                flag= Instantiate(prefabFlag3, new Vector3(xWorldCenterCo, 0, zWorldCenterCo), Quaternion.identity);
+                
+            }
+            if (ownerId == 3)
+            {
+                flag= Instantiate(prefabFlag4, new Vector3(xWorldCenterCo, 0, zWorldCenterCo), Quaternion.identity);
+                
+            }
             
-            
-            Building newBuilding = CreateBuilding(x, z, buildingType, positionKey, ownerId);
+            Building newBuilding = CreateBuilding(x, z, buildingType, positionKey, ownerId, flag);
             buildings[(x, z)] = newBuilding;
+            
 
             switch (ServerManager.PlayerId)
             {
@@ -175,7 +202,9 @@ namespace BuildingsFolder
             if (buildings.TryGetValue((x, z), out Building building))
             {
                 GameObject buildingGameObject = building.GameObject;
+                GameObject flag = building.Flag;
                 Destroy(buildingGameObject);
+                Destroy(flag);
                 
                 buildings.Remove((x, z));
                 Debug.Log($"Bâtiment supprimé à la position ({x}, {z}).");
@@ -183,40 +212,41 @@ namespace BuildingsFolder
             }
         }
     
-        public Building CreateBuilding(int x, int z, int buildingType, Vector3 positionKey, uint ownerId)
+        public Building CreateBuilding(int x, int z, int buildingType, Vector3 positionKey, uint ownerId,
+            GameObject flag)
         {
             GameObject prefab = GetBuildingPrefab(buildingType);
             GameObject instantiate = Instantiate(prefab, positionKey, Quaternion.identity);
             switch (buildingType)
             {
                 case 0: // Agora
-                    return new Agora("Agora", "", instantiate, (x, z), ownerId);
+                    return new Agora("Agora", "", instantiate, (x, z), ownerId, flag);
                 case 1: // House
-                    return new House("House", "", instantiate, (x, z), ownerId);
+                    return new House("House", "", instantiate, (x, z), ownerId,flag);
                 case 2: // Extractor Wood
-                    return new Extractor("Extractor Wood", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Wood);
+                    return new Extractor("Extractor Wood", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Wood,flag);
                 case 3: // Extractor Stone
-                    return new Extractor("Extractor Stone", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Stone);
+                    return new Extractor("Extractor Stone", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Stone, flag);
                 case 4: // Extractor Gold
-                    return new Extractor("Extractor Gold", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Gold);
+                    return new Extractor("Extractor Gold", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Gold, flag);
                 case 5: // Extractor Diamond
-                    return new Extractor("Extractor Diamond", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Diamond);
+                    return new Extractor("Extractor Diamond", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Diamond, flag);
                 case 6: // Extractor Obsidian
-                    return new Extractor("Extractor Diamond", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Obsidian);
+                    return new Extractor("Extractor Diamond", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Obsidian, flag);
                 case 7: // Extractor Water
-                    return new Extractor("Extractor Water", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Water);
+                    return new Extractor("Extractor Water", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Water, flag);
                 case 8: // Extractor Vine
-                    return new Extractor("Extractor Vine", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Vine);
+                    return new Extractor("Extractor Vine", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Vine, flag);
                 case 9: // Temple Gold
-                    return new Temple("Temple Gold", "", instantiate, (x, z), ownerId);
+                    return new Temple("Temple Gold", "", instantiate, (x, z), ownerId, flag);
                 case 10: // Temple Diamond
-                    return new Temple("Temple Diamond", "", instantiate, (x, z), ownerId);
+                    return new Temple("Temple Diamond", "", instantiate, (x, z), ownerId , flag);
                 case 11: // Temple Obsidian
-                    return new Temple("Temple Obsidian", "", instantiate, (x, z), ownerId);
+                    return new Temple("Temple Obsidian", "", instantiate, (x, z), ownerId, flag);
                 case 12: // Temple Water
-                    return new Temple("Temple Water", "", instantiate, (x, z), ownerId);
+                    return new Temple("Temple Water", "", instantiate, (x, z), ownerId ,flag);
                 case 13: // Temple Vine
-                    return new Temple("Temple Vine", "", instantiate, (x, z), ownerId);
+                    return new Temple("Temple Vine", "", instantiate, (x, z), ownerId, flag);
                 default:
                     return null;
             }

@@ -10,7 +10,7 @@ namespace BuildingsFolder.BuildingsClasses
         
         private bool _isAttacking;
         
-        public Temple(string name, string description, GameObject gameObject, (int, int) position, uint ownerId) : base(name, description, gameObject, position, ownerId)
+        public Temple(string name, string description, GameObject gameObject, (int, int) position, uint ownerId, GameObject flag) : base(name, description, gameObject, position, ownerId, flag)
         {
         }
     }

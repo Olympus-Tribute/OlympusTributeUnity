@@ -18,10 +18,11 @@ public class GridGenerator : MonoBehaviour
 
     public void Generate(int seed, uint mapwidth, uint mapheight)
     {
-        IFloorGenerator Generator = new RandomFloorGenerator(40, 10, 0, 8, 8, 8, 10, 8,8);
+        PerlinFloorGenerator generator = new PerlinFloorGenerator(0.6f, 0.65f, 0.02f, 20, 3, 0.03f, 32, 0.8f);
+
         HexMapGenerator MapGenerator = new HexMapGenerator(mapwidth, mapheight, grassPrefabs, oceanPrefabs,
             woodresourcePrefabs, diamondresourcePrefabs, obsidianresourcePrefabs, goldresourcePrefabs,
-            stoneresourcePrefabs, vineresourcePrefabs, lakePrefabs, Generator);
+            stoneresourcePrefabs, vineresourcePrefabs, lakePrefabs, generator);
         MapGenerator.GridGeneration(this.gameObject,seed);
     }
     

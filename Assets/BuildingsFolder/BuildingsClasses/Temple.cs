@@ -1,17 +1,22 @@
+using ForNetwork;
+using Networking.Common.Client;
+using OlympusDedicatedServer.Components.Attack;
 using UnityEngine;
 
 namespace BuildingsFolder.BuildingsClasses
 {
     public class Temple : Building
     {
-        public float AttackRange { get; private set; }
-        public int Damage { get; private set; }
-        public float AttackSpeed { get; private set; }
+        public readonly AttackType Type;
         
-        private bool _isAttacking;
-        
-        public Temple(string name, string description, GameObject gameObject, (int, int) position, uint ownerId, GameObject flag) : base(name, description, gameObject, position, ownerId, flag)
+        public Temple(string name, string description, GameObject gameObject, (int, int) position, uint ownerId, AttackType type, GameObject flag) : base(name, description, gameObject, position, ownerId,flag)
         {
+            Type = type;
+        }
+
+        public void SendAttack(int targetX, int targetY)
+        {
+            Network.Instance.Proxy.Connection.Send(new ClientAttackGameAction(targetX,targetY,Position.Item1,Position.Item2));
         }
     }
 }

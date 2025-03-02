@@ -3,6 +3,7 @@ using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
 using ForServer;
 using Networking.Common.Server;
+using OlympusDedicatedServer.Components.Attack;
 using PopUp;
 using UnityEngine;
 
@@ -84,7 +85,7 @@ namespace BuildingsFolder
         //___________________________________________________________//
         //___________________________________________________________//
         //___________________________________________________________//
-        
+    
 
         public void PlaceBuilding(int x, int z, int buildingType, uint ownerId)
         {
@@ -92,7 +93,6 @@ namespace BuildingsFolder
             {
                 DeleteBuilding(x, z);
             }
-            
             
             (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(x, z);
             Vector3 positionKey = new Vector3(xWorldCenterCo, 0, zWorldCenterCo);
@@ -192,8 +192,6 @@ namespace BuildingsFolder
                     break;
                     
             }
-
-            
             
         }
     
@@ -210,6 +208,17 @@ namespace BuildingsFolder
                 Debug.Log($"Bâtiment supprimé à la position ({x}, {z}).");
                 
             }
+        }
+        
+        public GameObject FakeDeleteBuilding(int x, int z)
+        {
+            if (!buildings.TryGetValue((x, z), out Building building)) 
+                return null;
+            GameObject flag = building.Flag;
+            buildings.Remove((x, z));
+            Destroy(flag);
+            Debug.Log($"Bâtiment fake supprimé à la position ({x}, {z}).");
+            return building.GameObject;
         }
     
         public Building CreateBuilding(int x, int z, int buildingType, Vector3 positionKey, uint ownerId,
@@ -238,15 +247,15 @@ namespace BuildingsFolder
                 case 8: // Extractor Vine
                     return new Extractor("Extractor Vine", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Vine, flag);
                 case 9: // Temple Gold
-                    return new Temple("Temple Gold", "", instantiate, (x, z), ownerId, flag);
+                    return new Temple("Temple Gold", "", instantiate, (x, z), ownerId,AttackType.Zeus, flag);
                 case 10: // Temple Diamond
-                    return new Temple("Temple Diamond", "", instantiate, (x, z), ownerId , flag);
+                    return new Temple("Temple Diamond", "", instantiate, (x, z), ownerId,AttackType.Athena, flag);
                 case 11: // Temple Obsidian
-                    return new Temple("Temple Obsidian", "", instantiate, (x, z), ownerId, flag);
+                    return new Temple("Temple Obsidian", "", instantiate, (x, z), ownerId,AttackType.Hades, flag);
                 case 12: // Temple Water
-                    return new Temple("Temple Water", "", instantiate, (x, z), ownerId ,flag);
+                    return new Temple("Temple Water", "", instantiate, (x, z), ownerId,AttackType.Poseidon, flag);
                 case 13: // Temple Vine
-                    return new Temple("Temple Vine", "", instantiate, (x, z), ownerId, flag);
+                    return new Temple("Temple Vine", "", instantiate, (x, z), ownerId,AttackType.Dionysos, flag);
                 default:
                     return null;
             }

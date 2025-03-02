@@ -27,7 +27,7 @@ public class RessourceManager : MonoBehaviour
         { ResourceType.Wood, new Ressource("Wood") },
         { ResourceType.Gold, new Ressource("Gold") },
         { ResourceType.Water, new Ressource("Water") },
-        { ResourceType.Vine, new Ressource("Wine") },
+        { ResourceType.Vine, new Ressource("Grapes") },
         { ResourceType.Obsidian, new Ressource("Obsidian") },
         { ResourceType.Diamond, new Ressource("Diamond") }
     };

@@ -121,9 +121,13 @@ namespace BuildingsFolder
             
             Building newBuilding = CreateBuilding(x, z, buildingType, positionKey, ownerId, flag);
             buildings[(x, z)] = newBuilding;
-            
 
-            switch (ServerManager.PlayerId)
+            ShowPopUpPlaceBuilding(newBuilding);
+        }
+
+        private void ShowPopUpPlaceBuilding(Building newBuilding)
+        {
+            switch (newBuilding.OwnerId)
             {
                 case 0:
                     if (newBuilding is Agora || newBuilding is Extractor)
@@ -178,11 +182,8 @@ namespace BuildingsFolder
                     {
                         PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name}.", 3);
                     }
-
                     break;
-                    
             }
-            
         }
     
         public void DeleteBuilding(int x, int z)

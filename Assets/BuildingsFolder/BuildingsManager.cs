@@ -127,66 +127,56 @@ namespace BuildingsFolder
             {
                 case 0:
                     if (newBuilding is Agora || newBuilding is Extractor)
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                        PopUpManagerBarRessources.Instance.ShowPopUp($"Athènes has placed an {newBuilding.Name}.", 3);
+                    { 
+                        PopUpManager.Instance.ShowPopUp($"Athènes has placed an {newBuilding.Name}.", 3);
                     }
                     else
                     {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                        PopUpManagerBarRessources.Instance.ShowPopUp($"Athènes has placed a {newBuilding.Name}.", 3);
+                        PopUpManager.Instance.ShowPopUp($"Athènes has placed a {newBuilding.Name}.", 3);
                     }
 
                     break;
                 case 1:
                     if (newBuilding is Agora || newBuilding is Extractor)
                     {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                        PopUpManagerBarRessources.Instance.ShowPopUp($"Sparte has placed an {newBuilding.Name}.", 3);
+                        PopUpManager.Instance.ShowPopUp($"Sparte has placed an {newBuilding.Name}.", 3);
                     }
                     else
                     {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                        PopUpManagerBarRessources.Instance.ShowPopUp($"Sparte has placed a {newBuilding.Name}.", 3);
+                        PopUpManager.Instance.ShowPopUp($"Sparte has placed a {newBuilding.Name}.", 3);
                     }
 
                     break;
                 case 2:
                     if (newBuilding is Agora || newBuilding is Extractor)
                     {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                        PopUpManagerBarRessources.Instance.ShowPopUp($"Thèbes has placed an {newBuilding.Name}.", 3);
+                        PopUpManager.Instance.ShowPopUp($"Thèbes has placed an {newBuilding.Name}.", 3);
                     }
                     else
                     {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                        PopUpManagerBarRessources.Instance.ShowPopUp($"Thèbes has placed a {newBuilding.Name}.", 3);
+                        PopUpManager.Instance.ShowPopUp($"Thèbes has placed a {newBuilding.Name}.", 3);
                     }
 
                     break;
                 case 3:
                     if (newBuilding is Agora || newBuilding is Extractor)
                     {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                        PopUpManagerBarRessources.Instance.ShowPopUp($"Corinthe has placed an {newBuilding.Name}.", 3);
+                        PopUpManager.Instance.ShowPopUp($"Corinthe has placed an {newBuilding.Name}.", 3);
                     }
                     else
                     {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                        PopUpManagerBarRessources.Instance.ShowPopUp($"Corinthe has placed a {newBuilding.Name}.", 3);
+                        PopUpManager.Instance.ShowPopUp($"Corinthe has placed a {newBuilding.Name}.", 3);
                     }
 
                     break;
                 default:
                     if (newBuilding is Agora || newBuilding is Extractor)
                     {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                        PopUpManagerBarRessources.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name}.", 3);
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name}.", 3);
                     }
                     else
                     {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name} at the {x} and {z} coordinates.", 3);
-                        PopUpManagerBarRessources.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name}.", 3);
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name}.", 3);
                     }
 
                     break;

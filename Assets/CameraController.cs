@@ -152,6 +152,7 @@ public class CameraController : MonoBehaviour
         TargetPosition.z.targetValue += z;
         
         UpdateSmoothDynamics();
+        ClampInputs();
 
         float horizontalAngleCurrent = this.HorizontalAngle.currentValue;
         float verticalAngleCurrent = this.VerticalAngle.currentValue;
@@ -159,7 +160,6 @@ public class CameraController : MonoBehaviour
         
         Vector3 target = TargetPosition.Get();
         
-        ClampInputs();
         SetCameraPosition(horizontalAngleCurrent, verticalAngleCurrent, zoom, target);
         SetCameraRotation(horizontalAngleCurrent, verticalAngleCurrent);
     }

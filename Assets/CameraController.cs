@@ -106,7 +106,9 @@ public class CameraController : MonoBehaviour
     private const float MaxAngle = (float)Math.PI;
     private const float MinimumZoom = 1;
     private const float MaxZoom = 100;
-  
+
+    private bool below = false;
+    
     
     public void Start()
     {
@@ -118,8 +120,13 @@ public class CameraController : MonoBehaviour
         Zoom.targetValue += -Input.mouseScrollDelta.y * Time.deltaTime * GetZoomSensitivity;
         if (Input.GetMouseButton(1))
         {
-            HorizontalAngle.targetValue += Input.GetAxis("Mouse X") * Time.deltaTime * HorizontalSensitivity;
+            HorizontalAngle.targetValue += (below ? 1 : -1) * Input.GetAxis("Mouse X") * Time.deltaTime * HorizontalSensitivity;
             VerticalAngle.targetValue -= Input.GetAxis("Mouse Y") * Time.deltaTime * VerticalSensitivity;
+        }
+        else
+        {
+            Vector3 pos = Input.mousePosition;
+            below = pos.y < Screen.Height/2
         }
         
         bool forward = Input.GetKey(KeyCode.W);

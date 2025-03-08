@@ -234,12 +234,19 @@ public class VectorSmoothDynamics
     public SmoothFloat x = new SmoothFloat(20, 0);
     public SmoothFloat z = new SmoothFloat(20, 0);
 
-    public void Set(Vector3 vector)
+    public void SetHard(Vector3 vector)
+    {
+        x.targetValue = x.currentValue = vector.x;
+        z.targetValue = z.currentValue = vector.z;
+    }
+
+    public void SetSmooth(Vector3 vector)
     {
         x.targetValue = vector.x;
         z.targetValue = vector.z;
     }
 
+    
     public void Update(float deltaTime)
     {
         x.Update(deltaTime);

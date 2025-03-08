@@ -74,13 +74,13 @@ namespace BuildingsFolder
                     if (action.BuildingId == 0 && action.OwnerId == ServerManager.PlayerId)
                     {
                         (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(action.X, action.Y);
+                        //_mainCamera.transform.position = new Vector3(xWorldCenterCo, _mainCamera.transform.position.y, zWorldCenterCo);
                         
-                        Vector3 newCameraPosition = new Vector3(xWorldCenterCo, 25, zWorldCenterCo);
-                        // Appliquer une rotation de 30° autour de l'axe X pour incliner la caméra vers le bas
-                        Quaternion rotation = Quaternion.Euler(20f, 0f, 0f);
-                        _mainCamera.GetComponent<CameraController>().TargetPosition.Set(newCameraPosition);
-                        _mainCamera.transform.rotation = rotation;
-                        
+                        CameraController controller = _mainCamera.GetComponent<CameraController>().TargetPosition;
+                        controller.SetHard(new Vector3(xWorldCenterCo, 0, zWorldCenterCo));
+
+                        controller.Zoom.targetValue = 20;
+                        controller.Zoom.currentValue = 0;
                     }
                     PlaceBuilding(action.X, action.Y, action.BuildingId, action.OwnerId);
                 });

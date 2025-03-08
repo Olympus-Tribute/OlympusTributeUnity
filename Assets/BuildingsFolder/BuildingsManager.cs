@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
@@ -14,7 +15,7 @@ namespace BuildingsFolder
         // Dictionnaire pour stocker les bâtiments (clé = (int, int), valeur = Building)
         public Dictionary<(int, int), Building> buildings = new Dictionary<(int, int), Building>();
         
-        
+        private Camera _mainCamera;
         // ____________________________________________________________________//
         // _______Références aux GameObjects des bâtiments_____________________//
         // ____________________________________________________________________//
@@ -69,7 +70,14 @@ namespace BuildingsFolder
                 (connection, action) =>
                 {
                     Debug.Log("[CLIENT]     : Receive 'ServerPlaceBuildingGameAction'");
-                    
+
+                    if (action.BuildingId == 0 && action.OwnerId == ServerManager.PlayerId)
+                    {
+                        (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(action.X, action.Y);
+                        //_mainCamera.transform.position = new Vector3(xWorldCenterCo, _mainCamera.transform.position.y, zWorldCenterCo);
+                        
+                        _mainCamera.GetComponent<CameraController>().TargetPosition.Set(new Vector3(xWorldCenterCo, 0, zWorldCenterCo));
+                    }
                     PlaceBuilding(action.X, action.Y, action.BuildingId, action.OwnerId);
                 });
             
@@ -85,7 +93,11 @@ namespace BuildingsFolder
         //___________________________________________________________//
         //___________________________________________________________//
         //___________________________________________________________//
-    
+
+        public void Start()
+        {
+            _mainCamera = Camera.main;
+        }
 
         public void PlaceBuilding(int x, int z, int buildingType, uint ownerId)
         {

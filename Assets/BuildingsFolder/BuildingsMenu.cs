@@ -1,6 +1,7 @@
 using ForNetwork;
+using ForServer;
 using Networking.Common.Client;
-using PopUp;
+using OlympusDedicatedServer.Components.WorldComp;
 using UnityEngine;
 
 namespace BuildingsFolder
@@ -22,7 +23,8 @@ namespace BuildingsFolder
             _buildingsManager = FindObjectOfType<BuildingsManager>();
             if (_buildingsManager == null)
             {
-                Debug.LogError("BuildingsManager n'a pas été trouvé dans la scène !");
+                Debug.LogError("BuildingsManager n'a pas été trouvé dans la scène ! Désactivation du script.");
+                enabled = false;
                 return;
             }
         }
@@ -47,6 +49,7 @@ namespace BuildingsFolder
             if (_selectedBuildingPrefab != null)
             {
                 FollowMouse();
+                UpdateBuildingPreviewColor();
             }
 
             // Clic gauche pour placer définitivement le bâtiment
@@ -65,9 +68,7 @@ namespace BuildingsFolder
     
         public void SelectBuilding(int buildingType)
         {
-            menuUISelectTypeOfBuilding.SetActive(false);
-            menuUISelectExtractor.SetActive(false);
-            menuUISelectTemple.SetActive(false);
+            QuitMenu();
             
             // Réinitialise le bâtiment "fantôme" si un bâtiment est déjà en cours
             if (_ghostBuilding != null)
@@ -82,7 +83,6 @@ namespace BuildingsFolder
             {
                 // Crée un bâtiment "fantôme" pour le placement
                 _ghostBuilding = Instantiate(_selectedBuildingPrefab, Vector3.zero, Quaternion.identity);
-                //MakePreviewTransparent();  // Rendre le bâtiment "fantôme" transparent
             }
         }
         
@@ -110,33 +110,23 @@ namespace BuildingsFolder
         private void FollowMouse()
         {
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 (float x, float y, float z) = StaticGridTools.WorldCoToWorldCenterCo(hit.point.x, hit.point.y, hit.point.z);
-        
-                Vector3 snappedPosition = new Vector3(x, y, z);
-                
-                _ghostBuilding.transform.position = snappedPosition;
-            
-                //__________WithoutGrid_________
-                //_ghostBuilding.transform.position = hit.point
+                _ghostBuilding.transform.position = new Vector3(x, y, z);
             }
         }
-
 
         // Fonction pour placer définitivement le bâtiment à la position de la souris
         private void PlaceBuilding()
         {
-            if (_ghostBuilding != null)
+            if (_ghostBuilding != null && CanPlaceBuilding(_ghostBuilding.transform.position))
             {
                 Vector3 position = _ghostBuilding.transform.position;
 
                 //___________________________________________//
                 //____________Pour le Multi__________________//
                 //___________________________________________//
-                
                 
                 (int posX, int posZ) = StaticGridTools.WorldCenterCoToMapIndex(position.x, position.z);
                 var action = new ClientPlaceBuildingGameAction(posX, posZ, (ushort) _selectedBuildingType);
@@ -149,14 +139,35 @@ namespace BuildingsFolder
                 Destroy(_ghostBuilding); // Détruit le bâtiment "fantôme"
                 _selectedBuildingPrefab = null;  // Réinitialise la sélection
             }
+            else
+            {
+                Debug.LogWarning("Impossible de placer le bâtiment ici !");
+            }
         }
 
-        // Applique une transparence au bâtiment "fantôme"
-        private void MakePreviewTransparent()
+        private bool CanPlaceBuilding(Vector3 position)
+        {
+            (int posX, int posZ) = StaticGridTools.WorldCenterCoToMapIndex(position.x, position.z);
+            return posX >= 0 && posZ >= 0 && posX < ServerManager.MapHeight && posZ < ServerManager.MapWidth;
+        }
+
+        private void UpdateBuildingPreviewColor()
+        {
+            if (CanPlaceBuilding(_ghostBuilding.transform.position))
+            {
+                MakePreviewTransparent(new Color(0, 1, 0, 0.5f)); // Vert
+            }
+            else
+            {
+                MakePreviewTransparent(new Color(1, 0, 0, 0.5f)); // Rouge
+            }
+        }
+
+        private void MakePreviewTransparent(Color color)
         {
             foreach (var renderer in _ghostBuilding.GetComponentsInChildren<Renderer>())
             {
-                renderer.material.color = new Color(1, 1, 1, 0.5f); // Rend le bâtiment semi-transparent
+                renderer.material.color = color;
             }
         }
     }

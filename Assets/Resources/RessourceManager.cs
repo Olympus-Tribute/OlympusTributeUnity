@@ -91,7 +91,7 @@ public class RessourceManager : MonoBehaviour
     //_________________________________//
     //_________________________________//
     
-    public void SetResource(ResourceType nom, uint valeur)
+    public void SetResource(ResourceType nom, int valeur)
     {
         if (resources.ContainsKey(nom))
         {

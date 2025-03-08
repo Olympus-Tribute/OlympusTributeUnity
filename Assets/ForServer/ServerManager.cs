@@ -39,9 +39,6 @@ namespace ForServer
         
         public static uint PlayerId { get; set; }
         
-        //public static (int, int) AgoraPlayerPosition { get; set; }
-        public static (int, int) AgoraPlayerPosition = (10, 10);
-        
         
         public void Awake()
         {

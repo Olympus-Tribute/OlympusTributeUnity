@@ -94,19 +94,23 @@ public class CameraController : MonoBehaviour
     private Camera _mainCamera;
     
     public readonly VectorSmoothDynamics TargetPosition = new VectorSmoothDynamics();
-    protected readonly SmoothFloat Zoom = new SmoothFloat(20, 20);
-    protected readonly SmoothFloat HorizontalAngle = new SmoothFloat(20, 0);
-    protected readonly SmoothFloat VerticalAngle = new SmoothFloat(20, Math.PI/2f);
+    public readonly SmoothFloat Zoom = new SmoothFloat(5, 20);
+    protected readonly SmoothFloat HorizontalAngle = new SmoothFloat(5, 0);
+    public readonly SmoothFloat VerticalAngle = new SmoothFloat(8, (float)Math.PI/2);
     
-    private const float GetZoomSensitivity = 30;
-    private const float HorizontalSensitivity = 10;
-    private const float VerticalSensitivity = 10;
+    [SerializeField] private const float GetZoomSensitivity = 500;
+    [SerializeField] private const float HorizontalSensitivity = 3;
+    [SerializeField] private const float VerticalSensitivity = 5;
+    [SerializeField] private const float Speed = 0.8f;
     
-    private const float MinAngle = -(float)Math.PI;
-    private const float MaxAngle = (float)Math.PI;
-    private const float MinimumZoom = 1;
-    private const float MaxZoom = 100;
+    [SerializeField] private const float MinAngle = (float)Math.PI/12;
+    [SerializeField] private const float MaxAngle = (float)Math.PI/2;
+    [SerializeField] private const float MinimumZoom = 10;
+    [SerializeField] private const float MaxZoom = 300;
 
+    [SerializeField] private const float DragSpeed = 1.8f;
+
+    
     private bool below = false;
     
     
@@ -126,17 +130,25 @@ public class CameraController : MonoBehaviour
         else
         {
             Vector3 pos = Input.mousePosition;
-            below = pos.y < Screen.Height/2
+            below = pos.y < Screen.height/2f;
         }
+
+        float zoomCurrent = Zoom.currentValue;
         
         bool forward = Input.GetKey(KeyCode.W);
         bool backward = Input.GetKey(KeyCode.S);
         bool left = Input.GetKey(KeyCode.A);
         bool right = Input.GetKey(KeyCode.D);
 
-        float moveDirY =  forward == backward ? 0 : forward ? 1 : -1;
-        float moveDirX = left==right ? 0 : right ? -1 : 1;
+        float moveDirY = (forward == backward ? 0 : forward ? 1 : -1)*zoomCurrent*Speed;
+        float moveDirX = (left == right ? 0 : right ? -1 : 1)*zoomCurrent*Speed;
 
+        if (Input.GetMouseButton(0))
+        {
+            moveDirY -= Input.GetAxis("Mouse Y") * DragSpeed *zoomCurrent;
+            moveDirX += Input.GetAxis("Mouse X") * DragSpeed *zoomCurrent;
+        }
+        
 
         float horizontalAngle = this.HorizontalAngle.currentValue;
         float cameraForwardX = (float) Math.Cos(horizontalAngle);
@@ -148,8 +160,8 @@ public class CameraController : MonoBehaviour
         float x = dirX * cameraForwardY + dirY * cameraForwardX;
         float z = dirY * cameraForwardY - dirX * cameraForwardX;
 
-        TargetPosition.x.targetValue += x;
-        TargetPosition.z.targetValue += z;
+        TargetPosition.x.targetValue += x * Time.deltaTime;
+        TargetPosition.z.targetValue += z * Time.deltaTime;
         
         UpdateSmoothDynamics();
         ClampInputs();
@@ -164,7 +176,8 @@ public class CameraController : MonoBehaviour
         SetCameraRotation(horizontalAngleCurrent, verticalAngleCurrent);
     }
 
-    
+
+
     private void SetCameraPosition(float horizontalAngleCurrent, float verticalAngleCurrent, float zoom, Vector3 target) {
         Vector3 crossed = GetAheadVector(horizontalAngleCurrent, verticalAngleCurrent);
         Vector3 ahead = crossed * (-zoom *0.4f);
@@ -197,26 +210,26 @@ public class CameraController : MonoBehaviour
     
     private void ClampInputs() {
         
-        float verticalCurrent = VerticalAngle.currentValue;
+        float verticalCurrent = VerticalAngle.targetValue;
 
         if (verticalCurrent > MaxAngle)
         {
-            VerticalAngle.currentValue = MaxAngle;
+            VerticalAngle.targetValue = MaxAngle;
         }
 
         if (verticalCurrent< MinAngle)
-            VerticalAngle.currentValue = MinAngle;
+            VerticalAngle.targetValue = MinAngle;
 
-        float zoomCurrent = Zoom.currentValue;
+        float zoomCurrent = Zoom.targetValue;
 
         if (zoomCurrent < MinimumZoom)
         {
-            Zoom.currentValue = MinimumZoom;
+            Zoom.targetValue = MinimumZoom;
         }
             
         if (zoomCurrent > MaxZoom)
         {
-            Zoom.currentValue = MaxZoom;
+            Zoom.targetValue = MaxZoom;
         }
     }
 
@@ -231,8 +244,8 @@ public class CameraController : MonoBehaviour
 
 public class VectorSmoothDynamics
 {
-    public SmoothFloat x = new SmoothFloat(20, 0);
-    public SmoothFloat z = new SmoothFloat(20, 0);
+    public SmoothFloat x = new SmoothFloat(5, 0);
+    public SmoothFloat z = new SmoothFloat(5, 0);
 
     public void SetHard(Vector3 vector)
     {
@@ -255,7 +268,7 @@ public class VectorSmoothDynamics
     
     public Vector3 Get()
     {
-        return new Vector3(x.CurrentValue, 3, z.CurrentValue);
+        return new Vector3(x.currentValue, 3, z.currentValue);
     }
 }
 

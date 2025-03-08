@@ -153,6 +153,7 @@ namespace BuildingsFolder
 
         private void UpdateBuildingPreviewColor()
         {
+            
             if (CanPlaceBuilding(_ghostBuilding.transform.position))
             {
                 MakePreviewTransparent(new Color(0, 1, 0, 0.5f)); // Vert
@@ -161,13 +162,18 @@ namespace BuildingsFolder
             {
                 MakePreviewTransparent(new Color(1, 0, 0, 0.5f)); // Rouge
             }
+            
         }
 
         private void MakePreviewTransparent(Color color)
         {
             foreach (var renderer in _ghostBuilding.GetComponentsInChildren<Renderer>())
             {
-                renderer.material.color = color;
+                foreach (var rendererMaterial in renderer.materials)
+                {
+                    rendererMaterial.color = color;
+                }
+
             }
         }
     }

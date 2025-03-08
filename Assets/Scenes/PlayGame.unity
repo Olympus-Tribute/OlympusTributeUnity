@@ -1086,6 +1086,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 761466235328992517, guid: 6b29c2e8eefe1e4499140ae67d6ca920, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1510490568214956454, guid: 6b29c2e8eefe1e4499140ae67d6ca920, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -1141,13 +1145,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1510490568214956454, guid: 6b29c2e8eefe1e4499140ae67d6ca920, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2091306374}
   m_SourcePrefab: {fileID: 100100000, guid: 6b29c2e8eefe1e4499140ae67d6ca920, type: 3}
 --- !u!20 &2091306372 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2336349795320579728, guid: 6b29c2e8eefe1e4499140ae67d6ca920, type: 3}
   m_PrefabInstance: {fileID: 2091306371}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2091306373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1510490568214956454, guid: 6b29c2e8eefe1e4499140ae67d6ca920, type: 3}
+  m_PrefabInstance: {fileID: 2091306371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2091306374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091306373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
 --- !u!1001 &2131668168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1256,6 +1285,14 @@ PrefabInstance:
     - target: {fileID: 2514376247224571742, guid: b325c8db6eec97d4a8a17b1d99439761, type: 3}
       propertyPath: m_Name
       value: Directional Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641016301896463880, guid: b325c8db6eec97d4a8a17b1d99439761, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4641016301896463880, guid: b325c8db6eec97d4a8a17b1d99439761, type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

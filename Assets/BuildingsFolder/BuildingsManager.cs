@@ -76,10 +76,12 @@ namespace BuildingsFolder
                         (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(action.X, action.Y);
                         //_mainCamera.transform.position = new Vector3(xWorldCenterCo, _mainCamera.transform.position.y, zWorldCenterCo);
                         
-                        CameraController controller = _mainCamera.GetComponent<CameraController>().TargetPosition;
-                        controller.SetHard(new Vector3(xWorldCenterCo, 0, zWorldCenterCo));
+                        CameraController controller = _mainCamera.GetComponent<CameraController>();
+                        controller.TargetPosition.SetHard(new Vector3(xWorldCenterCo, 0, zWorldCenterCo));
 
-                        controller.Zoom.targetValue = 20;
+                        controller.Zoom.targetValue = 100;
+                        controller.VerticalAngle.targetValue = (float)(Math.PI/4f);
+                        controller.VerticalAngle.currentValue = (float)(Math.PI/2f);
                         controller.Zoom.currentValue = 0;
                     }
                     PlaceBuilding(action.X, action.Y, action.BuildingId, action.OwnerId);

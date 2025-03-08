@@ -94,9 +94,9 @@ public class CameraController : MonoBehaviour
     private Camera _mainCamera;
     
     public readonly VectorSmoothDynamics TargetPosition = new VectorSmoothDynamics();
-    protected readonly SmoothFloat Zoom = new SmoothFloat(20, 0);
+    protected readonly SmoothFloat Zoom = new SmoothFloat(20, 20);
     protected readonly SmoothFloat HorizontalAngle = new SmoothFloat(20, 0);
-    protected readonly SmoothFloat VerticalAngle = new SmoothFloat(20, 0);
+    protected readonly SmoothFloat VerticalAngle = new SmoothFloat(20, Math.PI/2f);
     
     private const float GetZoomSensitivity = 30;
     private const float HorizontalSensitivity = 10;
@@ -150,7 +150,7 @@ public class CameraController : MonoBehaviour
         float verticalAngleCurrent = this.VerticalAngle.currentValue;
         float zoom = this.Zoom.currentValue;
         
-        Vector3 target = new Vector3(TargetPosition.x.currentValue, TargetPosition.y.currentValue, TargetPosition.z.currentValue);
+        Vector3 target = TargetPosition.Get();
         
         ClampInputs();
         SetCameraPosition(horizontalAngleCurrent, verticalAngleCurrent, zoom, target);
@@ -225,21 +225,23 @@ public class CameraController : MonoBehaviour
 public class VectorSmoothDynamics
 {
     public SmoothFloat x = new SmoothFloat(20, 0);
-    public SmoothFloat y = new SmoothFloat(20, 0);
     public SmoothFloat z = new SmoothFloat(20, 0);
 
     public void Set(Vector3 vector)
     {
         x.targetValue = vector.x;
-        y.targetValue = vector.y;
         z.targetValue = vector.z;
     }
 
     public void Update(float deltaTime)
     {
         x.Update(deltaTime);
-        y.Update(deltaTime);
         z.Update(deltaTime);
+    }
+    
+    public Vector3 Get()
+    {
+        return new Vector3(x.CurrentValue, 3, z.CurrentValue);
     }
 }
 

@@ -1,6 +1,7 @@
 using System;
 using Grid;
 using UnityEngine;
+using Random = System.Random;
 
 
 public static class StaticGridTools
@@ -93,6 +94,39 @@ public static class StaticGridTools
     {
         (float centerxPos, float centeryPos, float centerzPos) = WorldCoToWorldCenterCo(xPos, yPos, zPos);
         return WorldCenterCoToMapIndex(centerxPos, centeryPos, centerzPos);
+    }
+
+    /// <summary>
+    /// Prend les coordonnées x,y de la tile ainsi que la seed et la width de la map et renvoie l'orientation de la taille en degré
+    /// </summary>
+    public static int MapIndexToRotation(int x, int y, int seed, int width)
+    {
+        Random random = new Random((int)(seed + x + y*width));
+            
+        int randomvalue = random.Next(0, 6);
+        switch (randomvalue)
+        {
+            case 0:
+                return 0;
+                break;
+            case 1:
+                return 60;
+                break;
+            case 2:
+                return 120;
+                break;
+            case 3:
+                return 180;
+                break;
+            case 4:
+                return 240;
+                break;
+            case 5:
+                return 300;
+                break;
+            default:
+                throw new ArgumentException("random bug");
+        }
     }
 
 }

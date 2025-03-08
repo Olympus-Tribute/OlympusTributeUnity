@@ -99,7 +99,7 @@ namespace Grid
                         xPos += xOffset/2;
                     }
 
-                    CreateHexTile(parent,new Vector3((float)xPos, 0, (float)zPos),(this[z,x]), seed);
+                    CreateHexTile(parent,new Vector3((float)xPos, 0, (float)zPos),(this[x,z]), seed);
                 }
             }
         }

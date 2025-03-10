@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using OlympusDedicatedServer.Components.Resources;
+using Resources;
 using UnityEngine.Rendering;
 
 namespace BuildingsFolder

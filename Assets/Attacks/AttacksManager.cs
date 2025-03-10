@@ -2,25 +2,34 @@ using Attacks.Animation;
 using BuildingsFolder;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
-using JetBrains.Annotations;
 using Networking.Common.Server;
 using OlympusDedicatedServer.Components.Attack;
+using PopUp;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Attacks
 {
     public class AttacksManager : MonoBehaviour
     {
-        [SerializeField] private Camera _mainCamera; 
         private BuildingsManager _buildingsManager;
-        [CanBeNull] private Temple _temple;
-        [SerializeField] private GameObject _poseidonAnimation;
-        [SerializeField] private GameObject _hadesAnimation;
-
-
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        private Temple _temple;
+        private GameObject _poseidonAnimation;
+        private GameObject _hadesAnimation;
+        
+        public GameObject menuUIAttack;
+        public TMP_Text TitleInfoAttack;
+        public TMP_Text InfoAttack;
     
+        // Référence à l'image dans le panel
+        //public Image panelImage;
+
+        // Références aux images de remplacement
+        //public Sprite imageAttackPoseidon;
+        //public Sprite imageAttackHades;
+ 
         private void Awake()
         {
             _buildingsManager = FindObjectOfType<BuildingsManager>();
@@ -29,6 +38,10 @@ namespace Attacks
                 Debug.LogError("BuildingsManager was not found in the scene !");
             }
 
+            //___________________________________________________________//
+            //_________________________For Multi_________________________//
+            //___________________________________________________________//
+            
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackGameAction>((proxy, action) =>
             {
                 (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
@@ -38,6 +51,7 @@ namespace Attacks
                     case (AttackType.Poseidon):
                         Instantiate(_poseidonAnimation, new Vector3(x,0,z),quaternion.identity);
                         break;
+                    
                     case (AttackType.Hades):
                         var fakeDeleteBuilding = _buildingsManager.FakeDeleteBuilding(action.TargetX, action.TargetY);
                         var instantiate = Instantiate(_hadesAnimation, new Vector3(x,0,z),quaternion.identity);
@@ -45,46 +59,81 @@ namespace Attacks
                         break;
                 }
             });
+            
+            //___________________________________________________________//
+            //___________________________________________________________//
+            //___________________________________________________________//
+        }
+
+
+        public void Start()
+        {
+            _temple = null;
+            menuUIAttack.SetActive(false);
+            InfoAttack = null;
         }
         
-
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("FollowMouse est appellé");
-                FollowMouse();
+                (int x, int z) = MousePositionTracker.Instance.GetMouseMapIndexCo();
+                Attack(x, z);
             }
-            //TODO si placement ne pas rentrer dans follow mouse et si on rentre dans placement stop la follow mouse
         }
-    
-        private void FollowMouse()
+
+        private void Attack(int x, int y)
         {
-            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (_temple is null)
             {
-                (int x, int y) = StaticGridTools.WorldCoToMapIndex(hit.point.x, hit.point.y, hit.point.z);
-
-                if (_temple is null)
+                if (_buildingsManager.buildings.TryGetValue((x,y),out var targetbBuilding) &&
+                    targetbBuilding is Temple targetTemple)
                 {
-                    if (_buildingsManager.buildings.TryGetValue((x,y),out var targetbBuilding) &&
-                        targetbBuilding is Temple targetTemple)
-                    {
-                        Debug.Log("Un temple a été target");
-                        _temple = targetTemple;
-                    }
+                    menuUIAttack.SetActive(true);
+                    //Un temple a été target
+                    _temple = targetTemple;
+                    TitleInfoAttack.text = $"Attack : {targetTemple.Name}";
+                    InfoAttack.text = $"Description : {targetTemple.Description}";
+                    //SelectImageAttack();
                 }
-                else
-                {
-                    Debug.Log("Une attaque a été envoyé");
-                    _temple.SendAttack(x,y);
-                    _temple = null;
-                }
-            
+            }
+            else
+            {
+                Debug.Log("Une attaque a été envoyé");
+                _temple.SendAttack(x,y);
+                _temple = null;
+                
             }
         }
+
+        public void ButtonAttack()
+        {
+            menuUIAttack.SetActive(false);
+            PopUpManager.Instance.ShowPopUp("Select a building to attack", 2);
+            InfoAttack.text = null;
+        }
+        
+        public void ButtonQuit()
+        {
+            menuUIAttack.SetActive(false);
+            _temple = null;
+            InfoAttack.text = null;
+            TitleInfoAttack.text = null;
+        }
+        
+        /*
+        public void SelectImageAttack()
+        {
+            switch (_temple.Type)
+            {
+                case AttackType.Poseidon:
+                    panelImage.sprite = imageAttackPoseidon;
+                    break;
+                case AttackType.Hades:
+                    panelImage.sprite = imageAttackHades;
+                    break;
+            }
+        }
+        */
     }
 }

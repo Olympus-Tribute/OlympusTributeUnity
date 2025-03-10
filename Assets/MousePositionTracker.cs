@@ -3,7 +3,22 @@ using UnityEngine;
 
 public class MousePositionTracker : MonoBehaviour
 {
+    public static MousePositionTracker Instance {get; private set;}
+    
     private Camera _mainCamera;
+    
+    public void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Optionnel, pour garder l'instance entre les scènes
+        }
+        else
+        {
+            Destroy(gameObject); // Évite les doublons
+        }
+    }
     
     public void Start()
     {
@@ -12,37 +27,43 @@ public class MousePositionTracker : MonoBehaviour
 
     void Update()
     {
-        /*
-            if (Input.GetMouseButtonDown(0))
+        // Exemple pour obtenir la position de la souris au clic
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3? worldPosition = GetMouseWorldPosition();
+            if (worldPosition.HasValue)
             {
-                Vector3? worldPosition = GetMouseWorldPosition();
-                if (worldPosition.HasValue)
-                {
-                    Vector3 pos = worldPosition.Value;
-                    Debug.Log($"Mouse clicked at world position: X={pos.x}, Y={pos.y}, Z={pos.z}");
-                }
+                Vector3 pos = worldPosition.Value;
+                Debug.Log($"Mouse clicked at world position: X={pos.x}, Y={pos.y}, Z={pos.z}");
             }
-        */
+        }
     }
 
-    public Vector3? GetMouseWorldPositionCo()
+    public Vector3? GetMouseWorldPosition()
     {
         Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             return hit.point; // Retourne la position d'impact
         }
-        return null; // Retourne null si aucun objet touché
+        return null; // Retourne null si aucun objet n'est touché
     }
 
-    public (int, int)? GetMouseMapIndexCo()
+    
+    // Obtient les indices de la carte correspondant à la position de la souris
+    public (int, int) GetMouseMapIndexCo()
     {
-        Vector3? mouseWorldPositionCo = GetMouseWorldPositionCo();
-        if (mouseWorldPositionCo is not null)
+        Vector3? mouseWorldPositionCo = GetMouseWorldPosition();
+
+        // Vérifie si la position est valide
+        if (mouseWorldPositionCo.HasValue)
         {
-            (float x, float y, float z) = StaticGridTools.WorldCoToWorldCenterCo(mouseWorldPositionCo.Value.x, mouseWorldPositionCo.Value.y, mouseWorldPositionCo.Value.z);
-            return ((int, int))(x, z);
+            Vector3 worldPos = mouseWorldPositionCo.Value;
+            (float x, float y, float z) = StaticGridTools.WorldCoToWorldCenterCo(worldPos.x, worldPos.y, worldPos.z);
+            return ((int)x, (int)z);
         }
-        return null;
+
+        return (-1, -1); // Retourne une position invalide
     }
+
 }

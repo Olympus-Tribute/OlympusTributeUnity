@@ -15,6 +15,7 @@ namespace BuildingsFolder
         // Dictionnaire pour stocker les bâtiments (clé = (int, int), valeur = Building)
         public Dictionary<(int, int), Building> buildings = new Dictionary<(int, int), Building>();
         
+        private Camera _mainCamera;
         // ____________________________________________________________________//
         // _______Références aux GameObjects des bâtiments_____________________//
         // ____________________________________________________________________//
@@ -73,22 +74,15 @@ namespace BuildingsFolder
                     if (action.BuildingId == 0 && action.OwnerId == ServerManager.PlayerId)
                     {
                         (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(action.X, action.Y);
+                        //_mainCamera.transform.position = new Vector3(xWorldCenterCo, _mainCamera.transform.position.y, zWorldCenterCo);
                         
-                        //_____________________________________//
-                        //______________Camera_________________//
-                        //_____________________________________//
-                        
-                        CameraController controller = Camera.main!.GetComponent<CameraController>();
+                        CameraController controller = _mainCamera.GetComponent<CameraController>();
                         controller.TargetPosition.SetHard(new Vector3(xWorldCenterCo, 0, zWorldCenterCo));
 
                         controller.Zoom.targetValue = 100;
                         controller.VerticalAngle.targetValue = (float)(Math.PI/4f);
                         controller.VerticalAngle.currentValue = (float)(Math.PI/2f);
                         controller.Zoom.currentValue = 0;
-                        
-                        //_____________________________________//
-                        //_____________________________________//
-                        //_____________________________________//
                     }
                     PlaceBuilding(action.X, action.Y, action.BuildingId, action.OwnerId);
                 });
@@ -106,86 +100,21 @@ namespace BuildingsFolder
         //___________________________________________________________//
         //___________________________________________________________//
 
-        public void PlaceBuilding(int xMapIndex, int zMapIndex, int buildingType, uint ownerId)
+        public void Start()
         {
-            if (buildings.ContainsKey((xMapIndex, zMapIndex)))
-            {
-                DeleteBuilding(xMapIndex, zMapIndex);
-            }
-            
-            GameObject flag = InstantiateFlag(xMapIndex, zMapIndex, ownerId);
-            Building newBuilding = InstantiateBuilding(xMapIndex, zMapIndex, buildingType, ownerId, flag);
-            
-            buildings[(xMapIndex, zMapIndex)] = newBuilding;
-
-            ShowPopUpPlaceBuilding(newBuilding);
+            _mainCamera = Camera.main;
         }
 
-        private void ShowPopUpPlaceBuilding(Building newBuilding)
+        public void PlaceBuilding(int x, int z, int buildingType, uint ownerId)
         {
-            switch (newBuilding.OwnerId)
+            if (buildings.ContainsKey((x, z)))
             {
-                case 0:
-                    if (newBuilding is Extractor)
-                    { 
-                        PopUpManager.Instance.ShowPopUp($"Athènes has placed an {newBuilding.Name}.", 3);
-                    }
-                    else
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Athènes has placed a {newBuilding.Name}.", 3);
-                    }
-
-                    break;
-                case 1:
-                    if (newBuilding is Extractor)
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Sparte has placed an {newBuilding.Name}.", 3);
-                    }
-                    else
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Sparte has placed a {newBuilding.Name}.", 3);
-                    }
-
-                    break;
-                case 2:
-                    if (newBuilding is Extractor)
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Thèbes has placed an {newBuilding.Name}.", 3);
-                    }
-                    else
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Thèbes has placed a {newBuilding.Name}.", 3);
-                    }
-
-                    break;
-                case 3:
-                    if (newBuilding is Extractor)
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Corinthe has placed an {newBuilding.Name}.", 3);
-                    }
-                    else
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Corinthe has placed a {newBuilding.Name}.", 3);
-                    }
-
-                    break;
-                default:
-                    if (newBuilding is Extractor)
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name}.", 3);
-                    }
-                    else
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name}.", 3);
-                    }
-                    break;
+                DeleteBuilding(x, z);
             }
-        }
-
-        public GameObject InstantiateFlag(int xMapIndex, int zMapIndex, uint ownerId)
-        {
-            (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(xMapIndex, zMapIndex);
             
+            (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(x, z);
+            Vector3 positionKey = new Vector3(xWorldCenterCo, 0, zWorldCenterCo);
+
             GameObject flag = null;
             if (ownerId == 0)
             {
@@ -207,7 +136,72 @@ namespace BuildingsFolder
                 flag= Instantiate(prefabFlag4, new Vector3(xWorldCenterCo, 0, zWorldCenterCo), Quaternion.identity);
                 
             }
-            return flag;
+            
+            Building newBuilding = CreateBuilding(x, z, buildingType, positionKey, ownerId, flag);
+            buildings[(x, z)] = newBuilding;
+
+            ShowPopUpPlaceBuilding(newBuilding);
+        }
+
+        private void ShowPopUpPlaceBuilding(Building newBuilding)
+        {
+            switch (newBuilding.OwnerId)
+            {
+                case 0:
+                    if (newBuilding is Agora || newBuilding is Extractor)
+                    { 
+                        PopUpManager.Instance.ShowPopUp($"Athènes has placed an {newBuilding.Name}.", 3);
+                    }
+                    else
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Athènes has placed a {newBuilding.Name}.", 3);
+                    }
+
+                    break;
+                case 1:
+                    if (newBuilding is Agora || newBuilding is Extractor)
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Sparte has placed an {newBuilding.Name}.", 3);
+                    }
+                    else
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Sparte has placed a {newBuilding.Name}.", 3);
+                    }
+
+                    break;
+                case 2:
+                    if (newBuilding is Agora || newBuilding is Extractor)
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Thèbes has placed an {newBuilding.Name}.", 3);
+                    }
+                    else
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Thèbes has placed a {newBuilding.Name}.", 3);
+                    }
+
+                    break;
+                case 3:
+                    if (newBuilding is Agora || newBuilding is Extractor)
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Corinthe has placed an {newBuilding.Name}.", 3);
+                    }
+                    else
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Corinthe has placed a {newBuilding.Name}.", 3);
+                    }
+
+                    break;
+                default:
+                    if (newBuilding is Agora || newBuilding is Extractor)
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name}.", 3);
+                    }
+                    else
+                    {
+                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name}.", 3);
+                    }
+                    break;
+            }
         }
     
         public void DeleteBuilding(int x, int z)
@@ -224,18 +218,23 @@ namespace BuildingsFolder
                 
             }
         }
+        
+        public GameObject FakeDeleteBuilding(int x, int z)
+        {
+            if (!buildings.TryGetValue((x, z), out Building building)) 
+                return null;
+            GameObject flag = building.Flag;
+            buildings.Remove((x, z));
+            Destroy(flag);
+            Debug.Log($"Bâtiment fake supprimé à la position ({x}, {z}).");
+            return building.GameObject;
+        }
     
-        public Building InstantiateBuilding(int x, int z, int buildingType, uint ownerId,
+        public Building CreateBuilding(int x, int z, int buildingType, Vector3 positionKey, uint ownerId,
             GameObject flag)
         {
             GameObject prefab = GetBuildingPrefab(buildingType);
-            
-            (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(x, z);
-            Vector3 positionKey = new Vector3(xWorldCenterCo, 0, zWorldCenterCo);
-            
-            int rotationAngle = StaticGridTools.MapIndexToRotation(x, z, ServerManager.Seed, (int)ServerManager.MapWidth);
-            GameObject instantiate = Instantiate(prefab, positionKey, Quaternion.Euler(0, rotationAngle, 0));
-            
+            GameObject instantiate = Instantiate(prefab, positionKey, Quaternion.identity);
             switch (buildingType)
             {
                 case 0: // Agora
@@ -257,15 +256,15 @@ namespace BuildingsFolder
                 case 8: // Extractor Vine
                     return new Extractor("Extractor Vine", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Vine, flag);
                 case 9: // Temple Gold
-                    return new Temple("Temple Gold", "...", instantiate, (x, z), ownerId,AttackType.Zeus, flag);
+                    return new Temple("Temple Gold", "", instantiate, (x, z), ownerId,AttackType.Zeus, flag);
                 case 10: // Temple Diamond
-                    return new Temple("Temple Diamond", "...", instantiate, (x, z), ownerId,AttackType.Athena, flag);
+                    return new Temple("Temple Diamond", "", instantiate, (x, z), ownerId,AttackType.Athena, flag);
                 case 11: // Temple Obsidian
-                    return new Temple("Temple Obsidian", "...", instantiate, (x, z), ownerId,AttackType.Hades, flag);
+                    return new Temple("Temple Obsidian", "", instantiate, (x, z), ownerId,AttackType.Hades, flag);
                 case 12: // Temple Water
-                    return new Temple("Temple Water", "...", instantiate, (x, z), ownerId,AttackType.Poseidon, flag);
+                    return new Temple("Temple Water", "", instantiate, (x, z), ownerId,AttackType.Poseidon, flag);
                 case 13: // Temple Vine
-                    return new Temple("Temple Vine", "...", instantiate, (x, z), ownerId,AttackType.Dionysos, flag);
+                    return new Temple("Temple Vine", "", instantiate, (x, z), ownerId,AttackType.Dionysos, flag);
                 default:
                     return null;
             }
@@ -307,17 +306,5 @@ namespace BuildingsFolder
                     return null;
             }
         }
-        
-        public GameObject FakeDeleteBuilding(int x, int z)
-        {
-            if (!buildings.TryGetValue((x, z), out Building building)) 
-                return null;
-            GameObject flag = building.Flag;
-            buildings.Remove((x, z));
-            Destroy(flag);
-            Debug.Log($"Bâtiment fake supprimé à la position ({x}, {z}).");
-            return building.GameObject;
-        }
     }
-    
 }

@@ -9,15 +9,7 @@ public class MousePositionTracker : MonoBehaviour
     
     public void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Optionnel, pour garder l'instance entre les scènes
-        }
-        else
-        {
-            Destroy(gameObject); // Évite les doublons
-        }
+       Instance = this;
     }
     
     public void Start()
@@ -51,7 +43,7 @@ public class MousePositionTracker : MonoBehaviour
 
     
     // Obtient les indices de la carte correspondant à la position de la souris
-    public (int, int) GetMouseMapIndexCo()
+    public (int, int)? GetMouseMapIndexCo()
     {
         Vector3? mouseWorldPositionCo = GetMouseWorldPosition();
 
@@ -59,11 +51,10 @@ public class MousePositionTracker : MonoBehaviour
         if (mouseWorldPositionCo.HasValue)
         {
             Vector3 worldPos = mouseWorldPositionCo.Value;
-            (float x, float y, float z) = StaticGridTools.WorldCoToWorldCenterCo(worldPos.x, worldPos.y, worldPos.z);
-            return ((int)x, (int)z);
+            return  StaticGridTools.WorldCoToMapIndex(worldPos.x, worldPos.y, worldPos.z);
         }
 
-        return (-1, -1); // Retourne une position invalide
+        return null; // Retourne une position invalide
     }
 
 }

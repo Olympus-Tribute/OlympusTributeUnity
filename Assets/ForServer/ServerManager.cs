@@ -23,7 +23,7 @@ namespace ForServer
         //______________________________________________________//
         //______________________________________________________//
         public static ServerManager Instance {get; private set;}
-        public static Server Server { get; private set; }
+        public static Server Server { get; set; }
         
         //______________________________________________________//
         //______________________________________________________//
@@ -38,6 +38,8 @@ namespace ForServer
         public static uint PlayerCount { get; set; }
         
         public static uint PlayerId { get; set; }
+
+        private static CSteamID? lobbyID;
         
         
         public void Awake()
@@ -46,14 +48,13 @@ namespace ForServer
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject); // Optionnel, pour garder l'instance entre les scènes
+                SetupCallbacks();
             }
             else
             {
                 Destroy(gameObject); // Évite les doublons
             }
         }
-        
-        
 
         public void Update()
         {
@@ -69,7 +70,7 @@ namespace ForServer
             Debug.Log("Hosting Server....");
             Console.SetOut(new MyDebug());
 
-            SetupCallbacks();
+            SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 10);
             
             LocalConnectionAcceptor acceptor = new LocalConnectionAcceptor();
 
@@ -97,14 +98,27 @@ namespace ForServer
             
             Debug.Log("Host Server");
         }
+
+        public void StopHost()
+        {
+            Server = null;
+            if (lobbyID != null)
+            {
+                SteamMatchmaking.LeaveLobby(lobbyID.Value);
+            }
+            lobbyID = null;
+        }
         
         private static void SetupCallbacks()
         {
-            SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 10);
+            
             Callback<LobbyCreated_t>.Create(param =>
             {
                 Console.WriteLine("Lobby created requested " + param.m_ulSteamIDLobby);
-                SteamMatchmaking.SetLobbyData(new CSteamID(param.m_ulSteamIDLobby), "host_id",
+
+                lobbyID = new CSteamID(param.m_ulSteamIDLobby);
+                
+                SteamMatchmaking.SetLobbyData(lobbyID.Value, "host_id",
                     SteamUser.GetSteamID().ToString());
                 SteamFriends.SetRichPresence("connect", param.m_ulSteamIDLobby.ToString());
             });

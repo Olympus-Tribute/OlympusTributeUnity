@@ -11,24 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BuildingsScene.unity
     guid: ea91b38a4609be74a954c532197f5dd5
-  - enabled: 0
-    path: Assets/Scenes/Menus/Play/MultiplayerOrAIMenu.unity
-    guid: 9decf795393575e409e708fa3c356f14
-  - enabled: 0
-    path: Assets/Scenes/Menus/Play/Multiplayer/HostOrJoinMenu.unity
-    guid: 59c6d618ad921c34fa385a2bf0932ad6
   - enabled: 1
     path: Assets/Scenes/Menus/WaitingScene.unity
     guid: 7172187a332f8214ea6b74de121dff52
-  - enabled: 0
-    path: Assets/Scenes/Menus/Option/OptionMenu.unity
-    guid: 1c8ef20d118007d478a7c708701facd7
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/PlayGame.unity
     guid: ed6bc8ad9518dea4e8026152d4d56686
+  - enabled: 1
+    path: Assets/Scenes/Menus/WaitingServerResponseScene.unity
+    guid: 4969355176c3f494ebe19eae243a4d87
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

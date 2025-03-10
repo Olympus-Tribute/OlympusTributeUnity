@@ -16,7 +16,7 @@ namespace Menus
         public GameObject menuUITypeOfMultiplayer;
         public GameObject menuUIMultiplayerHostOrJoinMenu;
 
-        private void Start()
+        private void OnEnable()
         {
             CreateSteamAppIdFile();
             SetAllMenusInactive();
@@ -156,7 +156,7 @@ namespace Menus
             if (SteamManager.Initialized)
             {
                 SteamFriends.ActivateGameOverlay("Friends");
-                SceneManager.LoadScene("WaitingScene");
+                SceneManager.LoadScene("Scenes/Menus/WaitingServerResponseScene");
             }
             else
             {

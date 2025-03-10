@@ -8,7 +8,7 @@ public class Main : MonoBehaviour
     public void Start()
     {
         CreateSteamAppIdFile();
-        SceneManager.LoadScene("Scenes/MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     private static void CreateSteamAppIdFile()

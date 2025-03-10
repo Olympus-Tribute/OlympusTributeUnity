@@ -1,36 +1,42 @@
 using ForNetwork;
+using ForServer;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace DefaultNamespace
+public class InGame : MonoBehaviour
 {
-    public class InGame : MonoBehaviour
+    public GameObject menuInGame;
+    
+    private void Start()
     {
-        public GameObject menuInGame;
+        menuInGame.SetActive(false);
+    }
 
-        private void Start()
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            menuInGame.SetActive(false);
+            menuInGame.SetActive(!menuInGame.activeSelf);
         }
+    }
+        
+    public void CloseMenuInGame()
+    {
+        menuInGame.SetActive(false);
+    }
+        
+    public void QuitGame()
+    {
+        menuInGame.SetActive(false);
+        SceneManager.LoadScene("Scenes/Menus/MainMenu");
+        Stop();
+    }
 
-        public void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                menuInGame.SetActive(!menuInGame.activeSelf);
-            }
-        }
-        
-        public void CloseMenuInGame()
-        {
-            menuInGame.SetActive(false);
-        }
-        
-        public void QuitGame()
-        {
-            menuInGame.SetActive(false);
-            SceneManager.LoadScene("MainMenu");
-            Network.Instance.Proxy.Connection.Disconnect();
-        }
+    public static void Stop()
+    {
+        Network.Instance.Proxy?.Connection.Disconnect();
+        Network.Instance.Proxy = null;
+        Network.Instance.Stop();
+        ServerManager.Instance.StopHost();
     }
 }

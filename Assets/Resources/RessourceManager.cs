@@ -34,8 +34,9 @@ namespace Resources
         };
 
         private Dictionary<ResourceType, TMP_Text> resourceTexts;
+        
 
-        void Start()
+        void OnEnable()
         {
             Instance = this;
         
@@ -52,10 +53,7 @@ namespace Resources
             };
 
             UpdateDisplay();
-        }
-
-        void OnEnable()
-        {
+            
             Debug.Log("Starting ResourceManager...");
             if (Network.Instance.Proxy != null)
             {

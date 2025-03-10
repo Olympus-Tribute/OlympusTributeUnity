@@ -16,8 +16,8 @@ namespace Attacks
     {
         private BuildingsManager _buildingsManager;
         private Temple _temple;
-        private GameObject _poseidonAnimation;
-        private GameObject _hadesAnimation;
+        [SerializeField] private GameObject _poseidonAnimation;
+        [SerializeField] private GameObject _hadesAnimation;
         
         public GameObject menuUIAttack;
         public TMP_Text TitleInfoAttack;
@@ -29,6 +29,8 @@ namespace Attacks
         // Références aux images de remplacement
         //public Sprite imageAttackPoseidon;
         //public Sprite imageAttackHades;
+        
+        private uint compteurMouse;
  
         private void Awake()
         {
@@ -70,14 +72,19 @@ namespace Attacks
         {
             _temple = null;
             menuUIAttack.SetActive(false);
-            InfoAttack = null;
+            compteurMouse = 0;
         }
         
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                (int x, int z) = MousePositionTracker.Instance.GetMouseMapIndexCo();
+                var mapIndex  = MousePositionTracker.Instance.GetMouseMapIndexCo();
+                if (!mapIndex.HasValue)
+                {
+                    return;
+                }
+                (int x, int z) = mapIndex.Value;
                 Attack(x, z);
             }
         }
@@ -89,7 +96,9 @@ namespace Attacks
                 if (_buildingsManager.buildings.TryGetValue((x,y),out var targetbBuilding) &&
                     targetbBuilding is Temple targetTemple)
                 {
+                    compteurMouse += 1;
                     menuUIAttack.SetActive(true);
+                    
                     //Un temple a été target
                     _temple = targetTemple;
                     TitleInfoAttack.text = $"Attack : {targetTemple.Name}";
@@ -97,28 +106,26 @@ namespace Attacks
                     //SelectImageAttack();
                 }
             }
-            else
+            else if (compteurMouse >= 2)
             {
                 Debug.Log("Une attaque a été envoyé");
                 _temple.SendAttack(x,y);
                 _temple = null;
-                
+                compteurMouse = 0;
             }
         }
 
         public void ButtonAttack()
         {
             menuUIAttack.SetActive(false);
-            PopUpManager.Instance.ShowPopUp("Select a building to attack", 2);
-            InfoAttack.text = null;
+            PopUpManager.Instance.ShowPopUp("Select a building to attack", 5);
+            compteurMouse += 1;
         }
         
         public void ButtonQuit()
         {
             menuUIAttack.SetActive(false);
             _temple = null;
-            InfoAttack.text = null;
-            TitleInfoAttack.text = null;
         }
         
         /*

@@ -25,7 +25,8 @@ namespace ForNetwork
         
         public static Network Instance {get; private set;}
         public GameActionRegistry registry;
-        
+        private CSteamID? _lobbyID;
+
         private Network()
         {
             Proxy = null;
@@ -41,19 +42,13 @@ namespace ForNetwork
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject); // Optionnel, pour garder l'instance entre les scènes
+                SetupCallbacks();
             }
             else
             {
                 Destroy(gameObject); // Évite les doublons
             }
-        }
-
-        public void Start()
-        {
-            Debug.Log("Start Network");
-            SetupCallbacks();
-            Debug.Log("Setup callbacks");
-        
+            
         }
 
         public void Update()
@@ -75,9 +70,21 @@ namespace ForNetwork
                 Debug.Log("Connected");
 
                 Setup(Proxy);
+                
+                _lockObject = null;
+                
                 return;
             }
             Proxy.Process();
+        }
+
+        public void Stop()
+        {
+            if (_lobbyID != null)
+            {
+                SteamMatchmaking.LeaveLobby(_lobbyID.Value);
+            }
+            _lobbyID = null;
         }
         
         
@@ -86,21 +93,16 @@ namespace ForNetwork
         {
             callbackGameRichPresenceJoinRequested_t = Callback<GameRichPresenceJoinRequested_t>.Create(JoinRequestRichPresence);
             callbackGameLobbyJoinRequested_t = Callback<GameLobbyJoinRequested_t>.Create(JoinRequestLobby);
-            callbackLobbyChatUpdate_t = Callback<LobbyChatUpdate_t>.Create(param =>
-            {
-                Debug.Log("Lobby join requested " + param.m_ulSteamIDLobby);
-
-                SteamFriends.SetRichPresence("steam_player_group", param.m_ulSteamIDLobby.ToString());
-                SteamFriends.SetRichPresence("steam_player_group_size",
-                    SteamMatchmaking.GetNumLobbyMembers(new CSteamID(param.m_ulSteamIDLobby)).ToString());
-            });
             callbackLobbyEnter_t = Callback<LobbyEnter_t>.Create(LobbyJoined);
         }
 
         private void LobbyJoined(LobbyEnter_t param)
         {
             Debug.Log("Joining, create connection");
-            var hostId = SteamMatchmaking.GetLobbyData(new CSteamID(param.m_ulSteamIDLobby), "host_id");
+            
+            _lobbyID = new CSteamID(param.m_ulSteamIDLobby);
+            
+            var hostId = SteamMatchmaking.GetLobbyData(_lobbyID.Value, "host_id");
             _lockObject = new CSteamID(ulong.Parse(hostId));
         }
 
@@ -114,25 +116,6 @@ namespace ForNetwork
         {
             Debug.Log("Joining lobby via rich presence");
             SteamMatchmaking.JoinLobby(new CSteamID(ulong.Parse(param.m_rgchConnect)));
-        }
-
-        private bool Init()
-        {
-            if (!Packsize.Test())
-                Debug.Log(
-                    "[Steamworks.NET] Packsize Test returned false, the wrong version of Steamworks.NET is being run in this platform.");
-
-            if (!DllCheck.Test())
-                Debug.Log(
-                    "[Steamworks.NET] DllCheck Test returned false, One or more of the Steamworks binaries seems to be the wrong version.");
-            
-            if (!SteamAPI.Init())
-            {
-                Debug.Log("Could not initialise steam api");
-                return true;
-            }
-            SteamNetworkingUtils.InitRelayNetworkAccess();
-            return false;
         }
     }
 }

@@ -1,5 +1,7 @@
+using System;
 using ForNetwork;
 using ForServer;
+using Networking.API.Listeners;
 using Networking.Common.Client;
 using Networking.Common.Server;
 using UnityEngine;
@@ -35,25 +37,38 @@ namespace Menus
 
         public GameObject hideButtonReady;
         public GameObject hideButtonNotReady;
+        
+        public GameActionListener<ServerReadyStatesGameAction> readyActionListener;
+        public GameActionListener<ServerStartLobbyGameAction> lobbyActionListener;
+        
         //___________________________________________________________//
         //_________________________For Multi_________________________//
         //___________________________________________________________//
     
         void OnEnable()
         {
-            if (Network.Instance.Proxy is not null)
+            RegisterGameAction(Network.Instance.Proxy);
+            
+            hideButtonReady.SetActive(false);
+            hideButtonNotReady.SetActive(true);
+            SetAllActiveFalse();
+            playerReady = false;
+            _readyStates = new[] { false };
+            UpdatePlayersReady();
+        }
+
+        public void OnDisable()
+        {
+            if (Network.Instance.Proxy != null)
             {
-                RegisterGameAction(Network.Instance.Proxy);
-            }
-            else
-            {
-                Network.Instance.Setup = (proxy => { RegisterGameAction(proxy); });
+                Network.Instance.Proxy.GameActionListenerManager.RemoveListener(readyActionListener);
+                Network.Instance.Proxy.GameActionListenerManager.RemoveListener(lobbyActionListener);
             }
         }
 
         private void RegisterGameAction(Proxy proxy)
         {
-            proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
+            readyActionListener = proxy.GameActionListenerManager.AddListener<ServerReadyStatesGameAction>(
                 (connection, action) =>
                 {
                     _readyStates = action.ReadyStates;
@@ -61,7 +76,7 @@ namespace Menus
                 });
 
 
-            proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
+            lobbyActionListener = proxy.GameActionListenerManager.AddListener<ServerStartLobbyGameAction>(
                 (connection, action) =>
                 {
                     Debug.Log("[CLIENT]     : Received ServerStartLobbyGameAction");
@@ -77,17 +92,7 @@ namespace Menus
         //___________________________________________________________//
         //___________________________________________________________//
         //___________________________________________________________//
-
-        public void Start()
-        {
-            hideButtonReady.SetActive(false);
-            hideButtonNotReady.SetActive(true);
-            SetAllActiveFalse();
-            playerReady = false;
-            _readyStates = new[] { false };
-            UpdatePlayersReady();
-        }
-
+        
         public void Update()
         {
             UpdatePlayersReady();
@@ -140,7 +145,7 @@ namespace Menus
         {
             SetAllActiveFalse();
             SceneManager.LoadScene("MainMenu");
-            Network.Instance.Proxy.Connection.Disconnect();
+            InGame.Stop();
         }
     
         public void InitGame()

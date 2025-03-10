@@ -212,23 +212,16 @@ namespace BuildingsFolder
                 
             }
         }
-        
-        public GameObject FakeDeleteBuilding(int x, int z)
-        {
-            if (!buildings.TryGetValue((x, z), out Building building)) 
-                return null;
-            GameObject flag = building.Flag;
-            buildings.Remove((x, z));
-            Destroy(flag);
-            Debug.Log($"Bâtiment fake supprimé à la position ({x}, {z}).");
-            return building.GameObject;
-        }
     
         public Building CreateBuilding(int x, int z, int buildingType, Vector3 positionKey, uint ownerId,
             GameObject flag)
         {
             GameObject prefab = GetBuildingPrefab(buildingType);
-            GameObject instantiate = Instantiate(prefab, positionKey, Quaternion.identity);
+            //GameObject instantiate = Instantiate(prefab, positionKey, Quaternion.identity);
+            
+            int rotationAngle = StaticGridTools.MapIndexToRotation(x, z, ServerManager.Seed, (int)ServerManager.MapWidth);
+            GameObject instantiate = Instantiate(prefab, positionKey, Quaternion.Euler(0, rotationAngle, 0));
+            
             switch (buildingType)
             {
                 case 0: // Agora
@@ -300,5 +293,17 @@ namespace BuildingsFolder
                     return null;
             }
         }
+        
+        public GameObject FakeDeleteBuilding(int x, int z)
+        {
+            if (!buildings.TryGetValue((x, z), out Building building)) 
+                return null;
+            GameObject flag = building.Flag;
+            buildings.Remove((x, z));
+            Destroy(flag);
+            Debug.Log($"Bâtiment fake supprimé à la position ({x}, {z}).");
+            return building.GameObject;
+        }
     }
+    
 }

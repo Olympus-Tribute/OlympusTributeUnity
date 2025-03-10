@@ -6,6 +6,7 @@ using ForNetwork;
 using Networking.Common.Server;
 using System.Collections.Generic;
 using OlympusDedicatedServer.Components.Resources;
+using Resources;
 
 public class RessourceManager : MonoBehaviour
 {

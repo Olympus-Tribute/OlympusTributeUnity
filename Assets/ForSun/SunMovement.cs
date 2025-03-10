@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DefaultNamespace.ForSun
+namespace ForSun
 {
     public class SunMovement : MonoBehaviour
     {
@@ -9,19 +9,19 @@ namespace DefaultNamespace.ForSun
         public float minIntensity = 0.1f; // Intensité minimale
         public float maxIntensity = 1.0f; // Intensité maximale
 
-        private Light sunLight;
-        private float initialIntensity;
-        private bool isSunset = true;
+        private Light _sunLight;
+        private float _initialIntensity;
+        private bool _isSunset = true;
 
         void Start()
         {
-            sunLight = GetComponent<Light>();
-            if (sunLight == null)
+            _sunLight = GetComponent<Light>();
+            if (_sunLight == null)
             {
                 Debug.LogError("Aucune lumière trouvée sur cet objet!");
                 return;
             }
-            initialIntensity = sunLight.intensity;
+            _initialIntensity = _sunLight.intensity;
         }
 
         void Update()
@@ -30,20 +30,20 @@ namespace DefaultNamespace.ForSun
             transform.Rotate(Vector3.right * rotationSpeed * Time.deltaTime);
         
             // Diminution et augmentation de l'intensité pour simuler un cycle jour/nuit
-            if (isSunset)
+            if (_isSunset)
             {
-                sunLight.intensity -= intensityDecreaseSpeed * Time.deltaTime;
-                if (sunLight.intensity <= minIntensity)
+                _sunLight.intensity -= intensityDecreaseSpeed * Time.deltaTime;
+                if (_sunLight.intensity <= minIntensity)
                 {
-                    isSunset = false;
+                    _isSunset = false;
                 }
             }
             else
             {
-                sunLight.intensity += intensityDecreaseSpeed * Time.deltaTime;
-                if (sunLight.intensity >= maxIntensity)
+                _sunLight.intensity += intensityDecreaseSpeed * Time.deltaTime;
+                if (_sunLight.intensity >= maxIntensity)
                 {
-                    isSunset = true;
+                    _isSunset = true;
                 }
             }
         }

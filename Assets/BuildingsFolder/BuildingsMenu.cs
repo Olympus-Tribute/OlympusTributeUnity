@@ -18,6 +18,15 @@ namespace BuildingsFolder
         public GameObject menuUISelectTemple;
         private BuildingsManager _buildingsManager;
     
+        private void SetAllMenusInactive()
+        {
+            menuUISelectTypeOfBuilding.SetActive(false);
+            menuUISelectExtractor.SetActive(false);
+            menuUISelectTemple.SetActive(false);
+            _ghostBuilding = null;
+            _selectedBuildingPrefab = null;
+        }
+        
         private void Awake()
         {
             _buildingsManager = FindObjectOfType<BuildingsManager>();
@@ -32,16 +41,16 @@ namespace BuildingsFolder
         private void Start()
         {
             _mainCamera = Camera.main;
-            menuUISelectTypeOfBuilding.SetActive(false);
-            menuUISelectExtractor.SetActive(false);
-            menuUISelectTemple.SetActive(false);
+            SetAllMenusInactive();
         }
+        
 
         public void Update()
         {
             // Ouvrir/fermer le menu avec la touche "B"
             if (Input.GetKeyDown(KeyCode.B))
             {
+                SetAllMenusInactive();
                 menuUISelectTypeOfBuilding.SetActive(!menuUISelectTypeOfBuilding.activeSelf);
             }
         
@@ -61,14 +70,12 @@ namespace BuildingsFolder
 
         public void QuitMenu()
         {
-            menuUISelectTypeOfBuilding.SetActive(false);
-            menuUISelectExtractor.SetActive(false);
-            menuUISelectTemple.SetActive(false);
+            SetAllMenusInactive();
         }
     
         public void SelectBuilding(int buildingType)
         {
-            QuitMenu();
+            SetAllMenusInactive();
             
             // Réinitialise le bâtiment "fantôme" si un bâtiment est déjà en cours
             if (_ghostBuilding != null)
@@ -114,7 +121,12 @@ namespace BuildingsFolder
             {
                 (float x, float y, float z) = StaticGridTools.WorldCoToWorldCenterCo(hit.point.x, hit.point.y, hit.point.z);
                 _ghostBuilding.transform.position = new Vector3(x, y, z);
+    
+                // pour l'orientation
+                int rotationAngle = StaticGridTools.MapIndexToRotation((int)x, (int)z, ServerManager.Seed, (int)ServerManager.MapWidth);
+                _ghostBuilding.transform.rotation = Quaternion.Euler(0, rotationAngle, 0);
             }
+
         }
 
         // Fonction pour placer définitivement le bâtiment à la position de la souris

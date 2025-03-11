@@ -35,8 +35,8 @@ namespace Menus
     
         public bool playerReady;
 
-        public GameObject hideButtonReady;
-        public GameObject hideButtonNotReady;
+        public GameObject buttonReady;
+        public GameObject buttonNotReady;
         
         public GameActionListener<ServerReadyStatesGameAction> readyActionListener;
         public GameActionListener<ServerStartLobbyGameAction> lobbyActionListener;
@@ -49,8 +49,8 @@ namespace Menus
         {
             RegisterGameAction(Network.Instance.Proxy);
             
-            hideButtonReady.SetActive(false);
-            hideButtonNotReady.SetActive(true);
+            buttonReady.SetActive(true);
+            buttonNotReady.SetActive(false);
             SetAllActiveFalse();
             playerReady = false;
             _readyStates = new[] { false };
@@ -126,8 +126,8 @@ namespace Menus
         public void Ready() // For Button
         {
             playerReady = true;
-            hideButtonReady.SetActive(true);
-            hideButtonNotReady.SetActive(false);
+            buttonReady.SetActive(false);
+            buttonNotReady.SetActive(true);
             Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(true));
             Debug.Log("Envoi du gameAction pour Ready");
         }
@@ -135,8 +135,8 @@ namespace Menus
         public void NotReady() // For Button
         {
             playerReady = false;
-            hideButtonReady.SetActive(false);
-            hideButtonNotReady.SetActive(true);
+            buttonReady.SetActive(true);
+            buttonNotReady.SetActive(false);
             Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(false));
             Debug.Log("Envoi du gameAction pour Not Ready");
         }

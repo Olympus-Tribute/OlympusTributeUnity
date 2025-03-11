@@ -1,4 +1,5 @@
 using BuildingsFolder;
+using Grid;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,23 @@ namespace InfoInGame
         public GameObject InfoTileUi;
         public TMP_Text InfoTileText;
         private BuildingsManager _buildingsManager;
+
+        private HexMapGenerator _map;
+        private float _timing;
+
+        
+        private void Awake()
+        {
+            InfoTileUi.SetActive(true);
+        }
+        
+        private void OnEnable()
+        {
+            _buildingsManager = FindObjectOfType<BuildingsManager>();
+            _map = FindObjectOfType<GridGenerator>().MapGenerator;
+            SetPopUpInactive();
+            _timing = 0;
+        }
         
         public void Update()
         {
@@ -20,31 +38,22 @@ namespace InfoInGame
                     SetPopUpInactive();
                 }
             }
+            
             var mapIndex  = MousePositionTracker.Instance.GetMouseMapIndexCo();
             if (!mapIndex.HasValue)
             {
                 return;
             }
+            
             (int x, int z) = mapIndex.Value;
+            
+            ShowInfoTile(_map[x, z].ToString());
+            
             if (_buildingsManager.Buildings.TryGetValue((x,z),out var building))
             {
                 ShowInfoTile($"{building.Name}");
             }
         }
-
-        private void Awake()
-        {
-            _buildingsManager = FindObjectOfType<BuildingsManager>();
-            InfoTileUi.SetActive(true);
-        }
-        
-        private void OnEnable()
-        {
-            SetPopUpInactive();
-            _timing = 0;
-        }
-
-        private float _timing;
         
         public void SetPopUpInactive()
         {

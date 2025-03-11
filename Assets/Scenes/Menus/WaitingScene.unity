@@ -1701,6 +1701,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
+--- !u!1 &862298030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5973860768072446638, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
+  m_PrefabInstance: {fileID: 318658522}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &885311003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,8 +1771,8 @@ MonoBehaviour:
   imageFlagPlayer4: {fileID: 642176293}
   nameFlagPlayer4: {fileID: 1342214233}
   playerReady: 0
-  hideButtonReady: {fileID: 1417664528}
-  hideButtonNotReady: {fileID: 1393276098}
+  buttonReady: {fileID: 2097044547}
+  buttonNotReady: {fileID: 862298030}
 --- !u!1 &967012757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,7 +2627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1393276099
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2697,7 +2702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1417664529
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3050,6 +3055,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000547882}
   m_CullTransparentMesh: 1
+--- !u!1 &2097044547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5973860768072446638, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
+  m_PrefabInstance: {fileID: 770120818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

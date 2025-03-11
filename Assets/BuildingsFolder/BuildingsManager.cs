@@ -13,7 +13,7 @@ namespace BuildingsFolder
     public class BuildingsManager : MonoBehaviour
     {
         // Dictionnaire pour stocker les bâtiments (clé = (int, int), valeur = Building)
-        public Dictionary<(int, int), Building> buildings = new Dictionary<(int, int), Building>();
+        public readonly Dictionary<(int, int), Building> Buildings = new Dictionary<(int, int), Building>();
         
         // ____________________________________________________________________//
         // _______Références aux GameObjects des bâtiments_____________________//
@@ -108,7 +108,7 @@ namespace BuildingsFolder
 
         public void PlaceBuilding(int xMapIndex, int zMapIndex, int buildingType, uint ownerId)
         {
-            if (buildings.ContainsKey((xMapIndex, zMapIndex)))
+            if (Buildings.ContainsKey((xMapIndex, zMapIndex)))
             {
                 DeleteBuilding(xMapIndex, zMapIndex);
             }
@@ -116,7 +116,7 @@ namespace BuildingsFolder
             GameObject flag = InstantiateFlag(xMapIndex, zMapIndex, ownerId);
             Building newBuilding = InstantiateBuilding(xMapIndex, zMapIndex, buildingType, ownerId, flag);
             
-            buildings[(xMapIndex, zMapIndex)] = newBuilding;
+            Buildings[(xMapIndex, zMapIndex)] = newBuilding;
 
             ShowPopUpPlaceBuilding(newBuilding);
         }
@@ -212,14 +212,14 @@ namespace BuildingsFolder
     
         public void DeleteBuilding(int x, int z)
         {
-            if (buildings.TryGetValue((x, z), out Building building))
+            if (Buildings.TryGetValue((x, z), out Building building))
             {
                 GameObject buildingGameObject = building.GameObject;
                 GameObject flag = building.Flag;
                 Destroy(buildingGameObject);
                 Destroy(flag);
                 
-                buildings.Remove((x, z));
+                Buildings.Remove((x, z));
                 Debug.Log($"Bâtiment supprimé à la position ({x}, {z}).");
                 
             }
@@ -257,15 +257,30 @@ namespace BuildingsFolder
                 case 8: // Extractor Vine
                     return new Extractor("Extractor Vine", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Vine, flag);
                 case 9: // Temple Gold
-                    return new Temple("Temple Gold", "...", instantiate, (x, z), ownerId,AttackType.Zeus, flag);
+                    return new Temple("Temple Gold", "...", instantiate, (x, z), ownerId,
+                        AttackType.Zeus,
+                        $"____Type____ : Paralysis \n__Duration__ : 30 \n- Paralysis \n____Cost____ :\n- 25 Wood \n- 25 Stone \n- 50 Gold",
+                        flag);
                 case 10: // Temple Diamond
-                    return new Temple("Temple Diamond", "...", instantiate, (x, z), ownerId,AttackType.Athena, flag);
+                    return new Temple("Temple Diamond", "...", instantiate, (x, z), ownerId,
+                        AttackType.Athena,
+                        $"____Type____ : Stealing \n__Duration__ : 60 \n- Paralysis \n____Cost____ ::\n- 30 Wood \n- 30 Stone \n- 25 Diamond",
+                        flag);
                 case 11: // Temple Obsidian
-                    return new Temple("Temple Obsidian", "...", instantiate, (x, z), ownerId,AttackType.Hades, flag);
+                    return new Temple("Temple Obsidian", "...", instantiate, (x, z), ownerId,
+                        AttackType.Hades,
+                        $"____Type____ : Destruction \n- Paralysis \n____Cost____ ::\n- 50 Wood \n- 50 Stone \n- 50 Obsidian",
+                        flag);
                 case 12: // Temple Water
-                    return new Temple("Temple Water", "...", instantiate, (x, z), ownerId,AttackType.Poseidon, flag);
+                    return new Temple("Temple Water", "...", instantiate, (x, z), ownerId,
+                        AttackType.Poseidon,
+                        $"____Type____ : Paralysis \n__Duration__ : 15 \n- Paralysis \n____Cost____ ::\n- 75 Wood \n- 75 Stone \n- 50 Water",
+                        flag);
                 case 13: // Temple Vine
-                    return new Temple("Temple Vine", "...", instantiate, (x, z), ownerId,AttackType.Dionysos, flag);
+                    return new Temple("Temple Vine", "...", instantiate, (x, z), ownerId,
+                        AttackType.Dionysos, 
+                        $"____Type____ : Paralysis \n__Duration__ : 120 \n- Paralysis \n____Cost____ ::\n- 20 Wood \n- 20 Stone \n- 50 Wine \n- 5 Population",
+                        flag);
                 default:
                     return null;
             }
@@ -310,10 +325,10 @@ namespace BuildingsFolder
         
         public GameObject FakeDeleteBuilding(int x, int z)
         {
-            if (!buildings.TryGetValue((x, z), out Building building)) 
+            if (!Buildings.TryGetValue((x, z), out Building building)) 
                 return null;
             GameObject flag = building.Flag;
-            buildings.Remove((x, z));
+            Buildings.Remove((x, z));
             Destroy(flag);
             Debug.Log($"Bâtiment fake supprimé à la position ({x}, {z}).");
             return building.GameObject;

@@ -47,7 +47,7 @@ namespace Attacks
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackGameAction>((proxy, action) =>
             {
                 (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
-                var temple = _buildingsManager.buildings[(action.TempleX, action.TempleY)] as Temple;
+                var temple = _buildingsManager.Buildings[(action.TempleX, action.TempleY)] as Temple;
                 switch (temple?.Type)
                 {
                     case (AttackType.Poseidon):
@@ -93,7 +93,7 @@ namespace Attacks
         {
             if (_temple is null)
             {
-                if (_buildingsManager.buildings.TryGetValue((x,y),out var targetbBuilding) &&
+                if (_buildingsManager.Buildings.TryGetValue((x,y),out var targetbBuilding) &&
                     targetbBuilding is Temple targetTemple)
                 {
                     compteurMouse += 1;
@@ -102,7 +102,7 @@ namespace Attacks
                     //Un temple a été target
                     _temple = targetTemple;
                     TitleInfoAttack.text = $"Attack : {targetTemple.Name}";
-                    InfoAttack.text = $"Description : {targetTemple.Description}";
+                    InfoAttack.text = $"Description :\n{targetTemple.DescriptionAttack}";
                     //SelectImageAttack();
                 }
             }

@@ -23,8 +23,13 @@ namespace BuildingsFolder
             menuUISelectTypeOfBuilding.SetActive(false);
             menuUISelectExtractor.SetActive(false);
             menuUISelectTemple.SetActive(false);
-            _ghostBuilding = null;
-            _selectedBuildingPrefab = null;
+            
+            if (_ghostBuilding != null)
+            {
+                Destroy(_ghostBuilding); // Détruit le bâtiment "fantôme"
+                _ghostBuilding = null;
+            }
+            _selectedBuildingPrefab = null;  // Réinitialise la sélection
         }
         
         private void Awake()

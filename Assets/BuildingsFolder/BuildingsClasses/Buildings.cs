@@ -10,11 +10,13 @@ namespace BuildingsFolder.BuildingsClasses
         public (int, int) Position { get; private set; }
         public uint OwnerId { get; private set; }
 
+        public readonly int Range;
+
         public bool Paralyze;
         
         public GameObject Flag { get; private set; }
 
-        public Building(string name, string description, GameObject gameObject, (int, int) position, uint ownerId, GameObject flag)
+        public Building(string name, string description, GameObject gameObject, (int, int) position, uint ownerId,  int range, GameObject flag)
         {
             Name = name;
             Description = description;
@@ -22,6 +24,7 @@ namespace BuildingsFolder.BuildingsClasses
             Position = position;
             OwnerId = ownerId;
             Flag = flag;
+            Range = range;
         }
     }
 }

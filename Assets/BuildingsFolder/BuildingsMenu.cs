@@ -1,7 +1,8 @@
 using ForNetwork;
 using ForServer;
+using Grid;
 using Networking.Common.Client;
-using OlympusDedicatedServer.Components.WorldComp;
+using OlympusWorldGenerator;
 using UnityEngine;
 
 namespace BuildingsFolder
@@ -17,6 +18,7 @@ namespace BuildingsFolder
         public GameObject menuUISelectExtractor;
         public GameObject menuUISelectTemple;
         private BuildingsManager _buildingsManager;
+        private HexMapGenerator _map;
     
         private void SetAllMenusInactive()
         {
@@ -35,6 +37,7 @@ namespace BuildingsFolder
         private void Awake()
         {
             _buildingsManager = FindObjectOfType<BuildingsManager>();
+            _map = FindObjectOfType<GridGenerator>().MapGenerator;
             if (_buildingsManager == null)
             {
                 Debug.LogError("BuildingsManager n'a pas été trouvé dans la scène ! Désactivation du script.");
@@ -165,7 +168,26 @@ namespace BuildingsFolder
         private bool CanPlaceBuilding(Vector3 position)
         {
             (int posX, int posZ) = StaticGridTools.WorldCenterCoToMapIndex(position.x, position.z);
-            return posX >= 0 && posZ >= 0 && posX < ServerManager.MapHeight && posZ < ServerManager.MapWidth;
+            if (posX >= 0 && posZ >= 0 && posX < ServerManager.MapHeight && posZ < ServerManager.MapWidth)
+            {
+                uint? owner = _buildingsManager.OwnerManager.GetOwner(posX, posZ);
+                if (owner.HasValue && owner == ServerManager.PlayerId)
+                {
+                    switch (_selectedBuildingType)
+                    {
+                        case 1 or >= 9 when _map[posX, posZ] is FloorTile.Grass:
+                        case 2 when _map[posX, posZ] is FloorTile.Wood:
+                        case 3 when _map[posX, posZ] is FloorTile.StoneMountain:
+                        case 4 when _map[posX, posZ] is FloorTile.GoldMountain:
+                        case 5 when _map[posX, posZ] is FloorTile.DiamondMountain:
+                        case 6 when _map[posX, posZ] is FloorTile.ObsidianMountain:
+                        case 7 when _map[posX, posZ] is FloorTile.Lake:
+                        case 8 when _map[posX, posZ] is FloorTile.Vine:
+                            return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private void UpdateBuildingPreviewColor()

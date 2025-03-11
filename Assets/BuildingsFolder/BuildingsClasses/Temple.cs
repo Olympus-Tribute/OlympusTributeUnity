@@ -10,7 +10,7 @@ namespace BuildingsFolder.BuildingsClasses
         public readonly AttackType Type;
         public string DescriptionAttack;
         
-        public Temple(string name, string description, GameObject gameObject, (int, int) position, uint ownerId, AttackType type, string  descriptionAttack, GameObject flag) : base(name, description, gameObject, position, ownerId,flag)
+        public Temple(string name, string description, GameObject gameObject, (int, int) position, uint ownerId, AttackType type, string  descriptionAttack, GameObject flag) : base(name, description, gameObject, position, ownerId, 3, flag)
         {
             Type = type;
             DescriptionAttack = descriptionAttack;

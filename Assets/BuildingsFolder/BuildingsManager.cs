@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
 using ForServer;
+using Grid;
 using Networking.Common.Server;
 using OlympusDedicatedServer.Components.Attack;
+using OlympusDedicatedServer.Components.WorldComp;
 using PopUp;
 using UnityEngine;
 
@@ -14,6 +16,9 @@ namespace BuildingsFolder
     {
         // Dictionnaire pour stocker les bâtiments (clé = (int, int), valeur = Building)
         public readonly Dictionary<(int, int), Building> Buildings = new Dictionary<(int, int), Building>();
+        
+        public OwnerManager OwnerManager;
+        private HexMapGenerator _map;
         
         // ____________________________________________________________________//
         // _______Références aux GameObjects des bâtiments_____________________//
@@ -44,6 +49,7 @@ namespace BuildingsFolder
         public GameObject prefabFlag2;
         public GameObject prefabFlag3;
         public GameObject prefabFlag4;
+        
         // ____________________________________________________________________//
         // ____________________________________________________________________//
         // ____________________________________________________________________//
@@ -55,6 +61,7 @@ namespace BuildingsFolder
                 Debug.LogWarning("Network.Instance is not initialized!");
                 return;
             }
+            _map = FindObjectOfType<GridGenerator>().MapGenerator;
         }
 
         //___________________________________________________________//
@@ -100,12 +107,30 @@ namespace BuildingsFolder
                     (float xPlaceBuilding, float zPlaceBuilding)  = StaticGridTools.MapIndexToWorldCenterCo(action.X, action.Y);
                     DeleteBuilding((int)xPlaceBuilding, (int)zPlaceBuilding);
                 });
+            
+            OwnerManager = new OwnerManager(ServerManager.MapWidth, ServerManager.MapHeight);
         }
     
         //___________________________________________________________//
         //___________________________________________________________//
         //___________________________________________________________//
 
+        private void AddBuildingOwner(Building building)
+        {
+            foreach (var (x, y) in WorldCoordinates.FindTilesOfNRadiusIncludingMe(building.Position.Item1, building.Position.Item2, ServerManager.MapWidth, ServerManager.MapHeight, building.Range))
+            {
+                OwnerManager.AddOwner(x, y, building.OwnerId);
+            }
+        }
+        
+        private void RemoveBuildingOwner(Building building)
+        {
+            foreach (var (x, y) in WorldCoordinates.FindTilesOfNRadiusIncludingMe(building.Position.Item1, building.Position.Item2, ServerManager.MapWidth, ServerManager.MapHeight, building.Range))
+            {
+                OwnerManager.RemoveOwner(x, y, building.OwnerId);
+            }
+        }
+        
         public void PlaceBuilding(int xMapIndex, int zMapIndex, int buildingType, uint ownerId)
         {
             if (Buildings.ContainsKey((xMapIndex, zMapIndex)))
@@ -118,8 +143,28 @@ namespace BuildingsFolder
             
             Buildings[(xMapIndex, zMapIndex)] = newBuilding;
 
+            AddBuildingOwner(newBuilding);
+            
             ShowPopUpPlaceBuilding(newBuilding);
         }
+        
+        public void DeleteBuilding(int x, int z)
+        {
+            if (Buildings.TryGetValue((x, z), out Building building))
+            {
+                GameObject buildingGameObject = building.GameObject;
+                GameObject flag = building.Flag;
+                Destroy(buildingGameObject);
+                Destroy(flag);
+                
+                Buildings.Remove((x, z));
+                RemoveBuildingOwner(building);
+                
+                Debug.Log($"Bâtiment supprimé à la position ({x}, {z}).");
+                
+            }
+        }
+        
 
         private void ShowPopUpPlaceBuilding(Building newBuilding)
         {
@@ -210,21 +255,6 @@ namespace BuildingsFolder
             return flag;
         }
     
-        public void DeleteBuilding(int x, int z)
-        {
-            if (Buildings.TryGetValue((x, z), out Building building))
-            {
-                GameObject buildingGameObject = building.GameObject;
-                GameObject flag = building.Flag;
-                Destroy(buildingGameObject);
-                Destroy(flag);
-                
-                Buildings.Remove((x, z));
-                Debug.Log($"Bâtiment supprimé à la position ({x}, {z}).");
-                
-            }
-        }
-    
         public Building InstantiateBuilding(int x, int z, int buildingType, uint ownerId,
             GameObject flag)
         {
@@ -259,27 +289,27 @@ namespace BuildingsFolder
                 case 9: // Temple Gold
                     return new Temple("Temple Gold", "...", instantiate, (x, z), ownerId,
                         AttackType.Zeus,
-                        $"____Type____ : Paralysis \n__Duration__ : 30 \n- Paralysis \n____Cost____ :\n- 25 Wood \n- 25 Stone \n- 50 Gold",
+                        $"____Type____ : Paralysis \n \n__Duration__ : 30 \n \n____Cost____ :\n- 25 Wood \n- 25 Stone \n- 50 Gold",
                         flag);
                 case 10: // Temple Diamond
                     return new Temple("Temple Diamond", "...", instantiate, (x, z), ownerId,
                         AttackType.Athena,
-                        $"____Type____ : Stealing \n__Duration__ : 60 \n- Paralysis \n____Cost____ ::\n- 30 Wood \n- 30 Stone \n- 25 Diamond",
+                        $"____Type____ : Stealing \n \n__Duration__ : 60 \n \n____Cost____ ::\n- 30 Wood \n- 30 Stone \n- 25 Diamond",
                         flag);
                 case 11: // Temple Obsidian
                     return new Temple("Temple Obsidian", "...", instantiate, (x, z), ownerId,
                         AttackType.Hades,
-                        $"____Type____ : Destruction \n- Paralysis \n____Cost____ ::\n- 50 Wood \n- 50 Stone \n- 50 Obsidian",
+                        $"____Type____ : Destruction \n \n- Paralysis \n \n____Cost____ ::\n- 50 Wood \n- 50 Stone \n- 50 Obsidian",
                         flag);
                 case 12: // Temple Water
                     return new Temple("Temple Water", "...", instantiate, (x, z), ownerId,
                         AttackType.Poseidon,
-                        $"____Type____ : Paralysis \n__Duration__ : 15 \n- Paralysis \n____Cost____ ::\n- 75 Wood \n- 75 Stone \n- 50 Water",
+                        $"____Type____ : Paralysis \n \n__Duration__ : 15 \n \n____Cost____ ::\n- 75 Wood \n- 75 Stone \n- 50 Water",
                         flag);
                 case 13: // Temple Vine
                     return new Temple("Temple Vine", "...", instantiate, (x, z), ownerId,
                         AttackType.Dionysos, 
-                        $"____Type____ : Paralysis \n__Duration__ : 120 \n- Paralysis \n____Cost____ ::\n- 20 Wood \n- 20 Stone \n- 50 Wine \n- 5 Population",
+                        $"____Type____ : Paralysis \n \n__Duration__ : 120 \n \n____Cost____ ::\n- 20 Wood \n- 20 Stone \n- 50 Wine \n- 5 Population",
                         flag);
                 default:
                     return null;
@@ -330,9 +360,11 @@ namespace BuildingsFolder
             GameObject flag = building.Flag;
             Buildings.Remove((x, z));
             Destroy(flag);
+            RemoveBuildingOwner(building);
             Debug.Log($"Bâtiment fake supprimé à la position ({x}, {z}).");
             return building.GameObject;
         }
+        
     }
     
 }

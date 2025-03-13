@@ -34,22 +34,20 @@ namespace BuildingsFolder
             _selectedBuildingPrefab = null;  // Réinitialise la sélection
         }
         
-        private void Awake()
+
+        private void Start()
         {
-            _buildingsManager = FindObjectOfType<BuildingsManager>();
-            _map = FindObjectOfType<GridGenerator>().MapGenerator;
+            _mainCamera = Camera.main;
+            SetAllMenusInactive();
+            
+            _buildingsManager = FindFirstObjectByType<BuildingsManager>();
+            _map = FindFirstObjectByType<GridGenerator>().MapGenerator;
             if (_buildingsManager == null)
             {
                 Debug.LogError("BuildingsManager n'a pas été trouvé dans la scène ! Désactivation du script.");
                 enabled = false;
                 return;
             }
-        }
-
-        private void Start()
-        {
-            _mainCamera = Camera.main;
-            SetAllMenusInactive();
         }
         
 

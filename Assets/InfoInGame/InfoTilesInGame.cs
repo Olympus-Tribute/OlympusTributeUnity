@@ -15,7 +15,7 @@ namespace InfoInGame
         private GridGenerator _map;
         private float _timing;
         
-        public void OnEnable()
+        public void Start()
         {
             InfoTileUi.SetActive(true);
             _buildingsManager = FindFirstObjectByType<BuildingsManager>();
@@ -44,10 +44,6 @@ namespace InfoInGame
 
             if (0 <= x && x < ServerManager.MapWidth && 0 <= z && z < ServerManager.MapHeight)
             {
-                if (_map is null)
-                {
-                    Debug.Log("InfoTilesInGame: _map is null");
-                }
                 ShowInfoTile(_map.MapGenerator[x, z].ToString());
             }
             

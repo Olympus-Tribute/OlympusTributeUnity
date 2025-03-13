@@ -61,7 +61,7 @@ namespace Menus
         public void OpenOptions()
         {
             SetAllMenusInactive();
-            menuUIOptionsMenu.SetActive(true);
+            menuUIMainMenu.SetActive(true);
         }
         public void QuitGame()
         {

@@ -14,18 +14,12 @@ namespace InfoInGame
 
         private HexMapGenerator _map;
         private float _timing;
-
         
-        private void Awake()
+        public void OnEnable()
         {
             InfoTileUi.SetActive(true);
-        }
-        
-        private void OnEnable()
-        {
             _buildingsManager = FindObjectOfType<BuildingsManager>();
             _map = FindObjectOfType<GridGenerator>().MapGenerator;
-            SetPopUpInactive();
             _timing = 0;
         }
         
@@ -48,7 +42,7 @@ namespace InfoInGame
             
             (int x, int z) = mapIndex.Value;
 
-            if (0 <= x && x <= ServerManager.MapWidth && 0 <= z && z <= ServerManager.MapHeight)
+            if (0 <= x && x < ServerManager.MapWidth && 0 <= z && z < ServerManager.MapHeight)
             {
                 ShowInfoTile(_map[x, z].ToString());
             }

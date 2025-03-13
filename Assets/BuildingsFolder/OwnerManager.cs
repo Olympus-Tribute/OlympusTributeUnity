@@ -54,12 +54,12 @@ namespace BuildingsFolder
 
         public uint? GetOwner(int x, int y)
         {
-            var vv = _globalMap[x, y];
-            if (vv.Count == 0)
+            List<uint> tileOwner = _globalMap[x, y];
+            if (tileOwner.Count == 0)
             {
                 return null;
             }
-            return vv[0];
+            return tileOwner[0];
         }
         
         

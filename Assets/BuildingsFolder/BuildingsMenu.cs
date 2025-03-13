@@ -184,6 +184,8 @@ namespace BuildingsFolder
                         case 7 when _map[posX, posZ] is FloorTile.Lake:
                         case 8 when _map[posX, posZ] is FloorTile.Vine:
                             return true;
+                        default:
+                            return false;
                     }
                 }
             }

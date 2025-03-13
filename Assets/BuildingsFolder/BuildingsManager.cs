@@ -289,27 +289,27 @@ namespace BuildingsFolder
                 case 9: // Temple Gold
                     return new Temple("Temple Gold", "...", instantiate, (x, z), ownerId,
                         AttackType.Zeus,
-                        $"____Type____ : Paralysis \n \n__Duration__ : 30 \n \n____Cost____ :\n- 25 Wood \n- 25 Stone \n- 50 Gold",
+                        $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 30 \n \n____Cost____ :\n- 25 Wood \n- 25 Stone \n- 50 Gold",
                         flag);
                 case 10: // Temple Diamond
                     return new Temple("Temple Diamond", "...", instantiate, (x, z), ownerId,
                         AttackType.Athena,
-                        $"____Type____ : Stealing \n \n__Duration__ : 60 \n \n____Cost____ ::\n- 30 Wood \n- 30 Stone \n- 25 Diamond",
+                        $"____Type____ :\n- Stealing \n \n__Duration__ :\n- 60 \n \n____Cost____ :\n- 30 Wood \n- 30 Stone \n- 25 Diamond",
                         flag);
                 case 11: // Temple Obsidian
                     return new Temple("Temple Obsidian", "...", instantiate, (x, z), ownerId,
                         AttackType.Hades,
-                        $"____Type____ : Destruction \n \n- Paralysis \n \n____Cost____ ::\n- 50 Wood \n- 50 Stone \n- 50 Obsidian",
+                        $"____Type____ :\n- Destruction \n \n____Cost____ :\n- 50 Wood \n- 50 Stone \n- 50 Obsidian",
                         flag);
                 case 12: // Temple Water
                     return new Temple("Temple Water", "...", instantiate, (x, z), ownerId,
                         AttackType.Poseidon,
-                        $"____Type____ : Paralysis \n \n__Duration__ : 15 \n \n____Cost____ ::\n- 75 Wood \n- 75 Stone \n- 50 Water",
+                        $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 15 \n \n____Cost____ :\n- 75 Wood \n- 75 Stone \n- 50 Water",
                         flag);
                 case 13: // Temple Vine
                     return new Temple("Temple Vine", "...", instantiate, (x, z), ownerId,
                         AttackType.Dionysos, 
-                        $"____Type____ : Paralysis \n \n__Duration__ : 120 \n \n____Cost____ ::\n- 20 Wood \n- 20 Stone \n- 50 Wine \n- 5 Population",
+                        $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 120 \n \n____Cost____ :\n- 20 Wood \n- 20 Stone \n- 50 Wine \n- 5 Population",
                         flag);
                 default:
                     return null;

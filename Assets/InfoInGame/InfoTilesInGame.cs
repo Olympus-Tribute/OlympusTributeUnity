@@ -1,4 +1,5 @@
 using BuildingsFolder;
+using ForServer;
 using Grid;
 using TMPro;
 using UnityEngine;
@@ -46,8 +47,11 @@ namespace InfoInGame
             }
             
             (int x, int z) = mapIndex.Value;
-            
-            ShowInfoTile(_map[x, z].ToString());
+
+            if (_map is not null && 0 <= x && x <= ServerManager.MapWidth && 0 <= z && z <= ServerManager.MapHeight)
+            {
+                ShowInfoTile(_map[x, z].ToString());
+            }
             
             if (_buildingsManager.Buildings.TryGetValue((x,z),out var building))
             {

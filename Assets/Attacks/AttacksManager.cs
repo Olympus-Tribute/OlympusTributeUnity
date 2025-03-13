@@ -102,7 +102,7 @@ namespace Attacks
                     //Un temple a été target
                     _temple = targetTemple;
                     TitleInfoAttack.text = $"Attack : {targetTemple.Name}";
-                    InfoAttack.text = $"Description :\n{targetTemple.DescriptionAttack}";
+                    InfoAttack.text = $"{targetTemple.DescriptionAttack}";
                     //SelectImageAttack();
                 }
             }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using OlympusDedicatedServer.Components.Resources;
 using Resources;
 using UnityEngine.Rendering;
+using static BuildingsFolder.AllPrices;
 
 namespace BuildingsFolder
 {
@@ -16,6 +17,7 @@ namespace BuildingsFolder
         public string Nom = "";
         
         
+
         public bool Ressource()
         {
             var ressources = RessourceManager.Instance.resources;
@@ -26,77 +28,44 @@ namespace BuildingsFolder
             int stone = (int)ressources[ResourceType.Stone].RealQuantite;
             int gold = (int)ressources[ResourceType.Gold].RealQuantite;
             int water = (int)ressources[ResourceType.Water].RealQuantite;
-            int wine = (int)ressources[ResourceType.Vine].RealQuantite;
+            int vine = (int)ressources[ResourceType.Vine].RealQuantite;
             int obsidian = (int)ressources[ResourceType.Obsidian].RealQuantite;
             int diamond = (int)ressources[ResourceType.Diamond].RealQuantite;
             
             switch (Nom)
             {
-                case "Maison":
-                    if (population - 2 > 0 && wood - 10 > 0 && stone - 2 > 10)
-                    {
-                        return true;
-                    }
-                    return false;
-                
-                case "Extractor":
-                    if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0)
-                    {
-                        return true;
-                    }
-                    return false;
+                case "House":
+                    return wood >= HouseWoodPrice && stone >= HouseStonePrice;
+                case "WoodExtractor":
+                    return wood >= WoodExtractorWoodPrice && population >= WoodExtractorPopulationPrice;
+                case "StoneExtractor":
+                    return stone >= StoneExtractorStonePrice && population >= StoneExtractorPopulationPrice;
+                case "GoldExtractor":
+                    return wood >= GoldExtractorWoodPrice && stone >= GoldExtractorStonePrice && population >= GoldExtractorPopulationPrice;
+                case "WaterExtractor":
+                    return wood >= WaterExtractorWoodPrice && stone >= WaterExtractorStonePrice && gold >= WaterExtractorGoldPrice && population >= WaterExtractorPopulationPrice;
+                case "VineExtractor":
+                    return wood >= VineExtractorWoodPrice && stone >= VineExtractorStonePrice && gold >= VineExtractorGoldPrice && population >= VineExtractorPopulationPrice;
+                case "DiamondExtractor":
+                    return wood >= DiamondExtractorWoodPrice && stone >= DiamondExtractorStonePrice && gold >= DiamondExtractorGoldPrice && population >= DiamondExtractorPopulationPrice;
+                case "ObsidianExtractor":
+                    return wood >= ObsidianExtractorWoodPrice && stone >= ObsidianExtractorStonePrice && gold >= ObsidianExtractorGoldPrice && population >= ObsidianExtractorPopulationPrice;
+                case "Zeus" :
+                    return population >= ZeusTemplePopulationPrice && wood >= ZeusTempleWoodPrice && stone >= ZeusTempleStonePrice && gold >= ZeusTempleGoldPrice;
+                case "Poseidon" :
+                    return population >= PoseidonTemplePopulationPrice && wood >= PoseidonTempleWoodPrice && stone >= PoseidonTempleStonePrice && gold >= PoseidonTempleGoldPrice && water >= PoseidonTempleWaterPrice;
+                case "Dionysus" :
+                    return population >= DionysusTemplePopulationPrice && wood >= DionysusTempleWoodPrice && stone >= DionysusTempleStonePrice && gold >= DionysusTempleGoldPrice && vine >= DionysusTempleVinePrice;
+                case "Athena" :
+                    return population >= AthenaTemplePopulationPrice && wood >= AthenaTempleWoodPrice && stone >= AthenaTempleStonePrice && gold >= AthenaTempleGoldPrice && diamond >= AthenaTempleDiamondPrice;
+                case "Hades" :
+                    return population >= HadesTemplePopulationPrice && wood >= HadesTempleWoodPrice && stone >= HadesTempleStonePrice && gold >= HadesTempleGoldPrice && obsidian >= HadesTempleObsidianPrice;
+                default:
                     return true;
-                case "ExtractorPlusOr":
-                    
-                    if (population - 5 > 0 && wood - 15 > 0 && stone - 15 > 0 && gold - 20 > 0)
-                    {
-                        return true;
-                    }
-                    return false;
-                    
-                case "Temple" :
-                    
-                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0)
-                    {
-                        return true;
-                    }
-                    return false;
-                    
-                
-                case "TempleOr" :
-                    if (population  > 20 && wood > 50 && stone  > 50 && gold > 125)
-                    {
-                        return true;
-                    }
-                    return false;
-                case "TempleEau" :
-                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && water - 75 > 0)
-                    {
-                        return true;
-                    }
-                    return false;
-                case "TempleVigne" :
-                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && wine - 75 > 0)
-                    {
-                        return true;
-                    }
-                    return false;
-                case "TempleDiamand" :
-                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && diamond - 75 > 0)
-                    {
-                        return true;
-                    }
-                    return false;
-                case "TempleObsidienne" :
-                    if (population - 20 > 0 && wood - 50 > 0 && stone - 50 > 0 && gold - 50 > 0 && obsidian - 75 > 0)
-                    {
-                        return true;
-                    }
-                    return false;
             }
             
             
-            return false;
+            
         }
         
         void Update()

@@ -48,7 +48,7 @@ namespace InfoInGame
             
             (int x, int z) = mapIndex.Value;
 
-            if (_map is not null && 0 <= x && x <= ServerManager.MapWidth && 0 <= z && z <= ServerManager.MapHeight)
+            if (0 <= x && x <= ServerManager.MapWidth && 0 <= z && z <= ServerManager.MapHeight)
             {
                 ShowInfoTile(_map[x, z].ToString());
             }

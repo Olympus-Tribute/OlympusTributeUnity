@@ -1,3 +1,5 @@
+using System;
+using ForServer;
 using OlympusWorldGenerator.Generators;
 using UnityEngine;
 
@@ -17,6 +19,11 @@ namespace Grid
         public GameObject lakePrefabs;
         
         public HexMapGenerator MapGenerator {get; private set;}
+
+        public void OnEnable()
+        {
+            Generate(ServerManager.Seed, ServerManager.MapWidth, ServerManager.MapHeight);
+        }
 
         public void Generate(int seed, uint mapwidth, uint mapheight)
         {

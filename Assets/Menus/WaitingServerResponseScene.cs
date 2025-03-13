@@ -1,6 +1,8 @@
 using ForNetwork;
 using ForServer;
 using Networking.Common.Server;
+using PopUp;
+using Steamworks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +16,7 @@ namespace Menus
     
         void OnEnable()
         {
+            
             if (Network.Instance.Proxy is not null)
             {
                 SceneManager.LoadScene("WaitingScene");
@@ -24,6 +27,7 @@ namespace Menus
                 {
                     SceneManager.LoadScene("WaitingScene");
                 });
+                SteamFriends.ActivateGameOverlay("Friends");
             }
         }
         

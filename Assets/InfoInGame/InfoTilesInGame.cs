@@ -12,14 +12,14 @@ namespace InfoInGame
         public TMP_Text InfoTileText;
         private BuildingsManager _buildingsManager;
 
-        private HexMapGenerator _map;
+        private GridGenerator _map;
         private float _timing;
         
         public void OnEnable()
         {
             InfoTileUi.SetActive(true);
-            _buildingsManager = FindObjectOfType<BuildingsManager>();
-            _map = FindObjectOfType<GridGenerator>().MapGenerator;
+            _buildingsManager = FindFirstObjectByType<BuildingsManager>();
+            _map = FindFirstObjectByType<GridGenerator>();
             _timing = 0;
         }
         
@@ -44,7 +44,11 @@ namespace InfoInGame
 
             if (0 <= x && x < ServerManager.MapWidth && 0 <= z && z < ServerManager.MapHeight)
             {
-                ShowInfoTile(_map[x, z].ToString());
+                if (_map is null)
+                {
+                    Debug.Log("InfoTilesInGame: _map is null");
+                }
+                ShowInfoTile(_map.MapGenerator[x, z].ToString());
             }
             
             if (_buildingsManager.Buildings.TryGetValue((x,z),out var building))

@@ -48,7 +48,7 @@ MonoBehaviour:
   oceanPrefabs: {fileID: 919132149155446097, guid: 6e1151b2a65097d4ca297df8cc770ac6, type: 3}
   woodresourcePrefabs: {fileID: 919132149155446097, guid: e249818a2d43bd64392c43818824def9, type: 3}
   diamondresourcePrefabs: {fileID: 919132149155446097, guid: cd1553b0fd573644f8b6d7dd91a33c2f, type: 3}
-  obsidianresourcePrefabs: {fileID: 919132149155446097, guid: 5a3fe749d94a54e40ab96617e8e09c52, type: 3}
+  obsidianresourcePrefabs: {fileID: 919132149155446097, guid: 0499a5b1ac700fa48a8878a62654d047, type: 3}
   goldresourcePrefabs: {fileID: 919132149155446097, guid: 7433ed69b5c439241b00f0062262df00, type: 3}
   stoneresourcePrefabs: {fileID: 919132149155446097, guid: 37a0405eaf21da1448e5508284722883, type: 3}
   vineresourcePrefabs: {fileID: 919132149155446097, guid: 7c01c334e0483914894806cd7223b4e2, type: 3}

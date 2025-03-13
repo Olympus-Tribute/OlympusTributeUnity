@@ -11,8 +11,6 @@ namespace BuildingsFolder.BuildingsClasses
         public uint OwnerId { get; private set; }
 
         public readonly int Range;
-
-        public bool Paralyze;
         
         public GameObject Flag { get; private set; }
 

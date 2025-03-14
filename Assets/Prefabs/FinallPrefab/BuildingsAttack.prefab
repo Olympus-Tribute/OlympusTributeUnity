@@ -195,8 +195,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7618949112938609787}
-        m_TargetAssemblyTypeName: Attacks.AttacksManager, Assembly-CSharp
+      - m_Target: {fileID: 6430766547579462454}
+        m_TargetAssemblyTypeName: Attacks.AttacksMenu, Assembly-CSharp
         m_MethodName: ButtonAttack
         m_Mode: 1
         m_Arguments:
@@ -551,6 +551,53 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!1 &4944563070213694108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3472564307299659903}
+  - component: {fileID: 6430766547579462454}
+  m_Layer: 0
+  m_Name: AttacksMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3472564307299659903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944563070213694108}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -233.86023, y: -233.37482, z: -10.4385395}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1050411550873155131}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6430766547579462454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944563070213694108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bca26e3b594eeab7d507618a61785f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuUIAttack: {fileID: 1131778094888253131}
+  TitleInfoAttack: {fileID: 8623336721489703750}
+  InfoAttack: {fileID: 8219439230595109297}
 --- !u!1 &5255705040177043346
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,9 +644,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poseidonAnimation: {fileID: 1897722749337026402, guid: c891d434eaf66b94b9208b2e16e66620, type: 3}
   _hadesAnimation: {fileID: 2626209354379793085, guid: 99a9f9bf02baee445bcbac1d509f237a, type: 3}
-  menuUIAttack: {fileID: 1131778094888253131}
-  TitleInfoAttack: {fileID: 8623336721489703750}
-  InfoAttack: {fileID: 8219439230595109297}
 --- !u!1 &5269136758952594006
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,6 +810,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5405820897873101058}
+  - {fileID: 3472564307299659903}
   - {fileID: 8710792806161518820}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1179,8 +1224,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7618949112938609787}
-        m_TargetAssemblyTypeName: Attacks.AttacksManager, Assembly-CSharp
+      - m_Target: {fileID: 6430766547579462454}
+        m_TargetAssemblyTypeName: Attacks.AttacksMenu, Assembly-CSharp
         m_MethodName: ButtonQuit
         m_Mode: 1
         m_Arguments:

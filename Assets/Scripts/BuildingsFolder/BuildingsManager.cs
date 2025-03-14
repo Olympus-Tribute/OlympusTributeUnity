@@ -165,96 +165,19 @@ namespace BuildingsFolder
             }
         }
         
-
-        private void ShowPopUpPlaceBuilding(Building newBuilding)
+        public GameObject FakeDeleteBuilding(int x, int z)
         {
-            switch (newBuilding.OwnerId)
-            {
-                case 0:
-                    if (newBuilding is Extractor)
-                    { 
-                        PopUpManager.Instance.ShowPopUp($"Athènes has placed an {newBuilding.Name}.", 3);
-                    }
-                    else
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Athènes has placed a {newBuilding.Name}.", 3);
-                    }
-
-                    break;
-                case 1:
-                    if (newBuilding is Extractor)
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Sparte has placed an {newBuilding.Name}.", 3);
-                    }
-                    else
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Sparte has placed a {newBuilding.Name}.", 3);
-                    }
-
-                    break;
-                case 2:
-                    if (newBuilding is Extractor)
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Thèbes has placed an {newBuilding.Name}.", 3);
-                    }
-                    else
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Thèbes has placed a {newBuilding.Name}.", 3);
-                    }
-
-                    break;
-                case 3:
-                    if (newBuilding is Extractor)
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Corinthe has placed an {newBuilding.Name}.", 3);
-                    }
-                    else
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Corinthe has placed a {newBuilding.Name}.", 3);
-                    }
-
-                    break;
-                default:
-                    if (newBuilding is Extractor)
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed an {newBuilding.Name}.", 3);
-                    }
-                    else
-                    {
-                        PopUpManager.Instance.ShowPopUp($"Player number {ServerManager.PlayerId} has placed a {newBuilding.Name}.", 3);
-                    }
-                    break;
-            }
+            if (!Buildings.TryGetValue((x, z), out Building building)) 
+                return null;
+            GameObject flag = building.Flag;
+            Buildings.Remove((x, z));
+            Destroy(flag);
+            RemoveBuildingOwner(building);
+            Debug.Log($"Bâtiment fake supprimé à la position ({x}, {z}).");
+            return building.GameObject;
         }
-
-        public GameObject InstantiateFlag(int xMapIndex, int zMapIndex, uint ownerId)
-        {
-            (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(xMapIndex, zMapIndex);
-            
-            GameObject flag = null;
-            if (ownerId == 0)
-            {
-                flag= Instantiate(prefabFlag1, new Vector3(xWorldCenterCo, 0, zWorldCenterCo), Quaternion.identity);
-                
-            }
-            if (ownerId == 1)
-            {
-                flag= Instantiate(prefabFlag2, new Vector3(xWorldCenterCo, 0, zWorldCenterCo), Quaternion.identity);
-                
-            }
-            if (ownerId == 2)
-            {
-                flag= Instantiate(prefabFlag3, new Vector3(xWorldCenterCo, 0, zWorldCenterCo), Quaternion.identity);
-                
-            }
-            if (ownerId == 3)
-            {
-                flag= Instantiate(prefabFlag4, new Vector3(xWorldCenterCo, 0, zWorldCenterCo), Quaternion.identity);
-                
-            }
-            return flag;
-        }
-    
+     
+        
         public Building InstantiateBuilding(int x, int z, int buildingType, uint ownerId,
             GameObject flag)
         {
@@ -316,6 +239,33 @@ namespace BuildingsFolder
             }
         }
         
+        private GameObject InstantiateFlag(int xMapIndex, int zMapIndex, uint ownerId)
+        {
+            (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(xMapIndex, zMapIndex);
+            GameObject prefabFlag;
+            switch (ownerId)
+            {
+                case 0:
+                    prefabFlag = prefabFlag1;
+                    break;
+                case 1:
+                    prefabFlag = prefabFlag2;
+                    break;
+                case 2:
+                    prefabFlag = prefabFlag3;
+                    break;
+                case 3:
+                    prefabFlag = prefabFlag4;
+                    break;
+                default:
+                    prefabFlag = prefabFlag1;
+                    break;
+            }
+
+            GameObject flag = Instantiate(prefabFlag, new Vector3(xWorldCenterCo, 0, zWorldCenterCo), Quaternion.identity);
+            return flag;
+        }
+        
         public GameObject GetBuildingPrefab(int buildingType)
         {
             switch (buildingType)
@@ -353,17 +303,34 @@ namespace BuildingsFolder
             }
         }
         
-        public GameObject FakeDeleteBuilding(int x, int z)
+        private void ShowPopUpPlaceBuilding(Building newBuilding)
         {
-            if (!Buildings.TryGetValue((x, z), out Building building)) 
-                return null;
-            GameObject flag = building.Flag;
-            Buildings.Remove((x, z));
-            Destroy(flag);
-            RemoveBuildingOwner(building);
-            Debug.Log($"Bâtiment fake supprimé à la position ({x}, {z}).");
-            return building.GameObject;
+            string city;
+
+            if (ServerManager.City.Length <= ServerManager.PlayerId )
+            {
+                city = $"Player number {ServerManager.PlayerId}";
+            }
+            else
+            {
+                city = ServerManager.City[ServerManager.PlayerId];
+            }
+
+            string article;
+            if (newBuilding is Extractor)
+            {
+                article = "an";
+            }
+            else
+            {
+                article = "a";
+            }
+            
+            PopUpManager.Instance.ShowPopUp($"{city} has placed {article} {newBuilding.Name}.", 3);
         }
+
+        
+        
         
     }
     

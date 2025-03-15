@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using ForServer;
 using PopUp;
@@ -6,7 +5,7 @@ using Steamworks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Menus
+namespace Menus.MenusOutGame
 {
     public class MainMenu : MonoBehaviour
     {

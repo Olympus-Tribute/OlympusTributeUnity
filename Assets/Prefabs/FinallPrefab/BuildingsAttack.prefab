@@ -596,8 +596,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuUIAttack: {fileID: 1131778094888253131}
-  TitleInfoAttack: {fileID: 8623336721489703750}
-  InfoAttack: {fileID: 8219439230595109297}
+  titleInfoAttack: {fileID: 8623336721489703750}
+  infoAttackPrice: {fileID: 8219439230595109297}
 --- !u!1 &5255705040177043346
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 6572575110110403383}
   - component: {fileID: 8219439230595109297}
   m_Layer: 5
-  m_Name: InfoAttack
+  m_Name: InfoAttackPrice
   m_TagString: BuildingInfoText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

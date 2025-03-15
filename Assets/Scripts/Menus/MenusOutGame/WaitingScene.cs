@@ -1,4 +1,3 @@
-using System;
 using ForNetwork;
 using ForServer;
 using Networking.API.Listeners;
@@ -7,7 +6,7 @@ using Networking.Common.Server;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Menus
+namespace Menus.MenusOutGame
 {
     public class WaitingScene : MonoBehaviour
     {

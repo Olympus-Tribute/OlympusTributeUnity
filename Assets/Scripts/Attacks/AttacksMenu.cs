@@ -22,7 +22,11 @@ namespace Attacks
         public GameObject menuUIAttack;
         public TMP_Text titleInfoAttack;
         public TMP_Text infoAttackPrice;
+        
+        //public GameObject resourceCostContainer; // Panel où afficher les ressources
+        //public GameObject resourceCostPrefab; // Prefab avec Image + TMP_Text
     
+        
         // Référence à l'image dans le panel
         //public Image panelImage;
 
@@ -31,8 +35,11 @@ namespace Attacks
         //public Sprite imageAttackHades;
         
         
+        
         private AttacksManager _attacksManager;
         private BuildingsManager _buildingsManager;
+        
+        private Dictionary<ResourceType, Sprite> _resourceIcons;
         
         private uint _compteurMouse;
         
@@ -43,6 +50,20 @@ namespace Attacks
             _buildingsManager = FindFirstObjectByType<BuildingsManager>();
             menuUIAttack.SetActive(false);
             _compteurMouse = 0;
+            
+            /*
+            _resourceIcons = new Dictionary<ResourceType, Sprite>
+            {
+                { ResourceType.Population, Resources.Load<Sprite>("Icons/Wood") },
+                { ResourceType.Wood, Resources.Load<Sprite>("Icons/Wood") },
+                { ResourceType.Stone, Resources.Load<Sprite>("Icons/Stone") },
+                { ResourceType.Gold, Resources.Load<Sprite>("Icons/Gold") },
+                { ResourceType.Diamond, Resources.Load<Sprite>("Icons/Food") },
+                { ResourceType.Obsidian, Resources.Load<Sprite>("Icons/Food") },
+                { ResourceType.Water, Resources.Load<Sprite>("Icons/Food") },
+                { ResourceType.Vine, Resources.Load<Sprite>("Icons/Food") },
+            };
+            */
         }
         
         void Update()

@@ -8,6 +8,18 @@ using UnityEngine;
 
 namespace Resources
 {
+    public enum ResourceType
+    {
+        Population,
+        Wood,
+        Stone,
+        Gold,
+        Diamond,
+        Obsidian,
+        Water,
+        Vine,
+    }
+    
     public class RessourceManager : MonoBehaviour
     {
         public TMP_Text populationText;

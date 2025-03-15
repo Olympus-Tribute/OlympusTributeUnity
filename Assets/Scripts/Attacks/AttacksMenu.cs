@@ -1,13 +1,18 @@
+using System;
+using System.Collections.Generic;
 using Attacks.Animation;
 using BuildingsFolder;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
 using ForServer;
+using Menus.MenusInGame;
 using Networking.Common.Server;
 using OlympusDedicatedServer.Components.Attack;
 using PopUp;
+using Resources;
 using TMPro;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Attacks
@@ -15,8 +20,8 @@ namespace Attacks
     public class AttacksMenu : MonoBehaviour
     {
         public GameObject menuUIAttack;
-        public TMP_Text TitleInfoAttack;
-        public TMP_Text InfoAttack;
+        public TMP_Text titleInfoAttack;
+        public TMP_Text infoAttackPrice;
     
         // Référence à l'image dans le panel
         //public Image panelImage;
@@ -28,8 +33,10 @@ namespace Attacks
         
         private AttacksManager _attacksManager;
         private BuildingsManager _buildingsManager;
+        
         private uint _compteurMouse;
         
+
         public void Start()
         {
             _attacksManager = FindFirstObjectByType<AttacksManager>();
@@ -56,16 +63,18 @@ namespace Attacks
         {
             if (_attacksManager.Temple is null)
             {
-                if (_buildingsManager.Buildings.TryGetValue((x,y),out var targetbBuilding) &&
+                if (_buildingsManager.Buildings.TryGetValue((x,y),out var targetbBuilding) && targetbBuilding.OwnerId == ServerManager.PlayerId &&
                     targetbBuilding is Temple targetTemple)
                 {
                     _compteurMouse += 1;
+                    
+                    //_menusInGameManager.ShowMenu(menuUIAttack); //
                     menuUIAttack.SetActive(true);
                     
                     //Un temple a été target
                     _attacksManager.Temple = targetTemple;
-                    TitleInfoAttack.text = $"Attack : {targetTemple.Name}";
-                    InfoAttack.text = $"{targetTemple.DescriptionAttack}";
+                    titleInfoAttack.text = $"Attack : {targetTemple.Name}";
+                    infoAttackPrice.text = CreateTextePrice(targetTemple);
                     //SelectImageAttack();
                 }
             }
@@ -105,6 +114,17 @@ namespace Attacks
             }
         }
         */
+
+        private string CreateTextePrice(Temple temple)
+        {
+            string res = String.Empty;
+            foreach (KeyValuePair<ResourceType,int> couple in temple.AttackPrice)
+            {
+               res += $"{couple.Key.ToString()} : {couple.Value}\n";
+            }
+            return res;
+        }
+        
         
         private void ShowPopUpAttack()
         {

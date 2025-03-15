@@ -37,7 +37,7 @@ namespace Attacks
             {
                 (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
                 var temple = _buildingsManager.Buildings[(action.TempleX, action.TempleY)] as Temple;
-                switch (temple?.Type)
+                switch (temple?.AttackType)
                 {
                     case (AttackType.Poseidon):
                         Instantiate(_poseidonAnimation, new Vector3(x,0,z),quaternion.identity);

@@ -1,12 +1,7 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System.Collections.Generic;
-using OlympusDedicatedServer.Components.Resources;
 using Resources;
-using UnityEngine.Rendering;
 using static BuildingsFolder.AllPrices;
+using ResourceType = Resources.ResourceType;
 
 namespace BuildingsFolder
 {
@@ -15,8 +10,6 @@ namespace BuildingsFolder
         public GameObject Panel;
 
         public string Nom = "";
-        
-        
 
         public bool Ressource()
         {
@@ -63,9 +56,6 @@ namespace BuildingsFolder
                 default:
                     return true;
             }
-            
-            
-            
         }
         
         void Update()

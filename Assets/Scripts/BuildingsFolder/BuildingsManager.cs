@@ -212,26 +212,31 @@ namespace BuildingsFolder
                 case 9: // Temple Gold
                     return new Temple("Temple Gold", "...", instantiate, (x, z), ownerId,
                         AttackType.Zeus,
-                        $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 30 \n \n____Cost____ :\n- 25 Wood \n- 25 Stone \n- 50 Gold",
+                        attackPrice: AllPrices.PriceZeusAttackDict,
+                        descriptionAttack: $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 30 \n \n____Cost____ :\n- 25 Wood \n- 25 Stone \n- 50 Gold",
                         flag);
                 case 10: // Temple Diamond
                     return new Temple("Temple Diamond", "...", instantiate, (x, z), ownerId,
                         AttackType.Athena,
+                        attackPrice: AllPrices.PriceAthenaAttackDict,
                         $"____Type____ :\n- Stealing \n \n__Duration__ :\n- 60 \n \n____Cost____ :\n- 30 Wood \n- 30 Stone \n- 25 Diamond",
                         flag);
                 case 11: // Temple Obsidian
                     return new Temple("Temple Obsidian", "...", instantiate, (x, z), ownerId,
                         AttackType.Hades,
+                        attackPrice: AllPrices.PriceHadesAttackDict,
                         $"____Type____ :\n- Destruction \n \n____Cost____ :\n- 50 Wood \n- 50 Stone \n- 50 Obsidian",
                         flag);
                 case 12: // Temple Water
                     return new Temple("Temple Water", "...", instantiate, (x, z), ownerId,
                         AttackType.Poseidon,
+                        attackPrice: AllPrices.PricePoseidonAttackDict,
                         $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 15 \n \n____Cost____ :\n- 75 Wood \n- 75 Stone \n- 50 Water",
                         flag);
                 case 13: // Temple Vine
                     return new Temple("Temple Vine", "...", instantiate, (x, z), ownerId,
-                        AttackType.Dionysos, 
+                        AttackType.Dionysos,
+                        attackPrice: AllPrices.PriceDyonisosAttackDict,
                         $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 120 \n \n____Cost____ :\n- 20 Wood \n- 20 Stone \n- 50 Wine \n- 5 Population",
                         flag);
                 default:

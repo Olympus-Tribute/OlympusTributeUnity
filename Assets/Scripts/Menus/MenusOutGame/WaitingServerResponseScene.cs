@@ -1,12 +1,9 @@
 using ForNetwork;
-using ForServer;
-using Networking.Common.Server;
-using PopUp;
 using Steamworks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Menus
+namespace Menus.MenusOutGame
 {
     public class WaitingServerResponseScene : MonoBehaviour
     {

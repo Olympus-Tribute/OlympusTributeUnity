@@ -6,6 +6,7 @@ using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
 using ForServer;
 using Menus.MenusInGame;
+using Microsoft.Unity.VisualStudio.Editor;
 using Networking.Common.Server;
 using OlympusDedicatedServer.Components.Attack;
 using PopUp;
@@ -23,10 +24,6 @@ namespace Attacks
         public TMP_Text titleInfoAttack;
         public TMP_Text infoAttackPrice;
         
-        //public GameObject resourceCostContainer; // Panel où afficher les ressources
-        //public GameObject resourceCostPrefab; // Prefab avec Image + TMP_Text
-    
-        
         // Référence à l'image dans le panel
         //public Image panelImage;
 
@@ -34,12 +31,27 @@ namespace Attacks
         //public Sprite imageAttackPoseidon;
         //public Sprite imageAttackHades;
         
+        //______________________________________________//
+        //_____________________ICON_____________________//
+        //______________________________________________//
+
+        public Image IconPopulation;
+        public Image IconWood;
+        public Image IconStone;
+        public Image IconGold;
+        public Image IconDiamond;
+        public Image IconObsidian;
+        public Image IconWater;
+        public Image IconVine;
         
+        //______________________________________________//
+        //______________________________________________//
+        //______________________________________________//
         
         private AttacksManager _attacksManager;
         private BuildingsManager _buildingsManager;
         
-        private Dictionary<ResourceType, Sprite> _resourceIcons;
+        private Dictionary<ResourceType, Image> _resourceIcons;
         
         private uint _compteurMouse;
         
@@ -51,19 +63,17 @@ namespace Attacks
             menuUIAttack.SetActive(false);
             _compteurMouse = 0;
             
-            /*
-            _resourceIcons = new Dictionary<ResourceType, Sprite>
+            _resourceIcons = new Dictionary<ResourceType, Image>
             {
-                { ResourceType.Population, Resources.Load<Sprite>("Icons/Wood") },
-                { ResourceType.Wood, Resources.Load<Sprite>("Icons/Wood") },
-                { ResourceType.Stone, Resources.Load<Sprite>("Icons/Stone") },
-                { ResourceType.Gold, Resources.Load<Sprite>("Icons/Gold") },
-                { ResourceType.Diamond, Resources.Load<Sprite>("Icons/Food") },
-                { ResourceType.Obsidian, Resources.Load<Sprite>("Icons/Food") },
-                { ResourceType.Water, Resources.Load<Sprite>("Icons/Food") },
-                { ResourceType.Vine, Resources.Load<Sprite>("Icons/Food") },
+                { ResourceType.Population, IconPopulation },
+                { ResourceType.Wood, IconWood },
+                { ResourceType.Stone, IconStone },
+                { ResourceType.Gold, IconGold },
+                { ResourceType.Diamond, IconDiamond },
+                { ResourceType.Obsidian, IconObsidian },
+                { ResourceType.Water, IconWater },
+                { ResourceType.Vine, IconVine },
             };
-            */
         }
         
         void Update()

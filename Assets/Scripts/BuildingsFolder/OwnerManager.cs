@@ -1,14 +1,21 @@
 using System.Collections.Generic;
+using Grid;
+using OlympusWorldGenerator;
+using UnityEngine;
 
 
 namespace BuildingsFolder
 {
-    public class OwnerManager
+    public class OwnerManager : MonoBehaviour
     {
         private readonly uint _mapWidth;
         private readonly uint _mapHeight;
-        private readonly List<uint>[,] _globalMap;
         private readonly Dictionary<uint, uint[,]> _mapOfPlayer = new Dictionary<uint, uint[,]>();
+        private readonly List<uint>[,] _globalMap;
+        private readonly HexMapGenerator _map;
+        private readonly int _numberTilesPlayable;
+        
+        public readonly Dictionary<uint, float> PercentagePerPlayer;
 
 
         public OwnerManager(uint mapWidth, uint mapHeight)
@@ -16,6 +23,10 @@ namespace BuildingsFolder
             _mapWidth = mapWidth;
             _mapHeight = mapHeight;
             _globalMap = new List<uint>[mapWidth, mapHeight];
+            _numberTilesPlayable = (int)((_mapWidth * _mapHeight) - CountTilesOfOcean());
+            PercentagePerPlayer = new Dictionary<uint, float>();
+            _map = FindFirstObjectByType<GridGenerator>().MapGenerator;
+            
             for (int i = 0; i < mapWidth; i++)
             {
                 for (int j = 0; j < mapHeight; j++)
@@ -37,6 +48,8 @@ namespace BuildingsFolder
                 _globalMap[x, y].Add(owner);
             }
             map[x, y] ++;
+
+            UpdatePercentageOfTileWithOcean();
         }
 
         public void RemoveOwner(int x, int y, uint owner)
@@ -50,6 +63,8 @@ namespace BuildingsFolder
             {
                 _globalMap[x, y].Remove(owner);
             }
+
+            UpdatePercentageOfTileWithOcean();
         }
 
         public uint? GetOwner(int x, int y)
@@ -61,7 +76,93 @@ namespace BuildingsFolder
             }
             return tileOwner[0];
         }
+
+        private void UpdatePercentageOfTileWithOcean()
+        {
+            Dictionary<uint, uint> tileCountPerPlayer = new Dictionary<uint, uint>();
+            uint totalTiles = _mapWidth * _mapHeight;
+
+       
+            foreach (var player in _mapOfPlayer)
+            {
+                uint playerId = player.Key;
+                uint[,] playerMap = player.Value;
+                uint count = 0;
+                
+                for (int i = 0; i < _mapWidth; i++)
+                {
+                    for (int j = 0; j < _mapHeight; j++)
+                    {
+                        if (playerMap[i, j] > 0)
+                        {
+                            count++;
+                        }
+                    }
+                }
+                
+                if (count > 0)
+                {
+                    tileCountPerPlayer[playerId] = count;
+                }
+            }
+            
+            foreach (var entry in tileCountPerPlayer)
+            {
+                PercentagePerPlayer[entry.Key] = (entry.Value / (float)totalTiles) * 100f;
+            }
+        }
         
+        private void UpdatePercentageOfTileWithoutOcean()
+        {
+            Dictionary<uint, uint> tileCountPerPlayer = new Dictionary<uint, uint>();
+            uint totalTiles = _mapWidth * _mapHeight;
+
+       
+            foreach (var player in _mapOfPlayer)
+            {
+                uint playerId = player.Key;
+                uint[,] playerMap = player.Value;
+                uint count = 0;
+                
+                for (int i = 0; i < _mapWidth; i++)
+                {
+                    for (int j = 0; j < _mapHeight; j++)
+                    {
+                        if (!(_map[i, j] is FloorTile.Ocean) && playerMap[i, j] > 0)
+                        {
+                            count++;
+                        }
+                    }
+                }
+                
+                if (count > 0)
+                {
+                    tileCountPerPlayer[playerId] = count;
+                }
+            }
+            
+            foreach (var entry in tileCountPerPlayer)
+            {
+                PercentagePerPlayer[entry.Key] = (entry.Value / (_numberTilesPlayable + 0f)) * 100f;
+            }
+        }
+        
+        private int CountTilesOfOcean()
+        {
+            int count = 0;
+            for (int i = 0; i < _mapWidth; i++)
+            {
+                for (int j = 0; j < _mapHeight; j++)
+                {
+                    if (_map[i, j] is FloorTile.Ocean)
+                    {
+                        count++;
+                    }
+                }
+            }
+
+            return count;
+        }
         
         
         

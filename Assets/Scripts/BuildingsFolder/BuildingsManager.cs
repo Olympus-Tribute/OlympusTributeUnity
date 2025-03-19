@@ -108,6 +108,7 @@ namespace BuildingsFolder
                     DeleteBuilding((int)xPlaceBuilding, (int)zPlaceBuilding);
                 });
 
+            //OwnerManager = new OwnerManager(ServerManager.MapWidth, ServerManager.MapHeight, _map);
             OwnerManager = FindFirstObjectByType<OwnerManager>();
         }
     

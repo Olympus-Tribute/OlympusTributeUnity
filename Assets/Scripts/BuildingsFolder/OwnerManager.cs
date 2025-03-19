@@ -1,31 +1,52 @@
+using System;
 using System.Collections.Generic;
+using ForServer;
 using Grid;
 using OlympusWorldGenerator;
 using UnityEngine;
-
 
 namespace BuildingsFolder
 {
     public class OwnerManager : MonoBehaviour
     {
-        private readonly uint _mapWidth;
-        private readonly uint _mapHeight;
-        private readonly Dictionary<uint, uint[,]> _mapOfPlayer = new Dictionary<uint, uint[,]>();
-        private readonly List<uint>[,] _globalMap;
-        private readonly HexMapGenerator _map;
-        private readonly int _numberTilesPlayable;
+        private uint _mapWidth;
+        private uint _mapHeight;
+        private Dictionary<uint, uint[,]> _mapOfPlayer;
+        private List<uint>[,] _globalMap;
+        private HexMapGenerator _map;
+        private int _numberTilesPlayable;
         
-        public readonly Dictionary<uint, float> PercentagePerPlayer;
+        public Dictionary<uint, float> PercentagePerPlayer;
 
 
-        public OwnerManager(uint mapWidth, uint mapHeight)
+        public void Start()
+        {
+            _mapWidth = ServerManager.MapWidth;
+            _mapHeight = ServerManager.MapHeight;
+            _globalMap = new List<uint>[_mapWidth, _mapHeight];
+            _mapOfPlayer = new Dictionary<uint, uint[,]>();
+            PercentagePerPlayer = new Dictionary<uint, float>();
+            _map = FindFirstObjectByType<GridGenerator>().MapGenerator;
+            
+            _numberTilesPlayable = (int)((_mapWidth * _mapHeight) - CountTilesOfOcean());
+            for (int i = 0; i < _mapWidth; i++)
+            {
+                for (int j = 0; j < _mapHeight; j++)
+                {
+                    _globalMap[i, j] = new List<uint>();
+                }
+            }
+        }
+        /*
+        public OwnerManager(uint mapWidth, uint mapHeight, HexMapGenerator map)
         {
             _mapWidth = mapWidth;
             _mapHeight = mapHeight;
             _globalMap = new List<uint>[mapWidth, mapHeight];
             _numberTilesPlayable = (int)((_mapWidth * _mapHeight) - CountTilesOfOcean());
+            _mapOfPlayer = new Dictionary<uint, uint[,]>();
             PercentagePerPlayer = new Dictionary<uint, float>();
-            _map = FindFirstObjectByType<GridGenerator>().MapGenerator;
+            _map = map;
             
             for (int i = 0; i < mapWidth; i++)
             {
@@ -35,6 +56,9 @@ namespace BuildingsFolder
                 }
             }
         }
+        
+        */
+        
         
         
         public void AddOwner(int x, int y, uint owner)

@@ -61,7 +61,7 @@ namespace BuildingsFolder
                 Debug.LogWarning("Network.Instance is not initialized!");
                 return;
             }
-            _map = FindObjectOfType<GridGenerator>().MapGenerator;
+            _map = FindFirstObjectByType<GridGenerator>().MapGenerator;
         }
 
         //___________________________________________________________//
@@ -107,8 +107,9 @@ namespace BuildingsFolder
                     (float xPlaceBuilding, float zPlaceBuilding)  = StaticGridTools.MapIndexToWorldCenterCo(action.X, action.Y);
                     DeleteBuilding((int)xPlaceBuilding, (int)zPlaceBuilding);
                 });
-            
-            OwnerManager = new OwnerManager(ServerManager.MapWidth, ServerManager.MapHeight);
+
+            //OwnerManager = new OwnerManager(ServerManager.MapWidth, ServerManager.MapHeight, _map);
+            OwnerManager = FindFirstObjectByType<OwnerManager>();
         }
     
         //___________________________________________________________//

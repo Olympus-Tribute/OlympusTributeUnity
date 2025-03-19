@@ -1,19 +1,12 @@
-using System;
 using System.Collections.Generic;
-using Attacks.Animation;
 using BuildingsFolder;
 using BuildingsFolder.BuildingsClasses;
-using ForNetwork;
 using ForServer;
-using Menus.MenusInGame;
-using Networking.Common.Server;
-using OlympusDedicatedServer.Components.Attack;
 using PopUp;
 using Resources;
 using TMPro;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Attacks
 {
@@ -22,34 +15,75 @@ namespace Attacks
         public GameObject menuUIAttack;
         public TMP_Text titleInfoAttack;
         public TMP_Text infoAttackPrice;
-    
-        // Référence à l'image dans le panel
-        //public Image panelImage;
-
-        // Références aux images de remplacement
-        //public Sprite imageAttackPoseidon;
-        //public Sprite imageAttackHades;
         
+        //______________________________________________//
+        //_____________________ICON_____________________//
+        //______________________________________________//
+
+        
+        /*
+        public Image IconPopulation;
+        public Image IconWood;
+        public Image IconStone;
+        public Image IconGold;
+        public Image IconDiamond;
+        public Image IconObsidian;
+        public Image IconWater;
+        public Image IconVine;
+
+        
+
+        // Variables publiques pour assigner les sprites dans l'éditeur Unity
+        public Sprite IconPopulationSprite;
+        public Sprite IconWoodSprite;
+        public Sprite IconStoneSprite;
+        public Sprite IconGoldSprite;
+        public Sprite IconDiamondSprite;
+        public Sprite IconObsidianSprite;
+        public Sprite IconWaterSprite;
+        public Sprite IconVineSprite;
+        
+        */
+        
+        //______________________________________________//
+        //______________________________________________//
+        //______________________________________________//
         
         private AttacksManager _attacksManager;
         private BuildingsManager _buildingsManager;
         
+        private Dictionary<ResourceType, string> _resourceSpriteNames;
+        
         private uint _compteurMouse;
         
-
         public void Start()
         {
             _attacksManager = FindFirstObjectByType<AttacksManager>();
             _buildingsManager = FindFirstObjectByType<BuildingsManager>();
             menuUIAttack.SetActive(false);
             _compteurMouse = 0;
+            
+            _resourceSpriteNames = new Dictionary<ResourceType, string>
+            {
+                { ResourceType.Population, "icon_population" },
+                { ResourceType.Wood, "icon_wood" },
+                { ResourceType.Stone, "icon_stone" },
+                { ResourceType.Gold, "icon_gold" },
+                { ResourceType.Diamond, "icon_diamond" },
+                { ResourceType.Obsidian, "icon_obsidian" },
+                { ResourceType.Water, "icon_water" },
+                { ResourceType.Vine, "icon_vine" },
+            };
+
+            // Assigner les icônes
+            //AssignResourceIcons();
         }
         
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                var mapIndex  = MousePositionTracker.Instance.GetMouseMapIndexCo();
+                var mapIndex = MousePositionTracker.Instance.GetMouseMapIndexCo();
                 if (!mapIndex.HasValue)
                 {
                     return;
@@ -63,24 +97,25 @@ namespace Attacks
         {
             if (_attacksManager.Temple is null)
             {
-                if (_buildingsManager.Buildings.TryGetValue((x,y),out var targetbBuilding) && targetbBuilding.OwnerId == ServerManager.PlayerId &&
-                    targetbBuilding is Temple targetTemple)
+                if (_buildingsManager.Buildings.TryGetValue((x, y), out var targetBuilding) && targetBuilding.OwnerId == ServerManager.PlayerId &&
+                    targetBuilding is Temple targetTemple)
                 {
                     _compteurMouse += 1;
                     
-                    //_menusInGameManager.ShowMenu(menuUIAttack); //
                     menuUIAttack.SetActive(true);
                     
-                    //Un temple a été target
+                    // Un temple a été ciblé
                     _attacksManager.Temple = targetTemple;
                     titleInfoAttack.text = $"Attack : {targetTemple.Name}";
-                    infoAttackPrice.text = CreateTextePrice(targetTemple);
-                    //SelectImageAttack();
+                    
+                    // Associer le bon Sprite Asset TMP avant d'afficher le texte
+                    infoAttackPrice.spriteAsset = TMP_Settings.defaultSpriteAsset; 
+                    //infoAttackPrice.text = CreateTextePrice(targetTemple);
                 }
             }
             else if (_compteurMouse >= 2)
             {
-                _attacksManager.Temple.SendAttack(x,y);
+                _attacksManager.Temple.SendAttack(x, y);
                 ShowPopUpAttack();
                 _attacksManager.Temple = null;
                 _compteurMouse = 0;
@@ -99,37 +134,37 @@ namespace Attacks
             menuUIAttack.SetActive(false);
             _attacksManager.Temple = null;
         }
+
         
         /*
-        public void SelectImageAttack()
+        private void AssignResourceIcons()
         {
-            switch (_temple.Type)
-            {
-                case AttackType.Poseidon:
-                    panelImage.sprite = imageAttackPoseidon;
-                    break;
-                case AttackType.Hades:
-                    panelImage.sprite = imageAttackHades;
-                    break;
-            }
+            // Assigner les icônes aux images de l'UI
+            IconPopulation.sprite = IconPopulationSprite;
+            IconWood.sprite = IconWoodSprite;
+            IconStone.sprite = IconStoneSprite;
+            IconGold.sprite = IconGoldSprite;
+            IconDiamond.sprite = IconDiamondSprite;
+            IconObsidian.sprite = IconObsidianSprite;
+            IconWater.sprite = IconWaterSprite;
+            IconVine.sprite = IconVineSprite;
         }
-        */
 
         private string CreateTextePrice(Temple temple)
         {
-            string res = String.Empty;
-            foreach (KeyValuePair<ResourceType,int> couple in temple.AttackPrice)
+            string res = string.Empty;
+            foreach (KeyValuePair<ResourceType, int> couple in temple.AttackPrice)
             {
-               res += $"{couple.Key.ToString()} : {couple.Value}\n";
+                res += $"{couple.Key}: {couple.Value}\n";
             }
             return res;
         }
-        
+        */
         
         private void ShowPopUpAttack()
         {
             string city;
-            if (ServerManager.City.Length <= ServerManager.PlayerId )
+            if (ServerManager.City.Length <= ServerManager.PlayerId)
             {
                 city = $"Player number {ServerManager.PlayerId}";
             }
@@ -138,7 +173,7 @@ namespace Attacks
                 city = ServerManager.City[ServerManager.PlayerId];
             }
             
-            PopUpManager.Instance.ShowPopUp($"{city} has attack.", 3);
+            PopUpManager.Instance.ShowPopUp($"{city} has attacked.", 3);
         }
     }
 }

@@ -70,6 +70,7 @@ namespace Attacks
             for (int i = 0; i < 4; i++)
             {
                 GameObject line = Instantiate(PrefabLine, GridLayoutGroup.transform);
+                line.SetActive(false);
                 prefabs.Add(line);
             }
             ListPrefabs = prefabs;
@@ -149,6 +150,7 @@ namespace Attacks
             foreach (KeyValuePair<ResourceType, int> couple in temple.AttackPrice)
             {
                 line = ListPrefabs[i];
+                line.SetActive(true);
                 Image image = line.GetComponentInChildren<Image>();
                 TMP_Text text = line.GetComponentInChildren<TMP_Text>();
                 image.sprite = GetIconSprite(couple.Key);

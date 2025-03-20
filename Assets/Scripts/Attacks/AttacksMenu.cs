@@ -24,7 +24,6 @@ namespace Attacks
         //_____________________ICON_____________________//
         //______________________________________________//
         
-
         // Variables publiques pour assigner les sprites dans l'éditeur Unity
         public Sprite IconPopulationSprite;
         public Sprite IconWoodSprite;
@@ -34,7 +33,6 @@ namespace Attacks
         public Sprite IconObsidianSprite;
         public Sprite IconWaterSprite;
         public Sprite IconVineSprite;
-        
         
         //______________________________________________//
         //______________________________________________//
@@ -108,7 +106,7 @@ namespace Attacks
                     // Associer le bon Sprite Asset TMP avant d'afficher le texte
                     infoAttackPrice.spriteAsset = TMP_Settings.defaultSpriteAsset; 
                     //infoAttackPrice.text = CreateTextePrice(targetTemple);
-                    CreateTextePrice(targetTemple);
+                    CreateGridLayoutGroup(targetTemple.AttackPrice);
                 }
             }
             else if (_compteurMouse >= 2)
@@ -134,20 +132,12 @@ namespace Attacks
         }
         
 
-        private void CreateTextePrice(Temple temple)
+        private void CreateGridLayoutGroup(Dictionary<ResourceType, int> templeAttackPrice)
         {
-            /*
-            string res = string.Empty;
-            foreach (KeyValuePair<ResourceType, int> couple in temple.AttackPrice)
-            {
-                res += $"{IconPopulationSprite} {couple.Key}: {couple.Value}\n";
-            }
-            return res;
-            */
             GameObject line;
             int i = 0;
          
-            foreach (KeyValuePair<ResourceType, int> couple in temple.AttackPrice)
+            foreach (KeyValuePair<ResourceType, int> couple in templeAttackPrice)
             {
                 line = ListPrefabs[i];
                 line.SetActive(true);

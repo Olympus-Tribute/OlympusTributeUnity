@@ -101,7 +101,7 @@ namespace BuildingsFolder
                 int y = (int)(i / _mapWidth);
                 uint? owner = Owner(x, y);
 
-                if (_wallCount[x,y] == 3)
+                if (_wallCount[x,y] is 3 or 6 )
                 {
                     PlaceFlagAtPos(x, y, owner);
                 }

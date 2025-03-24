@@ -57,7 +57,7 @@ namespace ForServer
             }
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
             if (Server == null)
             {

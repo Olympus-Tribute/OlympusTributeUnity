@@ -15,24 +15,26 @@ namespace BuildingsFolder
 {
     public class BuildingWall : MonoBehaviour
     {
-        private readonly OpenBitSet _processed = new OpenBitSet();
         private OwnerManager _ownerManager;
         private readonly uint _mapWidth;
         private readonly uint _mapHeight;
         
         private readonly GameObject [,][] _walls;
-        [SerializeField]private GameObject _wallPrefab;
-        private BuildingFlag _buildingFlag;
         private readonly (uint , GameObject)?[,] _flags;
-        private uint[,] wallCount;
+        private readonly uint[,] _wallCount;
 
+        
+        [SerializeField]private GameObject wallPrefab;
+        private BuildingFlag _buildingFlag;
+        
+        
         public BuildingWall()
         {
             _mapHeight = ServerManager.MapHeight;
             _mapWidth = ServerManager.MapWidth;
             _walls = new GameObject[_mapHeight, _mapWidth][];
             _flags = new (uint ,GameObject)? [_mapHeight, _mapWidth];
-            wallCount = new uint[_mapHeight, _mapWidth];
+            _wallCount = new uint[_mapHeight, _mapWidth];
             for (var i = 0; i < _mapWidth; i++)
             {
                 for (int j = 0; j < _mapHeight; j++)
@@ -54,37 +56,33 @@ namespace BuildingsFolder
             return _ownerManager.GetOwner(x, y);
         }
 
-        public bool IsProcessed(int x, int y)
-        {
-            return _processed.Get(x + y * (int)_mapWidth);
-        }
-
         public void Update()
         {
             OpenBitSet needUpdate = _ownerManager.NewOwner;
-            var i = 0;
             OpenBitSet needFlagUpdate = new OpenBitSet();
+            
+            var i = 0; 
             
             while ( (i = needUpdate.NextSetBit(i)) != -1)
             {
                 int x =  (int)(i % _mapWidth);
                 int y = (int)(i / _mapWidth);
-                var sideIndex = 0;
                 uint? owner = Owner(x, y);
-                _processed.Set(i);
+
+                var poses = WorldCoordinates.FindNeighboringTilesOrdered(x, y, _mapWidth, _mapHeight);
                 
-                foreach (var neighbourPos in WorldCoordinates.FindNeighboringTilesOrdered(x, y, _mapWidth, _mapHeight))
+                for (var sideIndex = 0; sideIndex < poses.Length; sideIndex++)
                 {
+                    var neighbourPos = poses[sideIndex];
                     
                     if (neighbourPos.HasValue)
                     {
                         var (nx, ny) = neighbourPos.Value;
-                        ConsiderBuildWall(sideIndex, nx, ny , x , y , owner );
-                        needFlagUpdate.Set(WorldCoordinates.ToIndex(nx, ny, _mapWidth));  
+                        ConsiderBuildWall(sideIndex, nx, ny, x, y, owner);
+                        needFlagUpdate.Set(WorldCoordinates.ToIndex(nx, ny, _mapWidth));
                     }
-                    
-                    sideIndex++;
                 }
+
                 needFlagUpdate.Set(WorldCoordinates.ToIndex(x, y, _mapWidth));
 
                 
@@ -92,11 +90,9 @@ namespace BuildingsFolder
                 i++;
             }
             NeedFlagUpdate(needFlagUpdate);
-            
-            _processed.Clear(0,i);
         }
 
-        public void NeedFlagUpdate(OpenBitSet needFlagUpdate)
+        private void NeedFlagUpdate(OpenBitSet needFlagUpdate)
         {
             int i = 0;
             while ( (i = needFlagUpdate.NextSetBit(i)) != -1)
@@ -105,7 +101,7 @@ namespace BuildingsFolder
                 int y = (int)(i / _mapWidth);
                 uint? owner = Owner(x, y);
 
-                if (wallCount[x,y] >= 3)
+                if (_wallCount[x,y] == 3)
                 {
                     PlaceFlagAtPos(x, y, owner);
                 }
@@ -129,8 +125,8 @@ namespace BuildingsFolder
             {
                 if (hasWall)
                 {
-                    wallCount[x,y]--;
-                    wallCount[nx,ny]--;
+                    _wallCount[x,y]--;
+                    _wallCount[nx,ny]--;
                 }
                 DestroyWall(sideIndex, x, y);
                 DestroyWall(oppositeSideIndex, nx, ny);
@@ -144,11 +140,10 @@ namespace BuildingsFolder
                 return;
             }
 
-            wallCount[x,y]++;
-            wallCount[nx,ny]++;
+            _wallCount[x,y]++;
+            _wallCount[nx,ny]++;
             var (wx, wy) = StaticGridTools.MapIndexToWorldCenterCo(x, y);
-            var newWall = GameObject.Instantiate(_wallPrefab , new Vector3(wx, 0, wy), Quaternion.Euler(0, SideIndexToDegree(sideIndex), 0) );
-            _walls[x , y ][sideIndex] = newWall; 
+            _walls[x , y ][sideIndex] = Instantiate(wallPrefab , new Vector3(wx, 0, wy), Quaternion.Euler(0, SideIndexToDegree(sideIndex), 0) ); 
         }
 
         private void PlaceFlagAtPos(int x, int y, uint? owner)
@@ -160,7 +155,7 @@ namespace BuildingsFolder
                 {
                     return;
                 }
-                DestroyFlagTupple(x, y, flagTupple);
+                DestroyFlagTupple(x, y, flagTupple.Value);
                 return;
             }
 
@@ -170,15 +165,15 @@ namespace BuildingsFolder
                 {
                     return;
                 }
-                DestroyFlagTupple(x,y, flagTupple);
+                DestroyFlagTupple(x,y, flagTupple.Value);
             }
-            (uint, GameObject)? RealFlag = (owner.Value , _buildingFlag.InstantiateFlag(x, y, owner.Value));
-            _flags[x,y] = RealFlag;
+            
+            _flags[x,y] = (owner.Value , _buildingFlag.InstantiateFlag(x, y, owner.Value));
         }
 
-        private void DestroyFlagTupple(int x, int y, (uint, GameObject)? flagTupple)
+        private void DestroyFlagTupple(int x, int y, (uint, GameObject) flagTupple)
         {
-            Destroy(flagTupple.Value.Item2);
+            Destroy(flagTupple.Item2);
             _flags[x,y] = null;
         }
 

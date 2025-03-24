@@ -38,8 +38,7 @@ namespace ForServer
         public static uint PlayerCount { get; set; }
         
         public static uint PlayerId { get; set; }
-
-        public static string[] City = { "Athènes", "Sparte", "Thèbes", "Corinthe" };
+        
 
         private static CSteamID? lobbyID;
         

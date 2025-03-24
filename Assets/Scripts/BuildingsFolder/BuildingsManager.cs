@@ -44,16 +44,10 @@ namespace BuildingsFolder
         public GameObject prefabTempleVine;
         
         
-        // Flag
-        public GameObject prefabFlag1;
-        public GameObject prefabFlag2;
-        public GameObject prefabFlag3;
-        public GameObject prefabFlag4;
+        // ____________________________________________________________________//
+        // ____________________________________________________________________//
+        // ____________________________________________________________________//
         
-        // ____________________________________________________________________//
-        // ____________________________________________________________________//
-        // ____________________________________________________________________//
-
         private void Awake()
         {
             if (Network.Instance == null)
@@ -139,8 +133,7 @@ namespace BuildingsFolder
                 DeleteBuilding(xMapIndex, zMapIndex);
             }
             
-            GameObject flag = InstantiateFlag(xMapIndex, zMapIndex, ownerId);
-            Building newBuilding = InstantiateBuilding(xMapIndex, zMapIndex, buildingType, ownerId, flag);
+            Building newBuilding = InstantiateBuilding(xMapIndex, zMapIndex, buildingType, ownerId);
             
             Buildings[(xMapIndex, zMapIndex)] = newBuilding;
 
@@ -154,9 +147,7 @@ namespace BuildingsFolder
             if (Buildings.TryGetValue((x, z), out Building building))
             {
                 GameObject buildingGameObject = building.GameObject;
-                GameObject flag = building.Flag;
                 Destroy(buildingGameObject);
-                Destroy(flag);
                 
                 Buildings.Remove((x, z));
                 RemoveBuildingOwner(building);
@@ -170,17 +161,14 @@ namespace BuildingsFolder
         {
             if (!Buildings.TryGetValue((x, z), out Building building)) 
                 return null;
-            GameObject flag = building.Flag;
             Buildings.Remove((x, z));
-            Destroy(flag);
             RemoveBuildingOwner(building);
             Debug.Log($"Bâtiment fake supprimé à la position ({x}, {z}).");
             return building.GameObject;
         }
      
         
-        public Building InstantiateBuilding(int x, int z, int buildingType, uint ownerId,
-            GameObject flag)
+        public Building InstantiateBuilding(int x, int z, int buildingType, uint ownerId)
         {
             GameObject prefab = GetBuildingPrefab(buildingType);
             
@@ -193,84 +181,53 @@ namespace BuildingsFolder
             switch (buildingType)
             {
                 case 0: // Agora
-                    return new Agora("Agora", "", instantiate, (x, z), ownerId, flag);
+                    return new Agora("Agora", "", instantiate, (x, z), ownerId);
                 case 1: // House
-                    return new House("House", "", instantiate, (x, z), ownerId,flag);
+                    return new House("House", "", instantiate, (x, z), ownerId);
                 case 2: // Extractor Wood
-                    return new Extractor("Extractor Wood", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Wood,flag);
+                    return new Extractor("Extractor Wood", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Wood);
                 case 3: // Extractor Stone
-                    return new Extractor("Extractor Stone", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Stone, flag);
+                    return new Extractor("Extractor Stone", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Stone);
                 case 4: // Extractor Gold
-                    return new Extractor("Extractor Gold", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Gold, flag);
+                    return new Extractor("Extractor Gold", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Gold);
                 case 5: // Extractor Diamond
-                    return new Extractor("Extractor Diamond", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Diamond, flag);
+                    return new Extractor("Extractor Diamond", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Diamond);
                 case 6: // Extractor Obsidian
-                    return new Extractor("Extractor Diamond", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Obsidian, flag);
+                    return new Extractor("Extractor Diamond", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Obsidian);
                 case 7: // Extractor Water
-                    return new Extractor("Extractor Water", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Water, flag);
+                    return new Extractor("Extractor Water", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Water);
                 case 8: // Extractor Vine
-                    return new Extractor("Extractor Vine", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Vine, flag);
+                    return new Extractor("Extractor Vine", "", instantiate, (x, z), ownerId, Extractor.ResourceType.Vine);
                 case 9: // Temple Gold
                     return new Temple("Temple Gold", "...", instantiate, (x, z), ownerId,
                         AttackType.Zeus,
                         attackPrice: AllPrices.PriceZeusAttackDict,
-                        descriptionAttack: $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 30 \n \n____Cost____ :\n- 25 Wood \n- 25 Stone \n- 50 Gold",
-                        flag);
+                        descriptionAttack: $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 30 \n \n____Cost____ :\n- 25 Wood \n- 25 Stone \n- 50 Gold");
                 case 10: // Temple Diamond
                     return new Temple("Temple Diamond", "...", instantiate, (x, z), ownerId,
                         AttackType.Athena,
                         attackPrice: AllPrices.PriceAthenaAttackDict,
-                        $"____Type____ :\n- Stealing \n \n__Duration__ :\n- 60 \n \n____Cost____ :\n- 30 Wood \n- 30 Stone \n- 25 Diamond",
-                        flag);
+                        $"____Type____ :\n- Stealing \n \n__Duration__ :\n- 60 \n \n____Cost____ :\n- 30 Wood \n- 30 Stone \n- 25 Diamond");
                 case 11: // Temple Obsidian
                     return new Temple("Temple Obsidian", "...", instantiate, (x, z), ownerId,
                         AttackType.Hades,
                         attackPrice: AllPrices.PriceHadesAttackDict,
-                        $"____Type____ :\n- Destruction \n \n____Cost____ :\n- 50 Wood \n- 50 Stone \n- 50 Obsidian",
-                        flag);
+                        $"____Type____ :\n- Destruction \n \n____Cost____ :\n- 50 Wood \n- 50 Stone \n- 50 Obsidian");
                 case 12: // Temple Water
                     return new Temple("Temple Water", "...", instantiate, (x, z), ownerId,
                         AttackType.Poseidon,
                         attackPrice: AllPrices.PricePoseidonAttackDict,
-                        $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 15 \n \n____Cost____ :\n- 75 Wood \n- 75 Stone \n- 50 Water",
-                        flag);
+                        $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 15 \n \n____Cost____ :\n- 75 Wood \n- 75 Stone \n- 50 Water");
                 case 13: // Temple Vine
                     return new Temple("Temple Vine", "...", instantiate, (x, z), ownerId,
                         AttackType.Dionysos,
                         attackPrice: AllPrices.PriceDyonisosAttackDict,
-                        $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 120 \n \n____Cost____ :\n- 20 Wood \n- 20 Stone \n- 50 Wine \n- 5 Population",
-                        flag);
+                        $"____Type____ :\n- Paralysis \n \n__Duration__ :\n- 120 \n \n____Cost____ :\n- 20 Wood \n- 20 Stone \n- 50 Wine \n- 5 Population");
                 default:
                     return null;
             }
         }
         
-        private GameObject InstantiateFlag(int xMapIndex, int zMapIndex, uint ownerId)
-        {
-            (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(xMapIndex, zMapIndex);
-            GameObject prefabFlag;
-            switch (ownerId)
-            {
-                case 0:
-                    prefabFlag = prefabFlag1;
-                    break;
-                case 1:
-                    prefabFlag = prefabFlag2;
-                    break;
-                case 2:
-                    prefabFlag = prefabFlag3;
-                    break;
-                case 3:
-                    prefabFlag = prefabFlag4;
-                    break;
-                default:
-                    prefabFlag = prefabFlag1;
-                    break;
-            }
-
-            GameObject flag = Instantiate(prefabFlag, new Vector3(xWorldCenterCo, 0, zWorldCenterCo), Quaternion.identity);
-            return flag;
-        }
         
         public GameObject GetBuildingPrefab(int buildingType)
         {
@@ -311,17 +268,7 @@ namespace BuildingsFolder
         
         private void ShowPopUpPlaceBuilding(Building newBuilding)
         {
-            string city;
-
-            if (ServerManager.City.Length <= ServerManager.PlayerId )
-            {
-                city = $"Player number {ServerManager.PlayerId}";
-            }
-            else
-            {
-                city = ServerManager.City[ServerManager.PlayerId];
-            }
-
+            
             string article;
             if (newBuilding is Extractor)
             {
@@ -332,10 +279,8 @@ namespace BuildingsFolder
                 article = "a";
             }
             
-            PopUpManager.Instance.ShowPopUp($"{city} has placed {article} {newBuilding.Name}.", 3);
+            PopUpManager.Instance.ShowPopUp($"{OwnersMaterial.GetName(newBuilding.OwnerId)} has placed {article} {newBuilding.Name}.", 3);
         }
-
-        
         
         
     }

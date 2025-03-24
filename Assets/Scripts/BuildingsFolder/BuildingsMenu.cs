@@ -34,7 +34,9 @@ namespace BuildingsFolder
             _selectedBuildingPrefab = null;  // Réinitialise la sélection
         }
         
+        
 
+        
         private void Start()
         {
             _mainCamera = Camera.main;

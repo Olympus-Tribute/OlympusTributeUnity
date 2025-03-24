@@ -38,23 +38,12 @@ namespace InfoInGame
 
             foreach (KeyValuePair<uint,float> percentagePlayer in _ownerManager.PercentagePerPlayer)
             {
-                res += $"{GetCity(percentagePlayer.Key)} : {percentagePlayer.Value:F2} %\n" ;
+                res += $"{OwnersMaterial.GetName(percentagePlayer.Key)} : {percentagePlayer.Value:F2} %\n" ;
             }
             
             infoPercentageTileText.SetText(res);
             infoPercentageTileUi.SetActive(true);
         }
         
-        private string GetCity(uint playerId)
-        {
-            if (ServerManager.City.Length <= ServerManager.PlayerId )
-            {
-                return $"Player number {ServerManager.PlayerId}";
-            }
-            else
-            {
-                return ServerManager.City[playerId];
-            }
-        }
     }
 }

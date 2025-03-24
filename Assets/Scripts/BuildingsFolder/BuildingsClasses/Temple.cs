@@ -13,7 +13,7 @@ namespace BuildingsFolder.BuildingsClasses
         public readonly string DescriptionAttack;
         public Dictionary<ResourceType, int> AttackPrice;
         
-        public Temple(string name, string description, GameObject gameObject, (int, int) position, uint ownerId, AttackType attackType, Dictionary<ResourceType, int> attackPrice, string  descriptionAttack, GameObject flag) : base(name, description, gameObject, position, ownerId, 3, flag)
+        public Temple(string name, string description, GameObject gameObject, (int, int) position, uint ownerId, AttackType attackType, Dictionary<ResourceType, int> attackPrice, string  descriptionAttack) : base(name, description, gameObject, position, ownerId, 3)
         {
             AttackType = attackType;
             DescriptionAttack = descriptionAttack;

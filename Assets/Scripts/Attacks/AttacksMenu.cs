@@ -157,17 +157,7 @@ namespace Attacks
         
         private void ShowPopUpAttack()
         {
-            string city;
-            if (ServerManager.City.Length <= ServerManager.PlayerId)
-            {
-                city = $"Player number {ServerManager.PlayerId}";
-            }
-            else
-            {
-                city = ServerManager.City[ServerManager.PlayerId];
-            }
-            
-            PopUpManager.Instance.ShowPopUp($"{city} has attacked.", 3);
+            PopUpManager.Instance.ShowPopUp($"{OwnersMaterial.GetName(ServerManager.PlayerId)} has attacked.", 3);
         }
     }
 }

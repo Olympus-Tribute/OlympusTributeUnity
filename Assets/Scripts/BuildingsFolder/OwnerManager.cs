@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Cecs.Util;
 using ForServer;
 using Grid;
+using OlympusDedicatedServer.Components.WorldComp;
 using OlympusWorldGenerator;
 using UnityEngine;
 
@@ -15,7 +17,7 @@ namespace BuildingsFolder
         private List<uint>[,] _globalMap;
         private HexMapGenerator _map;
         private int _numberTilesPlayable;
-        
+        public readonly OpenBitSet NewOwner = new OpenBitSet();
         public Dictionary<uint, float> PercentagePerPlayer;
 
 
@@ -60,7 +62,6 @@ namespace BuildingsFolder
         */
         
         
-        
         public void AddOwner(int x, int y, uint owner)
         {
             if (!_mapOfPlayer.TryGetValue(owner, out uint[,] map))
@@ -69,7 +70,13 @@ namespace BuildingsFolder
             }
             if (map[x, y] == 0)
             {
+                if (_globalMap[x, y].Count == 0)
+                {
+                    NewOwner.Set(WorldCoordinates.ToIndex(x, y, _mapWidth));
+                }
+                
                 _globalMap[x, y].Add(owner);
+                
             }
             map[x, y] ++;
 
@@ -85,6 +92,11 @@ namespace BuildingsFolder
             map[x, y] --;
             if (map[x, y] == 0)
             {
+                uint ? currentOwner= GetOwner(x, y);
+                if (currentOwner == owner)
+                {
+                    NewOwner.Set(WorldCoordinates.ToIndex(x, y, _mapWidth));
+                }
                 _globalMap[x, y].Remove(owner);
             }
 

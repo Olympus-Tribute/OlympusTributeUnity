@@ -146,27 +146,8 @@ namespace Grid
             Random random = new Random((int)(seed + position.x + position.z*Width));
             
             int randomvalue = random.Next(0, 6);
-            switch (randomvalue)
-            {
-                case 0:
-                    hex.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    break;
-                case 1:
-                    hex.transform.rotation = Quaternion.Euler(0, 60, 0);
-                    break;
-                case 2:
-                    hex.transform.rotation = Quaternion.Euler(0, 120, 0);
-                    break;
-                case 3:
-                    hex.transform.rotation = Quaternion.Euler(0, 180, 0);
-                    break;
-                case 4:
-                    hex.transform.rotation = Quaternion.Euler(0, 240, 0);
-                    break;
-                case 5:
-                    hex.transform.rotation = Quaternion.Euler(0, 300, 0);
-                    break;
-            }
+            hex.transform.rotation = Quaternion.Euler(0, randomvalue/6F * 360, 0);
+
         }
     }
 }

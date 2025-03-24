@@ -12,16 +12,13 @@ namespace BuildingsFolder.BuildingsClasses
 
         public readonly int Range;
         
-        public GameObject Flag { get; private set; }
-
-        public Building(string name, string description, GameObject gameObject, (int, int) position, uint ownerId,  int range, GameObject flag)
+        public Building(string name, string description, GameObject gameObject, (int, int) position, uint ownerId,  int range)
         {
             Name = name;
             Description = description;
             GameObject = gameObject;
             Position = position;
             OwnerId = ownerId;
-            Flag = flag;
             Range = range;
         }
     }

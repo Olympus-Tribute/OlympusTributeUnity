@@ -9,7 +9,11 @@ namespace BuildingsFolder
 
         private static readonly Color[] KingdomColors = new[]
         {
-            new Color(1F, 0, 0)
+            
+            new Color(169F/255F, 141F/255F, 0),
+            new Color (179F/255F, 0,0),
+            new Color (0, 0,0),
+            new Color (99F/255F, 0, 181F/255F),
         };
 
         public static string GetName(uint owner)

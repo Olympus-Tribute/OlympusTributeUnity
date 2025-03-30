@@ -1,14 +1,8 @@
 using System;
-using System.Data.Common;
-using BuildingsFolder;
 using Cecs.Util;
 using ForServer;
 using OlympusDedicatedServer.Components.WorldComp;
-using OlympusWorldGenerator;
-using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace BuildingsFolder
@@ -30,11 +24,13 @@ namespace BuildingsFolder
         
         public BuildingWall()
         {
-            _mapHeight = ServerManager.MapHeight;
             _mapWidth = ServerManager.MapWidth;
+            _mapHeight = ServerManager.MapHeight;
+            
             _walls = new GameObject[_mapHeight, _mapWidth][];
             _flags = new (uint ,GameObject)? [_mapHeight, _mapWidth];
             _wallCount = new uint[_mapHeight, _mapWidth];
+            
             for (var i = 0; i < _mapWidth; i++)
             {
                 for (int j = 0; j < _mapHeight; j++)

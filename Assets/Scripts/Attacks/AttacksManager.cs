@@ -2,6 +2,7 @@ using Attacks.Animation;
 using BuildingsFolder;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
+using ForServer;
 using Networking.Common.Server;
 using OlympusDedicatedServer.Components.Attack;
 using PopUp;
@@ -49,6 +50,7 @@ namespace Attacks
                         instantiate.GetComponent<AnimHades>().buildingDestroy = fakeDeleteBuilding;
                         break;
                 }
+                ShowPopUpAttack();
             });
             
             //___________________________________________________________//
@@ -59,6 +61,11 @@ namespace Attacks
         public void Start()
         {
             Temple = null;
+        }
+        
+        private void ShowPopUpAttack()
+        {
+            PopUpManager.Instance.ShowPopUp($"{OwnersMaterial.GetName(ServerManager.PlayerId)} has attacked.", 3);
         }
     }
 }

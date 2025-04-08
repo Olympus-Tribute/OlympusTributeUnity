@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using BuildingsFolder;
 using BuildingsFolder.BuildingsClasses;
 using ForServer;
+using OlympusDedicatedServer.Components.Attack;
 using PopUp;
 using Resources;
 using TMPro;
@@ -16,23 +17,32 @@ namespace Attacks
         public TMP_Text titleInfoAttack;
         public TMP_Text infoAttackPrice;
         
-        public GridLayoutGroup GridLayoutGroup;
-        public GameObject PrefabLine;
-        public List<GameObject> ListPrefabs;
+        public GridLayoutGroup gridLayoutGroup;
+        public GameObject prefabLine;
+        public List<GameObject> listPrefabs;
+
+        public Image imageAttackType;
         
         //______________________________________________//
-        //_____________________ICON_____________________//
+        //_____________________SPRITE___________________//
         //______________________________________________//
         
-        // Variables publiques pour assigner les sprites dans l'éditeur Unity
-        public Sprite IconPopulationSprite;
-        public Sprite IconWoodSprite;
-        public Sprite IconStoneSprite;
-        public Sprite IconGoldSprite;
-        public Sprite IconDiamondSprite;
-        public Sprite IconObsidianSprite;
-        public Sprite IconWaterSprite;
-        public Sprite IconVineSprite;
+        // ICON
+        public Sprite iconPopulationSprite;
+        public Sprite iconWoodSprite;
+        public Sprite iconStoneSprite;
+        public Sprite iconGoldSprite;
+        public Sprite iconDiamondSprite;
+        public Sprite iconObsidianSprite;
+        public Sprite iconWaterSprite;
+        public Sprite iconVineSprite;
+        
+        // Image Description
+        public Sprite imageAttackZeus;
+        public Sprite imageAttackAthena;
+        public Sprite imageAttackHades;
+        public Sprite imageAttackPoseidon;
+        public Sprite imageAttackDionysos;
         
         //______________________________________________//
         //______________________________________________//
@@ -40,11 +50,11 @@ namespace Attacks
         
         private AttacksManager _attacksManager;
         private BuildingsManager _buildingsManager;
-        
-        private Dictionary<ResourceType, Sprite> _resourceSpriteNames;
-        
+        private Dictionary<ResourceType, Sprite> _resourceSprite;
+        private Dictionary<AttackType, Sprite> _attackTypeSprite;
         private uint _compteurMouse;
         
+
         public void Start()
         {
             _attacksManager = FindFirstObjectByType<AttacksManager>();
@@ -52,26 +62,35 @@ namespace Attacks
             menuUIAttack.SetActive(false);
             _compteurMouse = 0;
             
-            _resourceSpriteNames = new Dictionary<ResourceType, Sprite>
+            _resourceSprite = new Dictionary<ResourceType, Sprite>
             {
-                { ResourceType.Population, IconPopulationSprite},
-                { ResourceType.Wood, IconWoodSprite },
-                { ResourceType.Stone, IconStoneSprite },
-                { ResourceType.Gold, IconGoldSprite },
-                { ResourceType.Diamond, IconDiamondSprite },
-                { ResourceType.Obsidian, IconObsidianSprite },
-                { ResourceType.Water, IconWaterSprite },
-                { ResourceType.Vine, IconVineSprite },
+                { ResourceType.Population, iconPopulationSprite},
+                { ResourceType.Wood, iconWoodSprite },
+                { ResourceType.Stone, iconStoneSprite },
+                { ResourceType.Gold, iconGoldSprite },
+                { ResourceType.Diamond, iconDiamondSprite },
+                { ResourceType.Obsidian, iconObsidianSprite },
+                { ResourceType.Water, iconWaterSprite },
+                { ResourceType.Vine, iconVineSprite },
+            };
+            
+            _attackTypeSprite = new Dictionary<AttackType, Sprite>
+            {
+                { AttackType.Zeus, imageAttackZeus },
+                { AttackType.Athena, imageAttackAthena },
+                { AttackType.Hades, imageAttackHades },
+                { AttackType.Poseidon, imageAttackPoseidon },
+                { AttackType.Dionysos, imageAttackDionysos },
             };
 
             List<GameObject> prefabs = new List<GameObject>();
             for (int i = 0; i < 4; i++)
             {
-                GameObject line = Instantiate(PrefabLine, GridLayoutGroup.transform);
+                GameObject line = Instantiate(prefabLine, gridLayoutGroup.transform);
                 line.SetActive(false);
                 prefabs.Add(line);
             }
-            ListPrefabs = prefabs;
+            listPrefabs = prefabs;
         }
         
         void Update()
@@ -104,15 +123,15 @@ namespace Attacks
                     titleInfoAttack.text = $"Attack : {targetTemple.Name}";
                     
                     // Associer le bon Sprite Asset TMP avant d'afficher le texte
-                    infoAttackPrice.spriteAsset = TMP_Settings.defaultSpriteAsset; 
-                    //infoAttackPrice.text = CreateTextePrice(targetTemple);
+                    infoAttackPrice.spriteAsset = TMP_Settings.defaultSpriteAsset;
+                    //infoAttackPrice.text = targetTemple.DescriptionAttack;
                     CreateGridLayoutGroup(targetTemple.AttackPrice);
+                    CreateImageTypeAttack(targetTemple.AttackType);
                 }
             }
             else if (_compteurMouse >= 2)
             {
                 _attacksManager.Temple.SendAttack(x, y);
-                ShowPopUpAttack();
                 _attacksManager.Temple = null;
                 _compteurMouse = 0;
             }
@@ -139,7 +158,7 @@ namespace Attacks
          
             foreach (KeyValuePair<ResourceType, int> couple in templeAttackPrice)
             {
-                line = ListPrefabs[i];
+                line = listPrefabs[i];
                 line.SetActive(true);
                 Image image = line.GetComponentInChildren<Image>();
                 TMP_Text text = line.GetComponentInChildren<TMP_Text>();
@@ -149,15 +168,14 @@ namespace Attacks
             }
         }
 
-
-        public Sprite GetIconSprite(ResourceType resourceType)
+        private Sprite GetIconSprite(ResourceType resourceType)
         {
-            return _resourceSpriteNames[resourceType];
+            return _resourceSprite[resourceType];
         }
         
-        private void ShowPopUpAttack()
+        private void CreateImageTypeAttack(AttackType attackType)
         {
-            PopUpManager.Instance.ShowPopUp($"{OwnersMaterial.GetName(ServerManager.PlayerId)} has attacked.", 3);
+            imageAttackType.sprite = _attackTypeSprite[attackType];
         }
     }
 }

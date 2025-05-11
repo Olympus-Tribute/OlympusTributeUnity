@@ -5,6 +5,16 @@ namespace BuildingsFolder
 {
     public static class AllPrices
     {
+        // --- Ressources de départ ---
+        public const int StartingWood = 0;
+        public const int StartingStone = 0;
+        public const int StartingGold = 0;
+        public const int StartingWater = 0;
+        public const int StartingVine = 0;
+        public const int StartingDiamond = 0;
+        public const int StartingObsidian = 0;
+        public const int StartingPopulation = 0;
+        
         // --- Maison ---
         public const int HouseWoodPrice = 50;
         public const int HouseStonePrice = 50;
@@ -99,42 +109,144 @@ namespace BuildingsFolder
         public const int HadesAttackPopulationPrice = 5;
         
         
-        public static readonly Dictionary<ResourceType, int> PriceZeusAttackDict = new Dictionary<ResourceType, int>
+        // --- Dictionnaires ---
+
+        public static readonly Dictionary<ResourceType, int> PriceHouseDict = new()
         {
-            { ResourceType.Wood, 25 },
-            { ResourceType.Stone, 25 },
-            { ResourceType.Gold, 50 }
+            { ResourceType.Wood, HouseWoodPrice },
+            { ResourceType.Stone, HouseStonePrice }
         };
 
-        public static readonly Dictionary<ResourceType, int> PricePoseidonAttackDict = new Dictionary<ResourceType, int>
+        public static readonly Dictionary<ResourceType, int> PriceWoodExtractorDict = new()
         {
-            { ResourceType.Wood, 75 },
-            { ResourceType.Stone, 75 },
-            { ResourceType.Water, 50 }
+            { ResourceType.Wood, WoodExtractorWoodPrice },
+            { ResourceType.Population, WoodExtractorPopulationPrice }
         };
 
-        public static readonly Dictionary<ResourceType, int> PriceDyonisosAttackDict = new Dictionary<ResourceType, int>
+        public static readonly Dictionary<ResourceType, int> PriceStoneExtractorDict = new()
         {
-            { ResourceType.Wood, 20 },
-            { ResourceType.Stone, 20 },
-            { ResourceType.Vine, 50 }
+            { ResourceType.Stone, StoneExtractorStonePrice },
+            { ResourceType.Population, StoneExtractorPopulationPrice }
         };
 
-        public static readonly Dictionary<ResourceType, int> PriceAthenaAttackDict = new Dictionary<ResourceType, int>
+        public static readonly Dictionary<ResourceType, int> PriceGoldExtractorDict = new()
         {
-            { ResourceType.Wood, 30 },
-            { ResourceType.Stone, 30 },
-            { ResourceType.Diamond, 50 }
+            { ResourceType.Wood, GoldExtractorWoodPrice },
+            { ResourceType.Stone, GoldExtractorStonePrice },
+            { ResourceType.Population, GoldExtractorPopulationPrice }
         };
 
-        public static readonly Dictionary<ResourceType, int> PriceHadesAttackDict = new Dictionary<ResourceType, int>
+        public static readonly Dictionary<ResourceType, int> PriceWaterExtractorDict = new()
         {
-            { ResourceType.Wood, 50 },
-            { ResourceType.Stone, 50 },
-            { ResourceType.Obsidian, 50 },
-            { ResourceType.Population, 5 }
+            { ResourceType.Wood, WaterExtractorWoodPrice },
+            { ResourceType.Stone, WaterExtractorStonePrice },
+            { ResourceType.Gold, WaterExtractorGoldPrice },
+            { ResourceType.Population, WaterExtractorPopulationPrice }
         };
-    }
+
+        public static readonly Dictionary<ResourceType, int> PriceVineExtractorDict = new()
+        {
+            { ResourceType.Wood, VineExtractorWoodPrice },
+            { ResourceType.Stone, VineExtractorStonePrice },
+            { ResourceType.Gold, VineExtractorGoldPrice },
+            { ResourceType.Population, VineExtractorPopulationPrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PriceDiamondExtractorDict = new()
+        {
+            { ResourceType.Wood, DiamondExtractorWoodPrice },
+            { ResourceType.Stone, DiamondExtractorStonePrice },
+            { ResourceType.Gold, DiamondExtractorGoldPrice },
+            { ResourceType.Population, DiamondExtractorPopulationPrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PriceObsidianExtractorDict = new()
+        {
+            { ResourceType.Wood, ObsidianExtractorWoodPrice },
+            { ResourceType.Stone, ObsidianExtractorStonePrice },
+            { ResourceType.Gold, ObsidianExtractorGoldPrice },
+            { ResourceType.Population, ObsidianExtractorPopulationPrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PriceZeusTempleDict = new()
+        {
+            { ResourceType.Wood, ZeusTempleWoodPrice },
+            { ResourceType.Stone, ZeusTempleStonePrice },
+            { ResourceType.Gold, ZeusTempleGoldPrice },
+            { ResourceType.Population, ZeusTemplePopulationPrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PricePoseidonTempleDict = new()
+        {
+            { ResourceType.Wood, PoseidonTempleWoodPrice },
+            { ResourceType.Stone, PoseidonTempleStonePrice },
+            { ResourceType.Gold, PoseidonTempleGoldPrice },
+            { ResourceType.Water, PoseidonTempleWaterPrice },
+            { ResourceType.Population, PoseidonTemplePopulationPrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PriceDionysusTempleDict = new()
+        {
+            { ResourceType.Wood, DionysusTempleWoodPrice },
+            { ResourceType.Stone, DionysusTempleStonePrice },
+            { ResourceType.Gold, DionysusTempleGoldPrice },
+            { ResourceType.Vine, DionysusTempleVinePrice },
+            { ResourceType.Population, DionysusTemplePopulationPrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PriceAthenaTempleDict = new()
+        {
+            { ResourceType.Wood, AthenaTempleWoodPrice },
+            { ResourceType.Stone, AthenaTempleStonePrice },
+            { ResourceType.Gold, AthenaTempleGoldPrice },
+            { ResourceType.Diamond, AthenaTempleDiamondPrice },
+            { ResourceType.Population, AthenaTemplePopulationPrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PriceHadesTempleDict = new()
+        {
+            { ResourceType.Wood, HadesTempleWoodPrice },
+            { ResourceType.Stone, HadesTempleStonePrice },
+            { ResourceType.Gold, HadesTempleGoldPrice },
+            { ResourceType.Obsidian, HadesTempleObsidianPrice },
+            { ResourceType.Population, HadesTemplePopulationPrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PriceZeusAttackDict = new()
+        {
+            { ResourceType.Wood, ZeusAttackWoodPrice },
+            { ResourceType.Stone, ZeusAttackStonePrice },
+            { ResourceType.Gold, ZeusAttackGoldPrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PricePoseidonAttackDict = new()
+        {
+            { ResourceType.Wood, PoseidonAttackWoodPrice },
+            { ResourceType.Stone, PoseidonAttackStonePrice },
+            { ResourceType.Water, PoseidonAttackWaterPrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PriceDyonisosAttackDict = new()
+        {
+            { ResourceType.Wood, DyonisosAttackWoodPrice },
+            { ResourceType.Stone, DyonisosAttackStonePrice },
+            { ResourceType.Vine, DyonisosAttackVinePrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PriceAthenaAttackDict = new()
+        {
+            { ResourceType.Wood, AthenaAttackWoodPrice },
+            { ResourceType.Stone, AthenaAttackStonePrice },
+            { ResourceType.Diamond, AthenaAttackDiamondPrice }
+        };
+
+        public static readonly Dictionary<ResourceType, int> PriceHadesAttackDict = new()
+        {
+            { ResourceType.Wood, HadesAttackWoodPrice },
+            { ResourceType.Stone, HadesAttackStonePrice },
+            { ResourceType.Obsidian, HadesAttackObsidianPrice },
+            { ResourceType.Population, HadesAttackPopulationPrice }
+        };
 }
 
    

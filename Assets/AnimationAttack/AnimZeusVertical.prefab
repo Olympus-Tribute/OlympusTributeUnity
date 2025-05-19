@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aff4833db8e2b14aa0f0b6071c41e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_usdFile: c:/Users/zhuzh/Epita/Blender/Zeus_vertical.usdc
+  m_usdFile: c:/Users/zhuzh/Epita/Blender/Zeus_horizontal.usdc
   m_projectAssetPath: Assets/
   m_usdRootPath: /root
   m_usdTimeOffset: 0
@@ -130,7 +130,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.99710137}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7264476123113573943}
+  - {fileID: 2136298891533398392}
   m_Father: {fileID: 921618302879638755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4251600461521153187
@@ -155,13 +155,13 @@ PlayableDirector:
   m_GameObject: {fileID: 3525516323632050682}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: a769cf822a9d83543b106f63916a40bc, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 1e46124e603b2734684362fe474861ff, type: 2}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: -9056869602437312234, guid: a769cf822a9d83543b106f63916a40bc, type: 2}
+  - key: {fileID: -859899985714220480, guid: 1e46124e603b2734684362fe474861ff, type: 2}
     value: {fileID: 8118624257423109819}
   m_ExposedReferences:
     m_References: []
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_usdPrimPath: /root/_materials
---- !u!1 &8744702667675150530
+--- !u!1 &7859116150782495374
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,10 +218,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7264476123113573943}
-  - component: {fileID: 3450177027422500540}
-  - component: {fileID: 7160706375829460648}
-  - component: {fileID: 2600872462456253264}
+  - component: {fileID: 2136298891533398392}
+  - component: {fileID: 1666039057297188005}
+  - component: {fileID: 2337728451662070179}
+  - component: {fileID: 8536456134865949383}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -229,13 +229,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7264476123113573943
+--- !u!4 &2136298891533398392
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8744702667675150530}
+  m_GameObject: {fileID: 7859116150782495374}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -244,34 +244,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7511683180693752916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3450177027422500540
+--- !u!114 &1666039057297188005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8744702667675150530}
+  m_GameObject: {fileID: 7859116150782495374}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5c0a2371b63dc44199935c88ef12809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_usdPrimPath: /root/Cube/Cube
---- !u!33 &7160706375829460648
+--- !u!33 &2337728451662070179
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8744702667675150530}
+  m_GameObject: {fileID: 7859116150782495374}
   m_Mesh: {fileID: 0}
---- !u!23 &2600872462456253264
+--- !u!23 &8536456134865949383
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8744702667675150530}
+  m_GameObject: {fileID: 7859116150782495374}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -288,7 +288,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 51d24dfcdc8197241bef3d59817d3f0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

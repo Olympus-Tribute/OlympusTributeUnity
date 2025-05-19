@@ -55,7 +55,7 @@ public class AnimVersCyl : MonoBehaviour
             else if (i <= 6)
                 timeOffsets[i] = 1f; 
             else
-                timeOffsets[i] = 2f; 
+                timeOffsets[i] = 2f;
         }
     }
 

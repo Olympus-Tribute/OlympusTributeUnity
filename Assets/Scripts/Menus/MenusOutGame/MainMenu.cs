@@ -1,7 +1,10 @@
 using System.IO;
+using System.Net;
 using ForNetwork;
+using Networking.TCP;
 using PopUp;
 using Steamworks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,10 +22,16 @@ namespace Menus.MenusOutGame
         [SerializeField] public GameObject menuUIMultiplayerJoin;
         
         [SerializeField] public GameObject menuUIMultiplayerSelectSteamOrTcp;
-
-
+        
+        
+        //_______________________________________________________//
+        //_______________________________________________________//
+        
+        
         [SerializeField] public Toggle toggleSteam;
-        [SerializeField] public InputField inputIpAdressField;
+        [SerializeField] public Toggle toggleTcp;
+        [SerializeField] public Toggle toggleCreativeMode;
+        [SerializeField] public TMP_InputField inputIpAdressField;
         
         public bool acceptSteam = false;
         public bool acceptTcp = true;
@@ -31,7 +40,18 @@ namespace Menus.MenusOutGame
         [SerializeField] private GameObject tcpConnectionPrefab;
         [SerializeField] private GameObject steamConnectionPrefab;
         [SerializeField] private GameObject localConnectionPrefab;
+        
+        
+        [SerializeField] public Toggle toggleTimer;
+        [SerializeField] public Toggle togglePercentage;
 
+        public bool timerModeSelected = true;
+        public bool percentageModeSelected = false;
+
+
+        [SerializeField] public GameObject gameObjectPercentage;
+        [SerializeField] public TMP_InputField percentageInputField;
+        
         private void OnEnable()
         {
             CreateSteamAppIdFile();
@@ -45,13 +65,19 @@ namespace Menus.MenusOutGame
             {
                 Instantiate(steamConnectionPrefab);
                 acceptSteam = true;
-                toggleSteam.isOn = true;
             }
             else
             {
                 acceptSteam = false;
-                toggleSteam.isOn = false;
             }
+            
+            toggleSteam.isOn = acceptSteam;
+            toggleTcp.isOn = acceptTcp;
+            toggleCreativeMode.isOn = creativeMode;
+
+            toggleTimer.isOn = timerModeSelected;
+            togglePercentage.isOn = percentageModeSelected;
+            gameObjectPercentage.SetActive(false);
         }
 
         private void SetAllMenusInactive()
@@ -134,10 +160,10 @@ namespace Menus.MenusOutGame
             menuUIMultiplayerHostOrJoinMenu.SetActive(true);
         }
     
-        public void PlayWithAI() // TODO
+        public void PlayWithAI()
         {
             SetAllMenusInactive();
-            menuUIMultiplayerHostOrJoinMenu.SetActive(true);
+            LocalConnectionMethod.Instance.Connect();
         }
         
         //__________________________________________________________//
@@ -182,9 +208,14 @@ namespace Menus.MenusOutGame
         
         public void JoinWithTcp()
         {
-            string ipText = inputIpAdressField.text;
-            
-            OpenFriendsOverlay();
+            Debug.Log($"Ip Adress : {inputIpAdressField.text}");
+            TcpConnectionMethod.Instance.hostIP = inputIpAdressField.text;
+            TcpConnectionMethod.Instance.Connect();
+
+            if (Network.Instance.Proxy is null)
+            {
+                PopUpManager.Instance.ShowPopUp("Invalid IP", 3);
+            }
         }
         
         //__________________________________________________________//
@@ -233,7 +264,25 @@ namespace Menus.MenusOutGame
             }
         }
         
-        //____________________________________
+        public void ToggleTimerModeSelected()
+        {
+            timerModeSelected = !timerModeSelected;
+       
+        }
+        
+        public void TogglePercentageModeSelected()
+        {
+            percentageModeSelected = !percentageModeSelected;
+            if (percentageModeSelected)
+            {
+                gameObjectPercentage.SetActive(true);
+            }
+            else
+            {
+                gameObjectPercentage.SetActive(false);
+            }
+            
+        }
         
         public void MenuHost()
         {

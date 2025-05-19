@@ -29,10 +29,15 @@ namespace ForNetwork
         {
             if (Network.Instance.Proxy == null)
             {
-                TcpConnection connection = TcpConnection.Connect(hostIP, 12345, registry);
-                GameActionListenerManager gameActionListener = new GameActionListenerManager();
+                TcpConnection? connection = TcpConnection.Connect(hostIP, 12345, registry);
+                if (connection is not null)
+                {
+                    GameActionListenerManager gameActionListener = new GameActionListenerManager();
                 
-                FinaliseConnection(new Proxy(connection, gameActionListener));
+                    FinaliseConnection(new Proxy(connection, gameActionListener));
+                
+                    hostIP = "127.0.0.1";
+                }
             }
         }
 

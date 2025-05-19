@@ -23,6 +23,7 @@ namespace Menus.MenusOutGame
 
 
         [SerializeField] public Toggle toggleSteam;
+        [SerializeField] public InputField inputIpAdressField;
         
         public bool acceptSteam = false;
         public bool acceptTcp = true;
@@ -173,6 +174,8 @@ namespace Menus.MenusOutGame
         
         public void JoinWithTcp()
         {
+            string ipText = inputIpAdressField.text;
+            
             OpenFriendsOverlay();
         }
         

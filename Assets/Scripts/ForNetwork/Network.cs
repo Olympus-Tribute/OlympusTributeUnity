@@ -6,6 +6,7 @@ using Networking.API.Listeners;
 using Networking.Common.Client;
 using Networking.Common.Server;
 using Networking.Steam;
+using Networking.TCP;
 using OlympusDedicatedServer;
 using Steamworks;
 using UnityEngine;
@@ -42,7 +43,7 @@ namespace ForNetwork
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject); // Optionnel, pour garder l'instance entre les scènes
-                SetupCallbacks();
+                //SetupCallbacks();
             }
             else
             {
@@ -54,16 +55,19 @@ namespace ForNetwork
         public void Update()
         {
             if (Proxy == null){
+                Console.SetOut(new MyDebug());
                 
+                /*
                 if (!_lockObject.HasValue)
                 {
                     return; 
                 }
-                
+                */
 
-                SteamConnection steamConnection = SteamConnection.Connect(_lockObject.Value, registry);
+                //SteamConnection steamConnection = SteamConnection.Connect(_lockObject.Value, registry);
+                TcpConnection connection = TcpConnection.Connect("82.67.95.235", 12345, registry);
                 GameActionListenerManager gameActionListener = new GameActionListenerManager();
-                Proxy = new Proxy(steamConnection, gameActionListener);
+                Proxy = new Proxy(connection, gameActionListener);
                     
                 Debug.Log("Created connection");
                 Proxy.Connection.Connect();
@@ -82,7 +86,7 @@ namespace ForNetwork
         {
             if (_lobbyID != null)
             {
-                SteamMatchmaking.LeaveLobby(_lobbyID.Value);
+                //SteamMatchmaking.LeaveLobby(_lobbyID.Value);
             }
             _lobbyID = null;
         }

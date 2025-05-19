@@ -14,7 +14,7 @@ namespace BuildingsFolder
         public const int StartingDiamond = 0;
         public const int StartingObsidian = 0;
         public const int StartingPopulation = 0;
-        
+
         // --- Maison ---
         public const int HouseWoodPrice = 50;
         public const int HouseStonePrice = 50;
@@ -107,8 +107,8 @@ namespace BuildingsFolder
         public const int HadesAttackStonePrice = 50;
         public const int HadesAttackObsidianPrice = 50;
         public const int HadesAttackPopulationPrice = 5;
-        
-        
+
+
         // --- Dictionnaires ---
 
         public static readonly Dictionary<ResourceType, int> PriceHouseDict = new()
@@ -247,6 +247,7 @@ namespace BuildingsFolder
             { ResourceType.Obsidian, HadesAttackObsidianPrice },
             { ResourceType.Population, HadesAttackPopulationPrice }
         };
+    }
 }
 
    

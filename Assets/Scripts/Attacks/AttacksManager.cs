@@ -4,6 +4,7 @@ using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
 using ForServer;
 using Networking.Common.Server;
+using Networking.Common.Server.Attacks;
 using OlympusDedicatedServer.Components.Attack;
 using PopUp;
 using TMPro;

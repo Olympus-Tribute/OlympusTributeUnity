@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
@@ -286,7 +287,52 @@ namespace BuildingsFolder
             PopUpManager.Instance.ShowPopUp($"{OwnersMaterial.GetName(newBuilding.OwnerId)} has placed {article} {newBuilding.Name}.", 3);
         }
         
-        
+        private readonly Dictionary<(int x, int z), float> _disabledUntil = new();
+
+        public void DisableBuilding(int x, int z, float duration, GameObject waterPrefab = null)
+        {
+            if (!Buildings.TryGetValue((x, z), out var building)) return;
+            var go = building.GameObject;
+            if (go == null) return;
+
+            float currentTime = Time.time;
+            float disableUntil = currentTime + duration;
+
+            if (_disabledUntil.TryGetValue((x, z), out float existingUntil))
+            {
+                if (disableUntil <= existingUntil)
+                    return; 
+
+                _disabledUntil[(x, z)] = disableUntil;
+            }
+            else
+            {
+                _disabledUntil.Add((x, z), disableUntil);
+                go.SetActive(false);
+            }
+
+            GameObject waterInstance = null;
+            if (waterPrefab != null)
+            {
+                waterInstance = Instantiate(waterPrefab, go.transform.position, Quaternion.identity);
+            }
+
+            StartCoroutine(ReenableBuildingCoroutine(x, z, go, waterInstance, disableUntil - currentTime));
+        }
+
+        private IEnumerator ReenableBuildingCoroutine(int x, int z, GameObject go, GameObject waterGO, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            if (_disabledUntil.TryGetValue((x, z), out float until) && Time.time >= until)
+            {
+                _disabledUntil.Remove((x, z));
+                if (go != null) go.SetActive(true);
+                if (waterGO != null) Destroy(waterGO);
+            }
+        }
+
+
     }
     
 }

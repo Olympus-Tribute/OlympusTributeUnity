@@ -1,0 +1,96 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusDedicatedServer\\OlympusDedicatedServer.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusDedicatedServer\\OlympusDedicatedServer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusDedicatedServer\\OlympusDedicatedServer.csproj",
+        "projectName": "OlympusDedicatedServer",
+        "projectPath": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusDedicatedServer\\OlympusDedicatedServer.csproj",
+        "packagesPath": "C:\\Users\\zhuzh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusDedicatedServer\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\zhuzh\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\Cecs\\Cecs\\Cecs.csproj": {
+                "projectPath": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\Cecs\\Cecs\\Cecs.csproj"
+              },
+              "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusGeneration\\OlympusWorldGenerator\\OlympusWorldGenerator.csproj": {
+                "projectPath": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusGeneration\\OlympusWorldGenerator\\OlympusWorldGenerator.csproj"
+              },
+              "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.API\\Networking.API.csproj": {
+                "projectPath": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.API\\Networking.API.csproj"
+              },
+              "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.Common\\Networking.Common.csproj": {
+                "projectPath": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.Common\\Networking.Common.csproj"
+              },
+              "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.Steam\\Networking.Steam.csproj": {
+                "projectPath": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.Steam\\Networking.Steam.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[7.0.20, 7.0.20]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

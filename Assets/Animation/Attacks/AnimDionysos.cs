@@ -7,7 +7,7 @@ public class HexagonalBubbleSpawner : MonoBehaviour
     private float tileRadius = 8.7f; 
     private float bubbleRadius = 2f; 
     private int bubblesPerTile = 20; 
-    public float totalDuration = 5f; 
+    public float duration = 5f; 
 
     private void Start()
     {
@@ -15,7 +15,7 @@ public class HexagonalBubbleSpawner : MonoBehaviour
         InvokeRepeating("SpawnBubble", 0f, spawnInterval);
 
         // Arrêter la génération de bulles après totalDuration secondes
-        Invoke("StopBubbleGeneration", totalDuration);
+        Invoke("StopBubbleGeneration", duration);
     }
 
     void SpawnBubble()

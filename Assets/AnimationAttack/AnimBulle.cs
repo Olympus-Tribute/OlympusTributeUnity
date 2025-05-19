@@ -4,18 +4,23 @@ using System.Collections;
 public class AnimBulle : MonoBehaviour
 {
     public GameObject bubblePrefab; 
+    public GameObject buildingTarget;
     private float spawnInterval = 0.03f; 
     private float tileRadius = 8.7f; 
-    private float totalDuration = 5f;
+    public float duration = 5f;
     private float timeElapsed = 0f; 
     private bool stopGeneration = false; 
 
     private void Start()
     {
+        if (buildingTarget != null)
+        {
+            buildingTarget.SetActive(false); 
+        }
         
         InvokeRepeating("SpawnBubble", 0f, spawnInterval);
         
-        Invoke("StopBubbleGeneration", totalDuration);
+        Invoke("StopBubbleGeneration", duration);
     }
 
     void Update()
@@ -24,9 +29,14 @@ public class AnimBulle : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
 
-            if (timeElapsed >= totalDuration)
+            if (timeElapsed >= duration)
             {
+                if (buildingTarget != null)
+                {
+                    buildingTarget.SetActive(true); 
+                }
                 DestroyRemainingBubbles();
+                Destroy(this.gameObject);
             }
         }
     }

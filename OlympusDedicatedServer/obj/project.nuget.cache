@@ -1,0 +1,58 @@
+{
+  "version": 2,
+  "dgSpecHash": "i9Tw6y9hQy0=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusDedicatedServer\\OlympusDedicatedServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zhuzh\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.20\\microsoft.netcore.app.ref.7.0.20.nupkg.sha512",
+    "C:\\Users\\zhuzh\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.20\\microsoft.windowsdesktop.app.ref.7.0.20.nupkg.sha512",
+    "C:\\Users\\zhuzh\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.20\\microsoft.aspnetcore.app.ref.7.0.20.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.API\\Networking.API.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.API\\Networking.API.csproj",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.Common\\Networking.Common.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.Common\\Networking.Common.csproj",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.Steam\\Networking.Steam.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusNetworking\\Networking.Steam\\Networking.Steam.csproj",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusGeneration\\OlympusWorldGenerator\\OlympusWorldGenerator.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\OlympusGeneration\\OlympusWorldGenerator\\OlympusWorldGenerator.csproj",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\Cecs\\Cecs\\Cecs.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\zhuzh\\Epita\\OlympusTributeUnity\\Cecs\\Cecs\\Cecs.csproj",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
+}

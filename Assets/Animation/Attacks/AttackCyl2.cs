@@ -26,13 +26,13 @@ public class AnimVersCyl2 : MonoBehaviour
     };
 
     public GameObject cylinderPrefab; 
-    private Transform[] cylinders; 
+    private Transform[] _cylinders; 
     private Vector3[] initialPositions; 
 
     private float waveAmplitude = 10f; 
     private float animationHeight = 0f; 
     private float waveSpeed = 5f; 
-    private float animationDuration = 6f; 
+    private float AnimationDuration = 6f; 
     private float returnSpeed = 2f; 
 
     private float[] timeOffsets = new float[19]; 
@@ -41,19 +41,19 @@ public class AnimVersCyl2 : MonoBehaviour
 
     void OnEnable()
     {
-        cylinders = new Transform[hexagonPositions.Length];
+        _cylinders = new Transform[hexagonPositions.Length];
         initialPositions = new Vector3[hexagonPositions.Length];
 
         for (int i = 0; i < hexagonPositions.Length; i++)
         {
             GameObject cylinder = Instantiate(cylinderPrefab, hexagonPositions[i] + this.gameObject.transform.position, Quaternion.identity);
-            cylinders[i] = cylinder.transform;
+            _cylinders[i] = cylinder.transform;
             initialPositions[i] = hexagonPositions[i] + this.gameObject.transform.position; 
         }
 
         startTime = Time.time;
         
-        for (int i = 0; i < cylinders.Length; i++)
+        for (int i = 0; i < _cylinders.Length; i++)
         {
             if (i == 0)
                 timeOffsets[i] = 0f; 
@@ -68,21 +68,21 @@ public class AnimVersCyl2 : MonoBehaviour
     {
         float elapsedTime = Time.time - startTime;
 
-        if (!isReturning && elapsedTime >= animationDuration)
+        if (!isReturning && elapsedTime >= AnimationDuration)
         {
             isReturning = true;
         }
 
         if (isReturning)
         {
-            for (int i = 0; i < cylinders.Length; i++)
+            for (int i = 0; i < _cylinders.Length; i++)
             {
-                cylinders[i].position = Vector3.Lerp(cylinders[i].position, initialPositions[i], returnSpeed * Time.deltaTime);
+                _cylinders[i].position = Vector3.Lerp(_cylinders[i].position, initialPositions[i], returnSpeed * Time.deltaTime);
             }
 
-            if (elapsedTime - animationDuration > 10)
+            if (elapsedTime - AnimationDuration > 10)
             {
-                foreach (var cylinder in cylinders)
+                foreach (var cylinder in _cylinders)
                 {
                     Destroy(cylinder.gameObject);
                 }
@@ -95,13 +95,13 @@ public class AnimVersCyl2 : MonoBehaviour
             float t = elapsedTime * waveSpeed;
             float currentWaveAmplitude = waveAmplitude * Mathf.Exp(-0.5f * elapsedTime);
 
-            for (int i = 0; i < cylinders.Length; i++)
+            for (int i = 0; i < _cylinders.Length; i++)
             {
                 float offsetTime = t + timeOffsets[i];
                 float yPos = Mathf.Sin(offsetTime) * 0.5f + 0.5f; 
                 yPos = yPos * currentWaveAmplitude + animationHeight;
 
-                cylinders[i].position = new Vector3(cylinders[i].position.x, yPos, cylinders[i].position.z);
+                _cylinders[i].position = new Vector3(_cylinders[i].position.x, yPos, _cylinders[i].position.z);
             }
         }
     }

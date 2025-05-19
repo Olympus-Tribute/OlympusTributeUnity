@@ -4,17 +4,30 @@ using PopUp;
 using Steamworks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Menus.MenusOutGame
 {
     public class MainMenu : MonoBehaviour
     {
-        public GameObject menuUIMainMenu;
-        public GameObject menuUIOptionsMenu;
-        public GameObject menuUIMultiplayerOrAi;
-        public GameObject menuUITypeOfMultiplayer;
-        public GameObject menuUIMultiplayerHostOrJoinMenu;
+        [SerializeField] public GameObject menuUIMainMenu;
+        [SerializeField] public GameObject menuUIOptionsMenu;
+        [SerializeField] public GameObject menuUIMultiplayerOrAi;
+        
+        [SerializeField] public GameObject menuUIMultiplayerHostOrJoinMenu;
+        [SerializeField] public GameObject menuUIMultiplayerHost;
+        [SerializeField] public GameObject menuUIMultiplayerJoin;
+        
+        [SerializeField] public GameObject menuUIMultiplayerSelectSteamOrTcp;
 
+
+        [SerializeField] public Toggle toggleSteam;
+        
+        public bool acceptSteam = false;
+        public bool acceptTcp = true;
+        public bool creativeMode = false;
+        
         private void OnEnable()
         {
             CreateSteamAppIdFile();
@@ -27,8 +40,12 @@ namespace Menus.MenusOutGame
             menuUIMainMenu.SetActive(false);
             menuUIOptionsMenu.SetActive(false);
             menuUIMultiplayerOrAi.SetActive(false);
-            menuUITypeOfMultiplayer.SetActive(false);
+            
             menuUIMultiplayerHostOrJoinMenu.SetActive(false);
+            menuUIMultiplayerHost.SetActive(false);
+            menuUIMultiplayerJoin.SetActive(false);
+            
+            menuUIMultiplayerSelectSteamOrTcp.SetActive(false);
         }
         
         public void BackToMainMenu()
@@ -108,6 +125,103 @@ namespace Menus.MenusOutGame
         //________________________HostOrJoin________________________//
         //__________________________________________________________//
     
+        public void SelectHost()
+        {
+            SetAllMenusInactive();
+            menuUIMultiplayerHost.SetActive(true);
+            if (SteamManager.Initialized)
+            {
+                acceptSteam = true;
+                toggleSteam.isOn = true;
+            }
+            else
+            {
+                acceptSteam = false;
+                toggleSteam.isOn = false;
+            }
+        }
+    
+        public void SelectJoin()
+        {
+            SetAllMenusInactive();
+            menuUIMultiplayerJoin.SetActive(true);
+        }
+        
+        //__________________________________________________________//
+        //_____________MenuSelectTypeOfMultiJoin____________________//
+        //__________________________________________________________//
+
+
+        public void JoinWithSteam()
+        {
+            OpenFriendsOverlay();
+        }
+        
+        private void OpenFriendsOverlay()
+        {
+            if (SteamManager.Initialized)
+            {
+                SteamFriends.ActivateGameOverlay("Friends");
+                SceneManager.LoadScene("Scenes/Menus/WaitingServerResponseScene");
+            }
+            else
+            {
+                PopUpManager.Instance.ShowPopUp("Steam is not initialized or not running.", 1);
+                Debug.LogError("Steam is not initialized or not running.");
+            }
+        }
+        
+        public void JoinWithTcp()
+        {
+            OpenFriendsOverlay();
+        }
+        
+        //__________________________________________________________//
+        //_____________MenuHost_____________________________________//
+        //__________________________________________________________//
+
+
+        public void ToggleAcceptSteam()
+        {
+            acceptSteam = !acceptSteam;
+            if (acceptSteam)
+            {
+                Debug.Log("ToggleAcceptSteam");
+            }
+            else
+            {
+                Debug.Log("ToggleAcceptSteam false");
+            }
+            
+        }
+        
+        public void ToggleAcceptTcp()
+        {
+            acceptTcp = !acceptTcp;
+            if (acceptTcp)
+            {
+                Debug.Log("ToggleAcceptTcp");
+            }
+            else
+            {
+                Debug.Log("ToggleAcceptTCP false");
+            }
+            
+        }
+        
+        public void ToggleCreativeMode()
+        {
+            creativeMode = !creativeMode;
+            if (creativeMode)
+            {
+                Debug.Log("creativeMode");
+            }
+            else
+            {
+                Debug.Log("creativeMode false");
+            }
+        }
+        
         public void Host()
         {
             if (SteamManager.Initialized)
@@ -126,42 +240,30 @@ namespace Menus.MenusOutGame
                 PopUpManager.Instance.ShowPopUp("Steam is not initialized or not running.", 5);
                 Debug.LogError("Steam is not initialized or not running.");
             }
-            
-        }
-    
-        public void Join()
-        {
-            SetAllMenusInactive();
-            menuUITypeOfMultiplayer.SetActive(true);
         }
         
-        //__________________________________________________________//
-        //_____________MenuSelectTypeOfMultiJoin____________________//
-        //__________________________________________________________//
-
-
-        public void JoinWithSteam()
-        {
-            OpenFriendsOverlay();
-        }
+        //____________________________________
         
-        public void JoinWithTcp()
-        {
-            OpenFriendsOverlay();
-        }
         
-        private void OpenFriendsOverlay()
+        
+        public void MenuHost()
         {
-            if (SteamManager.Initialized)
+            if (acceptSteam || acceptTcp)
             {
-                SteamFriends.ActivateGameOverlay("Friends");
-                SceneManager.LoadScene("Scenes/Menus/WaitingServerResponseScene");
+                SetAllMenusInactive();
+                
+                CSteamID id = SteamUser.GetSteamID();
+                //SteamFriends.ActivateGameOverlayInviteDialog(id);
+        
+                ServerManager.Instance.Host();
+        
+                SceneManager.LoadScene("WaitingScene");
             }
             else
             {
-                PopUpManager.Instance.ShowPopUp("Steam is not initialized or not running.", 1);
-                Debug.LogError("Steam is not initialized or not running.");
+                PopUpManager.Instance.ShowPopUp("Please select at least one multiplayer mode.", 2);
             }
         }
+        
     }
 }

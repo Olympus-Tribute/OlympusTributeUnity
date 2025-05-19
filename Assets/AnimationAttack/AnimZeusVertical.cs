@@ -3,27 +3,30 @@ using UnityEngine.Playables;
 
 public class Anim_ZeusVertical : MonoBehaviour
 {
-    public GameObject lightningPrefab;  
-    public PlayableDirector lightningTimeline;  
-    public Transform attackPosition;  
-    public float heightOffset = 1f;  
+    public GameObject lightningPrefab;       
+    public float heightOffset = 1f;          
 
     void Start()
     {
-        TriggerLightning();  
+        TriggerLightning();
     }
 
     void TriggerLightning()
     {
-        if (lightningTimeline != null)
+        if (lightningPrefab == null)
         {
-            Vector3 spawnPosition = new Vector3(attackPosition.position.x, attackPosition.position.y + heightOffset, attackPosition.position.z);
-            
-            Debug.Log("Instantiating vertical lightning at: " + spawnPosition);
-            
-            GameObject lightning = Instantiate(lightningPrefab, spawnPosition, Quaternion.Euler(90, 0, 0));  // Rotation de 90° sur l'axe X
+            Debug.LogWarning("Lightning prefab non assigné.");
+            return;
+        }
 
-            lightningTimeline.Play();
+        Vector3 spawnPosition = transform.position + Vector3.up * heightOffset;
+
+        GameObject lightning = Instantiate(lightningPrefab, spawnPosition, Quaternion.identity);
+        
+        PlayableDirector director = lightning.GetComponent<PlayableDirector>();
+        if (director != null)
+        {
+            director.Play();
         }
     }
 }

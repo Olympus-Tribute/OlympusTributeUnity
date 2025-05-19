@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5733399971520492651}
   - component: {fileID: 8991985121332797431}
   m_Layer: 0
-  m_Name: Zeus1
+  m_Name: ZeusVerticalPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

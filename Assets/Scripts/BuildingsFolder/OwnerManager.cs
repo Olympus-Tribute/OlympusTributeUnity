@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Cecs.Util;
-using ForServer;
 using Grid;
 using OlympusDedicatedServer.Components.WorldComp;
 using OlympusWorldGenerator;
@@ -23,8 +22,8 @@ namespace BuildingsFolder
 
         public void Start()
         {
-            _mapWidth = ServerManager.MapWidth;
-            _mapHeight = ServerManager.MapHeight;
+            _mapWidth = GameConstants.MapWidth;
+            _mapHeight = GameConstants.MapHeight;
             _globalMap = new List<uint>[_mapWidth, _mapHeight];
             _mapOfPlayer = new Dictionary<uint, uint[,]>();
             PercentagePerPlayer = new Dictionary<uint, float>();

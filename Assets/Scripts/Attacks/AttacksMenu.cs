@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using BuildingsFolder;
 using BuildingsFolder.BuildingsClasses;
-using ForServer;
 using OlympusDedicatedServer.Components.Attack;
 using PopUp;
 using Resources;
@@ -111,7 +110,7 @@ namespace Attacks
         {
             if (_attacksManager.Temple is null)
             {
-                if (_buildingsManager.Buildings.TryGetValue((x, y), out var targetBuilding) && targetBuilding.OwnerId == ServerManager.PlayerId &&
+                if (_buildingsManager.Buildings.TryGetValue((x, y), out var targetBuilding) && targetBuilding.OwnerId == GameConstants.PlayerId &&
                     targetBuilding is Temple targetTemple)
                 {
                     _compteurMouse += 1;

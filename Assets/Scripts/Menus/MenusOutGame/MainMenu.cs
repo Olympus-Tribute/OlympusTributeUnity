@@ -1,10 +1,9 @@
 using System.IO;
-using ForServer;
+using ForNetwork;
 using PopUp;
 using Steamworks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Menus.MenusOutGame
@@ -29,11 +28,30 @@ namespace Menus.MenusOutGame
         public bool acceptTcp = true;
         public bool creativeMode = false;
         
+        [SerializeField] private GameObject tcpConnectionPrefab;
+        [SerializeField] private GameObject steamConnectionPrefab;
+        [SerializeField] private GameObject localConnectionPrefab;
+
         private void OnEnable()
         {
             CreateSteamAppIdFile();
             SetAllMenusInactive();
             menuUIMainMenu.SetActive(true);
+            
+            Instantiate(tcpConnectionPrefab);
+            Instantiate(localConnectionPrefab);
+
+            if (SteamManager.Initialized)
+            {
+                Instantiate(steamConnectionPrefab);
+                acceptSteam = true;
+                toggleSteam.isOn = true;
+            }
+            else
+            {
+                acceptSteam = false;
+                toggleSteam.isOn = false;
+            }
         }
 
         private void SetAllMenusInactive()
@@ -130,16 +148,6 @@ namespace Menus.MenusOutGame
         {
             SetAllMenusInactive();
             menuUIMultiplayerHost.SetActive(true);
-            if (SteamManager.Initialized)
-            {
-                acceptSteam = true;
-                toggleSteam.isOn = true;
-            }
-            else
-            {
-                acceptSteam = false;
-                toggleSteam.isOn = false;
-            }
         }
     
         public void SelectJoin()
@@ -225,48 +233,16 @@ namespace Menus.MenusOutGame
             }
         }
         
-        public void Host()
-        {
-            if (SteamManager.Initialized)
-            {
-                SetAllMenusInactive();
-                
-                CSteamID id = SteamUser.GetSteamID();
-                //SteamFriends.ActivateGameOverlayInviteDialog(id);
-        
-                ServerManager.Instance.Host();
-        
-                SceneManager.LoadScene("WaitingScene");
-            }
-            else
-            {
-                PopUpManager.Instance.ShowPopUp("Steam is not initialized or not running.", 5);
-                Debug.LogError("Steam is not initialized or not running.");
-            }
-        }
-        
         //____________________________________
-        
-        
         
         public void MenuHost()
         {
-            if (acceptSteam || acceptTcp)
-            {
-                SetAllMenusInactive();
-                
-                CSteamID id = SteamUser.GetSteamID();
-                //SteamFriends.ActivateGameOverlayInviteDialog(id);
-        
-                ServerManager.Instance.Host();
-        
-                SceneManager.LoadScene("WaitingScene");
-            }
-            else
-            {
-                PopUpManager.Instance.ShowPopUp("Please select at least one multiplayer mode.", 2);
-            }
+            SetAllMenusInactive();
+            
+            LocalConnectionMethod.Instance.acceptSteamConnection = acceptSteam;
+            LocalConnectionMethod.Instance.acceptTcpConnection = acceptTcp;
+            
+            LocalConnectionMethod.Instance.Connect();
         }
-        
     }
 }

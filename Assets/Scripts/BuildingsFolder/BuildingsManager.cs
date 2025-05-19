@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
-using ForServer;
 using Grid;
 using Networking.Common.Server;
 using OlympusDedicatedServer.Components.Attack;
@@ -71,7 +70,7 @@ namespace BuildingsFolder
                 {
                     Debug.Log("[CLIENT]     : Receive 'ServerPlaceBuildingGameAction'");
 
-                    if (action.BuildingId == 0 && action.OwnerId == ServerManager.PlayerId)
+                    if (action.BuildingId == 0 && action.OwnerId == GameConstants.PlayerId)
                     {
                         (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(action.X, action.Y);
                         
@@ -102,7 +101,7 @@ namespace BuildingsFolder
                     DeleteBuilding((int)xPlaceBuilding, (int)zPlaceBuilding);
                 });
 
-            //OwnerManager = new OwnerManager(ServerManager.MapWidth, ServerManager.MapHeight, _map);
+            //OwnerManager = new OwnerManager(GameConstants.MapWidth, GameConstants.MapHeight, _map);
             OwnerManager = FindFirstObjectByType<OwnerManager>();
         }
     
@@ -112,7 +111,7 @@ namespace BuildingsFolder
 
         private void AddBuildingOwner(Building building)
         {
-            foreach (var (x, y) in WorldCoordinates.FindTilesOfNRadiusIncludingMe(building.Position.Item1, building.Position.Item2, ServerManager.MapWidth, ServerManager.MapHeight, building.Range))
+            foreach (var (x, y) in WorldCoordinates.FindTilesOfNRadiusIncludingMe(building.Position.Item1, building.Position.Item2, GameConstants.MapWidth, GameConstants.MapHeight, building.Range))
             {
                 OwnerManager.AddOwner(x, y, building.OwnerId);
             }
@@ -120,7 +119,7 @@ namespace BuildingsFolder
         
         private void RemoveBuildingOwner(Building building)
         {
-            foreach (var (x, y) in WorldCoordinates.FindTilesOfNRadiusIncludingMe(building.Position.Item1, building.Position.Item2, ServerManager.MapWidth, ServerManager.MapHeight, building.Range))
+            foreach (var (x, y) in WorldCoordinates.FindTilesOfNRadiusIncludingMe(building.Position.Item1, building.Position.Item2, GameConstants.MapWidth, GameConstants.MapHeight, building.Range))
             {
                 OwnerManager.RemoveOwner(x, y, building.OwnerId);
             }
@@ -175,7 +174,7 @@ namespace BuildingsFolder
             (float xWorldCenterCo, float zWorldCenterCo)  = StaticGridTools.MapIndexToWorldCenterCo(x, z);
             Vector3 positionKey = new Vector3(xWorldCenterCo, 0, zWorldCenterCo);
             
-            int rotationAngle = StaticGridTools.MapIndexToRotation(x, z, ServerManager.Seed, (int)ServerManager.MapWidth);
+            int rotationAngle = StaticGridTools.MapIndexToRotation(x, z, GameConstants.Seed, (int)GameConstants.MapWidth);
             GameObject instantiate = Instantiate(prefab, positionKey, Quaternion.Euler(0, rotationAngle, 0));
             
             switch (buildingType)

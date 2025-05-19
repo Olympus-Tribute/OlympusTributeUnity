@@ -1,5 +1,4 @@
 using ForNetwork;
-using ForServer;
 using Grid;
 using Networking.Common.Client;
 using OlympusWorldGenerator;
@@ -131,7 +130,7 @@ namespace BuildingsFolder
                 _ghostBuilding.transform.position = new Vector3(x, y, z);
     
                 // pour l'orientation
-                int rotationAngle = StaticGridTools.MapIndexToRotation((int)x, (int)z, ServerManager.Seed, (int)ServerManager.MapWidth);
+                int rotationAngle = StaticGridTools.MapIndexToRotation((int)x, (int)z, GameConstants.Seed, (int)GameConstants.MapWidth);
                 _ghostBuilding.transform.rotation = Quaternion.Euler(0, rotationAngle, 0);
             }
 
@@ -168,10 +167,10 @@ namespace BuildingsFolder
         private bool CanPlaceBuilding(Vector3 position)
         {
             (int posX, int posZ) = StaticGridTools.WorldCenterCoToMapIndex(position.x, position.z);
-            if (posX >= 0 && posZ >= 0 && posX < ServerManager.MapHeight && posZ < ServerManager.MapWidth)
+            if (posX >= 0 && posZ >= 0 && posX < GameConstants.MapHeight && posZ < GameConstants.MapWidth)
             {
                 uint? owner = _buildingsManager.OwnerManager.GetOwner(posX, posZ);
-                if (owner.HasValue && owner == ServerManager.PlayerId)
+                if (owner.HasValue && owner == GameConstants.PlayerId)
                 {
                     switch (_selectedBuildingType)
                     {

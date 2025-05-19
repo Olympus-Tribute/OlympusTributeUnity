@@ -1,5 +1,3 @@
-using System;
-using ForServer;
 using OlympusWorldGenerator.Generators;
 using UnityEngine;
 
@@ -22,7 +20,7 @@ namespace Grid
 
         public void OnEnable()
         {
-            Generate(ServerManager.Seed, ServerManager.MapWidth, ServerManager.MapHeight);
+            Generate(GameConstants.Seed, GameConstants.MapWidth, GameConstants.MapHeight);
         }
 
         public void Generate(int seed, uint mapwidth, uint mapheight)

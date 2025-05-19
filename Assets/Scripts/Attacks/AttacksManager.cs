@@ -2,7 +2,6 @@ using Attacks.Animation;
 using BuildingsFolder;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
-using ForServer;
 using Networking.Common.Server;
 using Networking.Common.Server.Attacks;
 using OlympusDedicatedServer.Components.Attack;
@@ -66,7 +65,7 @@ namespace Attacks
         
         private void ShowPopUpAttack()
         {
-            PopUpManager.Instance.ShowPopUp($"{OwnersMaterial.GetName(ServerManager.PlayerId)} has attacked.", 3);
+            PopUpManager.Instance.ShowPopUp($"{OwnersMaterial.GetName(GameConstants.PlayerId)} has attacked.", 3);
         }
     }
 }

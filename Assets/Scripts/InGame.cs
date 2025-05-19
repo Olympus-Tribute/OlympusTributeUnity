@@ -1,5 +1,4 @@
 using ForNetwork;
-using ForServer;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,9 +33,6 @@ public class InGame : MonoBehaviour
 
     public static void Stop()
     {
-        Network.Instance.Proxy?.Connection.Disconnect();
-        Network.Instance.Proxy = null;
         Network.Instance.Stop();
-        ServerManager.Instance.StopHost();
     }
 }

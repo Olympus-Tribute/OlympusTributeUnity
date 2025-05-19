@@ -20,10 +20,6 @@ namespace Menus.MenusOutGame
             }
             else
             {
-                Network.Instance.Setup = (proxy =>
-                {
-                    SceneManager.LoadScene("WaitingScene");
-                });
                 SteamFriends.ActivateGameOverlay("Friends");
             }
         }

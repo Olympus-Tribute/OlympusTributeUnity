@@ -1,5 +1,4 @@
 using ForNetwork;
-using ForServer;
 using Networking.API.Listeners;
 using Networking.Common.Client;
 using Networking.Common.Server;
@@ -79,11 +78,11 @@ namespace Menus.MenusOutGame
                 (connection, action) =>
                 {
                     Debug.Log("[CLIENT]     : Received ServerStartLobbyGameAction");
-                    ServerManager.Seed = (int)action.Seed;
-                    ServerManager.MapWidth = action.Width;
-                    ServerManager.MapHeight = action.Height;
-                    ServerManager.PlayerCount = action.PlayerCount;
-                    ServerManager.PlayerId = action.PlayerId;
+                    GameConstants.Seed = (int)action.Seed;
+                    GameConstants.MapWidth = action.Width;
+                    GameConstants.MapHeight = action.Height;
+                    GameConstants.PlayerCount = action.PlayerCount;
+                    GameConstants.PlayerId = action.PlayerId;
                     InitGame();
                 });
         }

@@ -1,6 +1,5 @@
 using System;
 using Cecs.Util;
-using ForServer;
 using OlympusDedicatedServer.Components.WorldComp;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -24,8 +23,8 @@ namespace BuildingsFolder
         
         public BuildingWall()
         {
-            _mapWidth = ServerManager.MapWidth;
-            _mapHeight = ServerManager.MapHeight;
+            _mapWidth = GameConstants.MapWidth;
+            _mapHeight = GameConstants.MapHeight;
             
             _walls = new GameObject[_mapHeight, _mapWidth][];
             _flags = new (uint ,GameObject)? [_mapHeight, _mapWidth];

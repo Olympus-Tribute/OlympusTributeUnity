@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using BuildingsFolder;
-using ForServer;
-using Grid;
 using TMPro;
 using UnityEngine;
 

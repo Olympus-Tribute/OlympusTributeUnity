@@ -33,7 +33,7 @@ namespace Attacks
             //___________________________________________________________//
             //_________________________For Multi_________________________//
             //___________________________________________________________//
-            
+            /*
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackGameAction>((proxy, action) =>
             {
                 (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
@@ -52,7 +52,7 @@ namespace Attacks
                 }
                 ShowPopUpAttack();
             });
-            
+            */
             //___________________________________________________________//
             //___________________________________________________________//
             //___________________________________________________________//

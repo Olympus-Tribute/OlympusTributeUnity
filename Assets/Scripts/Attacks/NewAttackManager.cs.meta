@@ -1,3 +1,16 @@
 fileFormatVersion: 2
 guid: eb7a1e4a87da4d12b3353209c89c1e2d
-timeCreated: 1747126821
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _poseidonAnimation: {fileID: 1897722749337026402, guid: c891d434eaf66b94b9208b2e16e66620, type: 3}
+  - _hadesAnimation: {fileID: 2626209354379793085, guid: 99a9f9bf02baee445bcbac1d509f237a, type: 3}
+  - _athenaAnimation: {fileID: 7706634180933737791, guid: f9aa04b3b37e70e4fb35f03c3660181e, type: 3}
+  - _dionysosAnimation: {fileID: 5515695015129358141, guid: caa6ba721a1a71f4ba788671becd89d5, type: 3}
+  - _zeusAnimation: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace BuildingsFolder.BuildingsClasses
@@ -9,6 +10,9 @@ namespace BuildingsFolder.BuildingsClasses
         public GameObject GameObject { get; private set; }
         public (int, int) Position { get; private set; }
         public uint OwnerId { get; private set; }
+        
+        public double LastTimeParalyzed = double.NegativeInfinity;
+        public double LastParalyzedDuration = 0;
 
         public readonly int Range;
         
@@ -20,6 +24,17 @@ namespace BuildingsFolder.BuildingsClasses
             Position = position;
             OwnerId = ownerId;
             Range = range;
+        }
+        
+        public bool Usable(double now)
+        {
+            return now - LastTimeParalyzed >= LastTimeParalyzed;
+        }
+
+        public void Paralyze(double duration)
+        {
+            LastParalyzedDuration = duration;
+            LastTimeParalyzed = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         }
     }
 }

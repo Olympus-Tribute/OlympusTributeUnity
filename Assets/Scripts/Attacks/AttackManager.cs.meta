@@ -8,7 +8,9 @@ MonoImporter:
   - _hadesAnimation: {fileID: 2626209354379793085, guid: 99a9f9bf02baee445bcbac1d509f237a, type: 3}
   - _athenaAnimation: {fileID: 7706634180933737791, guid: f9aa04b3b37e70e4fb35f03c3660181e, type: 3}
   - _dionysosAnimation: {fileID: 5515695015129358141, guid: caa6ba721a1a71f4ba788671becd89d5, type: 3}
-  - _zeusAnimation: {instanceID: 0}
+  - _zeus1Animation: {fileID: 1333622603281636373, guid: 8a6aee57badac154992815f7e23189cf, type: 3}
+  - _zeus2Animation: {fileID: 478309187776205100, guid: 1fde90285e7a1bf49821fd6b59453194, type: 3}
+  - _waterPrefab: {fileID: 919132149155446097, guid: 6e1151b2a65097d4ca297df8cc770ac6, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

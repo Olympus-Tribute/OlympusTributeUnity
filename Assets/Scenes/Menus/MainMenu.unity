@@ -1003,6 +1003,7 @@ MonoBehaviour:
   tcpConnectionPrefab: {fileID: 5877448344958347105, guid: 86d11a2ecafa9cd47a22706a4471fc6a, type: 3}
   steamConnectionPrefab: {fileID: 360766462403845311, guid: 6e7a9fcddaaf1ac41b6c192397409fdc, type: 3}
   localConnectionPrefab: {fileID: 8890854558832741048, guid: 33235d2064b92f24e9460fafff5bcd4e, type: 3}
+  gameObjectToggleSteamWithTmp: {fileID: 1422794582}
   toggleTimer: {fileID: 1009031930}
   togglePercentage: {fileID: 1455136298}
   timerModeSelected: 1
@@ -1902,7 +1903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897305017834774463, guid: 894d9af335ba5074e8b7b64dd6a681f8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8897305017834774463, guid: 894d9af335ba5074e8b7b64dd6a681f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3245,10 +3246,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8662403274589635127, guid: 09ec616d344561a43afbf080dd99d748, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3146524960219324615}
+      addedObject: {fileID: 659839738}
     - targetCorrespondingSourceObject: {fileID: 8662403274589635127, guid: 09ec616d344561a43afbf080dd99d748, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 659839738}
+      addedObject: {fileID: 3146524960219324615}
     - targetCorrespondingSourceObject: {fileID: 8662403274589635127, guid: 09ec616d344561a43afbf080dd99d748, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1853498040}
@@ -3912,6 +3913,11 @@ PrefabInstance:
 Camera:
   m_CorrespondingSourceObject: {fileID: 2336349795320579728, guid: 6b29c2e8eefe1e4499140ae67d6ca920, type: 3}
   m_PrefabInstance: {fileID: 1357968331}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1422794582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6998980277891705916, guid: 894d9af335ba5074e8b7b64dd6a681f8, type: 3}
+  m_PrefabInstance: {fileID: 3146524960219324614}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1455136298 stripped
 MonoBehaviour:
@@ -4992,7 +4998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897305017834774463, guid: 894d9af335ba5074e8b7b64dd6a681f8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 8897305017834774463, guid: 894d9af335ba5074e8b7b64dd6a681f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

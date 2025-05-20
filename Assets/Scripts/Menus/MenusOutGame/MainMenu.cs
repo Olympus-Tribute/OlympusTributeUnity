@@ -40,6 +40,7 @@ namespace Menus.MenusOutGame
         [SerializeField] private GameObject steamConnectionPrefab;
         [SerializeField] private GameObject localConnectionPrefab;
         
+        [SerializeField] private GameObject gameObjectToggleSteamWithTmp;
         
         [SerializeField] public Toggle toggleTimer;
         [SerializeField] public Toggle togglePercentage;
@@ -69,10 +70,12 @@ namespace Menus.MenusOutGame
             {
                 Instantiate(steamConnectionPrefab);
                 acceptSteam = true;
+                gameObjectToggleSteamWithTmp.SetActive(true);
             }
             else
             {
                 acceptSteam = false;
+                gameObjectToggleSteamWithTmp.SetActive(false);
             }
             acceptTcp = true;
             

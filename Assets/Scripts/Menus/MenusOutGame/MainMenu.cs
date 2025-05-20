@@ -234,28 +234,13 @@ namespace Menus.MenusOutGame
         public void ToggleAcceptSteam()
         {
             acceptSteam = !acceptSteam;
-            VerifToggleSteamAndTcp();
             Debug.Log(acceptSteam ? "ToggleAcceptSteam" : "ToggleAcceptSteam false");
         }
         
         public void ToggleAcceptTcp()
         {
             acceptTcp = !acceptTcp;
-            VerifToggleSteamAndTcp();
             Debug.Log(acceptTcp ? "ToggleAcceptTcp" : "ToggleAcceptTCP false");
-        }
-
-        private void VerifToggleSteamAndTcp()
-        {
-            if (acceptTcp || acceptSteam) return;
-
-            acceptTcp = true;
-            toggleTcp.isOn = true;
-                
-            acceptSteam = false;
-            toggleSteam.isOn = false;
-                
-            PopUpManager.Instance.ShowPopUp("Please select at least one connection method", 2);
         }
         
         public void ToggleCreativeMode()

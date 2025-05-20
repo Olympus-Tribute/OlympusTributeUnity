@@ -119,7 +119,7 @@ namespace ForNetwork
                 AddTcp(acceptors);
             }
 
-            if (acceptSteamConnection)
+            if (SteamManager.Initialized && acceptSteamConnection)
             {
                 AddSteam(acceptors);
             }

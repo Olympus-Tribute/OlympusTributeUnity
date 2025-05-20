@@ -1996,11 +1996,39 @@ PrefabInstance:
       propertyPath: _poseidonAnimation
       value: 
       objectReference: {fileID: 1897722749337026402, guid: c891d434eaf66b94b9208b2e16e66620, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7618949112938609787, guid: ddd179e9dada80f4399d0f8c905a0537, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5255705040177043346, guid: ddd179e9dada80f4399d0f8c905a0537, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2928853619148356320}
   m_SourcePrefab: {fileID: 100100000, guid: ddd179e9dada80f4399d0f8c905a0537, type: 3}
+--- !u!1 &2928853619148356319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5255705040177043346, guid: ddd179e9dada80f4399d0f8c905a0537, type: 3}
+  m_PrefabInstance: {fileID: 2928853619148356318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2928853619148356320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928853619148356319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7a1e4a87da4d12b3353209c89c1e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poseidonAnimation: {fileID: 1897722749337026402, guid: c891d434eaf66b94b9208b2e16e66620, type: 3}
+  _hadesAnimation: {fileID: 2626209354379793085, guid: 99a9f9bf02baee445bcbac1d509f237a, type: 3}
+  _athenaAnimation: {fileID: 7706634180933737791, guid: f9aa04b3b37e70e4fb35f03c3660181e, type: 3}
+  _dionysosAnimation: {fileID: 5515695015129358141, guid: caa6ba721a1a71f4ba788671becd89d5, type: 3}
+  _zeus1Animation: {fileID: 1333622603281636373, guid: 8a6aee57badac154992815f7e23189cf, type: 3}
+  _zeus2Animation: {fileID: 478309187776205100, guid: 1fde90285e7a1bf49821fd6b59453194, type: 3}
+  _waterPrefab: {fileID: 919132149155446097, guid: 6e1151b2a65097d4ca297df8cc770ac6, type: 3}
 --- !u!1001 &4497956191868054818
 PrefabInstance:
   m_ObjectHideFlags: 0

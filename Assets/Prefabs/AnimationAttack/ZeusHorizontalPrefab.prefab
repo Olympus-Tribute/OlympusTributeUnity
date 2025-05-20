@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 3862634193937729276}
   - component: {fileID: 1700867513277310915}
   m_Layer: 0
-  m_Name: ZeuqHorizontalPrefab
+  m_Name: ZeusHorizontalPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

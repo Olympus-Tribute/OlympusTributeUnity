@@ -7,10 +7,8 @@ using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
 using Networking.Common.Server.Attacks;
 using PopUp;
-using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Attacks
@@ -46,37 +44,19 @@ namespace Attacks
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackPoseidonGameAction>(
                 (proxy, action) =>
                 {
-                    /*
-                     rend les batiments touchés inactif pendant un instant t
-                     */
                     (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
                     var anim = Instantiate(_poseidonAnimation, new Vector3(x, 0, z), quaternion.identity);
                     anim.GetComponent<AttackPoseidon>().AnimationDuration = action.Duration;
-                    /*
-                     déactiver tous les batiments pendant action.Duration sachant que tous les batiments correspondent à action.Targets
-                     pendant la période de déactivation, mettre des prefab eau pour former un lac. 
-                     */
-                    /*foreach (var (x1, y1) in action.Targets)
-                    {
-                        Instantiate(_waterPrefab, new Vector3(x1, 0, y1), quaternion.identity);
-                        StartCoroutine(DestroyLater())
-                    }*/
-                    
-                    //Paralise tous les batiments 
                     foreach (var (x2, y2) in action.Targets)
                     {
                         _buildingsManager.Buildings[(x2,y2)].Paralyze(action.Duration);
                     }
-                    
                     ShowPopUpAttack();
                 });
 
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackHadesGameAction>(
                 (proxy, action) =>
                 {
-                    /*
-                     supprime le batiment 
-                     */
                     (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
                     var DeleteBuilding = _buildingsManager.FakeDeleteBuilding(action.TargetX, action.TargetY);
                     var instantiate = Instantiate(_hadesAnimation, new Vector3(x, 0, z), quaternion.identity);
@@ -87,37 +67,16 @@ namespace Attacks
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackAthenaGameAction>(
                 (proxy, action) =>
                 {
-                    /*
-                     Vole un batiment pendant un instant t
-                     */
                     (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
-                    
-                    /*var ownerManager = FindFirstObjectByType<OwnerManager>();
-                    uint? originalOwner = ownerManager.GetOwner(action.TargetX, action.TargetY);
-                    uint newOwner = ServerManager.PlayerId;
-                    
-                    if (originalOwner.HasValue)
-                    {
-                        ownerManager.RemoveOwner(action.TargetX, action.TargetY, originalOwner.Value);
-                    }
-                    ownerManager.AddOwner(action.TargetX, action.TargetY, newOwner);*/
                     Instantiate(_athenaAnimation, new Vector3(x, 0, z), quaternion.identity);
-                    //StartCoroutine(RestoreOriginalOwnerAfterDelay(action.TargetX, action.TargetY, originalOwner, action.Duration));
-                    
                     ShowPopUpAttack();
                 });
             
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackDionysusGameAction>(
                 (proxy, action) =>
                 {
-                    /*
-                     A revoir concernant le batiment inactif 
-                     rend batiment inactif pendant un instant t
-                     */
                     (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
                     Instantiate(_dionysosAnimation, new Vector3(x, 0, z), Quaternion.identity);
-                    
-                    //Paralyse le batiment
                     _buildingsManager.Buildings[(action.TargetX,action.TargetY)].Paralyze(action.Duration);
                     
                     ShowPopUpAttack();
@@ -263,49 +222,8 @@ namespace Attacks
             PopUpManager.Instance.ShowPopUp($"{OwnersMaterial.GetName(GameConstants.PlayerId)} has attacked.", 3);
         }
         
-        private System.Collections.IEnumerator RestoreOriginalOwnerAfterDelay(int x, int y, uint? originalOwner, float delay)
-        {
-            yield return new WaitForSeconds(delay);
-
-            var ownerManager = FindFirstObjectByType<OwnerManager>();
-            if (ownerManager == null) yield break;
-
-            ownerManager.RemoveOwner(x, y, GameConstants.PlayerId);
-            
-            if (originalOwner.HasValue)
-            {
-                ownerManager.AddOwner(x, y, originalOwner.Value);
-            }
-        }
         
-        private IEnumerator DestroyAllAfterDelay(List<GameObject> lightningList, float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            foreach (var obj in lightningList)
-            {
-                if (obj != null)
-                    GameObject.Destroy(obj);
-            }
-        }
         
-        /*private static (int, int) GetParalysedFrom(int fromX, int fromY, int angle)
-        {
-            bool isOddRow = fromY % 2 == 1;
-
-            return angle switch
-            {
-                270 => (fromX - 1, fromY), // Gauche
-                90  => (fromX + 1, fromY), // Droite
-
-                330 => isOddRow ? (fromX, fromY - 1) : (fromX + 1, fromY - 1),
-                30  => isOddRow ? (fromX + 1, fromY + 1) : (fromX, fromY + 1),
-
-                210 => isOddRow ? (fromX, fromY + 1) : (fromX - 1, fromY + 1),
-                150 => isOddRow ? (fromX - 1, fromY - 1) : (fromX, fromY - 1),
-
-                _ => (fromX, fromY)
-            };
-        }*/
         
         private void PropagateLightning(List<((int x, int y), int angle)> paralyzeList, float duration)
         {
@@ -315,20 +233,11 @@ namespace Attacks
                 Vector3 fromPosition = new Vector3(fromXWorld, 0, fromZWorld);
 
                 GameObject lightning = Instantiate(_zeus2Animation, fromPosition, Quaternion.Euler(90,angle,0));
-
-                /*var (toX, toY) = GetParalysedFrom(fromX, fromY, angle);
-                (float toXWorld, float toZWorld) = StaticGridTools.MapIndexToWorldCenterCo(toX, toY);
-                Vector3 toPosition = new Vector3(toXWorld, 0, toZWorld);*/
+                
 
                 var anim = lightning.GetComponent<Anim_ZeusHorizontal>();
-                /*if (anim != null)
-                {
-                    anim.targetPosition = toPosition;
-                }*/
 
                 StartCoroutine(DestroyLater(lightning));
-
-                //yield return new WaitForSeconds(0.3f); // délai de propagation visuelle
             }
         }
 

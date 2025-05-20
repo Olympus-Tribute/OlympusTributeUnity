@@ -5,10 +5,7 @@ using Attacks.Animation;
 using BuildingsFolder;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
-using ForServer;
-using Networking.Common.Server;
 using Networking.Common.Server.Attacks;
-using OlympusDedicatedServer.Components.Attack;
 using PopUp;
 using TMPro;
 using Unity.Mathematics;
@@ -263,7 +260,7 @@ namespace Attacks
         
         private void ShowPopUpAttack()
         {
-            PopUpManager.Instance.ShowPopUp($"{OwnersMaterial.GetName(ServerManager.PlayerId)} has attacked.", 3);
+            PopUpManager.Instance.ShowPopUp($"{OwnersMaterial.GetName(GameConstants.PlayerId)} has attacked.", 3);
         }
         
         private System.Collections.IEnumerator RestoreOriginalOwnerAfterDelay(int x, int y, uint? originalOwner, float delay)
@@ -273,7 +270,7 @@ namespace Attacks
             var ownerManager = FindFirstObjectByType<OwnerManager>();
             if (ownerManager == null) yield break;
 
-            ownerManager.RemoveOwner(x, y, ServerManager.PlayerId);
+            ownerManager.RemoveOwner(x, y, GameConstants.PlayerId);
             
             if (originalOwner.HasValue)
             {

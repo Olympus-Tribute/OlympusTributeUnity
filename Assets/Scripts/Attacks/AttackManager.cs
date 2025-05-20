@@ -45,8 +45,8 @@ namespace Attacks
                 (proxy, action) =>
                 {
                     (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
-                    var anim = Instantiate(_poseidonAnimation, new Vector3(x, 0, z), quaternion.identity);
-                    anim.GetComponent<AttackPoseidon>().AnimationDuration = action.Duration;
+                    Instantiate(_poseidonAnimation, new Vector3(x, 0, z), quaternion.identity);
+                    
                     foreach (var (x2, y2) in action.Targets)
                     {
                         _buildingsManager.Buildings[(x2,y2)].Paralyze(action.Duration);
@@ -58,9 +58,9 @@ namespace Attacks
                 (proxy, action) =>
                 {
                     (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
-                    var DeleteBuilding = _buildingsManager.FakeDeleteBuilding(action.TargetX, action.TargetY);
+                    var deleteBuilding = _buildingsManager.FakeDeleteBuilding(action.TargetX, action.TargetY);
                     var instantiate = Instantiate(_hadesAnimation, new Vector3(x, 0, z), quaternion.identity);
-                    instantiate.GetComponent<AnimHades>().buildingDestroy = DeleteBuilding;
+                    instantiate.GetComponent<AnimHades>().buildingDestroy = deleteBuilding;
                     ShowPopUpAttack();
                 });
             
@@ -89,12 +89,13 @@ namespace Attacks
 
                     // Foudre vertical
                     var verticalzeus = Instantiate(_zeus1Animation, new Vector3(x, 0, z), Quaternion.identity);
-                    StartCoroutine(DestroyLater(verticalzeus));
+                    Destroy(verticalzeus, 1f);
+                    
                     // Propagation foudre horizontal
                     if (action.Targets.Length > 1)
                     {
                         var paralyzeList = ParalyzeList(action.Targets, action.TargetX, action.TargetY);
-                        PropagateLightning(paralyzeList, action.Duration);
+                        StartCoroutine(PropagateLightning(paralyzeList));
                     }
 
                     foreach (var (x2, y2) in action.Targets)
@@ -225,28 +226,25 @@ namespace Attacks
         
         
         
-        private void PropagateLightning(List<((int x, int y), int angle)> paralyzeList, float duration)
+        private IEnumerator PropagateLightning(List<((int x, int y), int angle)> paralyzeList)
         {
             foreach (var ((fromX, fromY), angle) in paralyzeList)
             {
                 (float fromXWorld, float fromZWorld) = StaticGridTools.MapIndexToWorldCenterCo(fromX, fromY);
                 Vector3 fromPosition = new Vector3(fromXWorld, 0, fromZWorld);
 
-                GameObject lightning = Instantiate(_zeus2Animation, fromPosition, Quaternion.Euler(90,angle,0));
-                
+                GameObject lightning = Instantiate(_zeus2Animation, fromPosition, Quaternion.Euler(90, angle, 0));
 
                 var anim = lightning.GetComponent<Anim_ZeusHorizontal>();
 
-                StartCoroutine(DestroyLater(lightning));
+                Destroy(lightning, 1f);
+
+                yield return new WaitForSeconds(1f); // Pause d'une seconde avant la prochaine instantiation
             }
         }
-
-        private IEnumerator DestroyLater(GameObject gameObject)
-        {
-            yield return new WaitForSeconds(0.3f);
-            Destroy(gameObject);
-
-        }
+        
+        
+        
 
 
     }

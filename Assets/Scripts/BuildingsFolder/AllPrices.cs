@@ -5,6 +5,10 @@ namespace BuildingsFolder
 {
     public static class AllPrices
     {
+        public const float ZeusParalyzeDuration = 30f;
+        public const float DionysusParalyzeDuration = 120f;
+        public const float PoseidonParalyzeDuration = 15f;
+        
         // --- Ressources de départ ---
         public const int StartingWood = 0;
         public const int StartingStone = 0;

@@ -4,7 +4,7 @@ using UnityEngine.Playables;
 public class Anim_ZeusVertical : MonoBehaviour
 {
     public GameObject lightningPrefab;       
-    public float heightOffset = 1f;          
+    private float heightOffset = 1f;          
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class Anim_ZeusVertical : MonoBehaviour
 
         Vector3 spawnPosition = transform.position + Vector3.up * heightOffset;
 
-        GameObject lightning = Instantiate(lightningPrefab, spawnPosition, Quaternion.identity);
+        GameObject lightning = Instantiate(lightningPrefab, spawnPosition, Quaternion.identity, transform);
         
         PlayableDirector director = lightning.GetComponent<PlayableDirector>();
         if (director != null)

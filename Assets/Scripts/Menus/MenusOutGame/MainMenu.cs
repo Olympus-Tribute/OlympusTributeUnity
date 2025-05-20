@@ -87,20 +87,6 @@ namespace Menus.MenusOutGame
             gameObjectPercentage.SetActive(togglePercentage.isOn);
         }
 
-        /*
-        public void Update()
-        {
-            acceptSteam = toggleSteam.isOn;
-            acceptTcp = toggleTcp.isOn;
-            creativeMode = toggleCreativeMode;
-
-            timerModeSelected = toggleTimer.isOn;
-            gameObjectTimer.SetActive(toggleTimer.isOn);
-            
-            percentageModeSelected = togglePercentage.isOn;
-            gameObjectPercentage.SetActive(togglePercentage.isOn);
-        }
-        */
 
         private void SetAllMenusInactive()
         {

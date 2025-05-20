@@ -1,3 +1,4 @@
+using BuildingsFolder;
 using UnityEngine;
 
 namespace Animation.Attacks
@@ -32,14 +33,13 @@ namespace Animation.Attacks
         private Vector3[] initialPositions; 
 
         private float waveAmplitude = 10f; 
-        private float animationHeight = 3f; 
+        private float animationHeight = 1f; 
         private float waveSpeed = 5f; 
-        public float AnimationDuration = 6f; 
+        private float AnimationDuration = AllPrices.PoseidonParalyzeDuration; 
         private float returnSpeed = 2f; 
-
         private float[] timeOffsets = new float[19]; 
-        private float startTime; 
         private bool isReturning = false; 
+        private float elapsedTime = 0f;
 
         void OnEnable()
         {
@@ -52,9 +52,7 @@ namespace Animation.Attacks
                 _cylinders[i] = cylinder.transform;
                 initialPositions[i] = hexagonPositions[i] + this.gameObject.transform.position; 
             }
-
-            startTime = Time.time;
-        
+            
             for (int i = 0; i < _cylinders.Length; i++)
             {
                 if (i == 0)
@@ -68,7 +66,7 @@ namespace Animation.Attacks
 
         void Update()
         {
-            float elapsedTime = Time.time - startTime;
+            elapsedTime += Time.deltaTime;
 
             if (!isReturning && elapsedTime >= AnimationDuration)
             {
@@ -88,14 +86,14 @@ namespace Animation.Attacks
                     {
                         Destroy(cylinder.gameObject);
                     }
-                    Destroy(this.gameObject);
+                    Destroy(gameObject);
                 }
             
             }
             else
             {
                 float t = elapsedTime * waveSpeed;
-                float currentWaveAmplitude = waveAmplitude * Mathf.Exp(-0.5f * elapsedTime);
+                float currentWaveAmplitude = Mathf.Max(waveAmplitude * Mathf.Exp(-0.5f * elapsedTime),1);
 
                 for (int i = 0; i < _cylinders.Length; i++)
                 {

@@ -46,8 +46,8 @@ public class HexagonalBubbleSpawner : MonoBehaviour
         float x = distance * Mathf.Cos(angle);
         float z = distance * Mathf.Sin(angle);
 
-        // Retourner la position calculée
-        return new Vector3(x, 0f, z);
+        Vector3 center = this.transform.position;
+        return new Vector3(center.x + x, center.y, center.z + z);
     }
 
     // Fonction pour arrêter la génération de bulles après un certain temps

@@ -3,7 +3,6 @@ using UnityEngine;
 public class RevolutionHammer : MonoBehaviour
 {
     public GameObject spearPrefab;  
-    public GameObject hexagonBase; 
     private float spawnHeight = -5f; 
     private float targetHeight = 9f; 
     private float moveSpeed = 5f; 
@@ -25,6 +24,7 @@ public class RevolutionHammer : MonoBehaviour
         if (attackTimer >= attackDuration)
         {
             onAttack = false; 
+            Destroy(this.gameObject);
             Debug.Log("Pluie de lances terminée !");
             return;
         }
@@ -48,15 +48,15 @@ public class RevolutionHammer : MonoBehaviour
     Vector3 GetRandomPositionInsideHexagon()
     {
         float angle = Random.Range(0f, 360f);
-
         float randomRadius = Random.Range(0f, hexagonRadius); 
 
         float x = randomRadius * Mathf.Cos(angle * Mathf.Deg2Rad);
         float z = randomRadius * Mathf.Sin(angle * Mathf.Deg2Rad);
 
-        Vector3 hexagonPosition = hexagonBase.transform.position;
-        return new Vector3(hexagonPosition.x + x, hexagonPosition.y, hexagonPosition.z + z);
+        Vector3 hexagonCenter = this.transform.position;
+        return new Vector3(hexagonCenter.x + x, hexagonCenter.y, hexagonCenter.z + z);
     }
+
 
     System.Collections.IEnumerator MoveSpear(GameObject spear)
     {

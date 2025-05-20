@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Attacks.Animation;
 using BuildingsFolder;
@@ -126,39 +127,31 @@ namespace Attacks
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackZeusGameAction>(
                 (proxy, action) =>
                 {
-                    /*
-                     rend inactif les batiments touchés pendant un instant t
-                     */
+                    (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
+
+                    // Foudre vertical
+                    _buildingsManager.DisableBuilding(action.TargetX, action.TargetY, action.Duration);
+                    Instantiate(_zeus1Animation, new Vector3(x, 0, z), Quaternion.identity);
+
+                    // Propagation foudre horizontal
                     if (action.Targets.Length > 1)
                     {
-                        List<((int, int), int)> paralyzelist = ParalyzeList(action.Targets, action.TargetX, action.TargetY);
+                        var paralyzeList = ParalyzeList(action.Targets, action.TargetX, action.TargetY);
+                        StartCoroutine(PropagateLightning(paralyzeList, action.Duration));
                     }
-                    (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
-                    _buildingsManager.DisableBuilding(action.TargetX, action.TargetY, action.Duration);
-                    Instantiate(_zeus1Animation, new Vector3(x, 0, z), quaternion.identity);
-                    // premiere animation : eclair vertical pdt dur
-                    
-                    /*
-                     connection de batiments
-                     idée : Propagation sous forme d'arbre; gérer les conflits;
-                     */
-                    var DeleteBuilding = _buildingsManager.FakeDeleteBuilding(action.TargetX, action.TargetY);
-                    var instantiate = Instantiate(_hadesAnimation, new Vector3(x, 0, z), quaternion.identity);
-                    
-                    //Paralise tous les batiments 
+
                     foreach (var (x2, y2) in action.Targets)
                     {
-                        _buildingsManager.Buildings[(x2,y2)].Paralyze(action.Duration);
+                        _buildingsManager.Buildings[(x2, y2)].Paralyze(action.Duration);
                     }
-                    
+
                     ShowPopUpAttack();
                 });
+
+
+
+
             
-            
-
-
-
-
             //___________________________________________________________//
             //___________________________________________________________//
             //___________________________________________________________//
@@ -285,5 +278,72 @@ namespace Attacks
                 ownerManager.AddOwner(x, y, originalOwner.Value);
             }
         }
+        
+        private IEnumerator DestroyAllAfterDelay(List<GameObject> lightningList, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            foreach (var obj in lightningList)
+            {
+                if (obj != null)
+                    GameObject.Destroy(obj);
+            }
+        }
+        
+        private static (int, int) GetParalysedFrom(int fromX, int fromY, int angle)
+        {
+            bool isOddRow = fromY % 2 == 1;
+
+            return angle switch
+            {
+                270 => (fromX - 1, fromY), // Gauche
+                90  => (fromX + 1, fromY), // Droite
+
+                330 => isOddRow ? (fromX, fromY - 1) : (fromX + 1, fromY - 1),
+                30  => isOddRow ? (fromX + 1, fromY + 1) : (fromX, fromY + 1),
+
+                210 => isOddRow ? (fromX, fromY + 1) : (fromX - 1, fromY + 1),
+                150 => isOddRow ? (fromX - 1, fromY - 1) : (fromX, fromY - 1),
+
+                _ => (fromX, fromY)
+            };
+        }
+        
+        private IEnumerator PropagateLightning(List<((int x, int y), int angle)> paralyzeList, float duration)
+        {
+            List<GameObject> lightningLinks = new();
+
+            foreach (var ((fromX, fromY), angle) in paralyzeList)
+            {
+                (float fromXWorld, float fromZWorld) = StaticGridTools.MapIndexToWorldCenterCo(fromX, fromY);
+                Vector3 fromPosition = new Vector3(fromXWorld, 0, fromZWorld);
+
+                GameObject lightning = Instantiate(_zeus2Animation, fromPosition, Quaternion.identity);
+
+                var (toX, toY) = GetParalysedFrom(fromX, fromY, angle);
+                (float toXWorld, float toZWorld) = StaticGridTools.MapIndexToWorldCenterCo(toX, toY);
+                Vector3 toPosition = new Vector3(toXWorld, 0, toZWorld);
+
+                var anim = lightning.GetComponent<Anim_ZeusHorizontal>();
+                if (anim != null)
+                {
+                    anim.targetPosition = toPosition;
+                }
+
+                _buildingsManager.DisableBuilding(toX, toY, duration);
+                lightningLinks.Add(lightning);
+
+                yield return new WaitForSeconds(0.3f); // délai de propagation visuelle
+            }
+
+            yield return new WaitForSeconds(3f); // durée avant nettoyage final
+            foreach (var l in lightningLinks)
+            {
+                if (l != null)
+                    Destroy(l);
+            }
+        }
+
+
+
     }
 }

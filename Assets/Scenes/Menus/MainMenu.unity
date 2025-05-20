@@ -3205,11 +3205,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5195163151917550569, guid: 09ec616d344561a43afbf080dd99d748, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5461775685247745063, guid: 09ec616d344561a43afbf080dd99d748, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 5461775685247745063, guid: 09ec616d344561a43afbf080dd99d748, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3221,7 +3221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7948432239120304406, guid: 09ec616d344561a43afbf080dd99d748, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -200
+      value: -140
       objectReference: {fileID: 0}
     - target: {fileID: 7948432239120304406, guid: 09ec616d344561a43afbf080dd99d748, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4656,6 +4656,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 74860057578502658, guid: 4c15956fdaff90440927bd042dca2cc6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -80
+      objectReference: {fileID: 0}
     - target: {fileID: 954003230106780093, guid: 4c15956fdaff90440927bd042dca2cc6, type: 3}
       propertyPath: m_text
       value: Option
@@ -4740,6 +4744,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2829679345995800839, guid: 4c15956fdaff90440927bd042dca2cc6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -40
+      objectReference: {fileID: 0}
     - target: {fileID: 2887781237767592400, guid: 4c15956fdaff90440927bd042dca2cc6, type: 3}
       propertyPath: m_Name
       value: ButtonQuit
@@ -4772,6 +4780,10 @@ PrefabInstance:
       propertyPath: m_TargetCamera
       value: 
       objectReference: {fileID: 1357968332}
+    - target: {fileID: 6046072104734078942, guid: 4c15956fdaff90440927bd042dca2cc6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6086231929819247230, guid: 4c15956fdaff90440927bd042dca2cc6, type: 3}
       propertyPath: m_Name
       value: TitleScene
@@ -4807,6 +4819,10 @@ PrefabInstance:
     - target: {fileID: 8862371465168327692, guid: 4c15956fdaff90440927bd042dca2cc6, type: 3}
       propertyPath: m_Name
       value: ButtonOptions
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862371465168327692, guid: 4c15956fdaff90440927bd042dca2cc6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

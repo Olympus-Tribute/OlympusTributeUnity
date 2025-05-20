@@ -294,7 +294,19 @@ MonoBehaviour:
       m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 885311003}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &34594208
 MonoBehaviour:
@@ -576,9 +588,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5464456573589568330, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 885311005}
+    - target: {fileID: 5464456573589568330, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RemoveAi
+      objectReference: {fileID: 0}
+    - target: {fileID: 5464456573589568330, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Menus.MenusOutGame.WaitingScene, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5973860768072446638, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
       propertyPath: m_Name
-      value: ButtonAnimator
+      value: ButtonRemoveAi
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2344,6 +2368,7 @@ MonoBehaviour:
   playerReady: 0
   buttonReady: {fileID: 2097044547}
   buttonNotReady: {fileID: 862298030}
+  aiDropdown: {fileID: 34594207}
 --- !u!1 &967012757
 GameObject:
   m_ObjectHideFlags: 0
@@ -3065,7 +3090,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -40}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 70, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1217500959
 MonoBehaviour:
@@ -3152,7 +3177,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 63.426453, y: 0, z: 64.65698, w: 0}
+  m_margin: {x: -0.57421875, y: 0, z: 0.3857422, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4520,9 +4545,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5464456573589568330, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 885311005}
+    - target: {fileID: 5464456573589568330, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddAi
+      objectReference: {fileID: 0}
+    - target: {fileID: 5464456573589568330, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Menus.MenusOutGame.WaitingScene, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5973860768072446638, guid: 6a2188db4e51de64c848aa32ecabcdb0, type: 3}
       propertyPath: m_Name
-      value: ButtonAnimator (1)
+      value: ButtonAddAi
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,5 +1,7 @@
+using System;
 using System.IO;
 using System.Net;
+using System.Timers;
 using ForNetwork;
 using Networking.TCP;
 using PopUp;
@@ -47,11 +49,16 @@ namespace Menus.MenusOutGame
 
         public bool timerModeSelected = true;
         public bool percentageModeSelected = false;
-
-
+        
         [SerializeField] public GameObject gameObjectPercentage;
         [SerializeField] public TMP_InputField percentageInputField;
+        private int percentageSetByHost = 70;
         
+        [SerializeField] public GameObject gameObjectTimer;
+        [SerializeField] public TMP_InputField timerInputField;
+        public int timerSetByHost = 1140;
+        
+
         private void OnEnable()
         {
             CreateSteamAppIdFile();
@@ -70,15 +77,33 @@ namespace Menus.MenusOutGame
             {
                 acceptSteam = false;
             }
+            acceptTcp = true;
             
             toggleSteam.isOn = acceptSteam;
             toggleTcp.isOn = acceptTcp;
             toggleCreativeMode.isOn = creativeMode;
 
             toggleTimer.isOn = timerModeSelected;
+            gameObjectTimer.SetActive(toggleTimer.isOn);
+            
             togglePercentage.isOn = percentageModeSelected;
-            gameObjectPercentage.SetActive(false);
+            gameObjectPercentage.SetActive(togglePercentage.isOn);
         }
+
+        /*
+        public void Update()
+        {
+            acceptSteam = toggleSteam.isOn;
+            acceptTcp = toggleTcp.isOn;
+            creativeMode = toggleCreativeMode;
+
+            timerModeSelected = toggleTimer.isOn;
+            gameObjectTimer.SetActive(toggleTimer.isOn);
+            
+            percentageModeSelected = togglePercentage.isOn;
+            gameObjectPercentage.SetActive(togglePercentage.isOn);
+        }
+        */
 
         private void SetAllMenusInactive()
         {
@@ -226,62 +251,87 @@ namespace Menus.MenusOutGame
         public void ToggleAcceptSteam()
         {
             acceptSteam = !acceptSteam;
-            if (acceptSteam)
-            {
-                Debug.Log("ToggleAcceptSteam");
-            }
-            else
-            {
-                Debug.Log("ToggleAcceptSteam false");
-            }
-            
+            VerifToggleSteamAndTcp();
+            Debug.Log(acceptSteam ? "ToggleAcceptSteam" : "ToggleAcceptSteam false");
         }
         
         public void ToggleAcceptTcp()
         {
             acceptTcp = !acceptTcp;
-            if (acceptTcp)
-            {
-                Debug.Log("ToggleAcceptTcp");
-            }
-            else
-            {
-                Debug.Log("ToggleAcceptTCP false");
-            }
-            
+            VerifToggleSteamAndTcp();
+            Debug.Log(acceptTcp ? "ToggleAcceptTcp" : "ToggleAcceptTCP false");
+        }
+
+        private void VerifToggleSteamAndTcp()
+        {
+            if (acceptTcp || acceptSteam) return;
+
+            acceptTcp = true;
+            toggleTcp.isOn = true;
+                
+            acceptSteam = false;
+            toggleSteam.isOn = false;
+                
+            PopUpManager.Instance.ShowPopUp("Please select at least one connection method", 2);
         }
         
         public void ToggleCreativeMode()
         {
             creativeMode = !creativeMode;
-            if (creativeMode)
-            {
-                Debug.Log("creativeMode");
-            }
-            else
-            {
-                Debug.Log("creativeMode false");
-            }
         }
         
         public void ToggleTimerModeSelected()
         {
             timerModeSelected = !timerModeSelected;
-       
+            VerifToggleWinCondition();
+            gameObjectTimer.SetActive(timerModeSelected);
+        }
+        
+        public void InputTimer()
+        {
+            if (Int32.TryParse(timerInputField.text, out int timerInput))
+            {
+                if (0 <= timerInput && timerInput <= 1440)
+                {
+                    timerSetByHost = timerInput;
+                    Debug.Log($"Timer Input : {timerInput} min");
+                    return;
+                }
+            }
+            PopUpManager.Instance.ShowPopUp("Invalid Timer", 2);
         }
         
         public void TogglePercentageModeSelected()
         {
             percentageModeSelected = !percentageModeSelected;
-            if (percentageModeSelected)
+            VerifToggleWinCondition();
+            gameObjectPercentage.SetActive(percentageModeSelected);
+        }
+        
+        public void InputPercentage()
+        {
+            if (Int32.TryParse(percentageInputField.text, out int percentageInput))
             {
-                gameObjectPercentage.SetActive(true);
+                if (0 <= percentageInput && percentageInput <= 70)
+                {
+                    percentageSetByHost = percentageInput;
+                    Debug.Log($"Percentage Input : {percentageInput}%");
+                    return;
+                }
             }
-            else
-            {
-                gameObjectPercentage.SetActive(false);
-            }
+            PopUpManager.Instance.ShowPopUp("Invalid Percentage", 2);
+        }
+        
+        private void VerifToggleWinCondition()
+        {
+            if (timerModeSelected || percentageModeSelected) return;
+            toggleTimer.isOn = true;
+            gameObjectTimer.SetActive(toggleTimer.isOn);
             
+            togglePercentage.isOn = false;
+            gameObjectPercentage.SetActive(togglePercentage.isOn);
+                
+            PopUpManager.Instance.ShowPopUp("Please select at least one win condition method", 2);
         }
         
         public void MenuHost()

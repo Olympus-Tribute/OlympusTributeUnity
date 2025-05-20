@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using ForNetwork;
 using Networking.API.Listeners;
 using Networking.Common.Client;
 using Networking.Common.Server;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Menus.MenusOutGame
 {
@@ -151,10 +154,6 @@ namespace Menus.MenusOutGame
             SceneManager.LoadScene("PlayGame");
         }
     
-        //___________________________________________________________//
-        //___________________________________________________________//
-        //___________________________________________________________//
-    
         public void UpdatePlayersReady()
         {
             for (int i = 0; i < _readyStates.Length; i++)
@@ -213,5 +212,63 @@ namespace Menus.MenusOutGame
                 }
             }
         }
+        
+        //___________________________________________________________//
+        //_____________________Added_AI______________________________//
+        //___________________________________________________________//
+        
+        public enum TypeOfAi
+        {
+            Random,
+            Backtrack,
+            BactrackMultiworld
+        }
+        
+        public Dictionary<TypeOfAi, int> AiToAddGame = new Dictionary<TypeOfAi, int>();
+        
+        [SerializeField] public TMP_Dropdown aiDropdown;
+
+        private TypeOfAi ConvertIntToTypeOfAi(int value)
+        {
+            switch (value)
+            {
+                case 0: return TypeOfAi.Random;
+                case 1: return TypeOfAi.Backtrack;
+                case 2: return TypeOfAi.BactrackMultiworld;
+                default: return TypeOfAi.Random;
+            }
+        }
+        
+        public void AddAi()
+        {
+            TypeOfAi typeOfAi = ConvertIntToTypeOfAi(aiDropdown.value);
+            if (AiToAddGame.TryGetValue(typeOfAi, out int _))
+            {
+                AiToAddGame[typeOfAi] += 1;
+            }
+            else
+            {
+                AiToAddGame.Add(typeOfAi, 1);
+            }
+            Debug.Log($"Added {typeOfAi} | {AiToAddGame[typeOfAi]} Ai in this Game");
+        }
+        
+        public void RemoveAi()
+        {
+            TypeOfAi typeOfAi = ConvertIntToTypeOfAi(aiDropdown.value);
+            if (AiToAddGame.TryGetValue(typeOfAi, out int _))
+            {
+                AiToAddGame[typeOfAi] -= 1;
+                Debug.Log($"Remove {typeOfAi} | {AiToAddGame[typeOfAi]} Ai in this Game");
+                if (AiToAddGame[typeOfAi] <= 0)
+                {
+                    AiToAddGame.Remove(typeOfAi);
+                }
+            }
+        }
+        
+        //___________________________________________________________//
+        //___________________________________________________________//
+        //___________________________________________________________//
     }
 }

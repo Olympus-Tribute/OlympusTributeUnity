@@ -22,10 +22,8 @@ namespace Menus.MenusOutGame
         
         [SerializeField] public GameObject menuUIMultiplayerSelectSteamOrTcp;
         
-        
         //_______________________________________________________//
         //_______________________________________________________//
-        
         
         [SerializeField] public Toggle toggleSteam;
         [SerializeField] public Toggle toggleTcp;
@@ -44,19 +42,13 @@ namespace Menus.MenusOutGame
         
         [SerializeField] public Toggle toggleTimer;
         [SerializeField] public Toggle togglePercentage;
-
-        public bool timerModeSelected;
-        public bool percentageModeSelected;
         
         [SerializeField] public GameObject gameObjectPercentage;
         [SerializeField] public TMP_InputField percentageInputField;
-        private int percentageSetByHost = 70;
         
         [SerializeField] public GameObject gameObjectTimer;
         [SerializeField] public TMP_InputField timerInputField;
-        public int timerSetByHost = 1140;
         
-
         private void OnEnable()
         {
             CreateSteamAppIdFile();
@@ -92,13 +84,13 @@ namespace Menus.MenusOutGame
             
             //_____________________//
 
-            timerModeSelected = true;
-            percentageModeSelected = false;
+            GameConstants.TimerModeIsActive = true;
+            GameConstants.PercentageModeSelected = false;
 
-            toggleTimer.isOn = timerModeSelected;
+            toggleTimer.isOn = GameConstants.TimerModeIsActive;
             gameObjectTimer.SetActive(toggleTimer.isOn);
             
-            togglePercentage.isOn = percentageModeSelected;
+            togglePercentage.isOn = GameConstants.PercentageModeSelected;
             gameObjectPercentage.SetActive(togglePercentage.isOn);
         }
 
@@ -186,7 +178,7 @@ namespace Menus.MenusOutGame
         public void PlayWithAI()
         {
             SetAllMenusInactive();
-            LocalConnectionMethod.Instance.Connect();
+            menuUIMultiplayerHost.SetActive(true);
         }
         
         //__________________________________________________________//
@@ -265,9 +257,9 @@ namespace Menus.MenusOutGame
         
         public void ToggleTimerModeSelected()
         {
-            timerModeSelected = !timerModeSelected;
+            GameConstants.TimerModeIsActive = !GameConstants.TimerModeIsActive;
             VerifToggleWinCondition();
-            gameObjectTimer.SetActive(timerModeSelected);
+            gameObjectTimer.SetActive(GameConstants.TimerModeIsActive);
         }
         
         public void InputTimer()
@@ -276,7 +268,7 @@ namespace Menus.MenusOutGame
             {
                 if (0 <= timerInput && timerInput <= 1440)
                 {
-                    timerSetByHost = timerInput;
+                    GameConstants.TimerSetByHostInMin = timerInput;
                     Debug.Log($"Timer Input : {timerInput} min");
                     return;
                 }
@@ -286,9 +278,9 @@ namespace Menus.MenusOutGame
         
         public void TogglePercentageModeSelected()
         {
-            percentageModeSelected = !percentageModeSelected;
+            GameConstants.PercentageModeSelected = !GameConstants.PercentageModeSelected;
             VerifToggleWinCondition();
-            gameObjectPercentage.SetActive(percentageModeSelected);
+            gameObjectPercentage.SetActive(GameConstants.PercentageModeSelected);
         }
         
         public void InputPercentage()
@@ -297,7 +289,7 @@ namespace Menus.MenusOutGame
             {
                 if (0 <= percentageInput && percentageInput <= 70)
                 {
-                    percentageSetByHost = percentageInput;
+                    GameConstants.PercentageSetByHost = (uint)percentageInput;
                     Debug.Log($"Percentage Input : {percentageInput}%");
                     return;
                 }
@@ -307,7 +299,7 @@ namespace Menus.MenusOutGame
         
         private void VerifToggleWinCondition()
         {
-            if (timerModeSelected || percentageModeSelected) return;
+            if (GameConstants.TimerModeIsActive || GameConstants.PercentageModeSelected) return;
             toggleTimer.isOn = true;
             gameObjectTimer.SetActive(toggleTimer.isOn);
             

@@ -22,7 +22,6 @@ namespace Attacks
         
         public Temple Temple;
         
-        
         private void Awake()
         {
             _buildingsManager = FindFirstObjectByType<BuildingsManager>();
@@ -43,7 +42,6 @@ namespace Attacks
                 {
                     case (AttackType.Poseidon):
                         Instantiate(_poseidonAnimation, new Vector3(x,0,z),quaternion.identity);
-                     
                         break;
                     
                     case (AttackType.Hades):

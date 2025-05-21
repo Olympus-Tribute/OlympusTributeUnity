@@ -19955,10 +19955,6 @@ MonoBehaviour:
   prefabTempleObsidian: {fileID: 919132149155446097, guid: afe7d94dd6b3a3c469843ba924c1d5cf, type: 3}
   prefabTempleWater: {fileID: 919132149155446097, guid: 7498219f083a4fd408a3667bd17bc3cd, type: 3}
   prefabTempleVine: {fileID: 919132149155446097, guid: 7698389def425484c9abf8bfb1b9a271, type: 3}
-  prefabFlag1: {fileID: 0}
-  prefabFlag2: {fileID: 0}
-  prefabFlag3: {fileID: 0}
-  prefabFlag4: {fileID: 0}
 --- !u!1 &8708169286377276387
 GameObject:
   m_ObjectHideFlags: 0

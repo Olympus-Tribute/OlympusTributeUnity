@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Building
   - BuildingInfoText
+  - Audio
   layers:
   - Default
   - TransparentFX

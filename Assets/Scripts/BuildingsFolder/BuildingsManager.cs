@@ -42,6 +42,8 @@ namespace BuildingsFolder
         public GameObject prefabTempleWater;
         public GameObject prefabTempleVine;
         
+        // Audio
+        AudioManager audioManager;
         
         // ____________________________________________________________________//
         // ____________________________________________________________________//
@@ -55,6 +57,7 @@ namespace BuildingsFolder
                 return;
             }
             _map = FindFirstObjectByType<GridGenerator>().MapGenerator;
+            audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         }
 
         //___________________________________________________________//
@@ -137,8 +140,9 @@ namespace BuildingsFolder
             Buildings[(xMapIndex, zMapIndex)] = newBuilding;
 
             AddBuildingOwner(newBuilding);
-            
+
             ShowPopUpPlaceBuilding(newBuilding);
+            audioManager.PlayConstruction();
         }
         
         public void DeleteBuilding(int x, int z)

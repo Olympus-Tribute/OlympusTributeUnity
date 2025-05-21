@@ -32,9 +32,9 @@ namespace Menus.MenusOutGame
         [SerializeField] public Toggle toggleCreativeMode;
         [SerializeField] public TMP_InputField inputIpAdressField;
         
-        public bool acceptSteam = false;
-        public bool acceptTcp = true;
-        public bool creativeMode = false;
+        public bool acceptSteam;
+        public bool acceptTcp;
+        public bool creativeMode;
         
         [SerializeField] private GameObject tcpConnectionPrefab;
         [SerializeField] private GameObject steamConnectionPrefab;
@@ -45,8 +45,8 @@ namespace Menus.MenusOutGame
         [SerializeField] public Toggle toggleTimer;
         [SerializeField] public Toggle togglePercentage;
 
-        public bool timerModeSelected = true;
-        public bool percentageModeSelected = false;
+        public bool timerModeSelected;
+        public bool percentageModeSelected;
         
         [SerializeField] public GameObject gameObjectPercentage;
         [SerializeField] public TMP_InputField percentageInputField;
@@ -65,7 +65,12 @@ namespace Menus.MenusOutGame
             
             Instantiate(tcpConnectionPrefab);
             Instantiate(localConnectionPrefab);
-
+            
+            //_____________________//
+            
+            acceptTcp = true;
+            acceptSteam = false;
+            
             if (SteamManager.Initialized)
             {
                 Instantiate(steamConnectionPrefab);
@@ -74,14 +79,21 @@ namespace Menus.MenusOutGame
             }
             else
             {
-                acceptSteam = false;
                 gameObjectToggleSteamWithTmp.SetActive(false);
             }
-            acceptTcp = true;
             
             toggleSteam.isOn = acceptSteam;
             toggleTcp.isOn = acceptTcp;
+            
+            //_____________________//
+            
+            creativeMode = false;
             toggleCreativeMode.isOn = creativeMode;
+            
+            //_____________________//
+
+            timerModeSelected = true;
+            percentageModeSelected = false;
 
             toggleTimer.isOn = timerModeSelected;
             gameObjectTimer.SetActive(toggleTimer.isOn);

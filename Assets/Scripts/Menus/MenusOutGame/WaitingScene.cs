@@ -43,6 +43,21 @@ namespace Menus.MenusOutGame
         public GameActionListener<ServerStartLobbyGameAction> lobbyActionListener;
         
         //___________________________________________________________//
+        //___________________________________________________________//
+        //___________________________________________________________//
+        
+        public enum TypeOfAi
+        {
+            Random,
+            Backtrack,
+            BactrackMultiworld
+        }
+        
+        public Dictionary<TypeOfAi, int> AiToAddGame = new Dictionary<TypeOfAi, int>();
+        [SerializeField] public GameObject menuForHost;
+        [SerializeField] public TMP_Dropdown aiDropdown;
+        
+        //___________________________________________________________//
         //_________________________For Multi_________________________//
         //___________________________________________________________//
     
@@ -56,6 +71,8 @@ namespace Menus.MenusOutGame
             playerReady = false;
             _readyStates = new[] { false };
             UpdatePlayersReady();
+
+            menuForHost.SetActive(LocalConnectionMethod.Instance.PlayerIsHost);
         }
 
         public void OnDisable()
@@ -216,17 +233,6 @@ namespace Menus.MenusOutGame
         //___________________________________________________________//
         //_____________________Added_AI______________________________//
         //___________________________________________________________//
-        
-        public enum TypeOfAi
-        {
-            Random,
-            Backtrack,
-            BactrackMultiworld
-        }
-        
-        public Dictionary<TypeOfAi, int> AiToAddGame = new Dictionary<TypeOfAi, int>();
-        
-        [SerializeField] public TMP_Dropdown aiDropdown;
 
         private TypeOfAi ConvertIntToTypeOfAi(int value)
         {

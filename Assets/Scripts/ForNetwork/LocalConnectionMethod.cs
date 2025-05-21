@@ -23,7 +23,9 @@ namespace ForNetwork
         public bool acceptSteamConnection;
         
         public Server Server { get; set; }
-        
+
+        public bool PlayerIsHost => Server != null;
+
         public LocalConnectionMethod(){}
 
         public void Awake()

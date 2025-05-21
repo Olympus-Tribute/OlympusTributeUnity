@@ -8,5 +8,5 @@ public class GameConstants
         
     public static uint PlayerCount { get; set; }
         
-    public static uint PlayerId { get; set; }
+    public static uint PlayerId { get;  set; }
 }

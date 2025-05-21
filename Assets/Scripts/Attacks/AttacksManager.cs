@@ -23,13 +23,9 @@ namespace Attacks
         public Temple Temple;
         
         
-        // Audio
-        AudioManager audioManager;
-        
         private void Awake()
         {
             _buildingsManager = FindFirstObjectByType<BuildingsManager>();
-            audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
             if (_buildingsManager == null)
             {
                 Debug.LogError("BuildingsManager was not found in the scene !");
@@ -47,7 +43,6 @@ namespace Attacks
                 {
                     case (AttackType.Poseidon):
                         Instantiate(_poseidonAnimation, new Vector3(x,0,z),quaternion.identity);
-                        audioManager.PlayAttackPoseidon();
                      
                         break;
                     
@@ -55,7 +50,6 @@ namespace Attacks
                         var fakeDeleteBuilding = _buildingsManager.FakeDeleteBuilding(action.TargetX, action.TargetY);
                         var instantiate = Instantiate(_hadesAnimation, new Vector3(x,0,z),quaternion.identity);
                         instantiate.GetComponent<AnimHades>().buildingDestroy = fakeDeleteBuilding;
-                        audioManager.PlayAttackHades();
                         break;
                 }
                 ShowPopUpAttack();

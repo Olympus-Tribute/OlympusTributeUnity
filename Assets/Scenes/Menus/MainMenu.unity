@@ -1006,13 +1006,10 @@ MonoBehaviour:
   gameObjectToggleSteamWithTmp: {fileID: 1422794582}
   toggleTimer: {fileID: 1009031930}
   togglePercentage: {fileID: 1455136298}
-  timerModeSelected: 1
-  percentageModeSelected: 0
   gameObjectPercentage: {fileID: 903958816}
   percentageInputField: {fileID: 1911243605}
   gameObjectTimer: {fileID: 155651410}
   timerInputField: {fileID: 182026466}
-  timerSetByHost: 1140
 --- !u!4 &296241690
 Transform:
   m_ObjectHideFlags: 0
@@ -5099,6 +5096,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fefdb039d30ce2499304a40f0f62252, type: 3}
+--- !u!1001 &7806469329075206861
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3677404040301544387, guid: b294b4450d04621428005bc083843fd9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.710903
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677404040301544387, guid: b294b4450d04621428005bc083843fd9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.6666584
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677404040301544387, guid: b294b4450d04621428005bc083843fd9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.842447
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677404040301544387, guid: b294b4450d04621428005bc083843fd9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677404040301544387, guid: b294b4450d04621428005bc083843fd9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677404040301544387, guid: b294b4450d04621428005bc083843fd9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677404040301544387, guid: b294b4450d04621428005bc083843fd9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677404040301544387, guid: b294b4450d04621428005bc083843fd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677404040301544387, guid: b294b4450d04621428005bc083843fd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677404040301544387, guid: b294b4450d04621428005bc083843fd9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8644347354133069075, guid: b294b4450d04621428005bc083843fd9, type: 3}
+      propertyPath: m_Name
+      value: SteamManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b294b4450d04621428005bc083843fd9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5106,6 +5160,7 @@ SceneRoots:
   - {fileID: 492029076}
   - {fileID: 861591060}
   - {fileID: 5286165075099584119}
+  - {fileID: 7806469329075206861}
   - {fileID: 296241690}
   - {fileID: 1357968331}
   - {fileID: 1173772042}

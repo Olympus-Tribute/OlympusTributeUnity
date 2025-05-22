@@ -14,13 +14,14 @@ namespace ForNetwork
         
         private Callback<GameRichPresenceJoinRequested_t> callbackGameRichPresenceJoinRequested_t;
         private Callback<GameLobbyJoinRequested_t> callbackGameLobbyJoinRequested_t;
-        private Callback<LobbyChatUpdate_t> callbackLobbyChatUpdate_t;
         private Callback<LobbyEnter_t> callbackLobbyEnter_t;
+        private Callback<LobbyChatUpdate_t> callbackLobbyChatUpdate_t;
         
         [CanBeNull] public static SteamConnectionMethod Instance { get; private set; }
         
         private CSteamID? _lobbyID;
         
+
         public SteamConnectionMethod(){}
         
         public void Awake()
@@ -33,6 +34,7 @@ namespace ForNetwork
                 callbackGameRichPresenceJoinRequested_t = Callback<GameRichPresenceJoinRequested_t>.Create(JoinRequestRichPresence);
                 callbackGameLobbyJoinRequested_t = Callback<GameLobbyJoinRequested_t>.Create(JoinRequestLobby);
                 callbackLobbyEnter_t = Callback<LobbyEnter_t>.Create(LobbyJoined);
+                callbackLobbyChatUpdate_t = Callback<LobbyChatUpdate_t>.Create(LobbyChatUpdate);
             }
             else
             {
@@ -51,6 +53,8 @@ namespace ForNetwork
             {
                 if (_hostID != null)
                 {
+                    Debug.Log("Connecting via Steam");
+                    
                     SteamConnection steamConnection = SteamConnection.Connect(_hostID.Value, registry);
                
                     GameActionListenerManager gameActionListener = new GameActionListenerManager();
@@ -64,6 +68,7 @@ namespace ForNetwork
 
         public override void Stop()
         {
+            _hostID = null;
             if (_lobbyID != null)
             {
                 SteamMatchmaking.LeaveLobby(_lobbyID.Value);
@@ -91,6 +96,15 @@ namespace ForNetwork
         {
             Debug.Log("Joining lobby via rich presence");
             SteamMatchmaking.JoinLobby(new CSteamID(ulong.Parse(param.m_rgchConnect)));
+        }
+        
+        private void LobbyChatUpdate(LobbyChatUpdate_t param)
+        {
+            if (param.m_ulSteamIDUserChanged != SteamUser.GetSteamID().m_SteamID || (param.m_rgfChatMemberStateChange ==
+                    (uint)EChatMemberStateChange.k_EChatMemberStateChangeEntered)) return;
+            
+            _lobbyID = null;
+            _hostID = null;
         }
     }
 }

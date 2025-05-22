@@ -163,7 +163,7 @@ namespace Menus.MenusOutGame
         {
             SetAllActiveFalse();
             SceneManager.LoadScene("MainMenu");
-            InGame.Stop();
+            Network.Instance.Stop();
         }
     
         public void InitGame()

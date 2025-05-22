@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ForNetwork
 {
@@ -29,7 +30,6 @@ namespace ForNetwork
             {
                 Destroy(gameObject); // Évite les doublons
             }
-            
         }
 
         public void Update()
@@ -39,6 +39,14 @@ namespace ForNetwork
                 return;
             }
             Proxy.Process();
+            
+            if (Proxy.Connection.IsConnected)
+            {
+                return;
+            }
+
+            Stop();
+            SceneManager.LoadScene("MainMenu");
         }
 
         public void Stop()

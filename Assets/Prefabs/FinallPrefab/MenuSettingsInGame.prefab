@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5634377652822851730}
   m_Layer: 0
-  m_Name: InGame
+  m_Name: MenuSettingsInGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -364,6 +364,43 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &2560553417583448125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6743048907463934782}
+  m_Layer: 5
+  m_Name: Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6743048907463934782
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560553417583448125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4353726005669244222}
+  - {fileID: 5575666922514301027}
+  m_Father: {fileID: 6792470208539816774}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2575004146907628309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,7 +1154,7 @@ RectTransform:
   - {fileID: 7797787098260985572}
   - {fileID: 4731038238430130380}
   - {fileID: 6294787021858189169}
-  m_Father: {fileID: 6792470208539816774}
+  m_Father: {fileID: 6743048907463934782}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1199,7 +1236,7 @@ GameObject:
   - component: {fileID: 7067438442354359351}
   - component: {fileID: 4541647856007898050}
   m_Layer: 5
-  m_Name: pArchemi,
+  m_Name: parchemin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1487,7 +1524,7 @@ RectTransform:
   - {fileID: 4329881149067840086}
   - {fileID: 1754128487882457712}
   - {fileID: 1254833479750917154}
-  m_Father: {fileID: 6792470208539816774}
+  m_Father: {fileID: 6743048907463934782}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1588,8 +1625,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 911675824891388840}
-  - {fileID: 4353726005669244222}
-  - {fileID: 5575666922514301027}
+  - {fileID: 6743048907463934782}
   - {fileID: 730660688975445441}
   - {fileID: 6390795807753976140}
   - {fileID: 6535304542629465547}

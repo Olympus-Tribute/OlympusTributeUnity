@@ -7,6 +7,7 @@ using Networking.Common.Server;
 using OlympusDedicatedServer.Components.Attack;
 using OlympusDedicatedServer.Components.WorldComp;
 using PopUp;
+using Sound;
 using UnityEngine;
 
 namespace BuildingsFolder

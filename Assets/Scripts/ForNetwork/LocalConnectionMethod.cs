@@ -9,6 +9,7 @@ using Networking.Local;
 using Networking.Steam;
 using Networking.TCP;
 using OlympusDedicatedServer;
+using OlympusDedicatedServer.Components.WorldComp.Win;
 using Steamworks;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ namespace ForNetwork
 
         public bool acceptTcpConnection;
         public bool acceptSteamConnection;
+        public bool creativeModeIsActive;
         
         public Server Server { get; set; }
 
@@ -64,9 +66,18 @@ namespace ForNetwork
             
             CompositionConnectionAcceptor compositionConnectionAcceptor = new CompositionConnectionAcceptor(acceptors);
             
+            //___________________________//
+            
             Server server = new Server(compositionConnectionAcceptor);
             
+            server.Creative = creativeModeIsActive;
+            
             server.Start();
+            
+            Debug.Log($"TimerSetByHostInMin : {GameConstants.TimerSetByHostInMin} min | PercentageSetByHost : {GameConstants.PercentageSetByHost} %");
+            server.SetWinCondition(new WinCondition((uint)GameConstants.TimerSetByHostInMin*60, GameConstants.PercentageSetByHost/100d));
+            
+            //___________________________//
             
             (LocalConnection client, LocalConnection serverConnection) = LocalConnection.CreatePair();
             localAcceptor.Join(client);

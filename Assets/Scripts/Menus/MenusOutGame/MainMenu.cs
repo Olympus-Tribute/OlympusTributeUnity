@@ -32,7 +32,7 @@ namespace Menus.MenusOutGame
         
         public bool acceptSteam;
         public bool acceptTcp;
-        public bool creativeMode;
+        public bool creativeModeIsActive;
         
         [SerializeField] private GameObject tcpConnectionPrefab;
         [SerializeField] private GameObject steamConnectionPrefab;
@@ -79,13 +79,16 @@ namespace Menus.MenusOutGame
             
             //_____________________//
             
-            creativeMode = false;
-            toggleCreativeMode.isOn = creativeMode;
+            creativeModeIsActive = false;
+            toggleCreativeMode.isOn = creativeModeIsActive;
             
             //_____________________//
 
             GameConstants.TimerModeIsActive = true;
             GameConstants.PercentageModeSelected = false;
+
+            GameConstants.PercentageSetByHost = 100;
+            GameConstants.TimerSetByHostInMin = 1140;
 
             toggleTimer.isOn = GameConstants.TimerModeIsActive;
             gameObjectTimer.SetActive(toggleTimer.isOn);
@@ -252,7 +255,7 @@ namespace Menus.MenusOutGame
         
         public void ToggleCreativeMode()
         {
-            creativeMode = !creativeMode;
+            creativeModeIsActive = !creativeModeIsActive;
         }
         
         public void ToggleTimerModeSelected()
@@ -287,7 +290,7 @@ namespace Menus.MenusOutGame
         {
             if (Int32.TryParse(percentageInputField.text, out int percentageInput))
             {
-                if (0 <= percentageInput && percentageInput <= 70)
+                if (0 <= percentageInput && percentageInput <= 100)
                 {
                     GameConstants.PercentageSetByHost = (uint)percentageInput;
                     Debug.Log($"Percentage Input : {percentageInput}%");
@@ -315,6 +318,7 @@ namespace Menus.MenusOutGame
             
             LocalConnectionMethod.Instance.acceptSteamConnection = acceptSteam;
             LocalConnectionMethod.Instance.acceptTcpConnection = acceptTcp;
+            LocalConnectionMethod.Instance.creativeModeIsActive = creativeModeIsActive;
             
             LocalConnectionMethod.Instance.Connect();
         }

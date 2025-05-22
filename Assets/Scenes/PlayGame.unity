@@ -1526,12 +1526,20 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2120490130713219448, guid: 1e7d8522b7ca9714595e3310801dcf3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3276956273037163107, guid: 1e7d8522b7ca9714595e3310801dcf3b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3276956273037163107, guid: 1e7d8522b7ca9714595e3310801dcf3b, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276956273037163107, guid: 1e7d8522b7ca9714595e3310801dcf3b, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5634377652822851730, guid: 1e7d8522b7ca9714595e3310801dcf3b, type: 3}
@@ -1582,6 +1590,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8606708040723416094, guid: 1e7d8522b7ca9714595e3310801dcf3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9005888317353290072, guid: 1e7d8522b7ca9714595e3310801dcf3b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1592,6 +1604,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005888317353290072, guid: 1e7d8522b7ca9714595e3310801dcf3b, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9005888317353290072, guid: 1e7d8522b7ca9714595e3310801dcf3b, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2197,8 +2213,8 @@ MonoBehaviour:
   _hadesAnimation: {fileID: 2626209354379793085, guid: 99a9f9bf02baee445bcbac1d509f237a, type: 3}
   _athenaAnimation: {fileID: 7706634180933737791, guid: f9aa04b3b37e70e4fb35f03c3660181e, type: 3}
   _dionysosAnimation: {fileID: 5515695015129358141, guid: caa6ba721a1a71f4ba788671becd89d5, type: 3}
-  _zeus1Animation: {fileID: 1333622603281636373, guid: 8a6aee57badac154992815f7e23189cf, type: 3}
-  _zeus2Animation: {fileID: 478309187776205100, guid: 1fde90285e7a1bf49821fd6b59453194, type: 3}
+  _zeus1Animation: {fileID: 8943785924447405606, guid: f86847291b8c05e44973fff984ae0236, type: 3}
+  _zeus2Animation: {fileID: 19983683809216788, guid: 7c4816d43b3b9ec499eab51bb752d2a4, type: 3}
   _waterPrefab: {fileID: 919132149155446097, guid: 6e1151b2a65097d4ca297df8cc770ac6, type: 3}
 --- !u!1001 &4497956191868054818
 PrefabInstance:

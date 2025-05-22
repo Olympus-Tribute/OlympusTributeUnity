@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class HexagonalBubbleSpawner : MonoBehaviour
@@ -16,15 +17,21 @@ public class HexagonalBubbleSpawner : MonoBehaviour
 
         // Arrêter la génération de bulles après totalDuration secondes
         Invoke("StopBubbleGeneration", duration);
+        //StartCoroutine(CancelBubbleGeneration());
     }
 
+    private IEnumerator CancelBubbleGeneration()
+    {
+        yield return new WaitForSeconds(5f);
+        CancelInvoke("SpawnBubble");
+    }
     void SpawnBubble()
     {
         // Générer une nouvelle bulle à une position aléatoire en dessous de la tuile hexagonale
         Vector3 spawnPosition = GetRandomPositionOnHexagon(tileRadius);
         spawnPosition.y = -1.2f; // Position initiale sous la tuile (en dessous à y = -1.2)
 
-        GameObject newBubble = Instantiate(bubblePrefab, spawnPosition, Quaternion.identity);
+        GameObject newBubble = Instantiate(bubblePrefab, spawnPosition, Quaternion.identity,transform);
 
         // Ajouter le mouvement de montée à la bulle
         BubbleMovement bubbleMovement = newBubble.AddComponent<BubbleMovement>();
@@ -57,11 +64,11 @@ public class HexagonalBubbleSpawner : MonoBehaviour
         CancelInvoke("SpawnBubble");
 
         // Détruire toutes les bulles restantes après 5 secondes
-        BubbleMovement[] bubbles = FindObjectsOfType<BubbleMovement>();
+        /*BubbleMovement[] bubbles = FindObjectsOfType<BubbleMovement>();
         foreach (var bubble in bubbles)
         {
             Destroy(bubble.gameObject); // Détruire la bulle
-        }
+        }*/
     }
 }
 

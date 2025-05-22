@@ -45,7 +45,7 @@ namespace Attacks
                 (proxy, action) =>
                 {
                     (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
-                    Instantiate(_poseidonAnimation, new Vector3(x, 0, z), quaternion.identity);
+                    Instantiate(_poseidonAnimation, new Vector3(x, 0, z), Quaternion.identity);
                     
                     foreach (var (x2, y2) in action.Targets)
                     {
@@ -59,7 +59,7 @@ namespace Attacks
                 {
                     (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
                     var deleteBuilding = _buildingsManager.FakeDeleteBuilding(action.TargetX, action.TargetY);
-                    var instantiate = Instantiate(_hadesAnimation, new Vector3(x, 0, z), quaternion.identity);
+                    var instantiate = Instantiate(_hadesAnimation, new Vector3(x, 0, z), Quaternion.identity);
                     instantiate.GetComponent<AnimHades>().buildingDestroy = deleteBuilding;
                     ShowPopUpAttack();
                 });
@@ -68,7 +68,7 @@ namespace Attacks
                 (proxy, action) =>
                 {
                     (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
-                    Instantiate(_athenaAnimation, new Vector3(x, 0, z), quaternion.identity);
+                    Instantiate(_athenaAnimation, new Vector3(x, 0, z), Quaternion.identity);
                     ShowPopUpAttack();
                 });
             
@@ -88,8 +88,8 @@ namespace Attacks
                     (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
 
                     // Foudre vertical
-                    var verticalzeus = Instantiate(_zeus1Animation, new Vector3(x, 0, z), Quaternion.identity);
-                    Destroy(verticalzeus, 1f);
+                    Instantiate(_zeus1Animation, new Vector3(x, 0, z), Quaternion.identity);
+                    //Destroy(verticalzeus, 0.3f);
                     
                     // Propagation foudre horizontal
                     if (action.Targets.Length > 1)
@@ -233,13 +233,11 @@ namespace Attacks
                 (float fromXWorld, float fromZWorld) = StaticGridTools.MapIndexToWorldCenterCo(fromX, fromY);
                 Vector3 fromPosition = new Vector3(fromXWorld, 0, fromZWorld);
 
-                GameObject lightning = Instantiate(_zeus2Animation, fromPosition, Quaternion.Euler(90, angle, 0));
+                Instantiate(_zeus2Animation, fromPosition, Quaternion.Euler(angle, 0, 0));
+                
+                //Destroy(lightning, 1f);
 
-                var anim = lightning.GetComponent<Anim_ZeusHorizontal>();
-
-                Destroy(lightning, 1f);
-
-                yield return new WaitForSeconds(1f); // Pause d'une seconde avant la prochaine instantiation
+                yield return new WaitForSeconds(0.3f); // Pause d'une seconde avant la prochaine instantiation
             }
         }
         

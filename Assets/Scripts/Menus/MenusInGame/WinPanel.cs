@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using BuildingsFolder;
 using ForNetwork;
 using Networking.Common.Server;
 using TMPro;
@@ -66,7 +68,7 @@ namespace Menus.MenusInGame
                 {
                     winnerText.text = "You Lose!";
                 }
-                getStatsGame += $"Player {i} : {percentageOfPlayer*100:F2}%\n";
+                getStatsGame += $"{OwnersMaterial.GetName((uint)i)} : {percentageOfPlayer*100:F2}%\n";
                 i += 1;
             }
             return getStatsGame;

@@ -131,47 +131,48 @@ namespace Attacks
                 {
                     int randomindex = Random.Range(0,nonparalyze.Count);
                     (int neighborX, int neighborY) = nonparalyze[randomindex];
-                    if (paralyze.Contains((neighborX + 1, neighborY)))
+                    if (paralyze.Contains((neighborX, neighborY + 1)))
                     {
-                        res.Add(((neighborX + 1, neighborY),270));
+                        res.Add(((neighborX, neighborY + 1),180));
                         paralyze.Add((neighborX,neighborY));
                         nonparalyze.Remove((neighborX, neighborY));
                         break;
                     }
-                    if (paralyze.Contains((neighborX - 1, neighborY)))
+                    if (paralyze.Contains((neighborX, neighborY - 1)))
                     {
-                        res.Add(((neighborX - 1, neighborY),90));
+                        res.Add(((neighborX, neighborY - 1),0));
                         paralyze.Add((neighborX,neighborY));
                         nonparalyze.Remove((neighborX, neighborY));
                         break;
                     }
-
-                    if (neighborY % 2 == 1)
+                    if (neighborX % 2 == 1)
                     {
-                        if (paralyze.Contains((neighborX, neighborY + 1)))
+                        if (paralyze.Contains((neighborX + 1, neighborY)))
                         {
-                            res.Add(((neighborX, neighborY + 1),330));
+                            res.Add(((neighborX + 1, neighborY),60));
                             paralyze.Add((neighborX,neighborY));
                             nonparalyze.Remove((neighborX, neighborY));
                             break;
                         }
+                        if (paralyze.Contains((neighborX - 1, neighborY)))
+                        {
+                            res.Add(((neighborX - 1, neighborY),300));
+                            paralyze.Add((neighborX,neighborY));
+                            nonparalyze.Remove((neighborX, neighborY));
+                            break;
+                        }
+                       
                         if (paralyze.Contains((neighborX + 1, neighborY + 1)))
                         {
-                            res.Add(((neighborX + 1, neighborY + 1),30));
+                            res.Add(((neighborX + 1, neighborY + 1),120));
                             paralyze.Add((neighborX,neighborY));
                             nonparalyze.Remove((neighborX, neighborY));
                             break;
                         }
-                        if (paralyze.Contains((neighborX, neighborY - 1)))
+                        
+                        if (paralyze.Contains((neighborX - 1, neighborY + 1)))
                         {
-                            res.Add(((neighborX, neighborY - 1),210));
-                            paralyze.Add((neighborX,neighborY));
-                            nonparalyze.Remove((neighborX, neighborY));
-                            break;
-                        }
-                        if (paralyze.Contains((neighborX + 1, neighborY - 1)))
-                        {
-                            res.Add(((neighborX + 1, neighborY - 1),150));
+                            res.Add(((neighborX - 1, neighborY + 1),240));
                             paralyze.Add((neighborX,neighborY));
                             nonparalyze.Remove((neighborX, neighborY));
                             break;
@@ -179,30 +180,30 @@ namespace Attacks
                     }
                     else
                     {
-                        if (paralyze.Contains((neighborX - 1, neighborY + 1)))
+                        if (paralyze.Contains((neighborX + 1, neighborY)))
                         {
-                            res.Add(((neighborX - 1, neighborY + 1),330));
+                            res.Add(((neighborX + 1, neighborY),120));
                             paralyze.Add((neighborX,neighborY));
                             nonparalyze.Remove((neighborX, neighborY));
                             break;
                         }
-                        if (paralyze.Contains((neighborX, neighborY + 1)))
+                        if (paralyze.Contains((neighborX - 1, neighborY)))
                         {
-                            res.Add(((neighborX, neighborY + 1),30));
+                            res.Add(((neighborX - 1, neighborY),240));
+                            paralyze.Add((neighborX,neighborY));
+                            nonparalyze.Remove((neighborX, neighborY));
+                            break;
+                        }
+                        if (paralyze.Contains((neighborX + 1, neighborY - 1)))
+                        {
+                            res.Add(((neighborX + 1, neighborY - 1),60));
                             paralyze.Add((neighborX,neighborY));
                             nonparalyze.Remove((neighborX, neighborY));
                             break;
                         }
                         if (paralyze.Contains((neighborX - 1, neighborY - 1)))
                         {
-                            res.Add(((neighborX - 1, neighborY - 1),210));
-                            paralyze.Add((neighborX,neighborY));
-                            nonparalyze.Remove((neighborX, neighborY));
-                            break;
-                        }
-                        if (paralyze.Contains((neighborX, neighborY - 1)))
-                        {
-                            res.Add(((neighborX, neighborY - 1),150));
+                            res.Add(((neighborX - 1, neighborY - 1),300));
                             paralyze.Add((neighborX,neighborY));
                             nonparalyze.Remove((neighborX, neighborY));
                             break;

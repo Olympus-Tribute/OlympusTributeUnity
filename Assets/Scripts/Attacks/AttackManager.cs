@@ -137,7 +137,7 @@ namespace Attacks
             while (nonparalyze.Count != 0)
             {
                 int nbrtentative = 0;
-                while (nbrtentative < 1000)
+                while (nbrtentative < 100)
                 {
                     int randomindex = Random.Range(0,nonparalyze.Count);
                     (int neighborX, int neighborY) = nonparalyze[randomindex];
@@ -219,9 +219,8 @@ namespace Attacks
                             break;
                         }
                     }
+                    nbrtentative++;
                 }
-
-                nbrtentative++;
             }
             return res;
         }

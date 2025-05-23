@@ -155,7 +155,7 @@ namespace Attacks
                         nonparalyze.Remove((neighborX, neighborY));
                         break;
                     }
-                    if (neighborX % 2 == 1)
+                    if (neighborY % 2 == 1)
                     {
                         if (paralyze.Contains((neighborX + 1, neighborY)))
                         {

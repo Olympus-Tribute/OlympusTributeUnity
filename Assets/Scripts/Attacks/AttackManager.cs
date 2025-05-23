@@ -226,67 +226,70 @@ namespace Attacks
         }*/
         
         private static List<((int, int), int)> ParalyzeList((int, int)[] targets, int targetX, int targetY)
+{
+    List<(int, int)> paralyze = new List<(int, int)> { (targetX, targetY) };
+    List<(int, int)> nonparalyze = new List<(int, int)>(targets);
+    List<((int, int), int)> res = new List<((int, int), int)>();
+
+    nonparalyze.Remove((targetX, targetY));
+
+    System.Random rng = new System.Random(); // Pour éviter le Random Unity dans du code statique
+
+    while (nonparalyze.Count > 0)
+    {
+        int attempts = 0;
+        bool found = false;
+
+        while (attempts < 100 && !found)
         {
-            List<(int, int)> paralyze = new() { (targetX, targetY) };
-            List<(int, int)> nonparalyze = new(targets);
-            List<((int, int), int)> res = new();
+            int index = rng.Next(nonparalyze.Count);
+            (int x, int y) = nonparalyze[index];
 
-            nonparalyze.Remove((targetX, targetY));
-
-            // Directions selon la parité de la colonne (x)
-            (int dx, int dy, int angle)[] evenColumnDirs = new (int, int, int)[]
-            {
-                (0, 1, 0),       // N
-                (1, 1, 60),      // NE
-                (1, 0, 120),     // SE
-                (0, -1, 180),    // S
-                (-1, 0, 240),    // SW
-                (-1, 1, 300)     // NW
-            };
-
-            (int dx, int dy, int angle)[] oddColumnDirs = new (int, int, int)[]
-            {
-                (0, 1, 0),       // N
-                (1, 0, 60),      // NE
-                (1, -1, 120),    // SE
-                (0, -1, 180),    // S
-                (-1, -1, 240),   // SW
-                (-1, 0, 300)     // NW
-            };
-
-            System.Random rng = new();
-
-            while (nonparalyze.Count > 0)
-            {
-                int index = rng.Next(nonparalyze.Count);
-                (int x, int y) = nonparalyze[index];
-
-                var dirs = (x % 2 == 0) ? evenColumnDirs : oddColumnDirs;
-                bool connected = false;
-
-                foreach (var (dx, dy, angle) in dirs)
-                {
-                    (int nx, int ny) = (x + dx, y + dy);
-                    if (paralyze.Contains((nx, ny)))
-                    {
-                        res.Add(((nx, ny), angle));
-                        paralyze.Add((x, y));
-                        nonparalyze.RemoveAt(index);
-                        connected = true;
-                        break;
-                    }
+            // Détermine la liste des voisins à tester selon parité de Y
+            List<((int dx, int dy), int angle)> directions = y % 2 == 1
+                ? new List<((int, int), int)> {
+                    ((0, 1), 180),       // Sud
+                    ((1, 1), 135),       // Sud-Est
+                    ((1, 0), 90),        // Est
+                    ((1, -1), 45),       // Nord-Est
+                    ((0, -1), 0),        // Nord
+                    ((-1, 0), 270)       // Ouest
                 }
+                : new List<((int, int), int)> {
+                    ((0, 1), 180),       // Sud
+                    ((-1, 1), 225),      // Sud-Ouest
+                    ((-1, 0), 270),      // Ouest
+                    ((-1, -1), 315),     // Nord-Ouest
+                    ((0, -1), 0),        // Nord
+                    ((1, 0), 90)         // Est
+                };
 
-                if (!connected)
+            foreach (var ((dx, dy), angle) in directions)
+            {
+                (int nx, int ny) = (x + dx, y + dy);
+                if (paralyze.Contains((nx, ny)))
                 {
-                    // Aucun voisin trouvé : on met à la fin pour réessayer plus tard
-                    nonparalyze.Add(nonparalyze[index]);
+                    res.Add(((nx, ny), angle));
+                    paralyze.Add((x, y));
                     nonparalyze.RemoveAt(index);
+                    found = true;
+                    break;
                 }
             }
 
-            return res;
+            attempts++;
         }
+
+        if (!found)
+        {
+            Debug.LogWarning("ParalyzeList : aucun voisin valide trouvé après 100 tentatives");
+            break;
+        }
+    }
+
+    return res;
+}
+
 
 
         

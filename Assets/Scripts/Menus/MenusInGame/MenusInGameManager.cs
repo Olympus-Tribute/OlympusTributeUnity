@@ -8,13 +8,17 @@ namespace Menus.MenusInGame
         [SerializeField] private GameObject menuUISelectExtractor;
         [SerializeField] private GameObject menuUISelectTemple;
         [SerializeField] private GameObject menuUIAttack;
+        [SerializeField] private GameObject menuUISettings;
 
         private GameObject _lastOpenedMenu = null;
-        private bool _isMenuOpen = false;
+        public bool isMenuOpen = false;
+        
+        private CameraController _cameraController;
 
-        private void Start()
+        private void OnEnable()
         {
             SetAllMenusInactive();
+            _cameraController = FindFirstObjectByType<CameraController>();
         }
 
         private void Update()
@@ -28,16 +32,18 @@ namespace Menus.MenusInGame
             menuUISelectExtractor?.SetActive(false);
             menuUISelectTemple?.SetActive(false);
             menuUIAttack?.SetActive(false);
+            menuUISettings?.SetActive(false);
             _lastOpenedMenu = null;
-            _isMenuOpen = false;
+            isMenuOpen = false;
         }
 
         private void CheckIfMenuIsOpen()
         {
-            _isMenuOpen = menuUISelectTypeOfBuilding.activeSelf || 
+            isMenuOpen = menuUISelectTypeOfBuilding.activeSelf || 
                          menuUISelectExtractor.activeSelf || 
                          menuUISelectTemple.activeSelf || 
-                         menuUIAttack.activeSelf;
+                         menuUIAttack.activeSelf ||
+                         menuUISettings;
         }
 
         public void ShowMenu(GameObject menu)
@@ -47,16 +53,18 @@ namespace Menus.MenusInGame
                 return;
             }
             
-            /*
-            if (_isMenuOpen)
+            
+            if (isMenuOpen)
             {
                 return;
             }
-            */
+            
             
             menu.SetActive(true);
             _lastOpenedMenu = menu;
-            _isMenuOpen = true;
+            isMenuOpen = true;
+
+            _cameraController.isActive = false;
         }
 
         public void CloseCurrentMenu()
@@ -65,7 +73,9 @@ namespace Menus.MenusInGame
             {
                 _lastOpenedMenu.SetActive(false);
                 _lastOpenedMenu = null;
-                _isMenuOpen = false;
+                isMenuOpen = false;
+                
+                _cameraController.isActive = true;
             }
         }
     }

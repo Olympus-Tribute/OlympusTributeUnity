@@ -91,14 +91,18 @@ namespace ForNetwork
 
         public override void Stop()
         {
-            Server.Stop();
+            if (Server != null)
+            {
+                Server.Stop();
+            }
             Server = null;
             if (_lobbyID != null)
             {
                 SteamMatchmaking.LeaveLobby(_lobbyID.Value);
             }
             _lobbyID = null;
-            SteamConnectionMethod.Instance!.Stop();
+            
+            SteamConnectionMethod.Instance?.Stop();
         }
         
         private void SetupCallbacks()

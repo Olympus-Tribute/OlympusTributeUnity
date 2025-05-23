@@ -259,7 +259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8710792806161518820
 RectTransform:
   m_ObjectHideFlags: 0
@@ -538,11 +538,11 @@ MonoBehaviour:
   iconObsidianSprite: {fileID: 21300000, guid: d34813841fd5af54eb51296f1cb9b7b0, type: 3}
   iconWaterSprite: {fileID: 21300000, guid: 19105920e82435d448a45706ab9e01dd, type: 3}
   iconVineSprite: {fileID: 21300000, guid: d6e884b4a826e834b89aee266e500dae, type: 3}
-  imageAttackZeus: {fileID: 21300000, guid: ad71447edb1b74e4ea8c331a027b1503, type: 3}
-  imageAttackAthena: {fileID: 21300000, guid: ad71447edb1b74e4ea8c331a027b1503, type: 3}
-  imageAttackHades: {fileID: 21300000, guid: ad71447edb1b74e4ea8c331a027b1503, type: 3}
-  imageAttackPoseidon: {fileID: 21300000, guid: ad71447edb1b74e4ea8c331a027b1503, type: 3}
-  imageAttackDionysos: {fileID: 21300000, guid: ad71447edb1b74e4ea8c331a027b1503, type: 3}
+  imageAttackZeus: {fileID: 21300000, guid: ed353b45e19c64d4890866864c97965d, type: 3}
+  imageAttackAthena: {fileID: 21300000, guid: 0f59f603126adde46bbfc788193f34ce, type: 3}
+  imageAttackHades: {fileID: 21300000, guid: 9c822d2b962b2ad4592aa106acbb62af, type: 3}
+  imageAttackPoseidon: {fileID: 21300000, guid: 469a1584b5f57d84192fbaaff4d74ff8, type: 3}
+  imageAttackDionysos: {fileID: 21300000, guid: e7b03bb9aa5dbb045a304bebc768f894, type: 3}
 --- !u!1 &5135428141580068635
 GameObject:
   m_ObjectHideFlags: 0

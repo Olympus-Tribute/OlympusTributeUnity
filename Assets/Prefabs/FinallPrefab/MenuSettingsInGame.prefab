@@ -106,6 +106,7 @@ Transform:
   m_Children:
   - {fileID: 322579809900801005}
   - {fileID: 1522410848319378841}
+  - {fileID: 392093956535835719}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574052545542082366
@@ -341,20 +342,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1071050021481560536}
-        m_TargetAssemblyTypeName: DefaultNamespace.InGame, Assembly-CSharp
+        m_TargetAssemblyTypeName: Menus.MenusInGame.MenuSettingsInGame, Assembly-CSharp
         m_MethodName: CloseMenuInGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -437,6 +426,54 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2930735381591060824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 392093956535835719}
+  - component: {fileID: 7580214216834287511}
+  m_Layer: 0
+  m_Name: VolumeSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &392093956535835719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2930735381591060824}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 115.5, y: 8.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5634377652822851730}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7580214216834287511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2930735381591060824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3071bf06090b5624f8779553e3a01874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 42b33758796e75448b1b7a2d6eb4e6f0, type: 2}
+  SliderMusic: {fileID: 4861753027045563675}
+  SliderSFX: {fileID: 8219377042686426195}
+  Instance: {fileID: 0}
 --- !u!1 &3175970977662421212
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +558,6 @@ GameObject:
   - component: {fileID: 5383990814760841431}
   - component: {fileID: 550034018484963548}
   - component: {fileID: 8815480920665696549}
-  - component: {fileID: 5478505221295924002}
   m_Layer: 5
   m_Name: MenuInGame
   m_TagString: Untagged
@@ -612,21 +648,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5478505221295924002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3839165836269660550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3071bf06090b5624f8779553e3a01874, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 42b33758796e75448b1b7a2d6eb4e6f0, type: 2}
-  SliderMusic: {fileID: 4861753027045563675}
-  SliderSFX: {fileID: 8219377042686426195}
 --- !u!1 &4352900856827178198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,8 +1233,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+      - m_Target: {fileID: 7580214216834287511}
+        m_TargetAssemblyTypeName: Sound.VolumeSettings, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
         m_Arguments:
@@ -1582,8 +1603,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+      - m_Target: {fileID: 7580214216834287511}
+        m_TargetAssemblyTypeName: Sound.VolumeSettings, Assembly-CSharp
         m_MethodName: SetSFXVolume
         m_Mode: 1
         m_Arguments:

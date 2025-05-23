@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private const float DragSpeed = 1.8f;
 
+    public bool isActive = true;
     
     private bool below = false;
     
@@ -34,16 +35,19 @@ public class CameraController : MonoBehaviour
 
     public void Update()
     {
-        Zoom.targetValue += -Input.mouseScrollDelta.y * Time.deltaTime * GetZoomSensitivity;
-        if (Input.GetMouseButton(1))
+        if (isActive)
         {
-            HorizontalAngle.targetValue += (below ? 1 : -1) * Input.GetAxis("Mouse X") * Time.deltaTime * HorizontalSensitivity;
-            VerticalAngle.targetValue -= Input.GetAxis("Mouse Y") * Time.deltaTime * VerticalSensitivity;
-        }
-        else
-        {
-            Vector3 pos = Input.mousePosition;
-            below = pos.y < Screen.height/2f;
+            Zoom.targetValue += -Input.mouseScrollDelta.y * Time.deltaTime * GetZoomSensitivity;
+            if (Input.GetMouseButton(1))
+            {
+                HorizontalAngle.targetValue += (below ? 1 : -1) * Input.GetAxis("Mouse X") * Time.deltaTime * HorizontalSensitivity;
+                VerticalAngle.targetValue -= Input.GetAxis("Mouse Y") * Time.deltaTime * VerticalSensitivity;
+            }
+            else
+            {
+                Vector3 pos = Input.mousePosition;
+                below = pos.y < Screen.height/2f;
+            }
         }
 
         float zoomCurrent = Zoom.currentValue;
@@ -73,8 +77,11 @@ public class CameraController : MonoBehaviour
         float x = dirX * cameraForwardY + dirY * cameraForwardX;
         float z = dirY * cameraForwardY - dirX * cameraForwardX;
 
-        TargetPosition.x.targetValue += x * Time.deltaTime;
-        TargetPosition.z.targetValue += z * Time.deltaTime;
+        if (isActive)
+        {
+            TargetPosition.x.targetValue += x * Time.deltaTime;
+            TargetPosition.z.targetValue += z * Time.deltaTime;
+        }
         
         UpdateSmoothDynamics();
         ClampInputs();

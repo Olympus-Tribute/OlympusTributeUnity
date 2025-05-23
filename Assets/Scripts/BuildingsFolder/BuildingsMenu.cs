@@ -1,5 +1,6 @@
 using ForNetwork;
 using Grid;
+using Menus.MenusInGame;
 using Networking.Common.Client;
 using OlympusWorldGenerator;
 using UnityEngine;
@@ -18,23 +19,6 @@ namespace BuildingsFolder
         public GameObject menuUISelectTemple;
         private BuildingsManager _buildingsManager;
         private HexMapGenerator _map;
-    
-        private void SetAllMenusInactive()
-        {
-            menuUISelectTypeOfBuilding.SetActive(false);
-            menuUISelectExtractor.SetActive(false);
-            menuUISelectTemple.SetActive(false);
-            
-            if (_ghostBuilding != null)
-            {
-                Destroy(_ghostBuilding); // Détruit le bâtiment "fantôme"
-                _ghostBuilding = null;
-            }
-            _selectedBuildingPrefab = null;  // Réinitialise la sélection
-        }
-        
-        
-
         
         private void Start()
         {
@@ -51,6 +35,20 @@ namespace BuildingsFolder
             }
         }
         
+        private void SetAllMenusInactive()
+        {
+            menuUISelectTypeOfBuilding.SetActive(false);
+            menuUISelectExtractor.SetActive(false);
+            menuUISelectTemple.SetActive(false);
+            
+            if (_ghostBuilding != null)
+            {
+                Destroy(_ghostBuilding); // Détruit le bâtiment "fantôme"
+                _ghostBuilding = null;
+            }
+            _selectedBuildingPrefab = null;  // Réinitialise la sélection
+        }
+        
 
         public void Update()
         {
@@ -58,6 +56,7 @@ namespace BuildingsFolder
             if (Input.GetKeyDown(KeyCode.B))
             {
                 SetAllMenusInactive();
+
                 menuUISelectTypeOfBuilding.SetActive(!menuUISelectTypeOfBuilding.activeSelf);
             }
         

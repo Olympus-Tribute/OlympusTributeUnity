@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BuildingsFolder;
 using BuildingsFolder.BuildingsClasses;
+using Menus.MenusInGame;
 using OlympusDedicatedServer.Components.Attack;
 using PopUp;
 using Resources;
@@ -52,12 +53,13 @@ namespace Attacks
         private Dictionary<ResourceType, Sprite> _resourceSprite;
         private Dictionary<AttackType, Sprite> _attackTypeSprite;
         private uint _compteurMouse;
-        
+
 
         public void Start()
         {
             _attacksManager = FindFirstObjectByType<AttacksManager>();
             _buildingsManager = FindFirstObjectByType<BuildingsManager>();
+            
             menuUIAttack.SetActive(false);
             _compteurMouse = 0;
             

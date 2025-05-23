@@ -8,8 +8,8 @@ namespace InfoInGame
 {
     public class InfoTimer : MonoBehaviour
     {
-        public GameObject infoTimerGameObject;
-        public TMP_Text infoTimerText;
+        [SerializeField] public GameObject infoTimerGameObject;
+        [SerializeField] public TMP_Text infoTimerText;
 
         private float _timing;
         private bool _timerEnded = false;
@@ -29,7 +29,6 @@ namespace InfoInGame
             {
                 infoTimerGameObject.SetActive(false);
                 _timing = 0f;
-                Destroy(this.gameObject);
             }
         }
 
@@ -52,17 +51,17 @@ namespace InfoInGame
 
             if (hours > 0)
             {
-                infoTimerText.text = $"Time left : {hours:D2}h {minutes:D2}m {seconds:D2}s";
+                infoTimerText.text = $"{hours:D2}h {minutes:D2}m {seconds:D2}s";
             }
             else
             {
                 if (minutes > 0)
                 {
-                    infoTimerText.text = $"Time left : {minutes:D2}m {seconds:D2}s";
+                    infoTimerText.text = $"{minutes:D2}m {seconds:D2}s";
                 }
                 else
                 {
-                    infoTimerText.text = $"Time left : {seconds:D2}s";
+                    infoTimerText.text = $"{seconds:D2}s";
                 }
                 
             }

@@ -6,8 +6,8 @@ public class AnimZeusHoriStatique : MonoBehaviour
     void Start()
     {
         Debug.Log("Zeus Horizontal a été lancé");
-        var anim = Instantiate(zeusHoriPrefab, transform.position, Quaternion.identity);
-        Destroy(anim,0.3f);
+        var anim = Instantiate(zeusHoriPrefab, transform.position, transform.rotation);
+        Destroy(anim,2f);
     }
 
 }

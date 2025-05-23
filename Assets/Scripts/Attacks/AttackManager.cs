@@ -315,7 +315,7 @@ namespace Attacks
                 }
                 else
                 {
-                    Instantiate(_zeus2Animation, fromPosition, Quaternion.Euler(0, angle - 90f, 0));
+                    Instantiate(_zeus2Animation, fromPosition, Quaternion.Euler(0, angle, 0));
                 }
                 
                 

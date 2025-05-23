@@ -225,15 +225,14 @@ namespace Attacks
             return res;
         }*/
         
-        private static List<((int, int), int)> ParalyzeList((int, int)[] targets, int targetX, int targetY)
+    private static List<((int, int), int)> ParalyzeList((int, int)[] targets, int targetX, int targetY)
 {
     List<(int, int)> paralyze = new List<(int, int)> { (targetX, targetY) };
     List<(int, int)> nonparalyze = new List<(int, int)>(targets);
     List<((int, int), int)> res = new List<((int, int), int)>();
 
     nonparalyze.Remove((targetX, targetY));
-
-    System.Random rng = new System.Random(); // Pour éviter le Random Unity dans du code statique
+    System.Random rng = new System.Random();
 
     while (nonparalyze.Count > 0)
     {
@@ -245,31 +244,32 @@ namespace Attacks
             int index = rng.Next(nonparalyze.Count);
             (int x, int y) = nonparalyze[index];
 
-            // Détermine la liste des voisins à tester selon parité de Y
-            List<((int dx, int dy), int angle)> directions = y % 2 == 1
-                ? new List<((int, int), int)> {
-                    ((0, 1), 180),       // Sud
-                    ((1, 1), 135),       // Sud-Est
-                    ((1, 0), 90),        // Est
-                    ((1, -1), 45),       // Nord-Est
-                    ((0, -1), 0),        // Nord
-                    ((-1, 0), 270)       // Ouest
+            List<((int dx, int dy), int angle)> directions = y % 2 == 0
+                ? new List<((int, int), int)>
+                {
+                    ((0, -1),   0),   // Nord
+                    ((-1, -1),  60),  // Nord-Ouest
+                    ((-1, 1),   120), // Sud-Ouest
+                    ((0, 1),    180), // Sud
+                    ((1, 1),    240), // Sud-Est
+                    ((1, -1),   300), // Nord-Est
                 }
-                : new List<((int, int), int)> {
-                    ((0, 1), 180),       // Sud
-                    ((-1, 1), 225),      // Sud-Ouest
-                    ((-1, 0), 270),      // Ouest
-                    ((-1, -1), 315),     // Nord-Ouest
-                    ((0, -1), 0),        // Nord
-                    ((1, 0), 90)         // Est
+                : new List<((int, int), int)>
+                {
+                    ((0, -1),   0),   // Nord
+                    ((-1, -1),  60),  // Nord-Ouest
+                    ((-1, 1),   120), // Sud-Ouest
+                    ((0, 1),    180), // Sud
+                    ((1, 1),    240), // Sud-Est
+                    ((1, -1),   300), // Nord-Est
                 };
 
             foreach (var ((dx, dy), angle) in directions)
             {
-                (int nx, int ny) = (x + dx, y + dy);
-                if (paralyze.Contains((nx, ny)))
+                var neighbor = (x + dx, y + dy);
+                if (paralyze.Contains(neighbor))
                 {
-                    res.Add(((nx, ny), angle));
+                    res.Add((neighbor, angle));
                     paralyze.Add((x, y));
                     nonparalyze.RemoveAt(index);
                     found = true;
@@ -289,6 +289,8 @@ namespace Attacks
 
     return res;
 }
+
+
 
 
 

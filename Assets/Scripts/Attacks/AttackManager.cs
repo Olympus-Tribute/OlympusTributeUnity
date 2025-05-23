@@ -126,7 +126,7 @@ namespace Attacks
             
         }
 
-        private static List<((int, int), int)> ParalyzeList((int,int)[] targets, int targetX, int targetY)
+        /*private static List<((int, int), int)> ParalyzeList((int,int)[] targets, int targetX, int targetY)
         {
             List<(int, int)> paralyze = new List<(int, int)>();
             List<(int, int)> nonparalyze = new List<(int, int)>(targets);
@@ -223,7 +223,71 @@ namespace Attacks
                 }
             }
             return res;
+        }*/
+        
+        private static List<((int, int), int)> ParalyzeList((int, int)[] targets, int targetX, int targetY)
+        {
+            List<(int, int)> paralyze = new List<(int, int)> { (targetX, targetY) };
+            List<(int, int)> nonparalyze = new List<(int, int)>(targets);
+            List<((int, int), int)> res = new List<((int, int), int)>();
+
+            nonparalyze.Remove((targetX, targetY));
+
+            // Définit les directions avec leurs angles associés (pour hexagones pointy-top)
+            (int dx, int dy, int angle)[] evenDirections = new (int, int, int)[]
+            {
+                (0, 1, 0),       // N
+                (1, 0, 60),      // NE
+                (1, -1, 120),    // SE
+                (0, -1, 180),    // S
+                (-1, -1, 240),   // SW
+                (-1, 0, 300)     // NW
+            };
+
+            (int dx, int dy, int angle)[] oddDirections = new (int, int, int)[]
+            {
+                (0, 1, 0),       // N
+                (1, 1, 60),      // NE
+                (1, 0, 120),     // SE
+                (0, -1, 180),    // S
+                (-1, 0, 240),    // SW
+                (-1, 1, 300)     // NW
+            };
+
+            System.Random rng = new System.Random();
+
+            while (nonparalyze.Count > 0)
+            {
+                int randomIndex = rng.Next(nonparalyze.Count);
+                (int x, int y) = nonparalyze[randomIndex];
+
+                var directions = (x % 2 == 0) ? evenDirections : oddDirections;
+
+                bool connected = false;
+                foreach (var (dx, dy, angle) in directions)
+                {
+                    (int nx, int ny) = (x + dx, y + dy);
+                    if (paralyze.Contains((nx, ny)))
+                    {
+                        res.Add(((nx, ny), angle));
+                        paralyze.Add((x, y));
+                        nonparalyze.RemoveAt(randomIndex);
+                        connected = true;
+                        break;
+                    }
+                }
+
+                if (!connected)
+                {
+                    // Aucun voisin connecté, on le retente plus tard : le remettre à la fin de la liste
+                    nonparalyze.Add(nonparalyze[randomIndex]);
+                    nonparalyze.RemoveAt(randomIndex);
+                }
+            }
+
+            return res;
         }
+
         
         public void Start()
         {

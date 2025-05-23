@@ -999,7 +999,7 @@ MonoBehaviour:
   inputIpAdressField: {fileID: 971354815}
   acceptSteam: 0
   acceptTcp: 0
-  creativeMode: 0
+  creativeModeIsActive: 0
   tcpConnectionPrefab: {fileID: 5877448344958347105, guid: 86d11a2ecafa9cd47a22706a4471fc6a, type: 3}
   steamConnectionPrefab: {fileID: 360766462403845311, guid: 6e7a9fcddaaf1ac41b6c192397409fdc, type: 3}
   localConnectionPrefab: {fileID: 8890854558832741048, guid: 33235d2064b92f24e9460fafff5bcd4e, type: 3}
@@ -3986,6 +3986,10 @@ MonoBehaviour:
 --- !u!4 &1732915275
 Transform:
   m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732915273}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -116.2587, y: 242.77716, z: -5.2209706}
@@ -3997,10 +4001,6 @@ Transform:
 --- !u!1001 &1853498039
 PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732915273}
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
@@ -4821,8 +4821,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4473405390703689976, guid: 4fefdb039d30ce2499304a40f0f62252, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

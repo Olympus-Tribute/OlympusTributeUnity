@@ -257,7 +257,7 @@ namespace Attacks
                 
                 //Destroy(lightning, 1f);
 
-                yield return new WaitForSeconds(0.3f); // Pause d'une seconde avant la prochaine instantiation
+                yield return new WaitForSeconds(0.05f); // Pause d'une seconde avant la prochaine instantiation
             }
         }
         

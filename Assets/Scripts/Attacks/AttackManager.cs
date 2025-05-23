@@ -125,8 +125,8 @@ namespace Attacks
             //___________________________________________________________//
             
         }
-
-        /*private static List<((int, int), int)> ParalyzeList((int,int)[] targets, int targetX, int targetY)
+        
+        private static List<((int, int), int)> ParalyzeList((int,int)[] targets, int targetX, int targetY)
         {
             List<(int, int)> paralyze = new List<(int, int)>();
             List<(int, int)> nonparalyze = new List<(int, int)>(targets);
@@ -141,32 +141,32 @@ namespace Attacks
                 {
                     int randomindex = Random.Range(0,nonparalyze.Count);
                     (int neighborX, int neighborY) = nonparalyze[randomindex];
-                    if (paralyze.Contains((neighborX, neighborY + 1)))
+                    if (paralyze.Contains((neighborX + 1, neighborY)))
                     {
-                        res.Add(((neighborX, neighborY + 1),180));
+                        res.Add(((neighborX + 1, neighborY),180));
                         paralyze.Add((neighborX,neighborY));
                         nonparalyze.Remove((neighborX, neighborY));
                         break;
                     }
-                    if (paralyze.Contains((neighborX, neighborY - 1)))
+                    if (paralyze.Contains((neighborX - 1, neighborY)))
                     {
-                        res.Add(((neighborX, neighborY - 1),0));
+                        res.Add(((neighborX - 1, neighborY),0));
                         paralyze.Add((neighborX,neighborY));
                         nonparalyze.Remove((neighborX, neighborY));
                         break;
                     }
                     if (neighborY % 2 == 1)
                     {
-                        if (paralyze.Contains((neighborX + 1, neighborY)))
+                        if (paralyze.Contains((neighborX, neighborY + 1)))
                         {
-                            res.Add(((neighborX + 1, neighborY),60));
+                            res.Add(((neighborX, neighborY + 1),60));
                             paralyze.Add((neighborX,neighborY));
                             nonparalyze.Remove((neighborX, neighborY));
                             break;
                         }
-                        if (paralyze.Contains((neighborX - 1, neighborY)))
+                        if (paralyze.Contains((neighborX, neighborY - 1)))
                         {
-                            res.Add(((neighborX - 1, neighborY),300));
+                            res.Add(((neighborX, neighborY - 1),300));
                             paralyze.Add((neighborX,neighborY));
                             nonparalyze.Remove((neighborX, neighborY));
                             break;
@@ -180,9 +180,9 @@ namespace Attacks
                             break;
                         }
                         
-                        if (paralyze.Contains((neighborX - 1, neighborY + 1)))
+                        if (paralyze.Contains((neighborX + 1, neighborY - 1)))
                         {
-                            res.Add(((neighborX - 1, neighborY + 1),240));
+                            res.Add(((neighborX + 1, neighborY - 1),240));
                             paralyze.Add((neighborX,neighborY));
                             nonparalyze.Remove((neighborX, neighborY));
                             break;
@@ -190,23 +190,16 @@ namespace Attacks
                     }
                     else
                     {
-                        if (paralyze.Contains((neighborX + 1, neighborY)))
+                        if (paralyze.Contains((neighborX, neighborY + 1)))
                         {
-                            res.Add(((neighborX + 1, neighborY),120));
+                            res.Add(((neighborX, neighborY + 1),120));
                             paralyze.Add((neighborX,neighborY));
                             nonparalyze.Remove((neighborX, neighborY));
                             break;
                         }
-                        if (paralyze.Contains((neighborX - 1, neighborY)))
+                        if (paralyze.Contains((neighborX, neighborY - 1)))
                         {
-                            res.Add(((neighborX - 1, neighborY),240));
-                            paralyze.Add((neighborX,neighborY));
-                            nonparalyze.Remove((neighborX, neighborY));
-                            break;
-                        }
-                        if (paralyze.Contains((neighborX + 1, neighborY - 1)))
-                        {
-                            res.Add(((neighborX + 1, neighborY - 1),60));
+                            res.Add(((neighborX, neighborY - 1),240));
                             paralyze.Add((neighborX,neighborY));
                             nonparalyze.Remove((neighborX, neighborY));
                             break;
@@ -218,82 +211,19 @@ namespace Attacks
                             nonparalyze.Remove((neighborX, neighborY));
                             break;
                         }
+                        if (paralyze.Contains((neighborX - 1, neighborY + 1)))
+                        {
+                            res.Add(((neighborX - 1, neighborY + 1),60));
+                            paralyze.Add((neighborX,neighborY));
+                            nonparalyze.Remove((neighborX, neighborY));
+                            break;
+                        }
                     }
                     nbrtentative++;
                 }
             }
             return res;
-        }*/
-        
-    private static List<((int, int), int)> ParalyzeList((int, int)[] targets, int targetX, int targetY)
-{
-    List<(int, int)> paralyze = new List<(int, int)> { (targetX, targetY) };
-    List<(int, int)> nonparalyze = new List<(int, int)>(targets);
-    List<((int, int), int)> res = new List<((int, int), int)>();
-
-    nonparalyze.Remove((targetX, targetY));
-    System.Random rng = new System.Random();
-
-    while (nonparalyze.Count > 0)
-    {
-        int attempts = 0;
-        bool found = false;
-
-        while (attempts < 100 && !found)
-        {
-            int index = rng.Next(nonparalyze.Count);
-            (int x, int y) = nonparalyze[index];
-
-            List<((int dx, int dy), int angle)> directions = y % 2 == 0
-                ? new List<((int, int), int)>
-                {
-                    ((0, -1),   0),   // Nord
-                    ((-1, -1),  60),  // Nord-Ouest
-                    ((-1, 1),   120), // Sud-Ouest
-                    ((0, 1),    180), // Sud
-                    ((1, 1),    240), // Sud-Est
-                    ((1, -1),   300), // Nord-Est
-                }
-                : new List<((int, int), int)>
-                {
-                    ((0, -1),   0),   // Nord
-                    ((-1, -1),  60),  // Nord-Ouest
-                    ((-1, 1),   120), // Sud-Ouest
-                    ((0, 1),    180), // Sud
-                    ((1, 1),    240), // Sud-Est
-                    ((1, -1),   300), // Nord-Est
-                };
-
-            foreach (var ((dx, dy), angle) in directions)
-            {
-                var neighbor = (x + dx, y + dy);
-                if (paralyze.Contains(neighbor))
-                {
-                    res.Add((neighbor, angle));
-                    paralyze.Add((x, y));
-                    nonparalyze.RemoveAt(index);
-                    found = true;
-                    break;
-                }
-            }
-
-            attempts++;
         }
-
-        if (!found)
-        {
-            Debug.LogWarning("ParalyzeList : aucun voisin valide trouvé après 100 tentatives");
-            break;
-        }
-    }
-
-    return res;
-}
-
-
-
-
-
         
         public void Start()
         {

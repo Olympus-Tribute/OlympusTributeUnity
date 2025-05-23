@@ -233,7 +233,7 @@ namespace Attacks
                 (float fromXWorld, float fromZWorld) = StaticGridTools.MapIndexToWorldCenterCo(fromX, fromY);
                 Vector3 fromPosition = new Vector3(fromXWorld, 0, fromZWorld);
 
-                Instantiate(_zeus2Animation, fromPosition, Quaternion.Euler(angle, 0, 0));
+                Instantiate(_zeus2Animation, fromPosition, Quaternion.Euler(0, angle, 0));
                 
                 //Destroy(lightning, 1f);
 

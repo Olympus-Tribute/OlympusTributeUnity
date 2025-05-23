@@ -127,7 +127,8 @@ namespace Attacks
             
             while (nonparalyze.Count != 0)
             {
-                while (true)
+                int nbrtentative = 0;
+                while (nbrtentative < 1000)
                 {
                     int randomindex = Random.Range(0,nonparalyze.Count);
                     (int neighborX, int neighborY) = nonparalyze[randomindex];
@@ -210,6 +211,8 @@ namespace Attacks
                         }
                     }
                 }
+
+                nbrtentative++;
             }
             return res;
         }
@@ -234,7 +237,15 @@ namespace Attacks
                 (float fromXWorld, float fromZWorld) = StaticGridTools.MapIndexToWorldCenterCo(fromX, fromY);
                 Vector3 fromPosition = new Vector3(fromXWorld, 0, fromZWorld);
 
-                Instantiate(_zeus2Animation, fromPosition, Quaternion.Euler(0, angle, 0));
+                if (_zeus2Animation is null)
+                {
+                    Debug.LogWarning("_zeus2Animation est nul");
+                }
+                else
+                {
+                    Instantiate(_zeus2Animation, fromPosition, Quaternion.Euler(0, angle, 0));
+                }
+                
                 
                 //Destroy(lightning, 1f);
 

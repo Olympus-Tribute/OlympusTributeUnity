@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Animation.Attacks;
@@ -94,8 +95,16 @@ namespace Attacks
                     // Propagation foudre horizontal
                     if (action.Targets.Length > 1)
                     {
-                        var paralyzeList = ParalyzeList(action.Targets, action.TargetX, action.TargetY);
-                        StartCoroutine(PropagateLightning(paralyzeList));
+                        try
+                        {
+                            var paralyzeList = ParalyzeList(action.Targets, action.TargetX, action.TargetY);
+                            StartCoroutine(PropagateLightning(paralyzeList));
+                        }
+                        catch (Exception)
+                        {
+                            Debug.Log("crash ParlyzeList ou Coroutine");
+                        }
+                        
                     }
 
                     foreach (var (x2, y2) in action.Targets)

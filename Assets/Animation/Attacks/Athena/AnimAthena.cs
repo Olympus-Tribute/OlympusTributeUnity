@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Animation.Attacks
+namespace Animation.Attacks.Athena
 {
 
     public class AnimAthena : MonoBehaviour

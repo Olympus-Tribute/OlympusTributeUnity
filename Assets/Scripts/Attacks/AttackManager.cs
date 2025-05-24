@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Animation.Attacks;
-using Attacks.Animation;
+using Animation.Attacks.Hades;
 using BuildingsFolder;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
@@ -26,11 +27,33 @@ namespace Attacks
         [SerializeField] private GameObject _zeus2Animation;
         [SerializeField] private GameObject _waterPrefab;
 
+
+        public Dictionary<(int, int), AthenaInfo> dictAthena = new();
+        
+        private OwnerManager _ownerManager;
         
         public Temple Temple;
+                                    
+        public class AthenaInfo
+        {
+            public int Range;
+            public float Duration;
+            public uint PlayerId;
+            public uint AttackerId;
+
+            public AthenaInfo(int range, float duration, uint playerId, uint attackerId)
+            {
+                Range = range;
+                Duration = duration;
+                PlayerId = playerId;
+                AttackerId = attackerId;
+            }
+
+        }
         
         private void Awake()
         {
+            _ownerManager = FindFirstObjectByType<OwnerManager>();
             _buildingsManager = FindFirstObjectByType<BuildingsManager>();
             if (_buildingsManager == null)
             {
@@ -70,6 +93,17 @@ namespace Attacks
                 {
                     (float x, float z) = StaticGridTools.MapIndexToWorldCenterCo(action.TargetX, action.TargetY);
                     Instantiate(_athenaAnimation, new Vector3(x, 0, z), Quaternion.identity);
+                    
+                    Building buildingplaced = _buildingsManager.Buildings[(action.TargetX, action.TargetY)];
+                    
+                    uint oldOwner = buildingplaced.OwnerId;
+                    uint oldAttacker = dictAthena.TryGetValue((action.TargetX, action.TargetY), out AthenaInfo info) ? info.AttackerId : oldOwner;
+                    
+                    dictAthena[(action.TargetX, action.TargetY)] = new AthenaInfo(buildingplaced.Range, action.Duration, oldOwner, action.AttackerId);
+                    
+                    _buildingsManager.UnsetOwners(action.TargetX, action.TargetY, buildingplaced.Range, oldAttacker);
+                    _buildingsManager.SetOwners(action.TargetX, action.TargetY, buildingplaced.Range, action.AttackerId);
+                    
                     ShowPopUpAttack();
                 });
             
@@ -125,7 +159,32 @@ namespace Attacks
             //___________________________________________________________//
             
         }
-        
+
+        public void Update()
+        {
+            List<(int, int)> toRemove = new List<(int, int)>();
+
+            foreach (var (key, value) in dictAthena)
+            {
+                (int x, int y) = key;
+                
+                value.Duration -= Time.deltaTime;
+                
+                if (value.Duration <= 0f)
+                {
+                    toRemove.Add((x, y));
+                    
+                    _buildingsManager.UnsetOwners(x, y, value.Range, value.AttackerId);
+                    _buildingsManager.SetOwners(x, y, value.Range, value.PlayerId);
+                }
+            }
+
+            foreach (var cpl in toRemove)
+            {
+                dictAthena.Remove(cpl);
+            }
+        }
+
         private static List<((int, int), int)> ParalyzeList((int,int)[] targets, int targetX, int targetY)
         {
             List<(int, int)> paralyze = new List<(int, int)>();

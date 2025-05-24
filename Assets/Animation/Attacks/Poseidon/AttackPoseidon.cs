@@ -1,7 +1,7 @@
 using BuildingsFolder;
 using UnityEngine;
 
-namespace Animation.Attacks
+namespace Animation.Attacks.Poseidon
 {
     public class AttackPoseidon : MonoBehaviour
     {

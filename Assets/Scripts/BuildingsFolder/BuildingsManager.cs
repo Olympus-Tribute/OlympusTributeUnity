@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Attacks;
 using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
 using Grid;
@@ -47,6 +48,8 @@ namespace BuildingsFolder
         // Audio
         AudioManager audioManager;
         
+        private AttacksManager _attacksManager;
+        
         // ____________________________________________________________________//
         // ____________________________________________________________________//
         // ____________________________________________________________________//
@@ -68,6 +71,8 @@ namespace BuildingsFolder
     
         void OnEnable()
         {
+            _attacksManager = FindFirstObjectByType<AttacksManager>();
+            
             Debug.Log("Starting BuildingsManager...");
             
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerPlaceBuildingGameAction>(
@@ -116,20 +121,38 @@ namespace BuildingsFolder
 
         private void AddBuildingOwner(Building building)
         {
-            foreach (var (x, y) in WorldCoordinates.FindTilesOfNRadiusIncludingMe(building.Position.Item1, building.Position.Item2, GameConstants.MapWidth, GameConstants.MapHeight, building.Range))
+            SetOwners(building.Position.Item1, building.Position.Item2, building.Range, building.OwnerId);
+        }
+
+        public void SetOwners(int tx, int ty, int range, uint ownerId)
+        {
+            foreach (var (x, y) in WorldCoordinates.FindTilesOfNRadiusIncludingMe(tx, ty, GameConstants.MapWidth, GameConstants.MapHeight, range))
             {
-                OwnerManager.AddOwner(x, y, building.OwnerId);
+                OwnerManager.AddOwner(x, y, ownerId);
             }
         }
-        
+
         private void RemoveBuildingOwner(Building building)
         {
-            foreach (var (x, y) in WorldCoordinates.FindTilesOfNRadiusIncludingMe(building.Position.Item1, building.Position.Item2, GameConstants.MapWidth, GameConstants.MapHeight, building.Range))
+            if (_attacksManager.dictAthena.TryGetValue((building.Position.Item1, building.Position.Item2), out AttacksManager.AthenaInfo info))
             {
-                OwnerManager.RemoveOwner(x, y, building.OwnerId);
+                UnsetOwners(building.Position.Item1, building.Position.Item2, building.Range, info.AttackerId);
+                _attacksManager.dictAthena.Remove((building.Position.Item1, building.Position.Item2));
+            }
+            else
+            {
+                UnsetOwners(building.Position.Item1, building.Position.Item2, building.Range, building.OwnerId);
             }
         }
-        
+
+        public void UnsetOwners(int tx, int ty, int range, uint ownerId)
+        {
+            foreach (var (x, y) in WorldCoordinates.FindTilesOfNRadiusIncludingMe(tx, ty, GameConstants.MapWidth, GameConstants.MapHeight, range))
+            {
+                OwnerManager.RemoveOwner(x, y, ownerId);
+            }
+        }
+
         public void PlaceBuilding(int xMapIndex, int zMapIndex, int buildingType, uint ownerId)
         {
             if (Buildings.ContainsKey((xMapIndex, zMapIndex)))

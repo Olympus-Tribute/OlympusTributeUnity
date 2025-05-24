@@ -1,7 +1,6 @@
-using BuildingsFolder;
 using UnityEngine;
 
-namespace Attacks.Animation
+namespace Animation.Attacks.Hades
 {
     public class AnimHades : MonoBehaviour
     {

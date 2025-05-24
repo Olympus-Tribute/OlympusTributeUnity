@@ -38,28 +38,6 @@ namespace BuildingsFolder
                 }
             }
         }
-        /*
-        public OwnerManager(uint mapWidth, uint mapHeight, HexMapGenerator map)
-        {
-            _mapWidth = mapWidth;
-            _mapHeight = mapHeight;
-            _globalMap = new List<uint>[mapWidth, mapHeight];
-            _numberTilesPlayable = (int)((_mapWidth * _mapHeight) - CountTilesOfOcean());
-            _mapOfPlayer = new Dictionary<uint, uint[,]>();
-            PercentagePerPlayer = new Dictionary<uint, float>();
-            _map = map;
-            
-            for (int i = 0; i < mapWidth; i++)
-            {
-                for (int j = 0; j < mapHeight; j++)
-                {
-                    _globalMap[i, j] = new List<uint>();
-                }
-            }
-        }
-        
-        */
-        
         
         public void AddOwner(int x, int y, uint owner)
         {
@@ -78,8 +56,8 @@ namespace BuildingsFolder
                 
             }
             map[x, y] ++;
-
-            UpdatePercentageOfTileWithOcean();
+            
+            UpdatePercentageOfTileWithoutOcean();
         }
 
         public void RemoveOwner(int x, int y, uint owner)
@@ -99,7 +77,7 @@ namespace BuildingsFolder
                 _globalMap[x, y].Remove(owner);
             }
 
-            UpdatePercentageOfTileWithOcean();
+            UpdatePercentageOfTileWithoutOcean();
         }
 
         public uint? GetOwner(int x, int y)
@@ -111,71 +89,28 @@ namespace BuildingsFolder
             }
             return tileOwner[0];
         }
-
-        private void UpdatePercentageOfTileWithOcean()
-        {
-            Dictionary<uint, uint> tileCountPerPlayer = new Dictionary<uint, uint>();
-            uint totalTiles = _mapWidth * _mapHeight;
-
-       
-            foreach (var player in _mapOfPlayer)
-            {
-                uint playerId = player.Key;
-                uint[,] playerMap = player.Value;
-                uint count = 0;
-                
-                for (int i = 0; i < _mapWidth; i++)
-                {
-                    for (int j = 0; j < _mapHeight; j++)
-                    {
-                        if (playerMap[i, j] > 0)
-                        {
-                            count++;
-                        }
-                    }
-                }
-                
-                if (count > 0)
-                {
-                    tileCountPerPlayer[playerId] = count;
-                }
-            }
-            
-            foreach (var entry in tileCountPerPlayer)
-            {
-                PercentagePerPlayer[entry.Key] = (entry.Value / (float)totalTiles) * 100f;
-            }
-        }
         
         private void UpdatePercentageOfTileWithoutOcean()
         {
             Dictionary<uint, uint> tileCountPerPlayer = new Dictionary<uint, uint>();
-            uint totalTiles = _mapWidth * _mapHeight;
-
-       
-            foreach (var player in _mapOfPlayer)
+            
+            for (int i = 0; i < _mapWidth; i++)
             {
-                uint playerId = player.Key;
-                uint[,] playerMap = player.Value;
-                uint count = 0;
-                
-                for (int i = 0; i < _mapWidth; i++)
+                for (int j = 0; j < _mapHeight; j++)
                 {
-                    for (int j = 0; j < _mapHeight; j++)
+                    if (!(_map[i, j] is FloorTile.Ocean))
                     {
-                        if (!(_map[i, j] is FloorTile.Ocean) && playerMap[i, j] > 0)
+                        uint? owner = GetOwner(i, j);
+                        
+                        if (owner.HasValue)
                         {
-                            count++;
+                            tileCountPerPlayer.TryAdd(owner.Value, 0);
+                            tileCountPerPlayer[owner.Value] ++;
                         }
                     }
                 }
-                
-                if (count > 0)
-                {
-                    tileCountPerPlayer[playerId] = count;
-                }
             }
-            
+                
             foreach (var entry in tileCountPerPlayer)
             {
                 PercentagePerPlayer[entry.Key] = (entry.Value / (_numberTilesPlayable + 0f)) * 100f;
@@ -198,8 +133,5 @@ namespace BuildingsFolder
 
             return count;
         }
-        
-        
-        
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BuildingsFolder;
 using ForNetwork;
+using Networking.API.Listeners;
 using Networking.Common.Server;
 using TMPro;
 using UnityEngine;
@@ -17,10 +18,12 @@ namespace Menus.MenusInGame
         [SerializeField] public TMP_Text statsGame;
         
         private double[] playerPercentage;
-        
+        private GameActionListener<ServerGameStopGameAction> listener;
+
+
         void OnEnable()
         {
-            Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerGameStopGameAction>(
+            listener = Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerGameStopGameAction>(
                 (connection, action) =>
                 {
                     Debug.Log("[CLIENT]     : Receive 'ServerGameStop'");
@@ -30,6 +33,11 @@ namespace Menus.MenusInGame
 
 
             winPanelGameObject.SetActive(false);
+        }
+
+        void OnDisable()
+        {
+            Network.Instance.Proxy.GameActionListenerManager.RemoveListener(listener);
         }
 
         private void FinishGame()

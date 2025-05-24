@@ -538,11 +538,11 @@ MonoBehaviour:
   iconObsidianSprite: {fileID: 21300000, guid: d34813841fd5af54eb51296f1cb9b7b0, type: 3}
   iconWaterSprite: {fileID: 21300000, guid: 19105920e82435d448a45706ab9e01dd, type: 3}
   iconVineSprite: {fileID: 21300000, guid: d6e884b4a826e834b89aee266e500dae, type: 3}
-  imageAttackZeus: {fileID: 21300000, guid: ed353b45e19c64d4890866864c97965d, type: 3}
-  imageAttackAthena: {fileID: 21300000, guid: 0f59f603126adde46bbfc788193f34ce, type: 3}
-  imageAttackHades: {fileID: 21300000, guid: 9c822d2b962b2ad4592aa106acbb62af, type: 3}
-  imageAttackPoseidon: {fileID: 21300000, guid: 469a1584b5f57d84192fbaaff4d74ff8, type: 3}
-  imageAttackDionysos: {fileID: 21300000, guid: e7b03bb9aa5dbb045a304bebc768f894, type: 3}
+  imageAttackZeus: {fileID: 21300000, guid: b2d46193febe2fb46a2f59b743762662, type: 3}
+  imageAttackAthena: {fileID: 21300000, guid: d20139cd31a4cae468a42f25db18c2b1, type: 3}
+  imageAttackHades: {fileID: 21300000, guid: 06fa00ec43011574a9907b34193bcaa9, type: 3}
+  imageAttackPoseidon: {fileID: 21300000, guid: bef8ec11c8e9df64eb423617368d1b68, type: 3}
+  imageAttackDionysos: {fileID: 21300000, guid: e98fab1be46d02649830c7d1dd0116b4, type: 3}
 --- !u!1 &5135428141580068635
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,11 +659,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5255705040177043346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4be32facd066744ca78d074cc58df86, type: 3}
+  m_Script: {fileID: 11500000, guid: eb7a1e4a87da4d12b3353209c89c1e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _poseidonAnimation: {fileID: 1897722749337026402, guid: c891d434eaf66b94b9208b2e16e66620, type: 3}
   _hadesAnimation: {fileID: 2626209354379793085, guid: 99a9f9bf02baee445bcbac1d509f237a, type: 3}
+  _athenaAnimation: {fileID: 7706634180933737791, guid: f9aa04b3b37e70e4fb35f03c3660181e, type: 3}
+  _dionysosAnimation: {fileID: 5515695015129358141, guid: caa6ba721a1a71f4ba788671becd89d5, type: 3}
+  _zeus1Animation: {fileID: 8943785924447405606, guid: f86847291b8c05e44973fff984ae0236, type: 3}
+  _zeus2Animation: {fileID: 19983683809216788, guid: 7c4816d43b3b9ec499eab51bb752d2a4, type: 3}
+  _waterPrefab: {fileID: 0}
 --- !u!1 &5269136758952594006
 GameObject:
   m_ObjectHideFlags: 0

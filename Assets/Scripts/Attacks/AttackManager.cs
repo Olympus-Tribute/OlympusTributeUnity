@@ -9,6 +9,7 @@ using BuildingsFolder.BuildingsClasses;
 using ForNetwork;
 using Networking.Common.Server.Attacks;
 using PopUp;
+using Sound;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -31,7 +32,7 @@ namespace Attacks
         public Dictionary<(int, int), AthenaInfo> dictAthena = new();
         
         private OwnerManager _ownerManager;
-        
+        public AudioManager audioManager;
         public Temple Temple;
                                     
         public class AthenaInfo
@@ -55,6 +56,9 @@ namespace Attacks
         {
             _ownerManager = FindFirstObjectByType<OwnerManager>();
             _buildingsManager = FindFirstObjectByType<BuildingsManager>();
+            
+            audioManager = GameObject.FindFirstObjectByType<AudioManager>();
+            
             if (_buildingsManager == null)
             {
                 Debug.LogError("BuildingsManager was not found in the scene !");
@@ -76,6 +80,7 @@ namespace Attacks
                         _buildingsManager.Buildings[(x2,y2)].Paralyze(action.Duration);
                     }
                     ShowPopUpAttack();
+                    audioManager.PlayAttackPoseidon();
                 });
 
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackHadesGameAction>(
@@ -86,6 +91,7 @@ namespace Attacks
                     var instantiate = Instantiate(_hadesAnimation, new Vector3(x, 0, z), Quaternion.identity);
                     instantiate.GetComponent<AnimHades>().buildingDestroy = deleteBuilding;
                     ShowPopUpAttack();
+                    audioManager.PlayAttackHades();
                 });
             
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackAthenaGameAction>(
@@ -105,6 +111,7 @@ namespace Attacks
                     _buildingsManager.SetOwners(action.TargetX, action.TargetY, buildingplaced.Range, action.AttackerId);
                     
                     ShowPopUpAttack();
+                    audioManager.PlayAttackAthena();
                 });
             
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackDionysusGameAction>(
@@ -115,6 +122,7 @@ namespace Attacks
                     _buildingsManager.Buildings[(action.TargetX,action.TargetY)].Paralyze(action.Duration);
                     
                     ShowPopUpAttack();
+                    audioManager.PlayAttackDionysos();
                 });
             
             Network.Instance.Proxy.GameActionListenerManager.AddListener<ServerAttackZeusGameAction>(
@@ -148,6 +156,7 @@ namespace Attacks
 
                     
                     ShowPopUpAttack();
+                    audioManager.PlayAttackZeus();
                 });
 
 

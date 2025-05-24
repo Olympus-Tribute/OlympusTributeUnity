@@ -103,6 +103,7 @@ namespace Menus.MenusOutGame
                     GameConstants.MapHeight = action.Height;
                     GameConstants.PlayerCount = action.PlayerCount;
                     GameConstants.PlayerId = action.PlayerId;
+                    GameConstants.TimerSetByHostInMin = (int)(action.Duration/60);
                     InitGame();
                 });
         }

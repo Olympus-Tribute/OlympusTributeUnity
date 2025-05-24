@@ -17,7 +17,6 @@ namespace Menus.MenusInGame
         [SerializeField] public TMP_Text statsGame;
         
         private double[] playerPercentage;
-        private CameraController _mainCamera;
         
         void OnEnable()
         {
@@ -31,12 +30,10 @@ namespace Menus.MenusInGame
 
 
             winPanelGameObject.SetActive(false);
-            _mainCamera = FindFirstObjectByType<CameraController>();
         }
 
         private void FinishGame()
         {
-            _mainCamera.enabled = false;
             winPanelGameObject.SetActive(true);
             statsGame.text = GetStatsGame();
         }

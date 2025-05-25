@@ -1434,17 +1434,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d8d92f5a1ba61641a2c83e5c5bdbce7, type: 3}
---- !u!114 &1324247207 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2346214415710600139, guid: 5d8d92f5a1ba61641a2c83e5c5bdbce7, type: 3}
-  m_PrefabInstance: {fileID: 1324247206}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc58bd9e173e87f42b2fa83016f6a6bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1467561713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2150,7 +2139,7 @@ PrefabInstance:
     - target: {fileID: 6931896407041379767, guid: ddd179e9dada80f4399d0f8c905a0537, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1324247207}
+      objectReference: {fileID: 2928853619148356321}
     - target: {fileID: 6931896407041379767, guid: ddd179e9dada80f4399d0f8c905a0537, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -2158,6 +2147,10 @@ PrefabInstance:
     - target: {fileID: 6931896407041379767, guid: ddd179e9dada80f4399d0f8c905a0537, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6931896407041379767, guid: ddd179e9dada80f4399d0f8c905a0537, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonQuit
       objectReference: {fileID: 0}
     - target: {fileID: 6931896407041379767, guid: ddd179e9dada80f4399d0f8c905a0537, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2216,6 +2209,18 @@ MonoBehaviour:
   _zeus1Animation: {fileID: 8943785924447405606, guid: f86847291b8c05e44973fff984ae0236, type: 3}
   _zeus2Animation: {fileID: 19983683809216788, guid: 7c4816d43b3b9ec499eab51bb752d2a4, type: 3}
   _waterPrefab: {fileID: 919132149155446097, guid: 6e1151b2a65097d4ca297df8cc770ac6, type: 3}
+  audioManager: {fileID: 0}
+--- !u!114 &2928853619148356321 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6430766547579462454, guid: ddd179e9dada80f4399d0f8c905a0537, type: 3}
+  m_PrefabInstance: {fileID: 2928853619148356318}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bca26e3b594eeab7d507618a61785f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4497956191868054818
 PrefabInstance:
   m_ObjectHideFlags: 0

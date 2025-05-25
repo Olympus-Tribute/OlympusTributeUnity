@@ -110,10 +110,11 @@ namespace Attacks
 
         private void Attack(int x, int y)
         {
+            
             if (_attacksManager.Temple is null)
             {
-                if (_buildingsManager.Buildings.TryGetValue((x, y), out var targetBuilding) && targetBuilding.OwnerId == GameConstants.PlayerId &&
-                    targetBuilding is Temple targetTemple)
+                if (_buildingsManager.Buildings.TryGetValue((x, y), out var targetBuilding) && targetBuilding is Temple targetTemple &&
+                    (_attacksManager.dictAthena.TryGetValue((x,y),out var info) ? info.AttackerId == GameConstants.PlayerId : targetBuilding.OwnerId == GameConstants.PlayerId))
                 {
                     _compteurMouse += 1;
                     

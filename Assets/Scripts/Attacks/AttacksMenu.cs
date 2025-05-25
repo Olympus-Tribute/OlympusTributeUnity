@@ -148,6 +148,7 @@ namespace Attacks
         
         public void ButtonQuit()
         {
+            _compteurMouse = 0;
             menuUIAttack.SetActive(false);
             _attacksManager.Temple = null;
         }

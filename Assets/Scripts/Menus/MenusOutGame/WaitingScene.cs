@@ -3,6 +3,11 @@ using ForNetwork;
 using Networking.API.Listeners;
 using Networking.Common.Client;
 using Networking.Common.Server;
+using Networking.Local;
+using OlympusAI.Backtrack;
+using OlympusAI.Common;
+using OlympusAI.Random;
+using OlympusDedicatedServer.Components.Buildings.Placement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -41,6 +46,8 @@ namespace Menus.MenusOutGame
         
         public GameActionListener<ServerReadyStatesGameAction> readyActionListener;
         public GameActionListener<ServerStartLobbyGameAction> lobbyActionListener;
+
+        
         
         //___________________________________________________________//
         //___________________________________________________________//
@@ -48,9 +55,9 @@ namespace Menus.MenusOutGame
         
         public enum TypeOfAi
         {
-            Random,
-            Backtrack,
-            BactrackMultiworld
+            Easy,
+            Medium,
+            Hard
         }
         
         public Dictionary<TypeOfAi, int> AiToAddGame = new Dictionary<TypeOfAi, int>();
@@ -145,6 +152,11 @@ namespace Menus.MenusOutGame
         public void Ready() // For Button
         {
             playerReady = true;
+            var instanceServer = LocalConnectionMethod.Instance;
+            foreach (var aiProxy in instanceServer.AIStack)
+            {
+                aiProxy.Ready();
+            }
             buttonReady.SetActive(false);
             buttonNotReady.SetActive(true);
             Network.Instance.Proxy.Connection.Send(new ClientReadyStateGameAction(true));
@@ -237,18 +249,37 @@ namespace Menus.MenusOutGame
 
         private TypeOfAi ConvertIntToTypeOfAi(int value)
         {
-            switch (value)
-            {
-                case 0: return TypeOfAi.Random;
-                case 1: return TypeOfAi.Backtrack;
-                case 2: return TypeOfAi.BactrackMultiworld;
-                default: return TypeOfAi.Random;
-            }
+            return (TypeOfAi)value;
         }
         
         public void AddAi()
         {
+            
             TypeOfAi typeOfAi = ConvertIntToTypeOfAi(aiDropdown.value);
+            var instanceServer = LocalConnectionMethod.Instance;
+            var (serverProxy, iaProxy) = LocalConnection.CreatePair();
+            serverProxy.Connect();
+            AiProxy? proxy = null;
+            switch (typeOfAi)
+            {
+                case TypeOfAi.Easy:
+                    proxy = new AiProxy(serverProxy, new AiRandomPlayer(new BuildingNormalConstants(new BuildingBlueprints(), new NormalBuildRecipes(), new NormalAttackRecipe()), instanceServer.Server.Generator));
+                    break;
+                case TypeOfAi.Medium:
+                    proxy = new AiProxy(serverProxy, new AiBackTrackPlayer(new BuildingNormalConstants(new BuildingBlueprints(), new NormalBuildRecipes(), new NormalAttackRecipe()), instanceServer.Server.Generator,true));
+                    break;
+                case TypeOfAi.Hard:
+                    proxy = new AiProxy(serverProxy, new AiBackTrackPlayer(new BuildingNormalConstants(new BuildingBlueprints(), new NormalBuildRecipes(), new NormalAttackRecipe()), instanceServer.Server.Generator));
+                    break;
+            }
+
+            if (proxy is not null)
+            {
+                instanceServer.LocalAcceptor.Join(iaProxy);
+                proxy.Start();
+                instanceServer.AIStack.Push(proxy);
+            }
+
             if (AiToAddGame.TryGetValue(typeOfAi, out int _))
             {
                 AiToAddGame[typeOfAi] += 1;
@@ -262,6 +293,11 @@ namespace Menus.MenusOutGame
         
         public void RemoveAi()
         {
+            var instanceServer = LocalConnectionMethod.Instance;
+            if (instanceServer.AIStack.Count != 0)
+            {
+                instanceServer.AIStack.Pop().Stop();
+            }
             TypeOfAi typeOfAi = ConvertIntToTypeOfAi(aiDropdown.value);
             if (AiToAddGame.TryGetValue(typeOfAi, out int _))
             {

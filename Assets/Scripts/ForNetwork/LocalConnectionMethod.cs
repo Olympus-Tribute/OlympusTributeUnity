@@ -8,6 +8,7 @@ using Networking.API.Listeners;
 using Networking.Local;
 using Networking.Steam;
 using Networking.TCP;
+using OlympusAI.Common;
 using OlympusDedicatedServer;
 using OlympusDedicatedServer.Components.WorldComp.Win;
 using Steamworks;
@@ -23,11 +24,13 @@ namespace ForNetwork
         public bool acceptTcpConnection;
         public bool acceptSteamConnection;
         public bool creativeModeIsActive;
-        
+        public LocalConnectionAcceptor LocalAcceptor;
+
         public Server Server { get; set; }
 
         public bool PlayerIsHost => Server != null;
 
+        public Stack<AiProxy> AIStack = new Stack<AiProxy>();
         public LocalConnectionMethod(){}
 
         public void Awake()
@@ -49,7 +52,12 @@ namespace ForNetwork
 
         public void Update()
         {
-            Server?.Update(Time.deltaTime);
+            float delta = Time.deltaTime;
+            Server?.Update(delta);
+            foreach (var aiProxy in AIStack)
+            {
+                aiProxy.Update(delta);
+            }
         }
 
         public override void Connect()
@@ -59,9 +67,9 @@ namespace ForNetwork
             
             List<IConnectionAcceptor> acceptors = new();
             
-            LocalConnectionAcceptor localAcceptor = new();
+             LocalAcceptor = new();
             
-            acceptors.Add(localAcceptor);
+            acceptors.Add(LocalAcceptor);
             Add(acceptors);
             
             CompositionConnectionAcceptor compositionConnectionAcceptor = new CompositionConnectionAcceptor(acceptors);
@@ -80,7 +88,7 @@ namespace ForNetwork
             //___________________________//
             
             (LocalConnection client, LocalConnection serverConnection) = LocalConnection.CreatePair();
-            localAcceptor.Join(client);
+            LocalAcceptor.Join(client);
             
             Server = server;
             
@@ -91,6 +99,11 @@ namespace ForNetwork
 
         public override void Stop()
         {
+            foreach (var aiProxy in AIStack)
+            {
+                aiProxy.Stop();
+            }
+            AIStack.Clear();
             if (Server != null)
             {
                 Server.Stop();
